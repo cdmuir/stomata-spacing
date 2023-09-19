@@ -1,0 +1,19 @@
+\begin{table}[ht]
+\centering
+\begin{tabular}{rll}
+  \hline
+ & trait & relationship \\
+  \hline
+1 & leaf thickness & + \\
+  2 & stomatal density & - \\
+  3 & leaf porosity & - \\
+  4 & lat.-vert. diffusion ratio & - \\
+  5 & temperature & - \\
+  6 & pressure & - \\
+  7 & Rubisco concentration & + \\
+  8 & light & + \\
+   \hline
+\end{tabular}
+\caption{A summary of the hypothesized relationships between leaf traits and environmental conditions and photosynthetic advantage of stomatal spatial coordination in amphistomatous leaves.}
+\label{tab:hypotheses}
+\end{table}

@@ -1,0 +1,40 @@
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{figures/single-surface.pdf}
+\caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
+\label{fig:dispersion}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/density.pdf}
+\caption{Stomatal density is higher in plants grown under high light conditions. Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
+\label{fig:density}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
+\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
+\label{fig:example}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/length-area.pdf}
+\caption{Stomatal length and stomatal zone area. Lines of best fit computed using a bayesian generalized non-linear multilevel model. Each light level and leaf surface exhibits a unique, weakly positive relationship between stomatal zone area and length.}
+\label{fig:length-area}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/ideal-amphi-grid.pdf}
+\caption{Idealized amphistomatous stomatal grid with uniform stomatal patterning and perfect abaxial-adaxial coordination.}
+\label{fig:amphi}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/dual-surface.pdf}
+\caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
+\label{fig:dual-surface}
+\end{figure}

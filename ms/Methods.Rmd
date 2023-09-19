@@ -1,0 +1,699 @@
+---
+title: "Methods"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "..")
+```
+
+```{r}
+# source header
+source("r/header.R", keep.source = TRUE)
+
+# source superseded
+source("r/superseded.R", keep.source = TRUE)
+```
+
+# Custom Functions
+
+Below are the custom functions to deal with 1.) single surface data, and 2.) Amphistomatous data. The general work flow is to simulate random and dispersed stomatal grids based on a Gamma distribution of the number of stomata in the real data for use in testing the null hypothesis that stomata are randomly dispersed on the leaf surface using the Average Nearest Neighbor test. For amphistomatous data, the work flow is to first pair associated surfaces, then build kernel densities (or distance squared) of the stomata on each surface and perform a pearson pairwise raster correlation on the paired kernel density rasters. And use simulated data to test the null hypothesis that stomata on the abaxial and adaxial surface are independently distributed.
+
+## Single Surface Data
+
+### Density to Distance
+
+```{r Density to Distance}
+D2U
+```
+
+Explanation: `D2U` takes a stomatal density value ($D_S$) in units # of stomata / $pixels^2$ and returns a distance value ($U$) which describes the distance between stomata with density ($D_S$) assuming perfect uniform distribution. It works by calculating the area of a regular hexagon within which each pixel is closest to the stomate at the center of the hexagon. Once the area of the hexagon is known, the function works to calculate the distance between stomata ($U$) assuming regular packing of hexagons of area ($A_\text{hex}$). This is done using known equations of the geometry of regular hexagons.
+
+### Distance to Density
+
+```{r Distance to Density}
+U2D
+```
+
+Explanation: `U2D` takes a distance measurement ($U$) in units pixels and returns a stomatal density value ($D_S$). This function is the reciprocal of `D2U` and works using the same geometric concepts.
+
+### Building Dispersed (Equal) Stomatal Grids
+
+```{r Building Dispersed (Equal) Stomatal Grids 1}
+make_equal_stomata_grid
+```
+
+Explanation: The `make_equal_stomata_grid` function takes arguments: distance between stomata ($U$), # of horizontal pixels ($\text{pixels}_x$), # of vertical pixels ($\text{pixels}_y$), a logical (`jitter`), and a logical (`rotate`) and outputs a tibble of two columns (`x`, `y`) with $x, y$ coordinates of dispersed stomata. It works via the geometry of dispersed objects which are always arrayed in an equilateral triangle grid such that the area occupied (closest to) by each stomate is a hexagon of ($A_\text{hex}$) from the previous functions. The function builds a sequence of $x$ values starting at `start_end` separated by $U$ until it reaches $(\text{pixels}_x - \text{start_end})$; then the same sequence is repeated adding $U/2$. This way, two "rows" of $x$ values are calculated together. That whole sequence is then repeated $\text{x_rep}$ number of times depending on the grid size and stomatal density. $y$ is built in a similar manner by sequencing by the proper distance $((\sqrt{3}) / 2) U$ until reaching $2 * \text{x_rep}$ number of repetitions. Then, sorting at the end to match the appropriate $x$ values in vector `x`. Jitter is added (if `jitter = TRUE`) by performing vector addition of a uniform random number between 0 and $U$ for $x$ and between 0 and $\sqrt{3} / 2 U$ for $y$. Rotation about a central point is added if (`rotate == TRUE`) based on a random angle between 0 and 45 degrees (the pattern repeats after 45 degrees of rotation). The function returns a tibble of two columns: `x` and `y`, which represent the theoretical positions of stomata in a perfectly dispersed array of size $\text{pixels}_x$ by $\text{pixels}_y$ with distance between stomata ($U$).
+
+```{r Building Dispersed (Equal) Stomatal Grids 2}
+make_equal_stomata_grids
+```
+
+Explanation: The function `make_equal_stomata_grids` reruns the previous function `n_grid` # of times; returning a list with `n_grid` # of tibbles.
+
+### Building Random Stomatal Grids
+
+```{r Building Random Stomatal Grids 1}
+make_random_stomata_grid
+```
+
+Explanation: The function `make_random_stomata_grid` takes arguments: number of stomata (`n`), $\text{pixels}_x$, and $\text{pixels}_y$ and returns a tibble of two columns: `x` and `y`, which represent coordinates of a hypothetical array of randomly distributed stomata within an area ($\text{pixels}_x \times \text{pixels}_y$). It works by converting distance between stomata ($U$) to a density ($D$) and then to an integer equal to # of stomata ($n$); then utilizing the function `runif()` which returns a vector of length $n$ of uniformly distributed random numbers between 0 and $\text{pixels}_x$ or $\text{pixels}_y$ Those two vectors are placed in a `tibble` and the `tibble` is returned as the output of the function.
+
+```{r Building Random Stomatal Grids 2}
+make_random_stomata_grids
+```
+
+Explanation: The function `make_random_stomata_grids` reruns the previous function `n_grid` # of times; returning `n_grid` # of tibbles.
+
+### Plotting Grids
+
+```{r Plotting Grids, include = T}
+plot_stomatal_grid
+```
+
+Explanation: The function `plot_stomatal_grid()` is a general stomatal plotting function. It takes arguments: tibble of $x, y$ coordinates of stomata in `data.frame` (`df_stomata`), and # of horizontal pixels ($\text{pixels}_x$) and # of vertical pixels ($\text{pixels}_y$) and returns a plot with a border of the proper dimensions ($\text{pixels}_x \times \text{pixels}_y$).
+
+## Simulate Stomatal Grids Based on Real Data
+
+```{r Simulate Stomatal Grids Based on Real Data, include = T}
+simulate_grids_from_data
+```
+
+Explanation: The function `simulate_grids_from_data()` takes arguments: tibble of $x, y$ coordinates of stomata (`data`), number of horizontal pixels ($\text{pixels}_x$), number of vertical pixels ($\text{pixels}_y$), and number of simulations (`n_grids`) and returns a nested list of 1.) random stomatal grids (`random_grids`) and 2.) dispersed stomatal grids (`equal_grids`). It works by building a gamma distribution (`lambdas`) around number of stomata (n) assuming a scale of 1. Then simulating random and equal grids based on that vector of lambdas.
+
+## Average Nearest Neighbor
+
+```{r Average Nearest Neighbor Function, include = T}
+stomata_ann_test
+```
+
+Explanation: The function `stomata_ann_test()` takes the arguments: tibble of $x, y$ coordinates of stomata (`df_stomata`), number of horizontal pixels ($\text{pixels}_x$), number of vertical pixels ($\text{pixels}_y$) and returns a list of values returned by an Average Nearest Neighbor Test via the package `spatialEco`. The average nearest neighbor (ANN) is a commonly used spatial statistic tool to determine if objects are 1) clustered, 2) random, or 3) regularly dispersed in geographic space. It works by calculating the euclidean distance between each combination of points (stomata) on a plane (leaf surface), then determining each point's nearest neighbor (by finding which stomata pair gives the smallest distance value). All the nearest neighbor distances are averaged, giving the average nearest neighbor value (observed mean distance). This distance is compared to an expected mean distance ($\text{expected mean distance} = 0.5 * sqrt(A / # of stomata)$) for a hypothetical set of points (same # of points) randomly distributed points across the same area (A). The nearest neighbor index (`nni`) is the ratio of observed mean distance to the expected mean distance. NNI values range from 0 to around 3. Values close to 0 are more likely to be clustered, values around 1, random, and values greater than 1 are more likely to be regularly dispersed. A p-value can be assigned to the NNI value to test for a non-random distribution (clumped or dispersed); however, in this study, we will calculate a p-value based on simulations rather than a the traditional normal distribution assumed by the package `spatialEco` as the small sample size and study area violate the assumptions of the traditional ANN test as edge effects are not trivial.
+
+```{r Tests on Simulations, include = T}
+stomata_ann_tests
+```
+
+Explanation: The function `stomata_ann_tests()` takes a nested list of simulations (`list`), number of horizontal pixels ($\text{pixels}_x$), number of vertical pixels ($\text{pixels}_y$), and returns a list of ANN test results. It works by applying the previous function `stomata_ann_test()` to each element in a list via an `lapply` function.
+
+```{r Building a Dataframe, include = T}
+list_to_frame
+```
+
+Explanation: The function `list_to_frame()` takes the result of `stomata_ann_tests()` as an argument and builds a `data.frame` for more convenient analysis.
+
+```{r p-value and Final Result Generation, include = T}
+real_test
+```
+
+Explanation: The function `real_test()` takes a tibble of real stomatal $x, y$ coordinates (plus metadata) (`data`), number of horizontal pixels ($\text{pixels}_x$), number of vertical pixels ($\text{pixels}_y$), and number of simulations to perform (`n_grids`) and returns a list of values: p-value based on simulations (`p`), number of stomata (`n_stom`), dispersion index (`dispersed`), treatment (`treatment`), leaf number (`leaf_number`), image number (`image_number`), and surface (`surface`). It works by running simulations based on the `tibble` provided, then performing an Average Nearest Neighbor test on the real data and simulated data. It then calculates a p-value based on the proportion of simulated random grids that received a higher NNI than the real data. A dispersion index (`dispersed`) is calculated by determining the how close the real NNI is to the simulated equal grids. Values closer to 1 are more dispersed, while values close to 0 are randomly dispersed, and negative values are more clumped and would tend to be associated with high p-values.
+
+```{r Histogram of Simulated Average Nearest Neighbor Tests, include = T}
+stom_hist
+```
+
+Explanation: The function stom_hist() takes outputs from list_to_frame() and real_test() to build a histogram which visualizes the result from a single picture.
+
+## Performing Average Nearest Neighbor For Each Surface
+
+```{r Performing Average Nearest Neighbor For Each Surface 1, include = T}
+real_tests
+```
+
+Explanation: The function `real_tests()` applies `real_test()` across every item in a list. It takes a list of `tibbles` of real stomata $x, y$ coordinates (`list`), number of horizontal pixels ($\text{pixels}_x$), number of vertical pixels ($\text{pixels}_y$), and number of simulations to perform (`n_grids`) and returns a list of outputs from `real_test()`.
+
+```{r Performing Average Nearest Neighbor For Each Surface 2, include = T}
+list_to_frame_final
+```
+
+Explanation: The function `list_to_frame_final()` takes the list output from `real_tests()` and modifies it into a `data.frame` for data analysis convenience.
+
+# Amphistomatic Data
+
+These functions are curated for the analysis of two associated leaf surfaces: abaxial and adaxial.
+
+## Kernel Density Raster Generation
+
+```{r Kernel Density Raster Generation 1, include = T}
+kerneldensity
+```
+
+Explanation: The function `kerneldensity()` takes arguments: `tibble` of $x, y$ coordinates of stomata, number of horizontal pixels ($\text{pixels}_x$), and number of vertical pixels ($\text{pixels}_y$) and returns a `raster` of dimensions ($\text{pixels}_x \times \text{pixels}_y$) with values between 0 and 1 based on the kernel density estimate. It works by utilizing the `sp.kde()` function from the `spatialEco` package, which builds kernel density estimate `rasters` from `SpatialPointDataFrames`.
+
+```{r Kernel Density Raster Generation 2, include = T}
+kerneldensities
+```
+
+Explanation: The function `kerneldensities()` takes arguments list of stomatal grids (`list`), number of horizontal pixels ($\text{pixels}_x$), and number of vertical pixels ($\text{pixels}_y$) and returns a `list` of kernel density estimate `rasters`.
+
+## Pairing Abaxial and Adaxial Surfaces
+
+```{r Pairing Abaxial and Adaxial Surfaces, include = T}
+df_pair
+```
+
+Explanation: The function `df_pair()` takes a `list` of `tibbles` and pairs them such that the associated leaf surfaces match by ordering the list (all abaxial surfaces ordered first, followed by all adaxial surfaces, with each sample corresponding in position), splitting the `list` in half, renaming the elements, and pairing them using the `map` function of the `purrr` package. It returns a `list` of lists where each `list` is of length 2; one abaxial surface, and one adaxial surface.
+
+## Simulate Stomatal Grids from Paired Data
+
+```{r Simulate Stomatal Grids from Paired Data, include = T}
+simulate_grids_from_pairs
+```
+
+Explanation: The function `simulate_grids_from_pairs()` takes a `list` of length 2 of stomatal grids $x, y$, number of horizontal pixels ($\text{pixels}_x$), number of vertical pixels ($\text{pixels}_y$), and number of simulations desired (`n_grids`) and returns a `list` of lists of paired, simulated stomatal grids. It works by building a gamma distribution (`lambdas`) around the number of stomata (`n_stom`) and simulating random grids using the `make_random_stomata_grid` function.
+
+## Pairwise Correlation of Paired Kernel Densities
+
+```{r Pairwise Correlation of Paired Kernel Densities 1, include = T}
+corr_pair
+```
+
+Explanation: The function `corr_pair()` takes arguments list of associated stomatal grids $x, y$, number of horizontal pixels ($\text{pixels}_x$), and number of vertical pixels ($\text{pixels}_y$) and returns a `list` of correlation coefficients and surface average values. It works by building kernel density estimate `rasters` using the `kerneldensities()` function and stacking the rasters in a `raster::rasterstack` object for input into the `layerStats` function of the `raster` package.
+
+```{r Pairwise Correlation of Paired Kernel Densities 2, include = T}
+corr_pairs
+```
+
+Explanation: The function `corr_pairs()` takes arugments `list` of `lists` of paired stomatal grids $x, y$, number of horizontal pixels ($\text{pixels}_x$), and number of vertical pixels ($\text{pixels}_y$) and returns a `list` of correlation coefficients and raster averages for each pair of stomatal grids. It works by using the `lapply` function over the `corr_pair` function.
+
+```{r Pairwise Correlation of Paired Kernel Densities 3, include = T}
+corr_to_frame
+```
+
+Explanation: The function `corr_to_frame()` takes the output from `corr_pairs()` function and returns a `tibble` for easier data analysis.
+
+## Pairwise Correlation of Paired Distance Squared Rasters
+
+```{r Pairwise Correlation of Paired Distance Squared Rasters 1, include = T}
+create_raster
+```
+
+Explanation: The function `create_raster` takes arguments $\text{pixels}_x$ (pixels_x) and $\text{pixels}_y$ (pixels_y) and creates a blank raster for input into the `dist_sq` function. It utilizes the `raster` function of the `raster` package.
+
+```{r Pairwise Correlation of Paired Distance Squared Rasters 2, include = T}
+dist_sq
+```
+
+Explanation: The function `dist_sq()` takes arguments `data` (a `tibble` of stomatal positions $x, y$) and `leaf` (an empty `raster` object created by the function `create_raster`) and returns a `raster` of distance squared values (the distance of each cell in the raster to the nearest stomate). It does this by utilizing the `distanceFromPoints` function of the `raster` package and then squaring the result for biological relevance.
+
+```{r Pairwise Correlation of Paired Distance Squared Rasters 3, include = T}
+dist_sqs
+```
+
+Explanation: The function `dist_sqs` applies the function `dist_sq` over each element in a `list`. It utilizes the `lapply` function.
+
+```{r Pairwise Correlation of Paired Distance Squared Rasters 4, include = T}
+dist_sq_corr
+```
+
+Explanation: The function `dist_sq_corr` takes paired `dist_sqs` outputs (`list`) (paired by `df_pair` function) and `create_raster` function (`leaf`). It works by stacking rasters and running a pearson pairwise correlation across each cell in the raster using `LayerStats` function from the `raster` package.
+
+```{r Pairwise Correlation of Paired Distance Squared Rasters 5, include = T}
+dist_sq_corrs
+```
+
+Explanation: The function `dist_sq_corrs` performs `dist_sq_corr` over each element in a `list` using the `lapply` function.
+
+## Hypothesis Testing with Simulated Data
+
+```{r Hypothesis Testing with Simulated Data 1, include = T}
+real_corr_test
+```
+
+Explanation: The function `real_corr_test()` takes arguments list of associated stomatal grids $x, y$, number of horizontal pixels ($\text{pixels}_x$), number of vertical pixels ($\text{pixels}_y$), number of simulations to run (`n_grids`), and raster type (`dist_or_kern`) and returns a `list` of relevant information including a p-value (`p`), the real correlation coefficient (`corr_coef`), number of stomata on each surface (`n_stom`), and associated metadata. It works by using the `simulate_grids_from_pairs()` function to simulate grids, running `corr_pairs()` function (if `dist_or_kern` == FALSE) or `dist_sq_corrs` function (if `dist_or_kern` == TRUE) on simulation data and `corr_pair()` (or `dist_sq_corr`) on real data, and comparing the results by calculating what proportion of simulated correlation coefficients are greater than the real correlation coefficient (p-value).
+
+```{r Hypothesis Testing with Simulated Data 2, include = T}
+real_corr_tests
+```
+
+Explanation: The function `real_corr_tests()` takes arguments: `list` of `lists` of associated stomatal grids $x, y$, number of horizontal pixels ($\text{pixels}_x$), number of vertical pixels ($\text{pixels}_y$), number of simulations to run (`n_grids`), distance squared or kernel logical (`dist_or_kern`), and number of cores to use (`num_cores`) and returns a `list` of `lists` of test results. It works by running the `mclapply` function of the `parallel` package over the `real_corr_test()` function.
+
+```{r Hypothesis Testing with Simulated Data 3, include = T}
+corr_to_frame_final
+```
+
+Explanation: The function `corr_to_frame_final()` takes the output from `real_corr_tests()` and returns a `tibble` with extra columns: `light` for light treatment and `stom_ratio` for stomatal ratio.
+
+## Plot a Histogram of Result
+
+```{r Plot a Histogram of Result, include = T}
+amphi_stom_hist
+```
+
+Explanation: The function `amphi_stom_hist()` takes the output from the simulations and outputs from the tests to build a histogram and visualize the result.
+
+# Test Analysis of a Single Sample
+
+## Load the Data
+
+```{r Load the Data, include = T}
+
+# set working directory
+dir = getwd()
+setwd(dir)
+
+# load the raw data
+stomata = read.csv("stomata_positionR.csv")
+stomata = stomata[1:4720, 1:7]
+stomata = na.omit(stomata)
+# make factors
+stomata$treatment = as.factor(stomata$treatment)
+stomata$leaf_number = as.factor(stomata$leaf_number)
+stomata$image_number = as.factor(stomata$image_number)
+stomata$surface = as.factor(stomata$surface)
+# rename columns
+stomata = stomata %>% rename(
+  x = X,
+  y = Y
+)
+# make numeric
+stomata$x = as.numeric(stomata$x)
+stomata$y = as.numeric(stomata$y)
+# display data
+str(stomata)
+
+# split data into a list of tibbles for each surface
+factors = list(stomata$treatment, stomata$leaf_number,
+               stomata$image_number, stomata$surface)
+densities = stomata %>%
+  split(factors)
+# delete dataframes with less than 1 row
+densities = densities[sapply(densities, nrow) > 1]
+
+# show random test data
+str(densities[[17]])
+str(densities[[83]])
+
+# make into a tibble
+tib_density = lapply(densities, as_tibble)
+
+# remove duplicate stomata
+tib_density = lapply(tib_density, function(x) x[!duplicated(x[c("x", "y")]), ])
+
+```
+
+Explanation: Load in the raw data and split into a list of tibbles.
+
+## Apply Functions for Single Surface Analysis
+
+```{r Apply Functions for Single Surface Analysis, include = T}
+
+# set seed
+set.seed(10)
+
+# simulate grids from data
+simulations = simulate_grids_from_data(data = tib_density[[17]], 512, 512, n_grids = 1000)
+
+# perform Average Nearest Neighbor Tests
+ann_tests = stomata_ann_tests(list = simulations, 512, 512)
+
+# build a dataframe
+simulation = list_to_frame(ann_tests)
+
+# calculate p-value and dispersion value
+p = real_test(tib_density[[17]], 512, 512, 1000)
+
+# return p
+p
+
+# plot
+plot = stom_hist(simulation, real_NNI = p[[2]], p_value = p[[1]], dispersed = p[[4]])
+
+# return plot
+plot
+
+```
+
+## Apply Functions for Amphistomatic Analysis
+
+```{r Apply Functions for Amphistomatic Analysis, include = T}
+
+# pair stomatal grids
+pairs = df_pair(tib_density)
+
+# set seed
+set.seed(100)
+
+# run simulations
+simulation = simulate_grids_from_pairs(pairs[[17]], 512, 512, n_grids = 100)
+simulation = corr_pairs(simulation, 512, 512)
+simulation = corr_to_frame(simulation)
+
+# perform test
+test = real_corr_test(pairs[[17]], 512, 512, 100, FALSE)
+
+# change to a dataframe
+test = corr_to_frame_final(test)
+
+# return result
+test
+
+# build histogram
+histogram = amphi_stom_hist(test, simulation)
+
+# return histogram
+histogram
+
+```
+
+# Test Analysis of All Samples
+
+In this test, the number of simulations (100) to obtain the p-values are smaller than it will be during the final analysis (1000+).
+
+## Single Surface Test Analysis
+
+```{r Single Surface Test Analysis - All Samples, include = T}
+
+# load data
+ss_test_df = read.csv("single_surface_prelim.csv")
+
+str(ss_test_df)
+
+ss_test_df$p = as.numeric(ss_test_df$p)
+ss_test_df$real_NNI = as.numeric(ss_test_df$real_NNI)
+ss_test_df$num_stom = as.numeric(ss_test_df$num_stom)
+ss_test_df$dispersed = as.numeric(ss_test_df$dispersed)
+str(ss_test_df)
+
+# p-values above 0.95 and below 0.5
+sum(ss_test_df$p <= 0.05) / nrow(ss_test_df)
+sum(ss_test_df$p >= 0.95) / nrow(ss_test_df)
+sum(ss_test_df$p >= 0.95)
+sum(ss_test_df$p <= 0.05)
+
+# p-values above 0.975 and below 0.025
+
+sum(ss_test_df$p <= 0.025) / nrow(ss_test_df)
+sum(ss_test_df$p >= 0.975) / nrow(ss_test_df)
+sum(ss_test_df$p >= 0.975)
+sum(ss_test_df$p <= 0.025)
+
+# separate sides
+abaxial = ss_test_df[as.factor(ss_test_df$surface) == "abaxial",]
+adaxial = ss_test_df[as.factor(ss_test_df$surface) == "adaxial",]
+
+# p-values for abaxial and adaxial surfaces
+sum(abaxial$p >= 0.975)
+sum(abaxial$p <= 0.025)
+sum(adaxial$p >= 0.975)
+sum(adaxial$p <= 0.025)
+
+# summary statistics
+summstats = summary(ss_test_df, digits = 2)
+summstats
+
+# light and dispersed index
+# boxplot()
+ggplot(ss_test_df, aes(x = light, y = dispersed)) + geom_boxplot()
+
+ssaov1 = aov(dispersed ~ light, data = ss_test_df)
+summary(ssaov1)
+
+sstukey1 = TukeyHSD(ssaov1)
+sstukey1
+
+# dispersed index and surface
+ggplot(ss_test_df, aes(x = surface, y = dispersed)) + geom_boxplot()
+
+ssaov2 = aov(dispersed ~ surface, data = ss_test_df)
+summary(ssaov2)
+
+
+```
+
+## Amphistomatic Test Analysis
+
+```{r Amphistomatic Test Analysis - using Kernel Density, include = T}
+
+# load data
+test_all_df = read.csv("dual_surface_kern_prelim.csv")
+
+# preliminary analysis
+
+names(test_all_df)
+str(test_all_df)
+
+test_all_df$p = as.numeric(test_all_df$p)
+test_all_df$corr_coef = as.numeric(test_all_df$corr_coef)
+test_all_df$n_stom_ab = as.numeric(test_all_df$n_stom_ab)
+test_all_df$n_stom_ad = as.numeric(test_all_df$n_stom_ad)
+test_all_df$stom_ratio = as.numeric(test_all_df$stom_ratio)
+str(test_all_df)
+
+# p-values above 0.95 and below 0.5
+sum(test_all_df$p <= 0.05) / nrow(test_all_df)
+sum(test_all_df$p >= 0.95) / nrow(test_all_df)
+sum(test_all_df$p >= 0.95)
+sum(test_all_df$p <= 0.05)
+
+binom1 = prop.test(sum(test_all_df$p >= 0.95), nrow(test_all_df), 
+                    p = 0.05, alternative = "two.sided")
+binom1
+
+binom2 = prop.test(sum(test_all_df$p <= 0.05), nrow(test_all_df), 
+                    p = 0.05, alternative = "two.sided")
+binom2
+
+# p-values above 0.975 and below 0.025
+
+sum(test_all_df$p <= 0.025) / nrow(test_all_df)
+sum(test_all_df$p >= 0.975) / nrow(test_all_df)
+sum(test_all_df$p >= 0.975)
+sum(test_all_df$p <= 0.025)
+
+binom3 = prop.test(sum(test_all_df$p >= 0.975), nrow(test_all_df), 
+                    p = 0.025, alternative = "two.sided")
+binom3
+
+binom4 = prop.test(sum(test_all_df$p >= 0.025), nrow(test_all_df), 
+                    p = 0.025, alternative = "two.sided")
+binom4
+
+# summary statistics
+
+sumstats = summary(test_all_df, digits = 2)
+sumstats
+
+# plot light and corr_coef
+ggplot(test_all_df, aes(x = light, y = corr_coef)) + geom_boxplot()
+
+# run anova
+aov1 = aov(corr_coef ~ light, data = test_all_df)
+summary(aov1)
+
+# build histograms
+histogram1 <-
+  ggplot(test_all_df, aes(x = corr_coef)) +
+  geom_histogram(color = "#e9ecef", alpha=0.6, position = 'identity',
+                 binwidth = 0.05) +
+  theme_pubr() +
+  labs(fill="")
+histogram1
+
+histogram2 <-
+  ggplot(test_all_df, aes(x = stom_ratio)) +
+  geom_histogram(color = "#e9ecef", alpha=0.6, position = 'identity',
+                 binwidth = 0.05) +
+  theme_pubr() +
+  labs(fill="")
+histogram2
+
+# plot a scatter plot
+scatter1 =
+  ggplot(test_all_df, aes(x = stom_ratio, y = corr_coef)) +
+          geom_point() +
+  theme_pubr()
+scatter1
+
+# stomatal ratio and corr_coef
+lm1 = lm(corr_coef ~ stom_ratio, data = test_all_df)
+
+summary(lm1)
+
+# stomatal ratio and light
+lm = lm(stom_ratio ~ light, data = test_all_df)
+summary(lm)
+
+ggplot(test_all_df, aes(x = light, y = stom_ratio)) + geom_boxplot()
+
+# number of stomata and light
+# abaxial surface
+aov = aov(n_stom_ab ~ light, data = test_all_df)
+summary(aov)
+
+ggplot(test_all_df, aes(x = light, y = n_stom_ab)) + geom_boxplot()
+
+# adaxial surface
+aov = aov(n_stom_ad ~ light, data = test_all_df)
+summary(aov)
+
+ggplot(test_all_df, aes(x = light, y = n_stom_ad)) + geom_boxplot()
+
+# manova
+
+manova1 = manova(cbind(test_all_df$n_stom_ab, test_all_df$n_stom_ad) ~ as.factor(test_all_df$light))
+summary(manova1)
+
+# paired t.test
+t.test1 = t.test(test_all_df$n_stom_ab, test_all_df$n_stom_ad, paired = T)
+t.test1
+
+```
+
+## Compare Distance Squared Raster Calc to Kernel Density
+
+```{r Compare Distance Squared Raster Calc to Kernel Density, include = TRUE}
+
+# load data
+test_all_dist_df = read.csv("dual_surface_dist_sq_prelim.csv")
+
+names(test_all_dist_df)
+str(test_all_dist_df)
+
+test_all_dist_df$p = as.numeric(test_all_dist_df$p)
+test_all_dist_df$corr_coef = as.numeric(test_all_dist_df$corr_coef)
+test_all_dist_df$n_stom_ab = as.numeric(test_all_dist_df$n_stom_ab)
+test_all_dist_df$n_stom_ad = as.numeric(test_all_dist_df$n_stom_ad)
+test_all_dist_df$stom_ratio = as.numeric(test_all_dist_df$stom_ratio)
+str(test_all_dist_df)
+
+# p-values above 0.95 and below 0.5
+sum(test_all_dist_df$p <= 0.05) / nrow(test_all_dist_df)
+sum(test_all_dist_df$p >= 0.95) / nrow(test_all_dist_df)
+sum(test_all_dist_df$p >= 0.95)
+sum(test_all_dist_df$p <= 0.05)
+
+# binom test
+binom1 = prop.test(sum(test_all_dist_df$p >= 0.95), nrow(test_all_df), 
+                    p = 0.05, alternative = "two.sided")
+binom1
+
+binom2 = prop.test(sum(test_all_dist_df$p <= 0.05), nrow(test_all_df), 
+                    p = 0.05, alternative = "two.sided")
+binom2
+
+# p-values above 0.975 and below 0.025
+
+sum(test_all_dist_df$p <= 0.025) / nrow(test_all_dist_df)
+sum(test_all_dist_df$p >= 0.975) / nrow(test_all_dist_df)
+sum(test_all_dist_df$p >= 0.975)
+sum(test_all_dist_df$p <= 0.025)
+
+binom3 = prop.test(sum(test_all_dist_df$p >= 0.975), nrow(test_all_df), 
+                    p = 0.025, alternative = "two.sided")
+binom3
+
+binom4 = prop.test(sum(test_all_dist_df$p >= 0.025), nrow(test_all_df), 
+                    p = 0.025, alternative = "two.sided")
+binom4
+
+# summary statistics
+
+sumstats = summary(test_all_dist_df, digits = 2)
+sumstats
+
+# plot light and corr_coef
+ggplot(test_all_dist_df, aes(x = light, y = corr_coef)) + geom_boxplot()
+
+# run anova
+aov1 = aov(corr_coef ~ light, data = test_all_dist_df)
+summary(aov1)
+
+# build histograms
+histogram1 <-
+  ggplot(test_all_dist_df, aes(x = corr_coef)) +
+  geom_histogram(color = "#e9ecef", alpha=0.6, position = 'identity',
+                 binwidth = 0.05) +
+  theme_pubr() +
+  labs(fill="")
+histogram1
+
+histogram2 <-
+  ggplot(test_all_dist_df, aes(x = stom_ratio)) +
+  geom_histogram(color = "#e9ecef", alpha=0.6, position = 'identity',
+                 binwidth = 0.05) +
+  theme_pubr() +
+  labs(fill="")
+histogram2
+
+# plot a scatter plot
+scatter1 =
+  ggplot(test_all_dist_df, aes(x = stom_ratio, y = corr_coef)) +
+          geom_point() +
+  theme_pubr()
+scatter1
+
+# stomatal ratio and corr_coef
+lm1 = lm(corr_coef ~ stom_ratio, data = test_all_dist_df)
+
+summary(lm1)
+
+# stomatal ratio and light
+lm = lm(stom_ratio ~ light, data = test_all_dist_df)
+summary(lm)
+
+ggplot(test_all_dist_df, aes(x = light, y = stom_ratio)) + geom_boxplot()
+
+# number of stomata and light
+# abaxial surface
+aov = aov(n_stom_ab ~ light, data = test_all_dist_df)
+summary(aov)
+
+ggplot(test_all_dist_df, aes(x = light, y = n_stom_ab)) + geom_boxplot()
+
+# adaxial surface
+aov = aov(n_stom_ad ~ light, data = test_all_dist_df)
+summary(aov)
+
+ggplot(test_all_dist_df, aes(x = light, y = n_stom_ad)) + geom_boxplot()
+
+# manova
+
+manova1 = manova(cbind(test_all_dist_df$n_stom_ab, test_all_dist_df$n_stom_ad) ~ as.factor(test_all_dist_df$light))
+summary(manova1)
+
+# paired t.test
+t.test1 = t.test(test_all_dist_df$n_stom_ab, test_all_dist_df$n_stom_ad, paired = T)
+t.test1
+
+# final t.test
+t.test_final = t.test(test_all_df$p, test_all_dist_df$p)
+t.test_final
+
+```
+
+# Ideal Abaxial, Adaxial Stomatal Patterning
+
+```{r Make Ideal Amphistomatal Grid, include = TRUE}
+make_amphi_grid
+```
+
+Explanation: The function `make_amphi_grid()` utilizes `make_equal_stomata_grid()` to build an idealized amphistomatous patterning. It takes inputs U, interstomatal distance, pixels_x, pixels_y, jitter, and rotate. works by adding $U * \sqrt3 / 3$ to the y position of each abaxial stomata to build the adaxial stomatal grid. This distance is calculated by finding the center of mass of an equilateral triangle with side lengths $U$.
+
+```{r Plot Ideal Amphistomatal Grid, include = TRUE}
+plot_amphi_grid
+```
+
+Explanation: The function `plot_amphi_grid()` plots the output from `make_amphi_grid()` to represent an idealized stomatal grid in the manuscript.
+
+# NNI - New
+
+```{r Perform NNI Test, include = TRUE}
+get_nni
+```
+
+Explanation: The function `get_nni()` takes inputs df_stomata, pixels_x, and pixels_y, and a logical `progress` and returns nni values. It works by utilizing the nni function from the `spatialEco` package.
+
+# Correlate Abaxial and Adaxial Surfaces
+
+```{r Correlate Surfaces, include = TRUE}
+amphi_corr
+```
+
+Explanation: The function `amphi_corr()` takes a grouped dataframe of raw data (`data`) and an empty raster (`leaf`) and builds a distance squared raster and performs a pearson raster correlation to determine if two leaf surfaces are independent.
+
+# Tessellation Area Calculation
+
+```{r Tessellation and Area Calculation, include = T}
+tessellate_stomata
+```

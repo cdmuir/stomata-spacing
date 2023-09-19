@@ -1,0 +1,16 @@
+---
+title: "test"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r dispersion, fig.cap = "Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1)", echo = TRUE}
+
+knitr::include_graphics("figures/dispersion.pdf")
+
+```
