@@ -31,7 +31,7 @@ get_2d_pm_default_param = function(...) {
     n_x = 100,
     n_z = 200,
     t_elem = 1e-6,    # thickness of element [m]
-    Dz = 1.54e-5,     # Diffusivity of CO2 in air [m^2 / s]
+    D_c = 1.54e-5,     # Diffusivity of CO2 in air [m^2 / s]
     por_int = 0.2,    # Porosity at interface [m^3 air / m^3 leaf]
     por_spg = 0.3,    # Porosity of the spongy mesophyll [m^3 air / m^3 leaf]
     por_pal = 0.1,    # Porosity of the palisade mesophyll [m^3 air / m^3 leaf]
@@ -49,7 +49,7 @@ get_2d_pm_default_param = function(...) {
     K_m = 18.7e-3,    # Rubisco effective Michaelis-Menten constant [mol / m^3]
     Gamma = 1.75e-3,  # CO2 compensation point [mol / m^3]
     Theta = 1,        # Curvature factor in FvCB model [1]
-    Rd = 0.066,       # Dark respiratory rate [mol / m^3 / s]
+    R_d = 0.066,       # Dark respiratory rate [mol / m^3 / s]
     Jmax = 275e-6,    # Maximum electron transport rate [mol / m^2 / s]
     Beta = 0.44,      # Fraction of light absorbed by PSII [mol / mol]
     Alpha = 0.72,     # Leaf level absorption [mol / mol]
@@ -244,11 +244,11 @@ bnd_z_top[param[["x_adaxial_stomata"]]] = param[["C_s"]]
 bnd_x_left = C_ias_mat[, 1]
 bnd_x_right = C_ias_mat[, param[["n_x"]]]
 
-Dx = 1 # placeholder for actual coef
+D_e = param[["D_c"]] * param[["por_mat"]] / param[["tort"]]
 
 # diffusion in Z-direction; boundaries = imposed concentration
 ## flux from bottom to top
-flux_z = -Dx * rbind(
+flux_z = -rbind(
   C_ias_mat[1, ] - bnd_z_bottom,
   (C_ias_mat[2:param[["n_z"]], ] - C_ias_mat[1:(param[["n_z"]] - 1), ]),
   bnd_z_top - C_ias_mat[param[["n_z"]],]
@@ -260,7 +260,7 @@ flux_z = -(flux_z[2:(param[["n_z"]] + 1), ] - flux_z[1:param[["n_z"]], ]) /
 
 # diffusion in X-direction; boundaries = imposed concentration
 ## flux from left to right
-flux_x = -Dx * cbind(
+flux_x = -cbind(
   C_ias_mat[, 1] - bnd_x_left,
   (C_ias_mat[, 2:param[["n_x"]]] - C_ias_mat[, 1:(param[["n_x"]] - 1)]),
   bnd_x_right - C_ias_mat[, param[["n_x"]]]
@@ -270,18 +270,31 @@ flux_x = -Dx * cbind(
 flux_x = -(flux_x[, 2:(param[["n_x"]] + 1)] - flux_x[, 1:param[["n_x"]]]) /
   param[["t_elem"]]
 
-flux = flux_z + flux_x
+flux = D_e * (flux_z + flux_x)
 
 #CHECK
 flux[1:2, 1:2] # bottom-left
 flux[199:200, 99:100] # top-right
 
+W_c = (param[["k_c"]] * param[["X_c_mat"]] * C_liq_mat) / (param[["K_m"]] + C_liq_mat)
+W_j = C_liq_mat * param[["j_e_mat"]] / (4 * C_liq_mat + 8 * param[["Gamma"]])
+
+A_n = pmin(W_c, W_j)
+
+R_p = A_n * param[["Gamma"]] / C_liq_mat
+
 dC_ias = (flux + param[["g_liq"]] * (C_liq_mat - C_ias_mat) / param[["t_elem"]]) /
   param[["por_mat"]]
 
+dC_liq = (param[["g_liq"]] * (C_liq_mat - C_ias_mat) / param[["t_elem"]] -
+  A_n + R_p + param[["R_d"]])
+
 #CHECK
+C_ias_mat[1:2, 1:2] # bottom-left
 dC_ias[1:2, 1:2] # bottom-left
 dC_ias[199:200, 99:100] # top-right
+dC_liq[1:2, 1:2] # bottom-left
+dC_liq[199:200, 99:100] # top-right
 
 
 add_z_boundaries = function(C_ias_mat, ...) {
@@ -371,7 +384,7 @@ An = calc_2d_pm_An(C_liq, param)
 
 Rp = (An * param[["Gamma"]]) / C_liq # Calculate oxygenation rate
 
-dC_liq = (param[["g_liq"]] * (C_ias - C_liq) / param[["t_elem"]] - An + Rp + param[["Rd"]]) * param[["t_leaf"]] / param[["Sm_z"]] / param[["Vstrom"]]
+dC_liq = (param[["g_liq"]] * (C_ias - C_liq) / param[["t_elem"]] - An + Rp + param[["R_d"]]) * param[["t_leaf"]] / param[["Sm_z"]] / param[["Vstrom"]]
 
 
 state = rep(c(0.5, 0.25), each = param[["n_x"]] * param[["n_z"]]) * 1.72e-2 # CO2 concentration [mol / m^3]
