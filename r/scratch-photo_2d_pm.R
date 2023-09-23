@@ -1,5 +1,15 @@
+# I think I did this before, but calculating g_liq from Evans et al. 2009
+# Measured range of r_liq = 25-300 m^2 chloroplast s bar / mol
+# 1 s / m  = 0.025 m^2 chloroplast s bar / mol
+# SO, 1000 - 12000 s / m
+# SO g_liq = 0.001 - 8.33e-5
 source("r/header.R")
-library(tidyr)
+source("r/photo_2d_pm.R")
+
+parms = get_2d_pm_default_parms() |>
+  derive_2d_pm_parms(fit = fit_rubisco)
+
+parms$X_c_z
 
 diffusion2D <- function(t, Y, par)   {
 
@@ -18,9 +28,13 @@ diffusion2D <- function(t, Y, par)   {
   X_c = 2.5
   K_m = 18.7e-3
   Gamma = 1.75e-3
-
   g_liq = 0.25e-3
-  r_c = (k_c * X_c * C_liq) / (K_m + C_liq)        # carboxylation
+  J_max = 0.000275
+  j_max = J_max / (S_m * V_strom)
+
+  w_c = (k_c * X_c * C_liq) / (K_m + C_liq)        # carboxylation
+  w_j = C_liq * j_max / (4 * C_liq + 8 * Gamma)
+  r_c = pmin(w_c, w_j)
   r_d = 0.066
   r_p = r_c * Gamma / C_liq
 
@@ -50,22 +64,23 @@ diffusion2D <- function(t, Y, par)   {
   ) / dx
   dC_ias = dC_ias - (Flux[, 2:(n_x + 1)] - Flux[, 1:n_x]) / dx
 
-  dC_ias = dC_ias + g_liq * (C_liq - C_ias) / dx
+  dC_ias = dC_ias + g_liq * (C_liq - C_ias) / V_strom
 
   # CARBOXYLATION ----
   # I'M NOT SURE THIS IS THE RIGHT WAY TO SCALE TO STROMA VOLUME
   # 2e4 assumes 200 um thick leaf because 1 m^2 has volume of 2e-4 m^3
   # S_m [m^2 meso / m^2 leaf] * 2e4 [m^2 leaf / m^3 leaf]
-  dC_liq = dC_liq + g_liq * (C_ias - C_liq) / dx + (-r_c + r_p + r_d) * (S_m * 2e4) * V_strom
+  # I *THINK* V_strom is the right thing to divide here because g_liq is conductance per m^2 chloroplast area and that needs to be converted to volume
+  dC_liq = dC_liq + g_liq * (C_ias - C_liq) / V_strom + (-r_c + r_p + r_d) * (S_m * 2e4) * V_strom
 
   return(list(c(dC_ias, dC_liq)))
 
 }
 
 # parameters
-n_x = 100
-n_z = 200
-dz    <- dx <- 1e-6   # grid size
+n_x = 200
+n_z = 400
+dz    <- dx <- 0.5e-6   # grid size
 
 C_ias_mat = matrix(nrow = n_z, ncol = n_x, 0.015)
 C_liq_mat = matrix(nrow = n_z, ncol = n_x, 0.015)
@@ -76,7 +91,7 @@ C_liq_mat = matrix(nrow = n_z, ncol = n_x, 0.015)
 
 system.time(
   ST2 <- steady.2D(c(C_ias_mat, C_liq_mat), func = diffusion2D, parms = NULL,
-                   pos = TRUE, dimens = c(n_z, n_x), nspec = 2, lrw = 100000000,
+                   pos = FALSE, dimens = c(n_z, n_x), nspec = 2, lrw = 1e8,
                    atol = 1e-10, rtol = 1e-10, ctol = 1e-10)
 )
 
@@ -98,13 +113,18 @@ X_c = 2.5
 K_m = 18.7e-3
 Gamma = 1.75e-3
 
-r_c = (k_c * X_c * df_C$C_liq) / (K_m + df_C$C_liq)        # carboxylation
+J_max = 0.000275
+j_max = J_max / (S_m * V_strom)
+
+w_c = (k_c * X_c * df_C$C_liq) / (K_m + df_C$C_liq)        # carboxylation
+w_j = df_C$C_liq * j_max / (4 * df_C$C_liq + 8 * Gamma)
+r_c = pmin(w_c, w_j)
 r_d = 0.066
 r_p = r_c * Gamma / df_C$C_liq
 
 a_n = (r_c - r_p - r_d) * (S_m * 2e4) * V_strom
 
-mean(a_n)
+mean(a_n) # 0.4126922
 
 # 1 m^2 of 200 um thick leaf is 2e-04 m^3
 #
