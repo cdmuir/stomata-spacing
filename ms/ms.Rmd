@@ -49,7 +49,7 @@ fontsize: 12pt
 #spacing: halfline # could also be oneline
 #classoptions:
 #  - endnotes
-bibliography: 8_17.bib
+bibliography: stomata-spacing.bib
 #csl: mycitationstyle.csl
 link-citations: yes
 output: rticles::oup_article

@@ -2,23 +2,23 @@ name,symbol,r,default_value,units,notes,calculated
 [CO$_2$] in intercellular airspace,$C_\text{ias}$,C_ias,NA,mol m$^{-3}$ leaf,equation X,TRUE
 [CO$_2$] in chloroplast stroma,$C_\text{liq}$,C_liq,NA,mol m$^{-3}$ stroma,equation X,TRUE
 [CO$_2$] in substomatal cavity,$C_\text{stom}$,C_stom,0.015,mol m$^{-3}$ leaf,assumed,FALSE
-[CO$_2$] compensation point,$\gamma^*$,gamma_star,0.00135,mol m$^{-3}$ stroma,@vonCaemmerer2000,FALSE
+[CO$_2$] compensation point,$\gamma^*$,gamma_star,0.00135,mol m$^{-3}$ stroma,@caemmerer_biochemical_2000,FALSE
 Diffusivity of [CO$_2$] in intercellular airspace,$D_\text{c},D_c,0.0000154,m$^{2}$ s$^{-1}$,assumed,FALSE
 Effective diffusivity of [CO$_2$] in intercellular airspace,$D_\text{e},D_e,NA,m$^{2}$ s$^{-1}$,equation X,TRUE
-"Conductance of cell wall, plasmalemma, cytosol, chloroplast envelope, and chloroplast stroma",$g_\text{liq}$,g_liq,0.00025,m$^3$ m$^{-2}$ stroma s$^{-1}$,@evans_etal_2009,FALSE
+"Conductance of cell wall, plasmalemma, cytosol, chloroplast envelope, and chloroplast stroma",$g_\text{liq}$,g_liq,0.00025,m$^3$ m$^{-2}$ stroma s$^{-1}$,@evans_resistances_2009,FALSE
 Maximum photosynthetic e$^{-}$ transport rate on a leaf area basis,$J_\text{max}$,J_max,0.000275,mol m$^{-2}$ leaf s$^{-1}$,assumed,FALSE
 Maximum photosynthetic e$^{-}$ transport rate on a stroma volume basis,$j_\text{max}$,j_max}$,NA,mol m$^{-3}$ stroma s$^{-1}$,equation X,TRUE
-Catalytic rate of Rubisco,$k_\text{c}$,k_c,2.84,m$^{-1}$,@tholen2011,FALSE
-Rubisco effective $K_\text{m}$,$K_\text{m}$,K_m,0.0187,mol m$^{-3}$,@vonCaemmerer2000,FALSE
+Catalytic rate of Rubisco,$k_\text{c}$,k_c,2.84,m$^{-1}$,@tholen_mechanistic_2011,FALSE
+Rubisco effective $K_\text{m}$,$K_\text{m}$,K_m,0.0187,mol m$^{-3}$,@caemmerer_biochemical_2000,FALSE
 Number of elements in $x$ direction,$n_x$,n_x,100,NA,$U = 2 n_x t_\text{elem}$,FALSE
 Number of elements in $z$ direction,$n_z$,n_z,200,NA,$T_\text{leaf} = n_z t_\text{elem}$,FALSE
 Fraction of intercellular airspace (aka porosity),$\varphi$,phi,0.2,m$^3$ airspace m$^{-3}$ leaf,assumed,FALSE
 Volumetric rate of RuBP carboxylation,$r_\text{c}$,r_c,NA,mol m$^{-2}$ stroma s$^{-1}$,equation X,TRUE
-Volumetric respiration rate,$r_\text{d}$,r_d,0.066,mol m$^{-2}$ stroma s$^{-1}$,@earles2017; @tholen2011,FALSE
+Volumetric respiration rate,$r_\text{d}$,r_d,0.066,mol m$^{-2}$ stroma s$^{-1}$,@earles_excess_2017; @tholen_mechanistic_2011,FALSE
 Volumetric rate of photorespiratory CO$_2$ release,$r_\text{p}$,r_p,NA,mol m$^{-2}$ stroma s$^{-1}$,equation X,TRUE
 Leaf surface area-to-mesophyll surface area ratio,$S_\text{m}$,S_m,20,m$^2$ mesophyll m$^{-2}$ leaf,assumed,FALSE
-Tortuosity of intercellular airspace,$\tau$,tau,1.55,m m$^{-1}$,@syvertsen1995,FALSE
-Stroma volume-to-mesophyll surface area ratio,$V_\text{strom}$,V_strom,0.00000174,m$^3$ stroma m$^{-2}$ mesophyll,@earles2017; @tholen2011,FALSE
+Tortuosity of intercellular airspace,$\tau$,tau,1.55,m m$^{-1}$,@syvertsen_relationship_1995,FALSE
+Stroma volume-to-mesophyll surface area ratio,$V_\text{strom}$,V_strom,0.00000174,m$^3$ stroma m$^{-2}$ mesophyll,@earles_excess_2017; @tholen_mechanistic_2011,FALSE
 Rubisco-limited carboxylation rate,$w_\text{c}$,w_c,NA,mol m$^{-2}$ stroma s$^{-1}$,equation X,TRUE
 RuBP regeneration-limited carboxylation rate,$w_\text{j}$,w_j,NA,mol m$^{-2}$ stroma s$^{-1}$,equation X,TRUE
-Rubisco concentration in stroma,$X_\text{c}$,X_c,2.5,mol m$^{-3}$ stroma,@tholen2011; @oguchi2003,FALSE
+Rubisco concentration in stroma,$X_\text{c}$,X_c,2.5,mol m$^{-3}$ stroma,@tholen_mechanistic_2011; @oguchi_does_2003,FALSE
