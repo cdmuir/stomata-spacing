@@ -24,62 +24,68 @@ set_2d_pm_parms = function(...) {
 # Get set of parmseters for photo_2d_pm()
 get_2d_pm_default_parms = function(...) {
 
+  # OLD: migrate information to raw-data/2d-pm-parameteters.csv
   # Stomta spaced 100 um apart, 200 um thick leaf
   # With hexagonal grid, this is stomatal density of:
   # 2 / sqrt(3) / 100 ^ 2 = 0.0001154701 um^-2 = 115.4701 mm^-2
-  list(
-    n_x = 100,
-    n_z = 200,
-    t_elem = 1e-6,    # thickness of element [m]
-    D_c = 1.54e-5,     # Diffusivity of CO2 in air [m^2 / s]
-    phi_int = 0.2,    # Porosity at interface [m^3 air / m^3 leaf]
-    phi_spg = 0.3,    # Porosity of the spongy mesophyll [m^3 air / m^3 leaf]
-    phi_pal = 0.1,    # Porosity of the palisade mesophyll [m^3 air / m^3 leaf]
-    tort = 1.55,      # Tortuosity of the palisade and spongy mesophyll [m / m]
+  # list(
+  #   n_x = 100,
+  #   n_z = 200,
+  #   t_elem = 1e-6,    # thickness of element [m]
+  #   D_c = 1.54e-5,     # Diffusivity of CO2 in air [m^2 / s]
+  #   phi_int = 0.2,    # Porosity at interface [m^3 air / m^3 leaf]
+  #   phi_spg = 0.3,    # Porosity of the spongy mesophyll [m^3 air / m^3 leaf]
+  #   phi_pal = 0.1,    # Porosity of the palisade mesophyll [m^3 air / m^3 leaf]
+  #   tort = 1.55,      # Tortuosity of the palisade and spongy mesophyll [m / m]
+  #
+  #   # Note that 400 ppm = 0.01764706 is in mol / m^3, according to Earles et al. (2017)
+  #   # Implies 44.11765 mol air / m^3 - find eq for this based on temp and P
+  #   #
+  #   # THERE IS SOME ISSUE WITH THE WAY I AM CODING THE BOUNDARY LAYER. I SET C_S = 0.21
+  #   # AS A HACK TO GET RESULTS SIMILAR TO EARLES ET AL. THEY ASSUMED 0.015 (PG. 1093)
+  #   C_s = 0.015,      # CO2 concentration at stomate [mol / m^3]
+  #
+  #   k_c = 3,          # Rubisco turnover rate [1 / s]
+  #   X_c = 2.5,        # Rubisco concentration [mol / m^3]
+  #   K_m = 18.7e-3,    # Rubisco effective Michaelis-Menten constant [mol / m^3]
+  #   gamma_star = 1.35e-3,  # CO2 compensation point [mol / m^3]
+  #   Theta = 1,        # Curvature factor in FvCB model [1]
+  #   r_d = 0.066,       # Dark respiratory rate [mol / m^3 / s]
+  #   Jmax = 275e-6,    # Maximum electron transport rate [mol / m^2 / s]
+  #   Beta = 0.44,      # Fraction of light absorbed by PSII [mol / mol]
+  #   Alpha = 0.72,     # Leaf level absorption [mol / mol]
+  #   phiPSII = 0.85,   # quantum efficiency of PSII [1]
+  #   I_0 = 2e-3,       # Incident irradiance [mol / m^2 / s]
+  #
+  #   # I don't think I'm using this any more...
+  #   # k_i so 90% absorption for 300 um
+  #   # exp()
+  #   # k_i = 7675.284,   # light extinction coefficient [1/m]
+  #
+  #   # Quadratic parameters describing relative chlorophyll content as a function
+  #   # of relative leaf depth (Johnson et al. [2005]; Borsuk and Brodersen [2019])
+  #   b0_chl = 67.52,
+  #   b1_chl = 100 * 0.4149, # converts parmseters to 0-1 rather than 0-100 scale
+  #   b2_chl = 100 ^ 2 * -0.0029, # converts parmseters to 0-1 rather than 0-100 scale
+  #
+  #   frac_pal = 0.6,   # Fraction palisade mesophyll [1]
+  #   Sm_spg = 6.5,     # Sm spongy mesophyll [m^2 / m^2]
+  #   Sm_pal = 40,      # Sm palisade mesophyll [m^2 / m^2]
+  #   Vstrom = 1.74e-6, # Stroma volume per mesophyll surface area [m^3 / m^2]
+  #   Vmito = 0.27e-7,  # Mitochondrial volume per mesophyll surface area [m^3 / m^2]
+  #   Sm_std = 30,      # Sm at which assumed J_max occurs
+  #   g_liq = 0.25e-3,   # Cell wall + liquid conductivity into stroma [m s-1]
+  #
+  #   # position of stomata in terms of element number along x-direction
+  #   x_abaxial_stomata = 1,
+  #   x_adaxial_stomata = 100
+  #
+  # )
 
-    # Note that 400 ppm = 0.01764706 is in mol / m^3, according to Earles et al. (2017)
-    # Implies 44.11765 mol air / m^3 - find eq for this based on temp and P
-    #
-    # THERE IS SOME ISSUE WITH THE WAY I AM CODING THE BOUNDARY LAYER. I SET C_S = 0.21
-    # AS A HACK TO GET RESULTS SIMILAR TO EARLES ET AL. THEY ASSUMED 0.015 (PG. 1093)
-    C_s = 0.015,      # CO2 concentration at stomate [mol / m^3]
-
-    k_c = 3,          # Rubisco turnover rate [1 / s]
-    X_c = 2.5,        # Rubisco concentration [mol / m^3]
-    K_m = 18.7e-3,    # Rubisco effective Michaelis-Menten constant [mol / m^3]
-    gamma_star = 1.35e-3,  # CO2 compensation point [mol / m^3]
-    Theta = 1,        # Curvature factor in FvCB model [1]
-    r_d = 0.066,       # Dark respiratory rate [mol / m^3 / s]
-    Jmax = 275e-6,    # Maximum electron transport rate [mol / m^2 / s]
-    Beta = 0.44,      # Fraction of light absorbed by PSII [mol / mol]
-    Alpha = 0.72,     # Leaf level absorption [mol / mol]
-    phiPSII = 0.85,   # quantum efficiency of PSII [1]
-    I_0 = 2e-3,       # Incident irradiance [mol / m^2 / s]
-
-    # I don't think I'm using this any more...
-    # k_i so 90% absorption for 300 um
-    # exp()
-    # k_i = 7675.284,   # light extinction coefficient [1/m]
-
-    # Quadratic parameters describing relative chlorophyll content as a function
-    # of relative leaf depth (Johnson et al. [2005]; Borsuk and Brodersen [2019])
-    b0_chl = 67.52,
-    b1_chl = 100 * 0.4149, # converts parmseters to 0-1 rather than 0-100 scale
-    b2_chl = 100 ^ 2 * -0.0029, # converts parmseters to 0-1 rather than 0-100 scale
-
-    frac_pal = 0.6,   # Fraction palisade mesophyll [1]
-    Sm_spg = 6.5,     # Sm spongy mesophyll [m^2 / m^2]
-    Sm_pal = 40,      # Sm palisade mesophyll [m^2 / m^2]
-    Vstrom = 1.74e-6, # Stroma volume per mesophyll surface area [m^3 / m^2]
-    Vmito = 0.27e-7,  # Mitochondrial volume per mesophyll surface area [m^3 / m^2]
-    Sm_std = 30,      # Sm at which assumed J_max occurs
-    g_liq = 0.25e-3,   # Cell wall + liquid conductivity into stroma [m s-1]
-
-    # position of stomata in terms of element number along x-direction
-    x_abaxial_stomata = 1,
-    x_adaxial_stomata = 100
-
-  )
+  read_csv("raw-data/2d-pm-parameters.csv", col_types = "cccdccl") |>
+    filter(!calculated) |>
+    select(r, default_value) |>
+    with(split(default_value, r))
 
 }
 
