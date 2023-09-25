@@ -32,9 +32,9 @@ get_2d_pm_default_parms = function(...) {
     n_z = 200,
     t_elem = 1e-6,    # thickness of element [m]
     D_c = 1.54e-5,     # Diffusivity of CO2 in air [m^2 / s]
-    por_int = 0.2,    # Porosity at interface [m^3 air / m^3 leaf]
-    por_spg = 0.3,    # Porosity of the spongy mesophyll [m^3 air / m^3 leaf]
-    por_pal = 0.1,    # Porosity of the palisade mesophyll [m^3 air / m^3 leaf]
+    phi_int = 0.2,    # Porosity at interface [m^3 air / m^3 leaf]
+    phi_spg = 0.3,    # Porosity of the spongy mesophyll [m^3 air / m^3 leaf]
+    phi_pal = 0.1,    # Porosity of the palisade mesophyll [m^3 air / m^3 leaf]
     tort = 1.55,      # Tortuosity of the palisade and spongy mesophyll [m / m]
 
     # Note that 400 ppm = 0.01764706 is in mol / m^3, according to Earles et al. (2017)
@@ -95,9 +95,9 @@ derive_2d_pm_parms = function(parms, fit_rubisco, ...) {
   parms$Sm_z = rep(c(parms[["Sm_spg"]], parms[["Sm_pal"]]),
                  c(parms[["n_z_spg"]], parms[["n_z_pal"]]))
 
-  parms$por_z = rep(c(parms[["por_spg"]], parms[["por_pal"]]),
+  parms$phi_z = rep(c(parms[["phi_spg"]], parms[["phi_pal"]]),
                   c(parms[["n_z_spg"]], parms[["n_z_pal"]]))
-  parms$por_z[parms[["n_z_spg"]]] = parms$por_int
+  parms$phi_z[parms[["n_z_spg"]]] = parms$phi_int
 
   parms %<>%
     derive_2d_pm_rubisco(fit = fit_rubisco, ...)# |>
@@ -202,7 +202,7 @@ derive_2d_pm_j = function(parms, ...) {
 # Make matrices of porosity, Sm, X_c, j_e for photo_2d_pm()
 make_2d_pm_mat = function(parms, ...) {
 
-  parms$por_mat = matrix(parms[["por_z"]], nrow = parms[["n_z"]], ncol = parms[["n_x"]])
+  parms$p_mat = matrix(parms[["phi_z"]], nrow = parms[["n_z"]], ncol = parms[["n_x"]])
   parms$Sm_mat = matrix(parms[["Sm_z"]], nrow = parms[["n_z"]], ncol = parms[["n_x"]])
   parms$X_c_mat = matrix(parms[["X_c_z"]], nrow = parms[["n_z"]], ncol = parms[["n_x"]])
   parms$j_e_mat = matrix(parms[["j_e_z"]], nrow = parms[["n_z"]], ncol = parms[["n_x"]])
@@ -236,7 +236,7 @@ calc_2d_pm_flux = function(C_ias_mat, parms, ...) {
   bnd_x_left = C_ias_mat[, 1]
   bnd_x_right = C_ias_mat[, parms[["n_x"]]]
 
-  D_e = parms[["D_c"]] * parms[["por_mat"]] / parms[["tort"]]
+  D_e = parms[["D_c"]] * parms[["phi_mat"]] / parms[["tort"]]
 
   # diffusion in Z-direction; boundaries = imposed concentration
   ## flux from bottom to top
@@ -283,7 +283,7 @@ rd_2p_pm = function(t, y, parms, ...) {
 
   dC_ias = dC_liq = flux
   # dC_ias = (flux + parms[["g_liq"]] * (C_liq_mat - C_ias_mat) / parms[["t_elem"]]) /
-  #   parms[["por_mat"]]
+  #   parms[["phi_mat"]]
 
   # Based on Earles et al. (2017). I don't understand why it's multiple by t_leaf
   # dC_liq = (parms[["g_liq"]] * (C_ias_mat - C_liq_mat) / parms[["t_elem"]] -

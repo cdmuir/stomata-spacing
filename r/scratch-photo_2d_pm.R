@@ -20,8 +20,8 @@ diffusion2D <- function(t, Y, par)   {
 
   # hard-coding parameters for now
   D_c = 1.54e-5
-  por = 0.2
-  tort = 1.55
+  phi = 0.2
+  tau = 1.55
   S_m = 20
   V_strom = 1.74e-6
   k_c = 3
@@ -38,7 +38,7 @@ diffusion2D <- function(t, Y, par)   {
   r_d = 0.066
   r_p = r_c * Gamma / C_liq
 
-  D_e = D_c * por / tort
+  D_e = D_c * phi / tau
 
   # FLUX ----
   bound_bottom <- C_ias[1,] # boundary concentration
@@ -46,7 +46,8 @@ diffusion2D <- function(t, Y, par)   {
   bound_left = C_ias[,1]
   bound_right = C_ias[, n_x]
   bound_top[1] = 0.015
-  bound_bottom[n_x] = 0.015
+  # bound_bottom[n_x] = 0.015
+  bound_bottom[1] = 0.015
 
   # diffusion in Z-direction; boundaries=imposed concentration
   Flux <- -D_e * rbind(
@@ -67,11 +68,18 @@ diffusion2D <- function(t, Y, par)   {
   dC_ias = dC_ias + g_liq * (C_liq - C_ias) / V_strom
 
   # CARBOXYLATION ----
+  # I *THINK* V_strom is the right thing to divide here because g_liq is
+  #  conductance per m^2 chloroplast area and that needs to be converted to
+  #  volume. Specifically, how diffusion from IAS to stroma changes
+  #  concentration
+  #
   # I'M NOT SURE THIS IS THE RIGHT WAY TO SCALE TO STROMA VOLUME
+  # r_c, r_p, and r_d are mol CO2 per stroma volume. Need to convert to per leaf volume.
+  # (mol CO2 / s / m^3 stroma) * (m^3 stroma / m^2 mesophyll) * (m^2 mesophyll * m^2 leaf) * (m^2 leaf / m^3 leaf)
   # 2e4 assumes 200 um thick leaf because 1 m^2 has volume of 2e-4 m^3
-  # S_m [m^2 meso / m^2 leaf] * 2e4 [m^2 leaf / m^3 leaf]
-  # I *THINK* V_strom is the right thing to divide here because g_liq is conductance per m^2 chloroplast area and that needs to be converted to volume
-  dC_liq = dC_liq + g_liq * (C_ias - C_liq) / V_strom + (-r_c + r_p + r_d) * (S_m * 2e4) * V_strom
+  # S_m [m^2 meso / m^2 leaf] * (1 m^2 / (1 m x 1 m x t_leaf m) [m^2 leaf / m^3 leaf]
+  t_leaf = n_z * dz # [m]
+  dC_liq = dC_liq + g_liq * (C_ias - C_liq) / V_strom + (-r_c + r_p + r_d) * (S_m * 1 / t_leaf) * V_strom
 
   return(list(c(dC_ias, dC_liq)))
 
@@ -99,7 +107,7 @@ df_C = expand.grid(z = seq_len(n_z), x = seq_len(n_x), name = c("C_ias", "C_liq"
   mutate(value = ST2$y) |>
   pivot_wider()
 
-ggplot(df_C, aes(x, z, z = C_liq)) +
+ggplot(df_C, aes(x, z, z = C_ias)) +
   geom_contour_filled()
 
 ggplot(df_C, aes(C_ias, C_liq)) +
@@ -122,11 +130,11 @@ r_c = pmin(w_c, w_j)
 r_d = 0.066
 r_p = r_c * Gamma / df_C$C_liq
 
-a_n = (r_c - r_p - r_d) * (S_m * 2e4) * V_strom
+t_leaf = n_z * dz # [m]
+a_n = (r_c - r_p - r_d) * (S_m * 1 / t_leaf) * V_strom
 
-mean(a_n) # 0.4126922
+mean(a_n) # 0.194078
 
 # 1 m^2 of 200 um thick leaf is 2e-04 m^3
-#
-# 2.0801 mol / m^3 / s * (1 m^2 / 2e-4 m^3) * (1e6 umol / mol)
-mean(a_n) * 2e-4 * 1e6
+mean(a_n) * t_leaf * 1e6 # OK...maybe this is right
+# 38.8156 (offset) vs. 38.80798 (overtop)

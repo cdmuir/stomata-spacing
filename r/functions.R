@@ -1448,3 +1448,59 @@ check_parameters = function(co2d_pars) {
   # no checks yet
   co2d_pars
 }
+
+
+
+# TESTING OUT FUNCTION TO DRAW LEAF FOR MODEL EXPLANATION
+
+plot_photo_2d_pm = function(parms, soln = NULL, ...) {
+
+  # scaling ratio of U / 2 to T_leaf
+  # assumes that dx == dz
+  xz_ratio = parms[["n_x"]] / parms[["n_z"]]
+
+  df_stomata = crossing(
+    nesting(x = c(0, 1), y = c(0, 1) / xz_ratio),
+    r = 0.04,
+    x_offset = c(-1.5, 1.5)
+  ) |>
+    mutate(x0 = x + x_offset * r)
+
+  df_epidermis = df_stomata |>
+    summarise(stomata_min = min(x0 - r), stomata_max = max(x0 + r), .by = "y") |>
+    mutate(
+      xmin = ifelse(stomata_min < 0, stomata_max, 0),
+      xmax = ifelse(stomata_max > 1, stomata_min, 1)
+    )
+
+  ggplot() +
+    geom_circle(data = df_stomata, mapping = aes(x0 = x0, y0 = y, r = r)) +
+    geom_segment(data = df_epidermis,
+                 mapping = aes(
+                   x = xmin,
+                   xend = xmax,
+                   y = y,
+                   yend = y
+                 ), linewidth = 1.5) +
+    geom_text(
+      data = df_stomata |>
+        select(x, y) |>
+        distinct(),
+      mapping = aes(x, y, label = "stomate"),
+      position = position_nudge(y = c(-0.05, 0.05) / xz_ratio)
+    ) +
+    geom_text(
+      mapping = aes(x = 0.5, y = c(-0.1, 0.5, 1.1) / xz_ratio, label = c("abaxial", "mesophyll", "adaxial"))
+    ) +
+    geom_segment(mapping = aes(x = 0, y = -0.15 / xz_ratio, xend = 1, yend = -0.15 / xz_ratio),
+                 arrow = arrow(angle = 90, length = unit(0.025 / xz_ratio, "npc"), ends = "both") ) +
+    geom_segment(mapping = aes(x = -0.15, y = 0 / xz_ratio, xend = -0.15, yend = 1 / xz_ratio),
+                 arrow = arrow(angle = 90, length = unit(0.025 / xz_ratio, "npc"), ends = "both") ) +
+    geom_text(mapping = aes(x = 0.5, y = -0.2 / xz_ratio, label = "paste(italic(U) / 2, ', half the interstomatal distance [', mu, 'm]')"),
+              parse = TRUE) +
+    geom_text(mapping = aes(x = -0.2, y = 0.5 / xz_ratio, label = "paste(italic(T)[leaf], ', leaf thickness [', mu, 'm]')"),
+              parse = TRUE, angle = 90) +
+    coord_equal() +
+    theme_void()
+
+}

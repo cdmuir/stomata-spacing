@@ -1,0 +1,68 @@
+---
+title: "2-D Photosynthesis Model"
+format: docx
+editor: visual
+bibliography: ../references.bib
+---
+
+We model leaf photosynthesis using a two-dimensional porous medium approximation. The model is solved using a finite element method (FEM) in the *R* package **deSolve** [@soetaert2010]. Table 1 is a glossary model terms and symbols. Here we describe the model and associated *R* code.
+
+## Leaf anatomy
+
+We assume that the leaf is a homogenous 2-D medium. In the final version, we will incorporate differences in spongy and palisade porosity, gradients in light absorption, electron transport capacity, and Rubisco concentration. The mesophyll is $T_\text{leaf}$ thick and the stomata are regularly spaced apart by distance $U$ on both ab- and adaxial surfaces. In this scenario, we assume that the stomata on each surface are precisely offset from each other by distance $U/2$. This minimizes the average distance between any point in the mesophyll and its nearest stomate. Because of the regular spacing, we only need to model the region between a stomate on surface and the next stomate on the other surface (fig. 1). The rest of the mesophyll will be the same because of symmetry.
+
+```{r, message = FALSE, fig.cap='Figure 1: Example leaf anatomy analyzed by the 2-D FEM.', echo = FALSE, fig.height=6, fig.width=3}
+
+library(dplyr)
+library(ggforce)
+library(ggplot2)
+library(tidyr)
+
+# Example leaf where leaf thickness equals interstomatal distance
+ xz_ratio = 0.5
+
+  df_stomata = crossing(
+    nesting(x = c(0, 1), y = c(0, 1) / xz_ratio),
+    r = 0.04,
+    x_offset = c(-1.5, 1.5)
+  ) |>
+    mutate(x0 = x + x_offset * r)
+
+  df_epidermis = df_stomata |>
+    summarise(stomata_min = min(x0 - r), stomata_max = max(x0 + r), .by = "y") |>
+    mutate(
+      xmin = ifelse(stomata_min < 0, stomata_max, 0),
+      xmax = ifelse(stomata_max > 1, stomata_min, 1)
+    )
+
+  ggplot() +
+    geom_circle(data = df_stomata, mapping = aes(x0 = x0, y0 = y, r = r)) +
+    geom_segment(data = df_epidermis,
+                 mapping = aes(
+                   x = xmin,
+                   xend = xmax,
+                   y = y,
+                   yend = y
+                 ), linewidth = 1.5) +
+    geom_text(
+      data = df_stomata |>
+        select(x, y) |>
+        distinct(),
+      mapping = aes(x, y, label = "stomate"),
+      position = position_nudge(y = c(-0.05, 0.05) / xz_ratio)
+    ) +
+    geom_text(
+      mapping = aes(x = 0.5, y = c(-0.1, 0.5, 1.1) / xz_ratio, label = c("abaxial", "mesophyll", "adaxial"))
+    ) +
+    geom_segment(mapping = aes(x = 0, y = -0.15 / xz_ratio, xend = 1, yend = -0.15 / xz_ratio),
+                 arrow = arrow(angle = 90, length = unit(0.0125 / xz_ratio, "npc"), ends = "both") ) +
+    geom_segment(mapping = aes(x = -0.15, y = 0 / xz_ratio, xend = -0.15, yend = 1 / xz_ratio),
+                 arrow = arrow(angle = 90, length = unit(0.0125 / xz_ratio, "npc"), ends = "both") ) +
+    geom_text(mapping = aes(x = 0.5, y = -0.2 / xz_ratio, label = "paste(italic(U) / 2, ', half the interstomatal distance [', mu, 'm]')"),
+              parse = TRUE) +
+    geom_text(mapping = aes(x = -0.2, y = 0.5 / xz_ratio, label = "paste(italic(T)[leaf], ', leaf thickness [', mu, 'm]')"),
+              parse = TRUE, angle = 90) +
+    coord_equal(clip = "off") +
+    theme_void()
+    
+```
