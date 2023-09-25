@@ -27,16 +27,16 @@ diffusion2D <- function(t, Y, par)   {
   k_c = 3
   X_c = 2.5
   K_m = 18.7e-3
-  Gamma = 1.75e-3
+  gamma_star = 1.75e-3
   g_liq = 0.25e-3
   J_max = 0.000275
   j_max = J_max / (S_m * V_strom)
 
   w_c = (k_c * X_c * C_liq) / (K_m + C_liq)        # carboxylation
-  w_j = C_liq * j_max / (4 * C_liq + 8 * Gamma)
+  w_j = C_liq * j_max / (4 * C_liq + 8 * gamma_star)
   r_c = pmin(w_c, w_j)
   r_d = 0.066
-  r_p = r_c * Gamma / C_liq
+  r_p = r_c * gamma_star / C_liq
 
   D_e = D_c * phi / tau
 
@@ -119,16 +119,16 @@ V_strom = 1.74e-6
 k_c = 3
 X_c = 2.5
 K_m = 18.7e-3
-Gamma = 1.75e-3
+gamma_star = 1.35e-3
 
 J_max = 0.000275
 j_max = J_max / (S_m * V_strom)
 
 w_c = (k_c * X_c * df_C$C_liq) / (K_m + df_C$C_liq)        # carboxylation
-w_j = df_C$C_liq * j_max / (4 * df_C$C_liq + 8 * Gamma)
+w_j = df_C$C_liq * j_max / (4 * df_C$C_liq + 8 * gamma_star)
 r_c = pmin(w_c, w_j)
 r_d = 0.066
-r_p = r_c * Gamma / df_C$C_liq
+r_p = r_c * gamma_star / df_C$C_liq
 
 t_leaf = n_z * dz # [m]
 a_n = (r_c - r_p - r_d) * (S_m * 1 / t_leaf) * V_strom

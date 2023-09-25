@@ -47,7 +47,7 @@ get_2d_pm_default_parms = function(...) {
     k_c = 3,          # Rubisco turnover rate [1 / s]
     X_c = 2.5,        # Rubisco concentration [mol / m^3]
     K_m = 18.7e-3,    # Rubisco effective Michaelis-Menten constant [mol / m^3]
-    Gamma = 1.75e-3,  # CO2 compensation point [mol / m^3]
+    gamma_star = 1.35e-3,  # CO2 compensation point [mol / m^3]
     Theta = 1,        # Curvature factor in FvCB model [1]
     r_d = 0.066,       # Dark respiratory rate [mol / m^3 / s]
     Jmax = 275e-6,    # Maximum electron transport rate [mol / m^2 / s]
@@ -214,7 +214,7 @@ make_2d_pm_mat = function(parms, ...) {
 calc_2d_pm_rc = function(C_liq_mat, parms, ...) {
 
   w_c = (parms[["k_c"]] * parms[["X_c_mat"]] * C_liq_mat) / (parms[["K_m"]] + C_liq_mat)
-  w_j = C_liq_mat * parms[["j_e_mat"]] / (4 * C_liq_mat + 8 * parms[["Gamma"]])
+  w_j = C_liq_mat * parms[["j_e_mat"]] / (4 * C_liq_mat + 8 * parms[["gamma_star"]])
 
   r_c = pmin(w_c, w_j)
 
@@ -279,7 +279,7 @@ rd_2p_pm = function(t, y, parms, ...) {
 
   r_c = calc_2d_pm_rc(C_liq_mat, parms, ...)
 
-  r_p = r_c * parms[["Gamma"]] / C_liq_mat
+  r_p = r_c * parms[["gamma_star"]] / C_liq_mat
 
   dC_ias = dC_liq = flux
   # dC_ias = (flux + parms[["g_liq"]] * (C_liq_mat - C_ias_mat) / parms[["t_elem"]]) /
