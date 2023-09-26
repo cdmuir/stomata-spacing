@@ -2,7 +2,7 @@
 # This template is largely functionally equivalent to that for elsevier
 # The two fields that are not in the elsevier format are:
 #      `corresponding_author` and `acknowledgements`
-title: Spatial Coordination Of Stomatal Patterning Between Leaf Surfaces In Amphistomatous *Arabidopsis thaliana* Incurrs No Photosynthetic Advantage
+title: Spatial Coordination Of Stomatal Patterning Between Leaf Surfaces In Amphistomatous *Arabidopsis thaliana* Incurs No Photosynthetic Advantage
 #date: "`r Sys.Date()`"
 author:
   - name: Jacob L. Watts
