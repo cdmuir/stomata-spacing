@@ -5,67 +5,89 @@
 # SO g_liq = 0.001 - 8.33e-5
 source("r/header.R")
 source("r/photo_2d_pm.R")
+library(rootSolve)
 
-parms = get_2d_pm_default_parms() |>
-  derive_2d_pm_parms(fit = fit_rubisco)
+photo_2d_pm = function(t, Y, parms) {
 
-parms$X_c_z
+  # Arguments:
+  # * t, time step used by steady.2d() to find steady-state solution
+  # * Y, vector of length 2 * n_x * n_z. The first half are the elements
+  # corresponding to C_ias[i,j]; the second half are correspoding elements for
+  # C_liq[i,j].
+  # * parms, list of model parameters. Use `get_2d_pm_default_parms()` for
+  #  default parameter values.
 
-diffusion2D <- function(t, Y, par)   {
+  # Set up:
+  # The leaf is divided to an area n_x elements wide, n_z units deep
+  n = parms[["n_z"]] * parms[["n_x"]]
 
-  n = n_z * n_x
-  C_ias = matrix(nrow = n_z, ncol = n_x, data = Y[1:n])
-  C_liq = matrix(nrow = n_z, ncol = n_x, data = Y[(n + 1):(2 * n)])
+  # Create empty matrices for computation
+  C_ias = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]],
+                 data = Y[1:n])
+  C_liq = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]],
+                 data = Y[(n + 1):(2 * n)])
   dC_ias = dC_liq = numeric(length = n) # empty vectors
 
+  # CARBOXYLATION AND RESPIRATION ----
+  # Calculate volumetric j_max from area-based J_max. Here, I assume a single
+  # j_max for every part of the leaf, but in the final model I will have a
+  # gradient of j_max following Earles et al. (2017).
+  #
   # hard-coding parameters for now
-  D_c = 1.54e-5
-  phi = 0.2
-  tau = 1.55
-  S_m = 20
-  V_strom = 1.74e-6
-  k_c = 3
-  X_c = 2.5
-  K_m = 18.7e-3
-  gamma_star = 1.75e-3
-  g_liq = 0.25e-3
-  J_max = 0.000275
-  j_max = J_max / (S_m * V_strom)
+  # D_c = 1.54e-5
+  # phi = 0.2
+  # tau = 1.55
+  # S_m = 20
+  # V_strom = 1.74e-6
+  # k_c = 3
+  # X_c = 2.5
+  # K_m = 18.7e-3
+  # gamma_star = 1.75e-3
+  # g_liq = 0.25e-3
+  # J_max = 0.000275
+  j_max = parms[["J_max"]] / (parms[["S_m"]] * parms[["V_strom"]])
 
-  w_c = (k_c * X_c * C_liq) / (K_m + C_liq)        # carboxylation
-  w_j = C_liq * j_max / (4 * C_liq + 8 * gamma_star)
+  # Carboxylation (n.b. Rubisco concentration is assumed constant throughout
+  # the leaf, but in the final model I will have a garudent of X_c following
+  # Earles et al. (2017))
+  w_c = (parms[["k_c"]] * parms[["X_c"]] * C_liq) / (parms[["K_m"]] + C_liq)
+  w_j = C_liq * j_max / (4 * C_liq + 8 * parms[["gamma_star"]])
   r_c = pmin(w_c, w_j)
-  r_d = 0.066
-  r_p = r_c * gamma_star / C_liq
-
-  D_e = D_c * phi / tau
+  r_d = parms[["r_d"]]
+  r_p = r_c * parms[["gamma_star"]] / C_liq
 
   # FLUX ----
-  bound_bottom <- C_ias[1,] # boundary concentration
-  bound_top <- C_ias[n_z,]   # boundary concentration
+  D_e = parms[["D_c"]] * parms[["phi"]] / parms[["tau"]]
+
+  # Boundary conditions
+  bound_bottom = C_ias[1,]
+  bound_top = C_ias[parms[["n_z"]],]
   bound_left = C_ias[,1]
-  bound_right = C_ias[, n_x]
-  bound_top[1] = 0.015
-  # bound_bottom[n_x] = 0.015
-  bound_bottom[1] = 0.015
+  bound_right = C_ias[, parms[["n_x"]]]
+  bound_top[1] = parms[["C_stom"]]
+  bound_bottom[parms[["n_x"]]] = parms[["C_stom"]]
+  # bound_bottom[1] = parms[["C_stom"]]
 
   # diffusion in Z-direction; boundaries=imposed concentration
-  Flux <- -D_e * rbind(
+  Flux = -D_e / parms[["t_elem"]] * rbind(
     C_ias[1, ] - bound_bottom,
-    (C_ias[2:n_z, ] - C_ias[1:(n_z - 1), ]),
-    bound_top - C_ias[n_z,]
-  ) / dz
-  dC_ias = dC_ias - (Flux[2:(n_z + 1), ] - Flux[1:n_z, ]) / dz
+    (C_ias[2:parms[["n_z"]], ] - C_ias[1:(parms[["n_z"]] - 1), ]),
+    bound_top - C_ias[parms[["n_z"]], ]
+  )
+  dC_ias = dC_ias -
+    (Flux[2:(parms[["n_z"]] + 1), ] - Flux[1:parms[["n_z"]], ]) / parms[["t_elem"]]
 
   # diffusion in X-direction
-  Flux <- -D_e * cbind(
+  Flux = -D_e / parms[["t_elem"]] * cbind(
     C_ias[, 1] - bound_left,
-    (C_ias[, 2:n_x] - C_ias[, 1:(n_x - 1)]),
-    bound_right - C_ias[, n_x]
-  ) / dx
-  dC_ias = dC_ias - (Flux[, 2:(n_x + 1)] - Flux[, 1:n_x]) / dx
+    (C_ias[, 2:parms[["n_x"]]] - C_ias[, 1:(parms[["n_x"]] - 1)]),
+    bound_right - C_ias[, parms[["n_x"]]]
+  )
+  dC_ias = dC_ias -
+    (Flux[, 2:(parms[["n_x"]] + 1)] - Flux[, 1:parms[["n_x"]]]) /
+    parms[["t_elem"]]
 
-  dC_ias = dC_ias + g_liq * (C_liq - C_ias) / V_strom
+  dC_ias = dC_ias + parms[["g_liq"]] * (C_liq - C_ias) / parms[["V_strom"]]
 
   # CARBOXYLATION ----
   # I *THINK* V_strom is the right thing to divide here because g_liq is
@@ -78,63 +100,55 @@ diffusion2D <- function(t, Y, par)   {
   # (mol CO2 / s / m^3 stroma) * (m^3 stroma / m^2 mesophyll) * (m^2 mesophyll * m^2 leaf) * (m^2 leaf / m^3 leaf)
   # 2e4 assumes 200 um thick leaf because 1 m^2 has volume of 2e-4 m^3
   # S_m [m^2 meso / m^2 leaf] * (1 m^2 / (1 m x 1 m x t_leaf m) [m^2 leaf / m^3 leaf]
-  t_leaf = n_z * dz # [m]
-  dC_liq = dC_liq + g_liq * (C_ias - C_liq) / V_strom + (-r_c + r_p + r_d) * (S_m * 1 / t_leaf) * V_strom
+  # Leaf thickness - needed to scale from stroma volume per leaf volume
+  T_leaf = parms[["n_z"]] * parms[["t_elem"]] # [m]
+  dC_liq = dC_liq + parms[["g_liq"]] * (C_ias - C_liq) / parms[["V_strom"]] +
+    (-r_c + r_p + r_d) * (parms[["S_m"]] * 1 / T_leaf) * parms[["V_strom"]]
 
   return(list(c(dC_ias, dC_liq)))
 
 }
 
-# parameters
-n_x = 200
-n_z = 400
-dz    <- dx <- 0.5e-6   # grid size
+parms = get_2d_pm_default_parms() |>
+  derive_2d_pm_parms()
 
-C_ias_mat = matrix(nrow = n_z, ncol = n_x, 0.015)
-C_liq_mat = matrix(nrow = n_z, ncol = n_x, 0.015)
+# Initial values
+C_ias_mat = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]], parms[["C_stom"]])
+C_liq_mat = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]], parms[["C_stom"]])
 
-# stodes is used, so we should specify the size of the work array (lrw)
-# We take a rather large value
-# By specifying pos = TRUE, only positive values are allowed.
+# Solve for C_ias and C_liq
+soln = steady.2D(c(C_ias_mat, C_liq_mat), func = photo_2d_pm, parms = parms,
+                 pos = FALSE, dimens = c(parms[["n_z"]], parms[["n_x"]]),
+                 nspec = 2, lrw = 1e8, atol = 1e-10, rtol = 1e-10, ctol = 1e-10)
 
-system.time(
-  ST2 <- steady.2D(c(C_ias_mat, C_liq_mat), func = diffusion2D, parms = NULL,
-                   pos = FALSE, dimens = c(n_z, n_x), nspec = 2, lrw = 1e8,
-                   atol = 1e-10, rtol = 1e-10, ctol = 1e-10)
-)
+# Plot results
+df_C = expand.grid(
+  z = seq_len(parms[["n_z"]]),
+  x = seq_len(parms[["n_x"]]),
+  name = c("C_ias", "C_liq")
+) |>
+  mutate(value = soln$y)
 
-df_C = expand.grid(z = seq_len(n_z), x = seq_len(n_x), name = c("C_ias", "C_liq")) |>
-  mutate(value = ST2$y) |>
-  pivot_wider()
+ggplot(df_C, aes(x, z, z = value)) +
+  facet_grid(~ name) +
+  geom_contour_filled() +
+  coord_equal()
 
-ggplot(df_C, aes(x, z, z = C_ias)) +
-  geom_contour_filled()
+# Calculate area-based net photosynthesis
+C_liq = df_C |>
+  filter(name == "C_liq") |>
+  pull(value)
 
-ggplot(df_C, aes(C_ias, C_liq)) +
-  geom_point()
+j_max = parms[["J_max"]] / (parms[["S_m"]] * parms[["V_strom"]])
 
-S_m = 20
-V_strom = 1.74e-6
-
-k_c = 3
-X_c = 2.5
-K_m = 18.7e-3
-gamma_star = 1.35e-3
-
-J_max = 0.000275
-j_max = J_max / (S_m * V_strom)
-
-w_c = (k_c * X_c * df_C$C_liq) / (K_m + df_C$C_liq)        # carboxylation
-w_j = df_C$C_liq * j_max / (4 * df_C$C_liq + 8 * gamma_star)
+w_c = (parms[["k_c"]] * parms[["X_c"]] * C_liq) / (parms[["K_m"]] + C_liq)
+w_j = C_liq * j_max / (4 * C_liq + 8 * parms[["gamma_star"]])
 r_c = pmin(w_c, w_j)
-r_d = 0.066
-r_p = r_c * gamma_star / df_C$C_liq
+r_d = parms[["r_d"]]
+r_p = r_c * parms[["gamma_star"]] / C_liq
 
-t_leaf = n_z * dz # [m]
-a_n = (r_c - r_p - r_d) * (S_m * 1 / t_leaf) * V_strom
-
-mean(a_n) # 0.194078
+T_leaf = parms[["n_z"]] * parms[["t_elem"]]
+a_n = (r_c - r_p - r_d) * (parms[["S_m"]] * 1 / T_leaf) * parms[["V_strom"]]
 
 # 1 m^2 of 200 um thick leaf is 2e-04 m^3
-mean(a_n) * t_leaf * 1e6 # OK...maybe this is right
-# 38.8156 (offset) vs. 38.80798 (overtop)
+mean(a_n) * T_leaf * 1e6

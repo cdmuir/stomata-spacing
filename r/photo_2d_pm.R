@@ -16,7 +16,7 @@ photo_2d_pm = function(...) {
 
 }
 
-# Set parmseters for photo_2d_pm()
+# Set parameters for photo_2d_pm()
 set_2d_pm_parms = function(...) {
 
 }
@@ -82,7 +82,7 @@ get_2d_pm_default_parms = function(...) {
   #
   # )
 
-  read_csv("raw-data/2d-pm-parameters.csv", col_types = "cccdccl") |>
+  read_csv("../raw-data/2d-pm-parameters.csv", col_types = "cccdccl") |>
     filter(!calculated) |>
     select(r, default_value) |>
     with(split(default_value, r))
@@ -92,21 +92,22 @@ get_2d_pm_default_parms = function(...) {
 # Calculate derived parmseters for photo_2d_pm()
 derive_2d_pm_parms = function(parms, fit_rubisco, ...) {
 
-  # parms = get_2d_pm_default_parms()
+  # COMMENTING OUT PARTS I DON'T NEED FOR SIMPLER MODEL
+  #
   # derived quantities
-  parms$t_leaf = parms[["n_z"]] * parms[["t_elem"]] # leaf thickness [m]
-  parms$frac_spg = 1 - parms[["frac_pal"]] # Fraction spongy mesophyll
-  parms$n_z_pal = round(parms[["n_z"]] * parms[["frac_pal"]])
-  parms$n_z_spg = parms[["n_z"]] - parms[["n_z_pal"]]
-  parms$Sm_z = rep(c(parms[["Sm_spg"]], parms[["Sm_pal"]]),
-                 c(parms[["n_z_spg"]], parms[["n_z_pal"]]))
+  parms$T_leaf = parms[["n_z"]] * parms[["t_elem"]] # leaf thickness [m]
+  # parms$frac_spg = 1 - parms[["frac_pal"]] # Fraction spongy mesophyll
+  # parms$n_z_pal = round(parms[["n_z"]] * parms[["frac_pal"]])
+  # parms$n_z_spg = parms[["n_z"]] - parms[["n_z_pal"]]
+  # parms$Sm_z = rep(c(parms[["Sm_spg"]], parms[["Sm_pal"]]),
+  #                c(parms[["n_z_spg"]], parms[["n_z_pal"]]))
+  #
+  # parms$phi_z = rep(c(parms[["phi_spg"]], parms[["phi_pal"]]),
+  #                 c(parms[["n_z_spg"]], parms[["n_z_pal"]]))
+  # parms$phi_z[parms[["n_z_spg"]]] = parms$phi_int
 
-  parms$phi_z = rep(c(parms[["phi_spg"]], parms[["phi_pal"]]),
-                  c(parms[["n_z_spg"]], parms[["n_z_pal"]]))
-  parms$phi_z[parms[["n_z_spg"]]] = parms$phi_int
-
-  parms %<>%
-    derive_2d_pm_rubisco(fit = fit_rubisco, ...)# |>
+  # parms %<>%
+    # derive_2d_pm_rubisco(fit = fit_rubisco, ...)# |>
     # derive_2d_pm_j(...) #|>
     # derive_2d_pm_chl(...)
 
@@ -291,9 +292,9 @@ rd_2p_pm = function(t, y, parms, ...) {
   # dC_ias = (flux + parms[["g_liq"]] * (C_liq_mat - C_ias_mat) / parms[["t_elem"]]) /
   #   parms[["phi_mat"]]
 
-  # Based on Earles et al. (2017). I don't understand why it's multiple by t_leaf
+  # Based on Earles et al. (2017). I don't understand why it's multiple by T_leaf
   # dC_liq = (parms[["g_liq"]] * (C_ias_mat - C_liq_mat) / parms[["t_elem"]] -
-  #             r_c + r_p + parms[["r_d"]]) * parms[["t_leaf"]] /
+  #             r_c + r_p + parms[["r_d"]]) * parms[["T_leaf"]] /
   #   sum(parms[["Sm_z"]]) / parms[["Vstrom"]]
 
   return(list(c(dC_ias, dC_liq))) # return output from function

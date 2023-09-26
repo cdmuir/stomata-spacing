@@ -4,6 +4,7 @@ scientize <- function(x, threshold = -1L, digits = 2L) {
 
   purrr::map_chr(x, function(.x, threshold, digits) {
 
+    if (is.na(.x)) {return(NA)}
     oom <- log10(abs(.x))
     if (oom < threshold) {
       x1 <- .x |>
