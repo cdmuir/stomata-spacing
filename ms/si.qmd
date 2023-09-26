@@ -117,17 +117,9 @@ In the 2-D model, we extend the flux equation to $x$ (length) and $z$ (depth) di
 
 $$D_\text{e} \nabla^2 C_\text{ias} = D_\text{e} \bigg(\frac{\partial^2 C_\text{ias}}{\partial x^2} + \frac{\partial^2 C_\text{ias}}{\partial z^2}\bigg) = -f_\text{liq}$$ {#eq-2d_pm_flux}
 
-As I worked through @earles_excess_2017 model, it did not seem like dividing $g_\text{liq}$ by $l_z$ in equation @eq-fliq1 made sense. The FEM is a discretization of a continuous model. Intuitively, it does make sense why a coarser grid (greater $l_z$) would lead to a larger \[CO$_2$\] drawdown for a given assimilation rate. Noting that $g_\text{liq}$ is conductance per m$^2$ of stroma, I think the correct way is to divide by $V_\text{strom}$, which gives the mesophyll surface area per stroma volume available for liquid-phase diffusion. Here I assume that the chloroplasts line the entire inner wall of the mesophyll, so 1 [m$^2$] mesophyll = 1 [m$^2$] stroma, but this could be modified to the correct value. My equation is therefore:
+As I worked through @earles_excess_2017 model, it did not seem like dividing $g_\text{liq}$ by $l_z$ in equation @eq-fliq1 made sense. The FEM is a discretization of a continuous model. Intuitively, it does make sense why a coarser grid (greater $l_z$) would lead to a larger \[CO$_2$\] drawdown for a given assimilation rate. Noting that $g_\text{liq}$ is conductance per m$^2$ of stroma, this means the length scale to divide by should be 1/(stroma area per unit bulk leaf volume). This is equivalent to 1/\[(stroma area per leaf area)x(leaf area per bulk leaf volume)\] = 1/\[Sc x (1/Tleaf)\] = Tleaf/Sc (for now I am assuming Sm = Sc, but we can correct this later). Our equation is therefore:
 
-$$f_\text{liq} = \frac{g_\text{liq} (C_\text{liq} - C_\text{ias})}{V_\text{strom}}$$ {#eq-fliq2}
-
-Here's how I work out the units for equation @eq-fliq2.
-
-$$\frac{\text{mol}}{\text{m}^3~\text{s}} = \bigg(\frac{\text{m}^3}{\text{m}^2~\text{stroma}} \times \frac{1~\text{m}^2~\text{stroma}}{1~\text{m}^2~\text{meso}} \bigg) \times \bigg(\frac{\text{mol}}{\text{m}^3} \bigg) \times \bigg( \frac{\text{m}^2~\text{meso}}{\text{m}^3} \bigg)$$
-
-This still doesn't seem quite right to me because it seems like the change in airspace concentration should be affected by the porosity since a smaller volume of air will experience a greater drop in concentration for the same amount of assimilation, but maybe I am thinking about this incorrectly.
-
-Coincidentally, this had little effect on @earles_excess_2017 model because their element size was $\approx 1~\mu$m, which is quantitatively similar to $V_\text{strom} = 1.74 \times 10^{-6}$m. However, when you change the element size on their model, the solution is quite different; when you change the element size on my model, the solution is only slightly affected but the discretization is an approximation of the true solution. 
+$$f_\text{liq} = \frac{g_\text{liq} (C_\text{liq} - C_\text{ias})}{T_\text{leaf} / S_\text{m}}$$ {#eq-fliq2}
 
 I calculated assimilation and respiration the same way as @earles_excess_2017 using the standard C\$\_3\$ biochemical model.
 
@@ -136,7 +128,6 @@ The boundary conditions are that the CO$_2$ concentration in the substomatal cav
 ## R code
 
 I've copied the *R* code to set up the model and solve it if you want to copy and paste on your own machine. I annotated the *R* code you would need to run the model and include an example result.
-
 
 ```{r, model}
 
@@ -172,22 +163,7 @@ photo_2d_pm = function(t, Y, parms) {
                  data = Y[(n + 1):(2 * n)])
   dC_ias = dC_liq = numeric(length = n) # empty vectors
 
-  # CARBOXYLATION AND RESPIRATION ----
-  # Calculate volumetric j_max from area-based J_max. Here, I assume a single
-  # j_max for every part of the leaf, but in the final model I will have a
-  # gradient of j_max following Earles et al. (2017).
-  j_max = parms[["J_max"]] / (parms[["S_m"]] * parms[["V_strom"]])
-
-  # Carboxylation (n.b. Rubisco concentration is assumed constant throughout
-  # the leaf, but in the final model I will have a garudent of X_c following
-  # Earles et al. (2017))
-  w_c = (parms[["k_c"]] * parms[["X_c"]] * C_liq) / (parms[["K_m"]] + C_liq)
-  w_j = C_liq * j_max / (4 * C_liq + 8 * parms[["gamma_star"]])
-  r_c = pmin(w_c, w_j)
-  r_d = parms[["r_d"]]
-  r_p = r_c * parms[["gamma_star"]] / C_liq
-
-  # FLUX ----
+    # FLUX ----
   D_e = parms[["D_c"]] * parms[["phi"]] / parms[["tau"]]
 
   # Boundary conditions
@@ -199,7 +175,7 @@ photo_2d_pm = function(t, Y, parms) {
   bound_bottom[parms[["n_x"]]] = parms[["C_stom"]]
   # bound_bottom[1] = parms[["C_stom"]]
 
-  # diffusion in Z-direction
+  # diffusion in Z-direction; boundaries=imposed concentration
   Flux = -D_e / parms[["t_elem"]] * rbind(
     C_ias[1, ] - bound_bottom,
     (C_ias[2:parms[["n_z"]], ] - C_ias[1:(parms[["n_z"]] - 1), ]),
@@ -218,13 +194,27 @@ photo_2d_pm = function(t, Y, parms) {
     (Flux[, 2:(parms[["n_x"]] + 1)] - Flux[, 1:parms[["n_x"]]]) /
     parms[["t_elem"]]
 
-  dC_ias = dC_ias + parms[["g_liq"]] * (C_liq - C_ias) / parms[["V_strom"]]
+  dC_ias = dC_ias + parms[["g_liq"]] * (C_liq - C_ias) /
+    (parms[["T_leaf"]] / parms[["S_m"]])
 
-  # CARBOXYLATION ----
-  # Leaf thickness - needed to scale from stroma volume per leaf volume
-  T_leaf = parms[["n_z"]] * parms[["t_elem"]] # [m]
-  dC_liq = dC_liq + parms[["g_liq"]] * (C_ias - C_liq) / parms[["V_strom"]] +
-    (-r_c + r_p + r_d) * (parms[["S_m"]] * 1 / T_leaf) * parms[["V_strom"]]
+  # CARBOXYLATION AND RESPIRATION ----
+  # Calculate volumetric j_max from area-based J_max. Here, I assume a single
+  # j_max for every part of the leaf, but in the final model I will have a
+  # gradient of j_max following Earles et al. (2017).
+  j_max = parms[["J_max"]] / (parms[["S_m"]] * parms[["V_strom"]])
+
+  # Carboxylation (n.b. Rubisco concentration is assumed constant throughout
+  # the leaf, but in the final model I will have a garudent of X_c following
+  # Earles et al. (2017))
+  w_c = (parms[["k_c"]] * parms[["X_c"]] * C_liq) / (parms[["K_m"]] + C_liq)
+  w_j = C_liq * j_max / (4 * C_liq + 8 * parms[["gamma_star"]])
+  r_c = pmin(w_c, w_j)
+  r_d = parms[["r_d"]]
+  r_p = r_c * parms[["gamma_star"]] / C_liq
+
+  dC_liq = dC_liq +
+    parms[["g_liq"]] * (C_ias - C_liq) / (parms[["T_leaf"]] / parms[["S_m"]]) +
+    (-r_c + r_p + r_d) * (parms[["S_m"]] / parms[["T_leaf"]]) * parms[["V_strom"]]
 
   return(list(c(dC_ias, dC_liq)))
 

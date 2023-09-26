@@ -3,6 +3,7 @@
 # 1 s / m  = 0.025 m^2 chloroplast s bar / mol
 # SO, 1000 - 12000 s / m
 # SO g_liq = 0.001 - 8.33e-5
+
 source("r/header.R")
 source("r/photo_2d_pm.R")
 library(rootSolve)
@@ -27,34 +28,6 @@ photo_2d_pm = function(t, Y, parms) {
   C_liq = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]],
                  data = Y[(n + 1):(2 * n)])
   dC_ias = dC_liq = numeric(length = n) # empty vectors
-
-  # CARBOXYLATION AND RESPIRATION ----
-  # Calculate volumetric j_max from area-based J_max. Here, I assume a single
-  # j_max for every part of the leaf, but in the final model I will have a
-  # gradient of j_max following Earles et al. (2017).
-  #
-  # hard-coding parameters for now
-  # D_c = 1.54e-5
-  # phi = 0.2
-  # tau = 1.55
-  # S_m = 20
-  # V_strom = 1.74e-6
-  # k_c = 3
-  # X_c = 2.5
-  # K_m = 18.7e-3
-  # gamma_star = 1.75e-3
-  # g_liq = 0.25e-3
-  # J_max = 0.000275
-  j_max = parms[["J_max"]] / (parms[["S_m"]] * parms[["V_strom"]])
-
-  # Carboxylation (n.b. Rubisco concentration is assumed constant throughout
-  # the leaf, but in the final model I will have a garudent of X_c following
-  # Earles et al. (2017))
-  w_c = (parms[["k_c"]] * parms[["X_c"]] * C_liq) / (parms[["K_m"]] + C_liq)
-  w_j = C_liq * j_max / (4 * C_liq + 8 * parms[["gamma_star"]])
-  r_c = pmin(w_c, w_j)
-  r_d = parms[["r_d"]]
-  r_p = r_c * parms[["gamma_star"]] / C_liq
 
   # FLUX ----
   D_e = parms[["D_c"]] * parms[["phi"]] / parms[["tau"]]
@@ -87,23 +60,33 @@ photo_2d_pm = function(t, Y, parms) {
     (Flux[, 2:(parms[["n_x"]] + 1)] - Flux[, 1:parms[["n_x"]]]) /
     parms[["t_elem"]]
 
-  dC_ias = dC_ias + parms[["g_liq"]] * (C_liq - C_ias) / parms[["V_strom"]]
+  dC_ias = dC_ias + parms[["g_liq"]] * (C_liq - C_ias) /
+    (parms[["T_leaf"]] / parms[["S_m"]])
 
-  # CARBOXYLATION ----
-  # I *THINK* V_strom is the right thing to divide here because g_liq is
-  #  conductance per m^2 chloroplast area and that needs to be converted to
-  #  volume. Specifically, how diffusion from IAS to stroma changes
-  #  concentration
+  # CARBOXYLATION AND RESPIRATION ----
+  # Calculate volumetric j_max from area-based J_max. Here, I assume a single
+  # j_max for every part of the leaf, but in the final model I will have a
+  # gradient of j_max following Earles et al. (2017).
   #
+  j_max = parms[["J_max"]] / (parms[["S_m"]] * parms[["V_strom"]])
+
+  # Carboxylation (n.b. Rubisco concentration is assumed constant throughout
+  # the leaf, but in the final model I will have a garudent of X_c following
+  # Earles et al. (2017))
+  w_c = (parms[["k_c"]] * parms[["X_c"]] * C_liq) / (parms[["K_m"]] + C_liq)
+  w_j = C_liq * j_max / (4 * C_liq + 8 * parms[["gamma_star"]])
+  r_c = pmin(w_c, w_j)
+  r_d = parms[["r_d"]]
+  r_p = r_c * parms[["gamma_star"]] / C_liq
+
   # I'M NOT SURE THIS IS THE RIGHT WAY TO SCALE TO STROMA VOLUME
-  # r_c, r_p, and r_d are mol CO2 per stroma volume. Need to convert to per leaf volume.
+  # r_c, r_p, and r_d are mol CO2 per stroma volume. Need to convert to per leaf volume
   # (mol CO2 / s / m^3 stroma) * (m^3 stroma / m^2 mesophyll) * (m^2 mesophyll * m^2 leaf) * (m^2 leaf / m^3 leaf)
   # 2e4 assumes 200 um thick leaf because 1 m^2 has volume of 2e-4 m^3
   # S_m [m^2 meso / m^2 leaf] * (1 m^2 / (1 m x 1 m x t_leaf m) [m^2 leaf / m^3 leaf]
-  # Leaf thickness - needed to scale from stroma volume per leaf volume
-  T_leaf = parms[["n_z"]] * parms[["t_elem"]] # [m]
-  dC_liq = dC_liq + parms[["g_liq"]] * (C_ias - C_liq) / parms[["V_strom"]] +
-    (-r_c + r_p + r_d) * (parms[["S_m"]] * 1 / T_leaf) * parms[["V_strom"]]
+  dC_liq = dC_liq +
+    parms[["g_liq"]] * (C_ias - C_liq) / (parms[["T_leaf"]] / parms[["S_m"]]) +
+    (-r_c + r_p + r_d) * (parms[["S_m"]] / parms[["T_leaf"]]) * parms[["V_strom"]]
 
   return(list(c(dC_ias, dC_liq)))
 
@@ -148,7 +131,7 @@ r_d = parms[["r_d"]]
 r_p = r_c * parms[["gamma_star"]] / C_liq
 
 T_leaf = parms[["n_z"]] * parms[["t_elem"]]
-a_n = (r_c - r_p - r_d) * (parms[["S_m"]] * 1 / T_leaf) * parms[["V_strom"]]
+a_n = (r_c - r_p - r_d) * (parms[["S_m"]] / T_leaf) * parms[["V_strom"]]
 
 # 1 m^2 of 200 um thick leaf is 2e-04 m^3
 mean(a_n) * T_leaf * 1e6

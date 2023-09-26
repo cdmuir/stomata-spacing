@@ -82,7 +82,8 @@ get_2d_pm_default_parms = function(...) {
   #
   # )
 
-  read_csv("../raw-data/2d-pm-parameters.csv", col_types = "cccdccl") |>
+  # read_csv("raw-data/2d-pm-parameters.csv", col_types = "cccdccl") |>
+    read_csv("../raw-data/2d-pm-parameters.csv", col_types = "cccdccl") |>
     filter(!calculated) |>
     select(r, default_value) |>
     with(split(default_value, r))
