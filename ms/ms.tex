@@ -13,13 +13,9 @@
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={},
-            pdftitle={Non-independence of Leaf Surfaces in Amphistomatous Leaves of Arabidopsis thaliana and a 2D Model for Photosynthesis}
+            pdftitle={Spatial Coordination Of Stomatal Patterning Between Leaf Surfaces In Amphistomatous Arabidopsis thaliana Incurs No Photosynthetic Advantage}
             }
 
-
-% For knitr::kable functionality
-\usepackage{booktabs}
-\usepackage{longtable}
 
 %% To allow better options for figure placement
 %\usepackage{float}
@@ -27,48 +23,8 @@
 % Packages that are supposedly required by OUP sty file
 \usepackage{amssymb, amsmath, geometry, amsfonts, verbatim, endnotes, setspace}
 
-% For code highlighting I think
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-
-% For making Rmarkdown lists
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 % Macros for dealing with affiliations, footnotes, etc.
 \makeatletter
@@ -106,12 +62,71 @@ HI 96822}
 
 % Part for setting citation format package: biblatex
 
-% Part for indenting CSL refs
+% Pandoc syntax highlighting
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+% tightlist command for lists without linebreak
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% From pandoc table feature
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
 % Pandoc citation processing
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
 % for Pandoc 2.8 to 2.10.1
 \newenvironment{cslreferences}%
   {}%
@@ -121,27 +136,29 @@ HI 96822}
  {% don't indent paragraphs
   \setlength{\parindent}{0pt}
   % turn on hanging indent if param 1 is 1
-  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
-  % set entry spacing
-  \ifnum #2 > 0
-  \setlength{\parskip}{#2\baselineskip}
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
   \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
  }%
  {}
-\usepackage{calc} % for calculating minipage widths
+\usepackage{calc}
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-% Pandoc header
+
 \usepackage[nomarkers,tablesfirst]{endfloat}
 \usepackage{lineno}
 \linenumbers
 
 \begin{document}
 
-\title{Non-independence of Leaf Surfaces in Amphistomatous Leaves of
-\emph{Arabidopsis thaliana} and a 2D Model for Photosynthesis}
+\title{Spatial Coordination Of Stomatal Patterning Between Leaf Surfaces
+In Amphistomatous \emph{Arabidopsis thaliana} Incurs No Photosynthetic
+Advantage}
 
 \author{%
 %
@@ -193,8 +210,9 @@ It consists of two paragraphs.}
 
 \date{\today}
 
-\keywords{stomatal arrangement; Aribidopsis thaliana; amphistomatic
-leaves; modeling photosynthesis; optimizing photosynthesis}
+\keywords{stomatal patterning; Aribidopsis thaliana; amphistomatous
+leaves; photosynthesis modeling; optimizing photosynthesis; CO\(_2\)
+diffusion}
 
 \maketitle
 
@@ -204,11 +222,11 @@ leaves; modeling photosynthesis; optimizing photosynthesis}
 \section{Introduction}\label{introduction}}
 
 Stomatal anatomy (e.g.~size, density, distribution, and patterning) and
-physiological responses to the environment regulate gas exchange of
-CO\(_2\) assimilation and water loss through transpiration. As waxy
-cuticles are mostly impermeable to CO\(_2\) and \(H_2O\), stomata are
-discrete points accounting for a small percentage of the leaf area
-through which gas exchange occurs
+physiological responses to the environment regulate gas exchange during
+photosynthesis; namely CO\(_2\) assimilation and water loss through
+transpiration. Since waxy cuticles are mostly impermeable to CO\(_2\)
+and \(H_2O\), stomata are discrete points through which gas exchange
+occurs and account only for a small percentage of the leaf area
 (\protect\hyperlink{ref-lange_responses_1971}{Lange et al. 1971}). They
 consist of two guard cells which open and close upon changes in turgor
 pressure or hormonal cues
@@ -227,17 +245,17 @@ potential, IAS geometry, mesophyll cell anatomy, and stomatal anatomy.
 
 Natural selection should optimize the anatomy and physiology of stomata
 to maximize CO\(_2\) gain per unit of water loss, thereby maximizing
-assimilation rates for a given set of hydraulic constraints
-(\protect\hyperlink{ref-cowan_stomatal_1977}{Cowan and Farquhar 1977};
-\protect\hyperlink{ref-buckley_optimal_2017}{Buckley, Sack, and Farquhar
-2017}; \protect\hyperlink{ref-sperry_predicting_2017}{Sperry et al.
-2017}). However, optimal stomatal anatomy and physiology depends on
+assimilation rates for a given set of hydraulic constraints and light
+environments (\protect\hyperlink{ref-cowan_stomatal_1977}{Cowan and
+Farquhar 1977}; \protect\hyperlink{ref-buckley_optimal_2017}{Buckley,
+Sack, and Farquhar 2017};
+\protect\hyperlink{ref-sperry_predicting_2017}{Sperry et al. 2017}).
+However, optimal stomatal anatomy and physiology depends on
 developmental and environmental constraints and other physiological
-co-variates {[}\protect\hyperlink{ref-croxdale_stomatal_2000}{Croxdale}
-(\protect\hyperlink{ref-croxdale_stomatal_2000}{2000});
-\protect\hyperlink{ref-harrison_influence_2020}{Harrison et al.}
+co-variates {[}Croxdale
+(\protect\hyperlink{ref-croxdale_stomatal_2000}{2000}); Harrison et al.
 (\protect\hyperlink{ref-harrison_influence_2020}{2020}); MUIR IN
-PRESS{]}. There is wide variety of stomatal traits in nature, but
+PRESS{]}. There is a wide variety of stomatal traits in nature, but
 certain common features as well. For example, almost all stomata follow
 the one cell spacing rule to maintain proper stomatal functioning
 (\protect\hyperlink{ref-geisler_oriented_2000}{Geisler, Nadeau, and Sack
@@ -262,16 +280,16 @@ negatively co-varies with stomatal density
 2011}). Total stomatal area (size * density) is optimized for
 operational conductance (\(gs_\text{op}\)) rather than maximum
 conductance (\(gs_\text{max}\)) such that stomatal apertures are most
-responsive to changes in the environment at operational aperture
+responsive to changes in the environment at their operational aperture
 (\protect\hyperlink{ref-franks_physiological_2012}{Franks et al. 2012};
 \protect\hyperlink{ref-liu_scaling_2021}{Liu et al. 2021}). Stomatal
 aperture can compensate for maladaptive stomatal densities to an extent
 (\protect\hyperlink{ref-bussis_stomatal_2006}{Büssis et al. 2006}), but
 stomatal density and size ultimately determine a leaf's theoretical
 \(gs_\text{max}\) (\protect\hyperlink{ref-sack_developmental_2016}{Sack
-and Buckley 2016}). Low stomatal densities lead to irregular and
-insufficient CO\(_2\) supply and reduced photosynthetic efficiency in
-areas with no stomata
+and Buckley 2016}). Additionally, low stomatal densities lead to
+irregular and insufficient CO\(_2\) supply and reduced photosynthetic
+efficiency in areas far from stomata
 (\protect\hyperlink{ref-pieruschka_lateral_2006}{Roland Pieruschka et
 al. 2006}; \protect\hyperlink{ref-morison_lateral_2005}{Morison et al.
 2005}), while high stomatal densities can reduce water use efficiency
@@ -297,17 +315,18 @@ random with an exclusionary distance surrounding each stomate
 (\protect\hyperlink{ref-sachs_developmental_1974}{Sachs 1974}); however,
 the developmental controls of stomatal patterning are poorly understood
 and likely more complex than random development along the leaf surface.
-\protect\hyperlink{ref-croxdale_stomatal_2000}{Croxdale}
-(\protect\hyperlink{ref-croxdale_stomatal_2000}{2000}){]} reviews three
-developmental theories which attempt to explain stomatal patterning in
-angiosperms: inhibition, cell lineage, and cell cycle, ultimately
-arguing for a cell cycle based control of stomatal patterning.
+Croxdale (\protect\hyperlink{ref-croxdale_stomatal_2000}{2000}){]}
+reviews three developmental theories which attempt to explain stomatal
+patterning in angiosperms: inhibition, cell lineage, and cell cycle,
+ultimately arguing for a cell cycle based control of stomatal
+patterning.
 
 The patterning and spacing of stomata on the leaf affects photosynthesis
 in \(C_3\) leaves by altering the CO\(_2\) diffusion path length from
 stomata to sites of carboxylation in the mesophyll. Maximum
-photosynthetic rate (\(A_\text{max}\)) in \(C_3\) plants is limited by
-biochemistry and diffusion
+photosynthetic rate (\(A_\text{max}\)) in \(C_3\) plants is generally
+co-limited by biochemistry and diffusion, but limitations depend largely
+on light availability
 (\protect\hyperlink{ref-parkhurst_intercellular_1990}{Parkhurst and Mott
 1990}; \protect\hyperlink{ref-manter_ci_2004}{Manter 2004};
 \protect\hyperlink{ref-carriqui_diffusional_2015}{Carriquí et al.
@@ -319,21 +338,22 @@ constrained by biochemical limitations in low light
 well hydrated leaves in high light, photosynthesis is often limited by
 CO\(_2\) supply as resistances from the boundary layer, stomatal pore,
 and mesophyll can result in insufficient \(C_\text{i}\) to supply
-efficient photosynthesis at the chloroplast
-{[}\protect\hyperlink{ref-farquhar_biochemical_1980}{Farquhar,
-Caemmerer, and Berry}
-(\protect\hyperlink{ref-farquhar_biochemical_1980}{1980});
+efficient photosynthesis at the chloroplast {[}Farquhar, Caemmerer, and
+Berry (\protect\hyperlink{ref-farquhar_biochemical_1980}{1980});
 lehmeier\_cell\_2017{]}. In this study, we focus primarily on how
-stomatal patterning affects diffusion. To maximize CO\(_2\) supply from
-the stomatal pore to chloroplast, stomata should be uniformly
-distributed in an equilateral triangular grid on the leaf surface so as
-to minimize stomatal number and CO\(_2\) diffusion path length. As the
-diffusion rate of CO\(_2\) though liquid is approximately 10,000 times
-slower than CO\(_2\) diffusion through air, mesophyll resistance is
-generally thought to be primarily limited by liquid diffusion
+stomatal patterning affects diffusion.
+
+To maximize CO\(_2\) supply from the stomatal pore to chloroplasts,
+stomata should be uniformly distributed in an equilateral triangular
+grid on the leaf surface so as to minimize stomatal number and CO\(_2\)
+diffusion path length. As the diffusion rate of CO\(_2\) though liquid
+is approximately 10,000 times slower than CO\(_2\) diffusion through
+air, mesophyll resistance is generally thought to be primarily limited
+by liquid diffusion
 (\protect\hyperlink{ref-aalto_three-dimensional_2002}{Aalto and Juurola
 2002}), but diffusion through the IAS has also been shown to be a rate
-limiting process because of the tortuous, disjunct nature of IAS
+limiting process because the tortuous, disjunct nature of the IAS can
+greatly increase diffusion path lengths
 (\protect\hyperlink{ref-harwood_understanding_2021}{Harwood,
 Théroux‐Rancourt, and Barbour 2021}). Additionally, tortuosity is higher
 in horizontal directions (parallel to leaf surface) than vertical
@@ -348,27 +368,27 @@ vertical diffusion rate is still largely unknown
 \protect\hyperlink{ref-pieruschka_lateral_2006}{Roland Pieruschka et al.
 2006}). Depending on the thickness of the leaf, porosity of the leaf
 mesophyll, tortuosity of the IAS, and lateral to vertical diffusion rate
-ratio, minimizing diffusion path length for CO\(_2\) may yield
-significant increases in CO\(_2\) supply for photosynthesis and higher
-\(A_\text{max}\).
+ratio, minimizing diffusion path length for CO\(_2\) via optimally
+distributed stomata may yield significant increases in CO\(_2\) supply
+for photosynthesis and higher \(A_\text{max}\).
 
-We hypothesized natural selection will favor stomatal patterning and
-distribution to minimize the diffusion path length. In amphistomatous
-leaves, this would be accomplished by 1) a uniform distribution of
-stomata on both abaxial and adaxial leaf surfaces and 2) coordinated
-stomatal spacing on each surface that offsets the position of stomata
-(Fig. \ref{fig:amphi_grid}). Coordination between leaf surfaces is
-defined in this study as the occurrence of stomata in areas farther from
-stomata on the opposite leaf surface. Additionally, because CO\(_2\) is
-more limiting for photosynthesis under high light, we hypothesize that
-in high light 3) there should be more stomata, and 4) stomata should be
-more uniformly distributed than in low light. Finally, as stomatal
-densities are selected for optimal operational aperture, we hypothesize
-that 5) stomatal length will be positively correlated with the area of
-the leaf surface to which it is closest (stomatal zone area: the area a
-stomate occupies and supplies with CO\(_2\)). This way, each stomate can
-be optimally sized for its relative leaf area and associated CO\(_2\)
-demand.
+We hypothesized that natural selection will favor stomatal patterning
+and distribution to minimize the diffusion path length. In
+amphistomatous leaves, this would be accomplished by 1) a uniform
+distribution of stomata on both abaxial and adaxial leaf surfaces and 2)
+coordinated stomatal spacing on each surface that offsets the position
+of stomata (Fig. \ref{fig:amphi_grid}). Coordination between leaf
+surfaces is defined in this study as the occurrence of stomata in areas
+farthest from stomata on the opposite leaf surface. Additionally,
+because CO\(_2\) is more limiting for photosynthesis under high light,
+we hypothesize that in high light 3) there should be more stomata, and
+4) stomata should be more uniformly distributed than in low light.
+Finally, as stomatal densities are selected for optimal operational
+aperture, we hypothesize that 5) stomatal length will be positively
+correlated with the area of the leaf surface to which it is closest
+(stomatal zone area: the area a stomate occupies and supplies with
+CO\(_2\)). This way, each stomate can be optimally sized for its
+relative leaf area and associated CO\(_2\) demand.
 
 To test these hypotheses, we grew \emph{A. thaliana} in high, medium,
 and low light and measured stomatal density, size, and patterning on
@@ -426,8 +446,8 @@ abaxial surface image is directly above pixel (1,1) of the adaxial
 surface image, and so on\ldots{} Images were 512 by 512 pixels and
 covered X leaf surface area. We captured 132 images in total, making 66
 abaxial-adaxial image pairs. The position of all stomata were recorded
-using ImageJ
-(\protect\hyperlink{ref-schneider_nih_2012}{\textbf{schneider\_nih\_2012?}}).
+using ImageJ (\protect\hyperlink{ref-schneider_nih_2012}{Schneider,
+Rasband, and Eliceiri 2012}).
 
 \hypertarget{single-surface-analysis}{%
 \subsection{Single Surface Analysis}\label{single-surface-analysis}}
@@ -440,8 +460,8 @@ surface. For each sample image, we compared the observed Nearest
 Neighbor Index (\(\mathrm{NNI}\)) to the null distribution of
 \(\mathrm{NNI}\) values calculated from the synthetic data set. The
 observed stomatal distribution is dispersed relative to a uniform random
-distribution if the observed \(NNI\) is greater than 95\% synthetic
-\(\mathrm{NNI}\) values (one-tailed test).
+distribution if the observed \(NNI\) is greater than 95\% of the
+synthetic \(\mathrm{NNI}\) values (one-tailed test).
 
 \(\mathrm{NNI}\) is the ratio of observed mean distance
 (\(\overline{D}_O\)) to the expected mean distance (\(\overline{D}_E\))
@@ -463,7 +483,7 @@ synthetic data set is:
 
 \(d_i\) is the distance between \(\text{stomate}_i\) and its nearest
 neighbor. We calculated \(\mathrm{NNI}\) using the R package
-\textbf{spatialEco} version 1.3.7.
+\textbf{spatialEco} version 2.0.1.
 
 For each sample image, we also simulated \(10^3\) synthetic data with
 \(n\) stomata ideally dispersed in an equilateral triangular grid. For
@@ -496,21 +516,23 @@ area of the leaf (\(A_l\)) divided by the number of stomata
 
 As all sides of an equilateral triangle have the same length, the
 average nearest neighbor distance for a given \(D_S\) is maximized and
-each stomata occupies the same hexagonal area (\(A_\text{hex}\)). The
+each stomate occupies the same hexagonal area (\(A_\text{hex}\)). The
 closer to one \(DI\) is, the more uniform an area each of its stomata
 supply with CO\(_2\) during photosynthesis. We tested whether light
-treatment affects \(\mathrm{DI}\) and \(D_S\) using ANOVAs.
+treatment affects \(\mathrm{DI}\) and \(D_S\) using analysis of variance
+(ANOVA).
 
 Finally, to test our hypothesis that stomatal length is modulated by the
 area of the leaf to which it supplies CO\(_2\), we examined the
 relationship between stomatal zone area and stomatal length using a
 Bayesian generalized non-linear multilevel model with the R package
-\textbf{brms} version 2.15.0. Stomatal zone area was calculated using
+\textbf{brms} version 2.19.0. Stomatal zone area was calculated using
 voronoi tessellation (e.g.~Fig. \ref{fig:example}). The stomatal zone
 area, \(S_\text{area}\), is the region of the leaf surface whose
 distance to stomate, \(S\), is less than the distance to any other
 stomate, \(S\). Stomatal length was measured in \texttt{ImageJ}
-(\protect\hyperlink{ref-schneider_nih_2012}{\textbf{schneider\_nih\_2012?}}).
+(\protect\hyperlink{ref-schneider_nih_2012}{Schneider, Rasband, and
+Eliceiri 2012}).
 
 \hypertarget{paired-abaxial-and-adaxial-surface-analysis}{%
 \subsection{Paired Abaxial and Adaxial Surface
@@ -521,29 +543,18 @@ we compared the observed distribution to a null distribution where the
 positions on each surface are random. For each pair of surfaces
 (observed or synthetic) we calculated the distance squared between each
 to the nearest stomatal centroid with the R package \textbf{raster}
-version 3.4.13. Then we calculated the cell-wise Pearson correlation
+version 3.6.23. Then we calculated the cell-wise Pearson correlation
 coefficient. If stomatal positions on each surface are coordinated to
-minimize the distance between mesophyll and the nearest stomate then we
+minimize the distance between mesophyll and the nearest stomate, then we
 expect a negative correlation. A cell that is far from a stomate on one
 surface should be near a stomate on the other surface (Fig.
-<<<<<<< HEAD
-\ref{fig:amphi_grid}). We generated a null distribution of the
-correlation coefficient by simulating \(10^3\) synthetic data sets for
-each observed pair. For each synthetic data set, we simulated stomatal
-position using a random uniform distribution, as described above,
-matching the number of stomata on abaxial and adaxial leaf surfaces.
-Stomatal positions on each surface are coordinated if the correlation
-coefficient is greater greater than 95\% of the synthetic correlation
-values (one-tailed test).
-=======
 \ref{fig:amphi}). We generated a null distribution of the correlation
 coefficient by simulating \(10^3\) synthetic data sets for each observed
 pair. For each synthetic data set, we simulated stomatal position using
 a random uniform distribution, as described above, matching the number
 of stomata on abaxial and adaxial leaf surfaces. Stomatal positions on
 each surface are coordinated if the correlation coefficient is greater
-greater than 95\% of the synthetic correlation values (one-tailed test).
->>>>>>> a2d63857818f934454237c3ab5c736564b8f8ef9
+than 95\% of the synthetic correlation values (one-tailed test).
 
 \hypertarget{modeling-photosynthesis}{%
 \subsection{Modeling Photosynthesis}\label{modeling-photosynthesis}}
@@ -569,10 +580,10 @@ position:
   \text{coordination advantage} = \frac{A_\text{offset}}{A_\text{aligned}}
 \end{equation}
 
-We calculated the coordination advantage of a range of leaf thickness,
-stomatal density, photosynthetic capacity, and light to understand when
-offsetting stomatal position on each surface might deliver a significant
-photosynthetic advantage.
+We modelled the coordination advantage over a range of leaf thicknesses,
+stomatal densities, photosynthetic capacities, and light environments to
+understand when offsetting stomatal position on each surface might
+deliver a significant photosynthetic advantage.
 
 \hypertarget{light-propogation-model}{%
 \subsubsection{Light propogation model}\label{light-propogation-model}}
@@ -597,8 +608,8 @@ adaxial leaf surface.
 All parameter symbols, units, descriptions, and values are described in
 Table X below. Following Gutschick (1984), we modeled photosynthetic
 rate per unit chlorophyll \(A_\text{chl}\) then calculated the
-volumetric photosynthetic rate \(A_\text{volume}\) by multiplying by by
-the chlorophyll concentration \(Q_\text{chl}\):
+volumetric photosynthetic rate \(A_\text{volume}\) by multiplying by the
+chlorophyll concentration \(Q_\text{chl}\):
 
 \[A_\text{volume} = A_\text{chl} Q_\text{chl}\] A description of the
 model is given on page 553-556 of Gutschick (1984). The R code below is
@@ -684,14 +695,24 @@ the mathematical Symbol used in the paper, the associated symbol used in
 R scripts, scientific Units, and a verbal Description.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.12}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.10}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.34}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.44}}@{}}
-\toprule
-Symbol & Value(s) & Units & Description \\
-\midrule
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1169}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1039}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3377}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4416}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Symbol
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Value(s)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Units
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Biochemical Parameters & & & \\
 \(A_\text{volume}\) & NA & \(mol CO_2/m^3/s\) & volumetric assimilation
 rate \\
@@ -733,7 +754,6 @@ Variables & & & \\
 \(T_l\) & .1, .2, .3\ldots{} & \(mm\) & leaf thickness \\
 \(g_\text{sc}\) & 0.2, 0.3, 0.4\ldots{} & \(mol/m^2/s\) & stomatal
 conductance \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{two-dimensional-model}{%
@@ -766,8 +786,8 @@ calculate a matrix of \(\frac{dC_{m,ij}}{dt}\) values:
 
   \CommentTok{\# Photosynthetic demand}
   \DocumentationTok{\#\# Light matrix}
-\NormalTok{  I\_mat }\OtherTok{=} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{by =}\NormalTok{ pars[[}\StringTok{"node\_length"}\NormalTok{]], }\AttributeTok{length.out =}\NormalTok{ n\_row) }\SpecialCharTok{|}\ErrorTok{\textgreater{}}
-    \FunctionTok{light\_propogation}\NormalTok{(pars[[}\StringTok{"leaf\_thickness"}\NormalTok{]], pars[[}\StringTok{"PAR"}\NormalTok{]]) }\SpecialCharTok{|}\ErrorTok{\textgreater{}}
+\NormalTok{  I\_mat }\OtherTok{=} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{by =}\NormalTok{ pars[[}\StringTok{"node\_length"}\NormalTok{]], }\AttributeTok{length.out =}\NormalTok{ n\_row) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{light\_propogation}\NormalTok{(pars[[}\StringTok{"leaf\_thickness"}\NormalTok{]], pars[[}\StringTok{"PAR"}\NormalTok{]]) }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{matrix}\NormalTok{(n\_row, }\AttributeTok{ncol =}\NormalTok{ n\_col)}
 
   \DocumentationTok{\#\# Biochemical model}
@@ -854,16 +874,10 @@ aperture (Fig. \ref{fig:length-area}).
 As evidence against our hypothesis that natural selection should favor
 spatial coordination in the placement of stomata between abaxial and
 adaxial leaf surfaces, we found no correlation between paired abaxial
-<<<<<<< HEAD
-and adaxial leaf surfaces. Light treatment had no effect on correlation
-between surfaces. All but one abaxial, adaxial surface pairs were
-independent (p-value \textless{} 0.05).
-=======
 and adaxial leaf surfaces (Fig. \ref{fig:dual-surface}). Light treatment
 had no effect on correlation between surfaces (F\(_\text{2,63}\) = 2.28;
 p-value = 0.11). All but one abaxial, adaxial surface pairs were
 independent (\(\alpha\) = 0.05).
->>>>>>> a2d63857818f934454237c3ab5c736564b8f8ef9
 
 \hypertarget{example-output}{%
 \subsubsection{Example output}\label{example-output}}
@@ -905,7 +919,10 @@ following Eq. \ref{eq:eq5}
 
 \begin{equation}\label{eq:eq5}
 A_\text{max} = A_\text{mm} * \varphi * i / (A_\text{mm} + \varphi * i)
-\end{equation} \# Results
+\end{equation}
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
 \hypertarget{single-surface-analysis-1}{%
 \subsection{Single surface analysis}\label{single-surface-analysis-1}}
@@ -952,11 +969,102 @@ A_\text{max} = A_\text{mm} * \varphi * i / (A_\text{mm} + \varphi * i)
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
-You can cross-reference sections and subsections as follows: Section
-\ref{materials-and-methods} and Section \ref{a-subsection}.
+Stomata are expensive. A theoretical, optimized plant would minimize
+stomatal density while also allowing competitive gas exchange rates for
+its environment so as to maximize C assimilation per unit investment in
+stomata. Natural selection operates within developmental and physical
+constraints to drive each plant species toward its theoretical optimum.
+This study provides evidence that stomata in \emph{Arbidopsis thaliana},
+the model angiosperm, are non-randomly distributed, favoring dispersion
+over clustering (Fig. \ref{fig:dispersion}). However, stomata are not
+ideally dispersed in an equilateral triangular grid as would be optimal
+to minimize CO\(_2\) diffusion path length and standardize the area
+supplied by each stomate (Fig. \ref{fig:example}). Additionally, when
+grown in high light environments, \emph{A. thaliana} exhibited increased
+stomatal density rather than increased stomatal dispersion (Fig.
+\ref{fig:density}), which suggests that natural selection has acted more
+strongly on developmental pathways that modulate stomatal density than
+those that control stomatal dispersion. In other words, plants optimize
+gas exchange by adding more stomata rather than dispersing them more
+evenly across the leaf surface. This study also demonstrates that
+stomata that supply larger leaf areas with CO\(_2\) tend to be larger
+(Fig. \ref{fig:length-area}). These results could suggest that 1) the
+added energetic and hydraulic cost of non-ideally dispersed stomata is
+negligible and therefore not acted on by natural selection; 2) no
+developmental pathway exists to ensure the ideal placement of stomata on
+the leaf; or 3) the regulation of stomatal size limits the cost incurred
+by non-ideal stomatal dispersion.
 
-\textbf{\emph{Note:}} the last section in the document will be used as
-the section title for the bibliography.
+In high light environments, amphistomy is favorable as high light
+photosynthesis is limited by CO\(_2\) and amphistomy halves diffusion
+path length and boundary layer resistance, thereby reducing CO\(_2\)
+limitation - increasing theoretical \(A_\text{max}\). An optimal
+amphistomatous leaf has offset stomata such that stomata are more likely
+to appear on one leaf surface if there is not a stomata directly
+opposite it on the other surface as shown in figure \ref{fig:amphi}.
+However, our results show that leaf surfaces are not coordinated but are
+independent, regardless of light (Fig. \ref{fig:dual-surface}).
+Additionally, gas exchange models show little photosynthetic efficiency
+gain from abaxial-adaxial stomatal coordination compared to
+anticoordination (INSERT FIG FROM MODELING). We posit that this marginal
+gain is not sufficient to be acted upon strongly by natural selection.
+Thus, amphistomatous plants do not exhibit abaxial-adaxial stomatal
+coordination for there is little selective advantage of it.
+
+Our study corroborates previous studies which demonstrate that stomata
+are non-randomly distributed along the leaf surface as a result of
+developmental mechanisms such as spatially biased arrest of stomatal
+initials (\protect\hyperlink{ref-boetsch_arrest_1995}{Boetsch, Chin, and
+Croxdale 1995}), oriented asymmetric cell division
+(\protect\hyperlink{ref-geisler_oriented_2000}{Geisler, Nadeau, and Sack
+2000}), and cell cycle controls
+(\protect\hyperlink{ref-croxdale_stomatal_2000}{Croxdale 2000}). We do
+not investigate the potential developmental pathways that influence
+stomatal dispersion in this study; however, they are important to
+consider as these pathways could limit plants from reaching the
+theoretical peak in the adaptive landscape: uniform stomatal dispersion.
+Instead, as this study suggests, plants may simply compensate with
+higher stomatal density and by fitting stomatal size to the area that
+they supply with CO\(_2\). To understand why stomata are not ideally
+dispersed, more modelling should be done to estimate the fitness gain of
+stomatal dispersion. Additionally, genetic manipulation studies should
+attempt to create mutants with clustered and ideally dispersed stomata
+for a comparison of their photosynthetic traits. This could have
+extremely important implications for maximum assimilation rates in crops
+as most crop species are grown in high light where CO\(_2\) is often
+limiting. In drought-prone environments, increased stomatal dispersion
+may increase water use efficiency by reducing the number of stomata
+needed to achieve the same internal CO\(_2\) concentration,
+\(C_\text{i}\).
+
+Beyond disperson on a single surface, gas exchange can be optimized via
+stomatal coordination of abaxial and adaxial surfaces in amphistomatous
+leaves. Given that leaf thicknesses are generally multiple times greater
+than interstomatal distance (GIVE DISTANCES HERE). As a result,
+abaxial-adaxial stomatal coordination reduces CO\(_2\) diffusion path
+length far less than single surface dispersion, so we hypothesize this
+strategy to afford less photosynthetic advantage to the leaf. Our
+modelling results demonstrate that, even in ideal conditions, i.e.~thick
+leaf, low stomatal densities, high light, low leaf porosity, high
+rubisco concentration, etc., the photosynthetic advantage of
+coordination is minimal. We are not surprised by these results, but
+still highlight them here as we are the first to report this finding.
+
+Amphistomy is a unique and important adaptation found around the world
+across many plant lineages
+(\protect\hyperlink{ref-muir_light_2018}{Christopher D. Muir 2018}), yet
+much of the dynamics of amphistomy remain poorly understood. Here, we
+show that in \emph{Arabidopsis thaliana} 1) stomata in are non-randomly
+dispersed, but not ideally dispersed; 2) stomatal size and density are
+modulated by light; 3) stomatal size is positively correlated with the
+area to which it supplies CO\(_2\); and 4) abaxial-adaxial stomatal
+coordination is not exhibited and is not shown to provide a strong
+photosynthetic advantage using CO\(_2\) diffusion models. Interestingly,
+these findings did not validate many of our hypotheses which were based
+on first principles, suggesting that there may be limits on plants'
+ability to control stomatal placement. Future studies which elucidate
+these limitations may have important implications for agriculturaly
+productivity in a rapidly changing world.
 
 \hypertarget{references}{%
 \section*{References}\label{references}}
@@ -964,31 +1072,38 @@ the section title for the bibliography.
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\hypertarget{ref-aalto_three-dimensional_2002}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-aalto_three-dimensional_2002}{}}%
 Aalto, T., and E. Juurola. 2002. {``A Three-Dimensional Model of {CO}
 \(_{\textrm{2}}\) Transport in Airspaces and Mesophyll Cells of a Silver
 Birch Leaf: {CO} \(_{\textrm{2}}\) Transport Inside a Birch Leaf.''}
 \emph{Plant, Cell \& Environment} 25 (11): 1399--409.
 \url{https://doi.org/10.1046/j.0016-8025.2002.00906.x}.
 
-\leavevmode\hypertarget{ref-buckley_optimal_2017}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-boetsch_arrest_1995}{}}%
+Boetsch, John, Jonathan Chin, and Judith Croxdale. 1995. {``Arrest of
+{Stomatal} {Initials} in {Tradescantia} {Is} {Linked} to the {Proximity}
+of {Neighboring} {Stomata} and {Results} in the {Arrested} {Initials}
+{Acquiring} {Properties} of {Epidermal} {Cells}.''} \emph{Developmental
+Biology} 168 (1): 28--38. \url{https://doi.org/10.1006/dbio.1995.1058}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-buckley_optimal_2017}{}}%
 Buckley, Thomas N, Lawren Sack, and Graham D Farquhar. 2017. {``Optimal
 Plant Water Economy.''} \emph{Plant, Cell \& Environment} 40 (6):
 881--96. \url{https://doi.org/10.1111/pce.12823}.
 
-\leavevmode\hypertarget{ref-bussis_stomatal_2006}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-bussis_stomatal_2006}{}}%
 Büssis, Dirk, Uritza von Groll, Joachim Fisahn, and Thomas Altmann.
 2006. {``Stomatal Aperture Can Compensate Altered Stomatal Density in
 {Arabidopsis} Thaliana at Growth Light Conditions.''} \emph{Functional
 Plant Biology} 33 (11): 1037. \url{https://doi.org/10.1071/FP06078}.
 
-\leavevmode\hypertarget{ref-camargo_density_2011}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-camargo_density_2011}{}}%
 Camargo, Miguel Angelo Branco, and Ricardo Antonio Marenco. 2011.
 {``Density, Size and Distribution of Stomata in 35 Rainforest Tree
 Species in {Central} {Amazonia}.''} \emph{Acta Amazonica} 41 (2):
 205--12. \url{https://doi.org/10.1590/S0044-59672011000200004}.
 
-\leavevmode\hypertarget{ref-carriqui_diffusional_2015}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-carriqui_diffusional_2015}{}}%
 Carriquí, M., H. M. Cabrera, M. À. Conesa, R. E. Coopman, C. Douthe, J.
 Gago, A. Gallé, et al. 2015. {``Diffusional Limitations Explain the
 Lower Photosynthetic Capacity of Ferns as Compared with Angiosperms in a
@@ -996,24 +1111,24 @@ Common Garden Study: {Photosynthetic} Comparison in Ferns and
 Angiosperms.''} \emph{Plant, Cell \& Environment} 38 (3): 448--60.
 \url{https://doi.org/10.1111/pce.12402}.
 
-\leavevmode\hypertarget{ref-cowan_stomatal_1977}{}%
-Cowan, IR, and GD Farquhar. 1977. {``{STOMATAL} {FUNCTION} {IN}
-{RELATION} {TO} {LEAF} {METABOLISM} {AND} {ENVIRONMENT}.''}
-\emph{STOMATAL FUNCTION IN RELATION TO LEAF METABOLISM AND ENVIRONMENT.}
+\leavevmode\vadjust pre{\hypertarget{ref-cowan_stomatal_1977}{}}%
+Cowan, IR, and GD Farquhar. 1977. {``Stomatal Function in Relation to
+Leaf Metabolism and Environment.''} \emph{STOMATAL FUNCTION IN RELATION
+TO LEAF METABOLISM AND ENVIRONMENT.}
 
-\leavevmode\hypertarget{ref-croxdale_stomatal_2000}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-croxdale_stomatal_2000}{}}%
 Croxdale, Judith L. 2000. {``Stomatal Patterning in Angiosperms.''}
 \emph{American Journal of Botany} 87 (8): 1069--80.
 \url{https://doi.org/10.2307/2656643}.
 
-\leavevmode\hypertarget{ref-deans_optimization_2020}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-deans_optimization_2020}{}}%
 Deans, Ross M., Timothy J. Brodribb, Florian A. Busch, and Graham D.
 Farquhar. 2020. {``Optimization Can Provide the Fundamental Link Between
 Leaf Photosynthesis, Gas Exchange and Water Relations.''} \emph{Nature
 Plants} 6 (9): 1116--25.
 \url{https://doi.org/10.1038/s41477-020-00760-6}.
 
-\leavevmode\hypertarget{ref-dow_physiological_2014}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-dow_physiological_2014}{}}%
 Dow, Graham J., Joseph A. Berry, and Dominique C. Bergmann. 2014. {``The
 Physiological Importance of Developmental Mechanisms That Enforce Proper
 Stomatal Spacing in \emph{{\textless{}}Span
@@ -1021,7 +1136,7 @@ Style="font-Variant:small-Caps;"{\textgreater{}}{A}{\textless{}}/Span{\textgreat
 Rabidopsis Thaliana}.''} \emph{New Phytologist} 201 (4): 1205--17.
 \url{https://doi.org/10.1111/nph.12586}.
 
-\leavevmode\hypertarget{ref-drake_two_2019}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-drake_two_2019}{}}%
 Drake, Paul L., Hugo J. Boer, Stanislaus J. Schymanski, and Erik J.
 Veneklaas. 2019. {``Two Sides to Every Leaf: Water and {\textless{}}Span
 Style="font-Variant:small-Caps;"{\textgreater{}}{CO}{\textless{}}/Span{\textgreater{}}
@@ -1029,20 +1144,20 @@ Style="font-Variant:small-Caps;"{\textgreater{}}{CO}{\textless{}}/Span{\textgrea
 Leaves.''} \emph{New Phytologist} 222 (3): 1179--87.
 \url{https://doi.org/10.1111/nph.15652}.
 
-\leavevmode\hypertarget{ref-earles_beyond_2018}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-earles_beyond_2018}{}}%
 Earles, J. Mason, Guillaume Theroux-Rancourt, Adam B. Roddy, Matthew E.
 Gilbert, Andrew J. McElrone, and Craig R. Brodersen. 2018. {``Beyond
-{Porosity}: {3d} {Leaf} {Intercellular} {Airspace} {Traits} {That}
+{Porosity}: {3D} {Leaf} {Intercellular} {Airspace} {Traits} {That}
 {Impact} {Mesophyll} {Conductance}.''} \emph{Plant Physiology} 178 (1):
 148--62. \url{https://doi.org/10.1104/pp.18.00550}.
 
-\leavevmode\hypertarget{ref-farquhar_biochemical_1980}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-farquhar_biochemical_1980}{}}%
 Farquhar, G. D., S. von Caemmerer, and J. A. Berry. 1980. {``A
-Biochemical Model of Photosynthetic {Co2} Assimilation in Leaves of {C3}
+Biochemical Model of Photosynthetic {CO2} Assimilation in Leaves of {C3}
 Species.''} \emph{Planta} 149 (1): 78--90.
 \url{https://doi.org/10.1007/BF00386231}.
 
-\leavevmode\hypertarget{ref-franks_physiological_2012}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-franks_physiological_2012}{}}%
 Franks, Peter J., Ilia J. Leitch, Elizabeth M. Ruszala, Alistair M.
 Hetherington, and David J. Beerling. 2012. {``Physiological Framework
 for Adaptation of Stomata to {CO} \(_{\textrm{2}}\) from Glacial to
@@ -1050,86 +1165,86 @@ Future Concentrations.''} \emph{Philosophical Transactions of the Royal
 Society B: Biological Sciences} 367 (1588): 537--46.
 \url{https://doi.org/10.1098/rstb.2011.0270}.
 
-\leavevmode\hypertarget{ref-gay_influence_1975}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-gay_influence_1975}{}}%
 Gay, A. P., and R. G. Hurd. 1975. {``{THE} {INFLUENCE} {OF} {LIGHT} {ON}
 {STOMATAL} {DENSITY} {IN} {THE} {TOMATO}.''} \emph{New Phytologist} 75
 (1): 37--46. \url{https://doi.org/10.1111/j.1469-8137.1975.tb01368.x}.
 
-\leavevmode\hypertarget{ref-geisler_oriented_2000}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-geisler_oriented_2000}{}}%
 Geisler, Matt, Jeanette Nadeau, and Fred D. Sack. 2000. {``Oriented
 {Asymmetric} {Divisions} {That} {Generate} the {Stomatal} {Spacing}
 {Pattern} in {Arabidopsis} {Are} {Disrupted} by the \emph{Too Many
 Mouths} {Mutation}.''} \emph{The Plant Cell} 12 (11): 2075--86.
 \url{https://doi.org/10.1105/tpc.12.11.2075}.
 
-\leavevmode\hypertarget{ref-harrison_influence_2020}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-harrison_influence_2020}{}}%
 Harrison, Emily L., Lucia Arce Cubas, Julie E. Gray, and Christopher
 Hepworth. 2020. {``The Influence of Stomatal Morphology and Distribution
 on Photosynthetic Gas Exchange.''} \emph{The Plant Journal} 101 (4):
 768--79. \url{https://doi.org/10.1111/tpj.14560}.
 
-\leavevmode\hypertarget{ref-harwood_understanding_2021}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-harwood_understanding_2021}{}}%
 Harwood, Richard, Guillaume Théroux‐Rancourt, and Margaret M Barbour.
 2021. {``Understanding Airspace in Leaves: {\textless{}}Span
 Style="font-Variant:small-Caps;"{\textgreater{}}{3D}{\textless{}}/Span{\textgreater{}}
 Anatomy and Directional Tortuosity.''} \emph{Plant, Cell \&
 Environment}, May, pce.14079. \url{https://doi.org/10.1111/pce.14079}.
 
-\leavevmode\hypertarget{ref-jordan_using_2014}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-jordan_using_2014}{}}%
 Jordan, Gregory J., Raymond J. Carpenter, and Timothy J. Brodribb. 2014.
 {``Using Fossil Leaves as Evidence for Open Vegetation.''}
 \emph{Palaeogeography, Palaeoclimatology, Palaeoecology} 395 (February):
 168--75. \url{https://doi.org/10.1016/j.palaeo.2013.12.035}.
 
-\leavevmode\hypertarget{ref-jordan_environmental_2015}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-jordan_environmental_2015}{}}%
 Jordan, Gregory J., Raymond J. Carpenter, Anthony Koutoulis, Aina Price,
 and Timothy J. Brodribb. 2015. {``Environmental Adaptation in Stomatal
 Size Independent of the Effects of Genome Size.''} \emph{New
 Phytologist} 205 (2): 608--17. \url{https://doi.org/10.1111/nph.13076}.
 
-\leavevmode\hypertarget{ref-kaiser_metabolic_2016}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-kaiser_metabolic_2016}{}}%
 Kaiser, Elias, Alejandro Morales, Jeremy Harbinson, Ep Heuvelink, Aina
 E. Prinzenberg, and Leo F. M. Marcelis. 2016. {``Metabolic and
 Diffusional Limitations of Photosynthesis in Fluctuating Irradiance in
 {Arabidopsis} Thaliana.''} \emph{Scientific Reports} 6 (1): 31252.
 \url{https://doi.org/10.1038/srep31252}.
 
-\leavevmode\hypertarget{ref-lange_responses_1971}{}%
-Lange, O. L., R. Lösch, E. -D. Schulze, and L. Kappen. 1971.
+\leavevmode\vadjust pre{\hypertarget{ref-lange_responses_1971}{}}%
+Lange, O. L., R. L�sch, E. -D. Schulze, and L. Kappen. 1971.
 {``Responses of Stomata to Changes in Humidity.''} \emph{Planta} 100
 (1): 76--86. \url{https://doi.org/10.1007/BF00386887}.
 
-\leavevmode\hypertarget{ref-lee_diffusion_1964}{}%
-Lee, Richard, and David M. Gates. 1964. {``{DIFFUSION} {RESISTANCE} {IN}
-{LEAVES} {AS} {RELATED} {TO} {THEIR} {STOMATAL} {ANATOMY} {AND}
-{MICRO}‐{STRUCTURE}.''} \emph{American Journal of Botany} 51 (9):
-963--75. \url{https://doi.org/10.1002/j.1537-2197.1964.tb06725.x}.
+\leavevmode\vadjust pre{\hypertarget{ref-lee_diffusion_1964}{}}%
+Lee, Richard, and David M. Gates. 1964. {``Diffusion Resistance in
+Leaves as Related to Their Stomatal Anatomy and Micro-Structure.''}
+\emph{American Journal of Botany} 51 (9): 963--75.
+\url{https://doi.org/10.1002/j.1537-2197.1964.tb06725.x}.
 
-\leavevmode\hypertarget{ref-lehmann_effects_2015}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-lehmann_effects_2015}{}}%
 Lehmann, Peter, and Dani Or. 2015. {``Effects of Stomata Clustering on
 Leaf Gas Exchange.''} \emph{New Phytologist} 207 (4): 1015--25.
 \url{https://doi.org/10.1111/nph.13442}.
 
-\leavevmode\hypertarget{ref-liu_scaling_2021}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-liu_scaling_2021}{}}%
 Liu, Congcong, Christopher D. Muir, Ying Li, Li Xu, Mingxu Li, Jiahui
 Zhang, Hugo Jan de Boer, et al. 2021. {``Scaling Between Stomatal Size
 and Density in Forest Plants.''} Preprint. Plant Biology.
 \url{https://doi.org/10.1101/2021.04.25.441252}.
 
-\leavevmode\hypertarget{ref-manter_ci_2004}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-manter_ci_2004}{}}%
 Manter, D. K. 2004. {``A/{Ci} Curve Analysis Across a Range of Woody
 Plant Species: Influence of Regression Analysis Parameters and Mesophyll
 Conductance.''} \emph{Journal of Experimental Botany} 55 (408):
 2581--88. \url{https://doi.org/10.1093/jxb/erh260}.
 
-\leavevmode\hypertarget{ref-mcadam_linking_2016}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-mcadam_linking_2016}{}}%
 McAdam, Scott A. M., and Timothy J. Brodribb. 2016. {``Linking {Turgor}
 with {ABA} {Biosynthesis}: {Implications} for {Stomatal} {Responses} to
 {Vapor} {Pressure} {Deficit} Across {Land} {Plants}.''} \emph{Plant
 Physiology} 171 (3): 2008--16.
 \url{https://doi.org/10.1104/pp.16.00380}.
 
-\leavevmode\hypertarget{ref-morison_lateral_2005}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-morison_lateral_2005}{}}%
 Morison, James I. L., Emily Gallouët, Tracy Lawson, Gabriel Cornic,
 Raphaèle Herbin, and Neil R. Baker. 2005. {``Lateral {Diffusion} of {CO}
 {\textless{}}Sub{\textgreater{}}2{\textless{}}sub{\textgreater{}} in
@@ -1137,66 +1252,66 @@ Raphaèle Herbin, and Neil R. Baker. 2005. {``Lateral {Diffusion} of {CO}
 \emph{Plant Physiology} 139 (1): 254--66.
 \url{https://doi.org/10.1104/pp.105.062950}.
 
-\leavevmode\hypertarget{ref-mott_adaptive_1982}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-mott_adaptive_1982}{}}%
 Mott, Keith A., Arthur C. Gibson, and James W. O'Leary. 1982. {``The
 Adaptive Significance of Amphistomatic Leaves.''} \emph{Plant, Cell \&
 Environment} 5 (6): 455--60.
 \url{https://doi.org/10.1111/1365-3040.ep11611750}.
 
-\leavevmode\hypertarget{ref-mott_amphistomy_1991}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-mott_amphistomy_1991}{}}%
 Mott, Keith A., and Odette Michaelson. 1991. {``{AMPHISTOMY} {AS} {AN}
 {ADAPTATION} {TO} {HIGH} {LIGHT} {INTENSITY} {IN} {AMBROSIA}
 {CORDIFOLIA} ({COMPOSITAE}).''} \emph{American Journal of Botany} 78
 (1): 76--79. \url{https://doi.org/10.1002/j.1537-2197.1991.tb12573.x}.
 
-\leavevmode\hypertarget{ref-muir_light_2018}{}%
-Muir, Christopher D. 2018. {``Light and Growth Form Interact to Shape
-Stomatal Ratio Among {British} Angiosperms.''} \emph{New Phytologist}
-218 (1): 242--52. \url{https://doi.org/10.1111/nph.14956}.
-
-\leavevmode\hypertarget{ref-muir_is_2019}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-muir_is_2019}{}}%
 Muir, Christopher D. 2019. {``Is {Amphistomy} an {Adaptation} to {High}
 {Light}? {Optimality} {Models} of {Stomatal} {Traits} Along {Light}
 {Gradients}.''} \emph{Integrative and Comparative Biology} 59 (3):
 571--84. \url{https://doi.org/10.1093/icb/icz085}.
 
-\leavevmode\hypertarget{ref-muir_stomatal_2020}{}%
-Muir, Christopher D. 2020. {``A {Stomatal} {Model} of {Anatomical}
-{Tradeoffs} {Between} {Gas} {Exchange} and {Pathogen} {Colonization}.''}
+\leavevmode\vadjust pre{\hypertarget{ref-muir_light_2018}{}}%
+Muir, Christopher D. 2018. {``Light and Growth Form Interact to Shape
+Stomatal Ratio Among {British} Angiosperms.''} \emph{New Phytologist}
+218 (1): 242--52. \url{https://doi.org/10.1111/nph.14956}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-muir_stomatal_2020}{}}%
+---------. 2020. {``A {Stomatal} {Model} of {Anatomical} {Tradeoffs}
+{Between} {Gas} {Exchange} and {Pathogen} {Colonization}.''}
 \emph{Frontiers in Plant Science} 11 (October): 518991.
 \url{https://doi.org/10.3389/fpls.2020.518991}.
 
-\leavevmode\hypertarget{ref-papanatsiou_stomatal_2017}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-papanatsiou_stomatal_2017}{}}%
 Papanatsiou, Maria, Anna Amtmann, and Michael R. Blatt. 2017.
 {``Stomatal Clustering in {Begonia} Associates with the Kinetics of Leaf
 Gaseous Exchange and Influences Water Use Efficiency.''} \emph{Journal
 of Experimental Botany} 68 (9): 2309--15.
 \url{https://doi.org/10.1093/jxb/erx072}.
 
-\leavevmode\hypertarget{ref-parkhurst_adaptive_1978}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-parkhurst_adaptive_1978}{}}%
 Parkhurst, David F. 1978. {``The {Adaptive} {Significance} of {Stomatal}
 {Occurrence} on {One} or {Both} {Surfaces} of {Leaves}.''} \emph{Journal
 of Ecology} 66 (2): 367--83. \url{https://doi.org/10.2307/2259142}.
 
-\leavevmode\hypertarget{ref-parkhurst_intercellular_1990}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-parkhurst_intercellular_1990}{}}%
 Parkhurst, David F., and Keith A. Mott. 1990. {``Intercellular
 {Diffusion} {Limits} to {CO} \(_{\textrm{2}}\) {Uptake} in {Leaves}:
 {Studies} in {Air} and {Helox}.''} \emph{Plant Physiology} 94 (3):
 1024--32. \url{https://doi.org/10.1104/pp.94.3.1024}.
 
-\leavevmode\hypertarget{ref-pieruschka_lateral_2005}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-pieruschka_lateral_2005}{}}%
 Pieruschka, R. 2005. {``Lateral Gas Diffusion Inside Leaves.''}
 \emph{Journal of Experimental Botany} 56 (413): 857--64.
 \url{https://doi.org/10.1093/jxb/eri072}.
 
-\leavevmode\hypertarget{ref-pieruschka_lateral_2006}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-pieruschka_lateral_2006}{}}%
 Pieruschka, Roland, Ulrich Schurr, Manfred Jensen, Wilfried F. Wolff,
 and Siegfried Jahnke. 2006. {``Lateral Diffusion of {CO}
 \(_{\textrm{2}}\) from Shaded to Illuminated Leaf Parts Affects
 Photosynthesis Inside Homobaric Leaves.''} \emph{New Phytologist} 169
 (4): 779--88. \url{https://doi.org/10.1111/j.1469-8137.2005.01605.x}.
 
-\leavevmode\hypertarget{ref-roddy_scaling_2020}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-roddy_scaling_2020}{}}%
 Roddy, Adam B., Guillaume Théroux-Rancourt, Tito Abbo, Joseph W.
 Benedetti, Craig R. Brodersen, Mariana Castro, Silvia Castro, et al.
 2020. {``The {Scaling} of {Genome} {Size} and {Cell} {Size} {Limits}
@@ -1204,30 +1319,36 @@ Benedetti, Craig R. Brodersen, Mariana Castro, Silvia Castro, et al.
 {Ecological} {Strategies}.''} \emph{International Journal of Plant
 Sciences} 181 (1): 75--87. \url{https://doi.org/10.1086/706186}.
 
-\leavevmode\hypertarget{ref-royer_stomatal_2001}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-royer_stomatal_2001}{}}%
 Royer, D. L. 2001. {``Stomatal Density and Stomatal Index as Indicators
-of Paleoatmospheric {Co2} Concentration.''} \emph{Review of Palaeobotany
+of Paleoatmospheric {CO2} Concentration.''} \emph{Review of Palaeobotany
 and Palynology} 114 (1-2): 1--28.
 \url{https://doi.org/10.1016/S0034-6667(00)00074-9}.
 
-\leavevmode\hypertarget{ref-sachs_developmental_1974}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-sachs_developmental_1974}{}}%
 Sachs, T. 1974. {``The {Developmental} {Origin} of {Stomata} {Pattern}
 in {Crinum}.''} \emph{Botanical Gazette} 135 (4): 314--18.
 \url{https://doi.org/10.1086/336767}.
 
-\leavevmode\hypertarget{ref-sack_developmental_2016}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-sack_developmental_2016}{}}%
 Sack, Lawren, and Thomas N. Buckley. 2016. {``The {Developmental}
 {Basis} of {Stomatal} {Density} and {Flux}.''} \emph{Plant Physiology}
 171 (4): 2358--63. \url{https://doi.org/10.1104/pp.16.00476}.
 
-\leavevmode\hypertarget{ref-schoch_dependence_1980}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-schneider_nih_2012}{}}%
+Schneider, Caroline A, Wayne S Rasband, and Kevin W Eliceiri. 2012.
+{``{NIH} {Image} to {ImageJ}: 25 Years of Image Analysis.''}
+\emph{Nature Methods} 9 (7): 671--75.
+\url{https://doi.org/10.1038/nmeth.2089}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-schoch_dependence_1980}{}}%
 Schoch, Paul-G., Claude Zinsou, and Monique Sibi. 1980. {``Dependence of
 the {Stomatal} {Index} on {Environmental} {Factors} During {Stomatal}
 {Differentiation} in {Leaves} of \emph{{Vigna} Sinensis} {L}.: 1.
 {EFFECT} {OF} {LIGHT} {INTENSITY}.''} \emph{Journal of Experimental
 Botany} 31 (5): 1211--16. \url{https://doi.org/10.1093/jxb/31.5.1211}.
 
-\leavevmode\hypertarget{ref-sperry_predicting_2017}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-sperry_predicting_2017}{}}%
 Sperry, John S., Martin D. Venturas, William R. L. Anderegg, Maurizio
 Mencuccini, D. Scott Mackay, Yujie Wang, and David M. Love. 2017.
 {``Predicting Stomatal Responses to the Environment from the
@@ -1235,12 +1356,12 @@ Optimization of Photosynthetic Gain and Hydraulic Cost: {A} Stomatal
 Optimization Model.''} \emph{Plant, Cell \& Environment} 40 (6):
 816--30. \url{https://doi.org/10.1111/pce.12852}.
 
-\leavevmode\hypertarget{ref-woodward_stomatal_1987}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-woodward_stomatal_1987}{}}%
 Woodward, F. I. 1987. {``Stomatal Numbers Are Sensitive to Increases in
-{Co2} from Pre-Industrial Levels.''} \emph{Nature} 327 (6123): 617--18.
+{CO2} from Pre-Industrial Levels.''} \emph{Nature} 327 (6123): 617--18.
 \url{https://doi.org/10.1038/327617a0}.
 
-\leavevmode\hypertarget{ref-yi_gan_stomatal_2010}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-yi_gan_stomatal_2010}{}}%
 Yi Gan, Lei Zhou, Zhong-Ji Shen, Zhu-Xia Shen, Yi-Qiong Zhang, and
 Gen-Xuan Wang. 2010. {``Stomatal Clustering, a New Marker for
 Environmental Perception and Adaptation in Terrestrial Plants.''}

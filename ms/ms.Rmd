@@ -52,7 +52,9 @@ fontsize: 12pt
 bibliography: stomata-spacing.bib
 #csl: mycitationstyle.csl
 link-citations: yes
-output: rticles::oup_article
+output: 
+  rticles::oup_article:
+    latex_engine: xelatex
 #urlcolor: orange
 #linkcolor: green
 #citecolor: red
