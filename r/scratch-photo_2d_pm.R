@@ -6,8 +6,50 @@
 
 source("r/header.R")
 source("r/photo_2d_pm.R")
-library(rootSolve)
 
+ph2d = photo_2d_pm("aligned", replace = list(I_0 = 0.002, n_z = 300))
+
+# Plot results
+df_C = expand.grid(
+  z = seq_len(ph2d$parms[["n_z"]]),
+  x = seq_len(ph2d$parms[["n_x"]]),
+  name = c("C_ias", "C_liq")
+) |>
+  mutate(value = ph2d$fit$y)
+
+ggplot(df_C, aes(x, z, z = value)) +
+  facet_grid(~ name) +
+  geom_contour_filled() +
+  coord_equal()
+
+# Calculate area-based A_n
+C_liq_mat = matrix(
+  ph2d$fit$y[(ph2d$parms$n_x * ph2d$parms$n_z + 1):(2 * ph2d$parms$n_x * ph2d$parms$n_z)],
+  nrow = ph2d$parms$n_z, ncol = ph2d$parms$n_x
+)
+r_c = calc_2d_pm_rc(C_liq_mat, ph2d$parms)
+r_d = ph2d$parms[["r_d"]]
+r_p = r_c * ph2d$parms[["gamma_star"]] / C_liq_mat
+
+a_n = (r_c - r_p - r_d) * (ph2d$parms[["S_m_mat"]] / ph2d$parms[["T_leaf"]]) * ph2d$parms[["V_strom"]]
+
+# 1 m^2 of 200 um thick leaf is 2e-04 m^3
+mean(a_n) * ph2d$parms[["T_leaf"]] * 1e6 # 24.7955
+
+df_A = expand.grid(
+  z = seq_len(parms[["n_z"]]),
+  x = seq_len(parms[["n_x"]])
+) |>
+  mutate(a = c(a_n))
+
+ggplot(df_A, aes(x, z, z = a)) +
+  geom_contour_filled() +
+  coord_equal()
+
+
+
+
+# SIMPLE VERSION I SENT TO TOM
 photo_2d_pm = function(t, Y, parms) {
 
   # Arguments:
