@@ -210,9 +210,8 @@ It consists of two paragraphs.}
 
 \date{\today}
 
-\keywords{stomatal patterning; Aribidopsis thaliana; amphistomatous
-leaves; photosynthesis modeling; optimizing photosynthesis; CO\(_2\)
-diffusion}
+\keywords{amphistomy; Arabidopsis thaliana; CO\(_2\) diffusion; finite
+element method; optimality; photosynthesis; stomata}
 
 \maketitle
 
@@ -222,42 +221,39 @@ diffusion}
 \section{Introduction}\label{introduction}}
 
 Stomatal anatomy (e.g.~size, density, distribution, and patterning) and
-physiological responses to the environment regulate gas exchange during
-photosynthesis; namely CO\(_2\) assimilation and water loss through
-transpiration. Since waxy cuticles are mostly impermeable to CO\(_2\)
-and \(H_2O\), stomata are discrete points through which gas exchange
-occurs and account only for a small percentage of the leaf area
-(\protect\hyperlink{ref-lange_responses_1971}{Lange et al. 1971}). They
-consist of two guard cells which open and close upon changes in turgor
-pressure or hormonal cues
+movement regulate gas exchange during photosynthesis, namely CO\(_2\)
+assimilation and water loss through transpiration. Since waxy cuticles
+are mostly impermeable to CO\(_2\) and H\(_2\)O, stomata are the primary
+entry points through which gas exchange occurs despite making up a small
+percentage of the leaf area
+(\protect\hyperlink{ref-lange_responses_1971}{Lange et al. 1971}).
+Stomata consist of two guard cells which open and close upon changes in
+turgor pressure or hormonal cues
 (\protect\hyperlink{ref-mcadam_linking_2016}{McAdam and Brodribb 2016}).
 The stomatal pore leads to an internal space known as the substomatal
-cavity where gases (and pathogens) contact the mesophyll
-(\protect\hyperlink{ref-muir_stomatal_2020}{Christopher D. Muir 2020}).
-Once in the mesophyll, CO\(_2\) diffuses throughout a network of
-intercellular air space (IAS) and into mesophyll cells where CO\(_2\)
-assimilation (\(A\)) occurs within the chloroplasts
-(\protect\hyperlink{ref-lee_diffusion_1964}{Lee and Gates 1964}).
-Maximum conductance (\(g_\text{max}\)) and transpiration are determined
-by numerous environmental and anatomical parameters such as: vapor
+cavity where gases contact the mesophyll. Once in the mesophyll,
+CO\(_2\) diffuses throughout a network of intercellular air space (IAS)
+and into mesophyll cells where CO\(_2\) assimilation (\(A\)) occurs
+within the chloroplasts (\protect\hyperlink{ref-lee_diffusion_1964}{Lee
+and Gates 1964}). Stomatal conductance and transpiration are determined
+by numerous environmental and anatomical parameters such as vapor
 pressure deficit (VPD), irradiance, temperature, wind speed, leaf water
 potential, IAS geometry, mesophyll cell anatomy, and stomatal anatomy.
 
-Natural selection should optimize the anatomy and physiology of stomata
-to maximize CO\(_2\) gain per unit of water loss, thereby maximizing
-assimilation rates for a given set of hydraulic constraints and light
-environments (\protect\hyperlink{ref-cowan_stomatal_1977}{Cowan and
-Farquhar 1977}; \protect\hyperlink{ref-buckley_optimal_2017}{Buckley,
-Sack, and Farquhar 2017};
-\protect\hyperlink{ref-sperry_predicting_2017}{Sperry et al. 2017}).
-However, optimal stomatal anatomy and physiology depends on
-developmental and environmental constraints and other physiological
-co-variates {[}Croxdale
-(\protect\hyperlink{ref-croxdale_stomatal_2000}{2000}); Harrison et al.
-(\protect\hyperlink{ref-harrison_influence_2020}{2020}); MUIR IN
-PRESS{]}. There is a wide variety of stomatal traits in nature, but
-certain common features as well. For example, almost all stomata follow
-the one cell spacing rule to maintain proper stomatal functioning
+Many successful predictions about stomata and other leaf traits can be
+made by hypothesizing that natural selection should optimizes CO\(_2\)
+gain per unit of water loss
+(\protect\hyperlink{ref-cowan_stomatal_1977}{Cowan and Farquhar 1977};
+\protect\hyperlink{ref-buckley_optimal_2017}{Buckley, Sack, and Farquhar
+2017}; \protect\hyperlink{ref-sperry_predicting_2017}{Sperry et al.
+2017}). However, stomatal anatomy may be partially constrained by
+physical and developments limits on phenotypic expression
+(\protect\hyperlink{ref-croxdale_stomatal_2000}{Croxdale 2000};
+\protect\hyperlink{ref-harrison_influence_2020}{Harrison et al. 2020};
+\protect\hyperlink{ref-muir_how_2023}{Christopher D. Muir et al. 2023}).
+Sometimes optimization leads to similar phenotypes across many disparate
+species. For example, almost all stomata follow the one cell spacing
+rule to maintain proper stomatal functioning
 (\protect\hyperlink{ref-geisler_oriented_2000}{Geisler, Nadeau, and Sack
 2000}; \protect\hyperlink{ref-dow_physiological_2014}{Dow, Berry, and
 Bergmann 2014}); however some species (notably in \emph{Begonia}) appear
@@ -265,36 +261,41 @@ to benefit from overlapping vapor shells caused by stomatal clustering
 (\protect\hyperlink{ref-yi_gan_stomatal_2010}{Yi Gan et al. 2010};
 \protect\hyperlink{ref-lehmann_effects_2015}{Lehmann and Or 2015};
 \protect\hyperlink{ref-papanatsiou_stomatal_2017}{Papanatsiou, Amtmann,
-and Blatt 2017}). Stomatal density positively co-varies with irradiance
+and Blatt 2017}). Stomatal traits also vary adaptively in different
+environments. Stomatal density positively co-varies with irradiance
 during leaf development and negatively co-varies with CO\(_2\)
 concentration (\protect\hyperlink{ref-gay_influence_1975}{Gay and Hurd
 1975}; \protect\hyperlink{ref-schoch_dependence_1980}{Schoch, Zinsou,
 and Sibi 1980}; \protect\hyperlink{ref-woodward_stomatal_1987}{Woodward
-1987}; \protect\hyperlink{ref-royer_stomatal_2001}{Royer 2001}).
-Stomatal size is jointly controlled by genome size, light, and stomatal
-density (\protect\hyperlink{ref-jordan_environmental_2015}{Jordan et al.
-2015}). Size positively co-varies with genome size
+1987}; \protect\hyperlink{ref-royer_stomatal_2001}{Royer 2001}),
+consistent with optimality predictions. Stomatal size is jointly
+controlled by genome size, light, and stomatal density
+(\protect\hyperlink{ref-jordan_environmental_2015}{Jordan et al. 2015}).
+Size positively co-varies with genome size
 (\protect\hyperlink{ref-roddy_scaling_2020}{Roddy et al. 2020}) and
 negatively co-varies with stomatal density
 (\protect\hyperlink{ref-camargo_density_2011}{Camargo and Marenco
-2011}). Total stomatal area (size * density) is optimized for
-operational conductance (\(gs_\text{op}\)) rather than maximum
-conductance (\(gs_\text{max}\)) such that stomatal apertures are most
+2011}). Total stomatal area (size \(\times\) density) is optimized for
+operational conductance (\(gs_\text{s,op}\)) rather than maximum
+conductance (\(gs_\text{s,max}\)) such that stomatal apertures are most
 responsive to changes in the environment at their operational aperture
 (\protect\hyperlink{ref-franks_physiological_2012}{Franks et al. 2012};
 \protect\hyperlink{ref-liu_scaling_2021}{Liu et al. 2021}). Stomatal
 aperture can compensate for maladaptive stomatal densities to an extent
 (\protect\hyperlink{ref-bussis_stomatal_2006}{Büssis et al. 2006}), but
 stomatal density and size ultimately determine a leaf's theoretical
-\(gs_\text{max}\) (\protect\hyperlink{ref-sack_developmental_2016}{Sack
-and Buckley 2016}). Additionally, low stomatal densities lead to
-irregular and insufficient CO\(_2\) supply and reduced photosynthetic
-efficiency in areas far from stomata
-(\protect\hyperlink{ref-pieruschka_lateral_2006}{Roland Pieruschka et
-al. 2006}; \protect\hyperlink{ref-morison_lateral_2005}{Morison et al.
-2005}), while high stomatal densities can reduce water use efficiency
-(WUE) (\protect\hyperlink{ref-bussis_stomatal_2006}{Büssis et al. 2006})
-and incur excessive metabolic costs
+\(gs_\text{s,max}\)
+(\protect\hyperlink{ref-sack_developmental_2016}{Sack and Buckley
+2016}), which is proportional to \(gs_\text{s,op}\)
+(\protect\hyperlink{ref-murray_consistent_2020}{Murray et al. 2020}).
+Additionally, low stomatal densities lead to irregular and insufficient
+CO\(_2\) supply and reduced photosynthetic efficiency in areas far from
+stomata (\protect\hyperlink{ref-pieruschka_lateral_2006}{Roland
+Pieruschka et al. 2006};
+\protect\hyperlink{ref-morison_lateral_2005}{Morison et al. 2005}),
+while high stomatal densities can reduce water use efficiency (WUE)
+(\protect\hyperlink{ref-bussis_stomatal_2006}{Büssis et al. 2006}) and
+incur excessive metabolic costs
 (\protect\hyperlink{ref-deans_optimization_2020}{Deans et al. 2020}). In
 most species, stomata occur on the abaxial (usually lower) leaf surface;
 but amphistomy, the occurrence of stomata on both abaxial and adaxial
@@ -305,8 +306,8 @@ constant or intermittent access to sufficient water
 Brodribb 2014}; \protect\hyperlink{ref-muir_light_2018}{Christopher D.
 Muir 2018}; \protect\hyperlink{ref-drake_two_2019}{Drake et al. 2019};
 \protect\hyperlink{ref-muir_is_2019}{Christopher D. Muir 2019}).
-Amphistomy effectively halves CO\(_2\) diffusion path length and
-boundary layer resistance by doubling boundary layer area
+Amphistomy effectively halves the CO\(_2\) diffusion path length and
+boundary layer resistance by doubling boundary layer conductance
 (\protect\hyperlink{ref-parkhurst_adaptive_1978}{Parkhurst 1978};
 \protect\hyperlink{ref-harrison_influence_2020}{Harrison et al. 2020};
 \protect\hyperlink{ref-mott_amphistomy_1991}{Mott and Michaelson 1991}).
@@ -325,35 +326,38 @@ The patterning and spacing of stomata on the leaf affects photosynthesis
 in \(C_3\) leaves by altering the CO\(_2\) diffusion path length from
 stomata to sites of carboxylation in the mesophyll. Maximum
 photosynthetic rate (\(A_\text{max}\)) in \(C_3\) plants is generally
-co-limited by biochemistry and diffusion, but limitations depend largely
-on light availability
+co-limited by biochemistry and diffusion, but modulated by light
+availability
 (\protect\hyperlink{ref-parkhurst_intercellular_1990}{Parkhurst and Mott
 1990}; \protect\hyperlink{ref-manter_ci_2004}{Manter 2004};
 \protect\hyperlink{ref-carriqui_diffusional_2015}{Carriquí et al.
-2015}). In low light environments, assimilation rates are low;
-consequently, CO\(_2\) flux is low and the internal CO\(_2\)
-concentration (\(C_\text{i}\)) remains high; thus \(A_\text{max}\) is
-constrained by biochemical limitations in low light
-(\protect\hyperlink{ref-kaiser_metabolic_2016}{Kaiser et al. 2016}). For
-well hydrated leaves in high light, photosynthesis is often limited by
-CO\(_2\) supply as resistances from the boundary layer, stomatal pore,
-and mesophyll can result in insufficient \(C_\text{i}\) to supply
-efficient photosynthesis at the chloroplast {[}Farquhar, Caemmerer, and
-Berry (\protect\hyperlink{ref-farquhar_biochemical_1980}{1980});
-lehmeier\_cell\_2017{]}. In this study, we focus primarily on how
-stomatal patterning affects diffusion.
+2015}). Low light decreasing CO\(_2\) demand by limiting electron
+transport rate, leading to relatively high internal CO\(_2\)
+concentration (\(C_\text{i}\)) and low \(A_\text{max}\)
+(\protect\hyperlink{ref-kaiser_metabolic_2016}{Kaiser et al. 2016}). In
+contrast, well hydrated leaves with open stomata in high light,
+photosynthesis is often limited by CO\(_2\) supply as resistances from
+the boundary layer, stomatal pore, and mesophyll can result in
+insufficient CO\(C_2\) supply at the chloroplast to maxmimize
+photosynthesis
+(\protect\hyperlink{ref-farquhar_biochemical_1980}{Farquhar, Caemmerer,
+and Berry 1980}; \protect\hyperlink{ref-lehmeier_cell_2017}{Lehmeier et
+al. 2017}). In this study, we focus primarily on how stomatal patterning
+affects diffusion, ignoring boundary layer and mesophyll resistances.
 
 To maximize CO\(_2\) supply from the stomatal pore to chloroplasts,
 stomata should be uniformly distributed in an equilateral triangular
 grid on the leaf surface so as to minimize stomatal number and CO\(_2\)
-diffusion path length. As the diffusion rate of CO\(_2\) though liquid
-is approximately 10,000 times slower than CO\(_2\) diffusion through
-air, mesophyll resistance is generally thought to be primarily limited
-by liquid diffusion
-(\protect\hyperlink{ref-aalto_three-dimensional_2002}{Aalto and Juurola
-2002}), but diffusion through the IAS has also been shown to be a rate
-limiting process because the tortuous, disjunct nature of the IAS can
-greatly increase diffusion path lengths
+diffusion path length
+(\protect\hyperlink{ref-parkhurst_diffusion_1994}{Parkhurst 1994}). As
+the diffusion rate of CO\(_2\) though liquid is approximately
+\(10^4\times\) slower than CO\(_2\) diffusion through air, mesophyll
+resistance is generally thought to be primarily limited by liquid
+diffusion (\protect\hyperlink{ref-aalto_three-dimensional_2002}{Aalto
+and Juurola 2002}; \protect\hyperlink{ref-evans_resistances_2009}{Evans
+et al. 2009}), but diffusion through the IAS has also been shown to be a
+rate limiting process because the tortuous, disjunct nature of the IAS
+can greatly increase diffusion path lengths
 (\protect\hyperlink{ref-harwood_understanding_2021}{Harwood,
 Théroux‐Rancourt, and Barbour 2021}). Additionally, tortuosity is higher
 in horizontal directions (parallel to leaf surface) than vertical
@@ -361,7 +365,7 @@ directions (perpendicular to leaf surface) because of the cylindrical
 shape and vertical arrangement of pallisade mesophyll cells
 (\protect\hyperlink{ref-earles_beyond_2018}{Earles et al. 2018};
 \protect\hyperlink{ref-harwood_understanding_2021}{Harwood,
-Théroux‐Rancourt, and Barbour 2021}); however, the ratio of lateral to
+Théroux‐Rancourt, and Barbour 2021}). However, the ratio of lateral to
 vertical diffusion rate is still largely unknown
 (\protect\hyperlink{ref-morison_lateral_2005}{Morison et al. 2005};
 \protect\hyperlink{ref-pieruschka_lateral_2005}{R. Pieruschka 2005};
@@ -385,27 +389,28 @@ we hypothesize that in high light 3) there should be more stomata, and
 4) stomata should be more uniformly distributed than in low light.
 Finally, as stomatal densities are selected for optimal operational
 aperture, we hypothesize that 5) stomatal length will be positively
-correlated with the area of the leaf surface to which it is closest
-(stomatal zone area: the area a stomate occupies and supplies with
-CO\(_2\)). This way, each stomate can be optimally sized for its
-relative leaf area and associated CO\(_2\) demand.
+correlated with the area of the leaf surface to which it is closest. We
+refer to this as the `stomatal zone', the leaf area surrounding a focal
+stomate closest to that stomate and therefore the zone it supplies with
+CO\(_2\)). This way, each stomate can be optimally sized relative to the
+mesophyll volume it supplies.
 
-To test these hypotheses, we grew \emph{A. thaliana} in high, medium,
-and low light and measured stomatal density, size, and patterning on
-both leaf surfaces, and spatial coordination between them. We use
-voronoi tessellation techniques to calculate the stomatal leaf area. We
-also use CO\(_2\) diffusion modeling to ask: what environmental and
-physiological conditions maximize the photosynthetic advantage
-(\(A\text{gain}\)) of abaxial-adaxial stomatal coordination?
-Specifically, we predicted that traits which affect diffusion path
-length (leaf thickness, stomatal density, leaf porosity,
-lateral-vertical diffusion rate ratio), diffusion rate (temperature,
-pressure), and CO\(_2\) demand (Rubisco concentration, light) would
-modulate the advantage of optimal stomatal arrangement following the
-relationships outlined in Table \ref{tab:hypotheses}. Here, we integrate
-over reasonable parameter space to determine the ecophysiological
-context most likely to favor stomatal spatial coordination in
-amphistomatous leaves.
+To test these hypotheses, we grew the model plant \emph{Arabidopsis
+thaliana} in high, medium, and low light and measured stomatal density,
+size, and patterning on both leaf surfaces, and spatial coordination
+between them. We use Voronoi tessellation techniques to calculate
+stomatal zones. We also used a 2-D porous medium approximation of
+CO\(_2\) diffusion and photosynthesis to predict the photosynthetic
+advantage of optimal versus suboptimal coordination in stomatal
+coordination between surfaces. Specifically, we predicted that traits
+which affect diffusion path length (leaf thickness, stomatal density,
+leaf porosity, lateral-vertical diffusion rate ratio), diffusion rate
+(temperature, pressure), and CO\(_2\) demand (Rubisco concentration,
+light) would modulate the advantage of optimal stomatal arrangement
+following the relationships outlined in Table \ref{tab:hypotheses}.
+Here, we integrate over reasonable parameter space to determine the
+ecophysiological context most likely to favor stomatal spatial
+coordination in amphistomatous leaves.
 
 \begin{table}[ht]
 \centering
@@ -526,7 +531,7 @@ Finally, to test our hypothesis that stomatal length is modulated by the
 area of the leaf to which it supplies CO\(_2\), we examined the
 relationship between stomatal zone area and stomatal length using a
 Bayesian generalized non-linear multilevel model with the R package
-\textbf{brms} version 2.19.0. Stomatal zone area was calculated using
+\textbf{brms} version 2.20.1. Stomatal zone area was calculated using
 voronoi tessellation (e.g.~Fig. \ref{fig:example}). The stomatal zone
 area, \(S_\text{area}\), is the region of the leaf surface whose
 distance to stomate, \(S\), is less than the distance to any other
@@ -1151,6 +1156,12 @@ Gilbert, Andrew J. McElrone, and Craig R. Brodersen. 2018. {``Beyond
 {Impact} {Mesophyll} {Conductance}.''} \emph{Plant Physiology} 178 (1):
 148--62. \url{https://doi.org/10.1104/pp.18.00550}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-evans_resistances_2009}{}}%
+Evans, J. R., R. Kaldenhoff, B. Genty, and I. Terashima. 2009.
+{``Resistances Along the {CO}\(_{\textrm{2}}\) Diffusion Pathway Inside
+Leaves.''} \emph{Journal of Experimental Botany} 60 (8): 2235--48.
+\url{https://doi.org/10.1093/jxb/erp117}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-farquhar_biochemical_1980}{}}%
 Farquhar, G. D., S. von Caemmerer, and J. A. Berry. 1980. {``A
 Biochemical Model of Photosynthetic {CO2} Assimilation in Leaves of {C3}
@@ -1225,6 +1236,13 @@ Lehmann, Peter, and Dani Or. 2015. {``Effects of Stomata Clustering on
 Leaf Gas Exchange.''} \emph{New Phytologist} 207 (4): 1015--25.
 \url{https://doi.org/10.1111/nph.13442}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-lehmeier_cell_2017}{}}%
+Lehmeier, Christoph, Radoslaw Pajor, Marjorie R. Lundgren, Andrew
+Mathers, Jen Sloan, Marion Bauch, Alice Mitchell, et al. 2017. {``Cell
+Density and Airspace Patterning in the Leaf Can Be Manipulated to
+Increase Leaf Photosynthetic Capacity.''} \emph{The Plant Journal} 92
+(6): 981--94. \url{https://doi.org/10.1111/tpj.13727}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-liu_scaling_2021}{}}%
 Liu, Congcong, Christopher D. Muir, Ying Li, Li Xu, Mingxu Li, Jiahui
 Zhang, Hugo Jan de Boer, et al. 2021. {``Scaling Between Stomatal Size
@@ -1275,11 +1293,21 @@ Muir, Christopher D. 2018. {``Light and Growth Form Interact to Shape
 Stomatal Ratio Among {British} Angiosperms.''} \emph{New Phytologist}
 218 (1): 242--52. \url{https://doi.org/10.1111/nph.14956}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-muir_stomatal_2020}{}}%
----------. 2020. {``A {Stomatal} {Model} of {Anatomical} {Tradeoffs}
-{Between} {Gas} {Exchange} and {Pathogen} {Colonization}.''}
-\emph{Frontiers in Plant Science} 11 (October): 518991.
-\url{https://doi.org/10.3389/fpls.2020.518991}.
+\leavevmode\vadjust pre{\hypertarget{ref-muir_how_2023}{}}%
+Muir, Christopher D., Miquel Àngel Conesa, Jeroni Galmés, Varsha S.
+Pathare, Patricia Rivera, Rosana López Rodríguez, Teresa Terrazas, and
+Dongliang Xiong. 2023. {``How Important Are Functional and Developmental
+Constraints on Phenotypic Evolution? {An} Empirical Test with the
+Stomatal Anatomy of Flowering Plants.''} \emph{The American Naturalist}
+201 (6): 794--812. \url{https://doi.org/10.1086/723780}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-murray_consistent_2020}{}}%
+Murray, Michelle, Wuu Kuang Soh, Charilaos Yiotis, Robert A. Spicer,
+Tracy Lawson, and Jennifer C. McElwain. 2020. {``Consistent Relationship
+Between Field-Measured Stomatal Conductance and Theoretical Maximum
+Stomatal Conductance in {C}\(_{\textrm{3}}\) Woody Angiosperms in Four
+Major Biomes.''} \emph{International Journal of Plant Sciences} 181 (1):
+142--54. \url{https://doi.org/10.1086/706260}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-papanatsiou_stomatal_2017}{}}%
 Papanatsiou, Maria, Anna Amtmann, and Michael R. Blatt. 2017.
@@ -1292,6 +1320,11 @@ of Experimental Botany} 68 (9): 2309--15.
 Parkhurst, David F. 1978. {``The {Adaptive} {Significance} of {Stomatal}
 {Occurrence} on {One} or {Both} {Surfaces} of {Leaves}.''} \emph{Journal
 of Ecology} 66 (2): 367--83. \url{https://doi.org/10.2307/2259142}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-parkhurst_diffusion_1994}{}}%
+---------. 1994. {``Diffusion of {CO}\(_{\textrm{2}}\) and Other Gases
+Inside Leaves.''} \emph{New Phytologist} 126 (3): 449--79.
+\url{http://www.jstor.org/stable/2557929}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-parkhurst_intercellular_1990}{}}%
 Parkhurst, David F., and Keith A. Mott. 1990. {``Intercellular

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.3.21)  27 SEP 2023 13:58
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  27 SEP 2023 21:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -624,156 +624,156 @@ Package hyperref Info: Link coloring OFF on input line 157.
 
 \c@lstlisting=\count341
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 218.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 217.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 218.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 217.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 218
+LaTeX Font Info:    Trying to load font information for U+msa on input line 217
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 218
+LaTeX Font Info:    Trying to load font information for U+msb on input line 217
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+lasy on input line 21
-8.
+7.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 218.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 217.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 218.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 217.
 
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 218.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 217.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 218.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 217.
 
 \c@FNCT@1=\count342
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 218.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 217.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 218.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 217.
 
 
-LaTeX Warning: Hyper reference `FN' on page 1 undefined on input line 218.
+LaTeX Warning: Hyper reference `FN' on page 1 undefined on input line 217.
 
 
-LaTeX Warning: Reference `FN' on page 1 undefined on input line 218.
+LaTeX Warning: Reference `FN' on page 1 undefined on input line 217.
 
 [1
 
 
 ] [2] [3]
 
-LaTeX Warning: Reference `fig:amphi_grid' on page 4 undefined on input line 380
+LaTeX Warning: Reference `fig:amphi_grid' on page 4 undefined on input line 384
 .
 
 \openout5 = `ms.ttt'.
 
 (ms.ttt) [4] [5] [6]
-Overfull \hbox (8.94621pt too wide) in paragraph at lines 562--578
+Overfull \hbox (8.94621pt too wide) in paragraph at lines 567--583
 \TU/lmr/m/n/12 We modeled photosynthesis CO$[]$ assimilation rate using a spati
 ally-explicit two-dimensional
  []
 
 [7]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 633.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 638.
 [8]
-Overfull \hbox (13.10547pt too wide) in paragraph at lines 716--716
+Overfull \hbox (13.10547pt too wide) in paragraph at lines 721--721
 []|\TU/lmr/m/n/12 Biochemical 
  []
 
 
-Overfull \hbox (15.22597pt too wide) in paragraph at lines 736--736
+Overfull \hbox (15.22597pt too wide) in paragraph at lines 741--741
 []|$\OML/cmm/m/it/12 molCO\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 =molRubisco=molChl$
 |  
  []
 
 
-Overfull \hbox (26.83347pt too wide) in paragraph at lines 742--742
+Overfull \hbox (26.83347pt too wide) in paragraph at lines 747--747
 []|\TU/lmr/m/n/12 Environmental 
  []
 
 
-Overfull \hbox (1.10225pt too wide) in paragraph at lines 746--746
+Overfull \hbox (1.10225pt too wide) in paragraph at lines 751--751
 []|\TU/lmr/m/n/12 16.96367|  
  []
 
 
-Overfull \hbox (1.10225pt too wide) in paragraph at lines 748--748
+Overfull \hbox (1.10225pt too wide) in paragraph at lines 753--753
 []|\TU/lmr/m/n/12 8.584027|  
  []
 
 [9] [10]
 
 LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 788.
+(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 793.
 
 [11] [12] [13]
 \openout6 = `ms.fff'.
 
 (ms.fff) [14] [15] [16]
-Overfull \hbox (17.48116pt too wide) in paragraph at lines 1114--1118
+Overfull \hbox (17.48116pt too wide) in paragraph at lines 1119--1123
 \TU/lmr/m/n/12 and Environment.” \TU/lmr/m/it/12 STOMATAL FUNCTION IN RELATION 
 TO LEAF METABOLISM
  []
 
 
-Overfull \hbox (38.84813pt too wide) in paragraph at lines 1139--1146
+Overfull \hbox (38.84813pt too wide) in paragraph at lines 1144--1151
 \TU/lmr/m/n/12 “Two Sides to Every Leaf: Water and <Span Style=”font-Variant:sm
 all-Caps;”>CO</Span>
  []
 
 [17]
-Overfull \hbox (10.27614pt too wide) in paragraph at lines 1186--1192
+Overfull \hbox (10.27614pt too wide) in paragraph at lines 1197--1203
 \TU/lmr/m/n/12 derstanding Airspace in Leaves: <Span Style=”font-Variant:small-
 Caps;”>3D</Span>
  []
 
 Missing character: There is no � (U+FFFD) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[18] [19]
-Overfull \hbox (7.5516pt too wide) in paragraph at lines 1364--1370
+[18] [19] [20]
+Overfull \hbox (7.5516pt too wide) in paragraph at lines 1397--1403
 [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][
 ][] [] [][] [] [][][] [] [][] [] [][][][][][][][] [] [][][][] [] [][][][][] [][
 ] [][][][]$[]\TU/lmr/m/n/12 . 
  []
 
-AED endfloat: Processing end Figures and Tables [20] (./ms.lot)
+AED endfloat: Processing end Figures and Tables [21] (./ms.lot)
 \tf@lot=\write8
 \openout8 = `ms.lot'.
 
-[21
+[22
 
 
-] (./ms.ttt) [22
+] (./ms.ttt) [23
 
 ] (./ms.lof)
 \tf@lof=\write9
 \openout9 = `ms.lof'.
 
-[23
+[24
 
 
 ] (./ms.fff
 File: figures/single-surface.pdf Graphic file (type pdf)
 <use figures/single-surface.pdf>
-[24
+[25
 
 ]
 File: figures/density.pdf Graphic file (type pdf)
 <use figures/density.pdf>
-[25
+[26
 
 ]
 File: figures/tessellation-example.pdf Graphic file (type pdf)
@@ -781,21 +781,21 @@ File: figures/tessellation-example.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 49.4412pt on input line 19.
 
-[26]
+[27]
 File: figures/length-area.pdf Graphic file (type pdf)
 <use figures/length-area.pdf>
-[27
+[28
 
 
 ]
 File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
 <use figures/ideal-amphi-grid.pdf>
-[28
+[29
 
 ]
 File: figures/dual-surface.pdf Graphic file (type pdf)
 <use figures/dual-surface.pdf>
-) [29
+) [30
 
 ] (./ms.aux)
 
@@ -807,10 +807,10 @@ Package rerunfilecheck Info: File `ms.out' has not changed.
 Here is how much of TeX's memory you used:
  14147 strings out of 476683
  223802 string characters out of 5804047
- 1872018 words of memory out of 5000000
+ 1873018 words of memory out of 5000000
  34116 multiletter control sequences out of 15000+600000
  523100 words of font info for 100 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,9n,76p,539b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ms.pdf (29 pages).
+Output written on ms.pdf (30 pages).
