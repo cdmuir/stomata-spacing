@@ -116,43 +116,47 @@ print(xtable::xtable(df, caption = "A summary of the hypothesized relationships 
 
 [CDM: Graham Dow provided these images. We'll need to add him as a co-author and ask him to write methods on image acquisition.]
 
-*Arabidopsis thaliana* plants were grown in three different light environments: low light (50 PAR), medium light (100 PAR), and high light (200 PAR) following the light standards from (CITE). Once leaves were mature, we captured images of the abaxial and adaxial leaf surfaces using xxx bifocal microscope. This microscope allows the capture of two focal lengths that are spatially correlated such that pixel (1,1) of the abaxial surface image is directly above pixel (1,1) of the adaxial surface image, and so on... Images were 512 by 512 pixels and covered X leaf surface area. We captured 132 images in total, making 66 abaxial-adaxial image pairs. The position of all stomata were recorded using ImageJ [@schneider_nih_2012].
+*Arabidopsis thaliana* plants were grown in three different light environments: low light (50 PAR), medium light (100 PAR), and high light (200 PAR)... Once leaves were mature, we captured images of the abaxial and adaxial leaf surfaces using xxx bifocal microscope. This microscope allows the capture of two focal lengths that are spatially correlated such that pixel (1,1) of the abaxial surface image is directly above pixel (1,1) of the adaxial surface image, and so on... Images were 512 by 512 pixels and covered X leaf surface area. We captured 132 images in total, making 66 abaxial-adaxial image pairs. The position of all stomata were recorded using ImageJ [@schneider_nih_2012].
 
-## Single Surface Analysis
+## Single surface analyses
 
 We tested whether stomata are non-randomly distributed by comparing the observed stomatal patterning to a random uniform pattern. For each leaf surface image with $n$ stomata we generated $10^3$ synthetic surfaces with $n$ stomata uniformly randomly distributed on the surface. For each sample image, we compared the observed Nearest Neighbor Index ($\mathrm{NNI}$) to the null distribution of $\mathrm{NNI}$ values calculated from the synthetic data set. The observed stomatal distribution is dispersed relative to a uniform random distribution if the observed $NNI$ is greater than 95% of the synthetic $\mathrm{NNI}$ values (one-tailed test).
 
 $\mathrm{NNI}$ is the ratio of observed mean distance ($\overline{D}_O$) to the expected mean distance ($\overline{D}_E$) where $\overline{D}_E$ is:
 
 \begin{equation}\label{eq:emd}
-  \mathrm{\overline{D}_E} = \frac{0.5}{\sqrt{A_l/n_\text{stomata}}}
+  \overline{D}_E = \frac{0.5}{\sqrt{A_\text{leaf} / n_\text{stomata}}}
 \end{equation}
 
-$A_l$ is leaf area and $n_\text{stomata}$ the number of stomata. $\overline{D}_E$ is the theoretical average distance to the nearest neighbor of each stomate if stomata were randomly distributed (CITE; Clark and Evans, 1954). And $\overline{D}_O$ calculated for each synthetic data set is:
+\noindent $A_\text{leaf}$ is leaf area visible in the sampled field and $n_\text{stomata}$ the number of stomata. $\overline{D}_E$ is the theoretical average distance to the nearest neighbor of each stomate if stomata were uniformly randomly distributed [@clark_distance_1954]. And $\overline{D}_O$ calculated for each synthetic data set is:
 
 \begin{equation}\label{eq:omd}
-  \mathrm{\overline{D}_O} = \frac{\sum_{i=1}^{n_\text{stomata}}d_i}{n_\text{stomata}}
+  \overline{D}_O = \frac{\sum_{i=1}^{n_\text{stomata}}d_i}{n_\text{stomata}}
 \end{equation}
 
-$d_i$ is the distance between $\text{stomate}_i$ and its nearest neighbor. We calculated $\mathrm{NNI}$ using the R package **spatialEco** version `r packageVersion("spatialEco")`. 
+$d_i$ is the distance between $\text{stomate}_i$ and its nearest neighbor. We calculated $\mathrm{NNI}$ using the *R* package **spatialEco** version `r packageVersion("spatialEco")` [@evans_spatialeco_2023]. 
 
 For each sample image, we also simulated $10^3$ synthetic data with $n$ stomata ideally dispersed in an equilateral triangular grid. For these grids, we integrated over plausible stomatal densities and then conditioned on stomatal grids with exactly $n$ stomata. The simulated stomatal count was drawn from a Poisson distribution with the mean parameter $\lambda$ drawn from a Gamma distribution with shape $n$ and scale 1 $\lambda \sim \Gamma(n, 1)$. $\Gamma(n, 1)$ is the posterior distribution of $\lambda$ with a flat prior distribution. This allows us to integrate over uncertainty in the stomatal density from the sample image. 
 
-We calculated the dispersion index $\mathrm{DI}$) which varies from zero to one. Zero is uniformly random and one is ideally dispersed:
+We developed a dispersion index $\mathrm{DI}$ to quantify how close observed stomatal distributions are to random uniform versus maximally dispered in an equilateral triangular grid. $\mathrm{DI}$ varies from zero to one, where zero is uniformly random and one is ideally dispersed:
 
 \begin{equation}\label{eq:disp}
   \mathrm{DI} = \frac{\mathrm{NNI} - \text{median}(\mathrm{NNI_{random}})}{\text{median}(\mathrm{NNI_{uniform}}) - \text{median}(\mathrm{NNI_{random}})}
 \end{equation}
 
-Uniformly distributed stomata on a leaf with stomatal density ($D_S$) maximize $\overline{D}_O$ in an equilateral triangle pattern with side lengths ($s$) equal to two times the incircle radius or apothem, $a$, of a regular hexagon with area ($A_\text{hex}$) equal to the area of the leaf ($A_l$) divided by the number of stomata ($n_\text{stomata}$) on the leaf according to Eq. \ref{eq:eq2}:
+\noindent $\mathrm{NNI}$ is calculated for each sample image as described above; $\text{median}(\mathrm{NNI_{random}})$ and $\text{median}(\mathrm{NNI_{uniform}})$ are calculated from the dry og synthetic data specific to each sample image as described above. We tested whether light treatment affects $\mathrm{DI}$ and $D_S$ using analysis of variance (ANOVA).
+
+<!-- CDM: I am not sure this part is needed
+Uniformly distributed stomata on a leaf with stomatal density ($D_S$) maximize $\overline{D}_O$ in an equilateral triangle pattern with side lengths ($s$) equal to two times the incircle radius or apothem, $a$, of a regular hexagon with area ($A_\text{hex}$) equal to $A_\text{leaf}$ divided by the number of stomata ($n_\text{stomata}$) on the leaf according to Eq. \ref{eq:eq2}:
 
 \begin{equation}\label{eq:eq2}
-  s = \frac{\sqrt{2}} {3^{1/4} \sqrt{n_\text{stomata} / A_l}}
+  s = \frac{\sqrt{2}} {3^{1/4} \sqrt{n_\text{stomata} / A_\text{leaf}}}
 \end{equation}
 
-As all sides of an equilateral triangle have the same length, the average nearest neighbor distance for a given $D_S$ is maximized and each stomate occupies the same hexagonal area ($A_\text{hex}$). The closer to one $DI$ is, the more uniform an area each of its stomata supply with CO$_2$ during photosynthesis. We tested whether light treatment affects $\mathrm{DI}$ and $D_S$ using analysis of variance (ANOVA).
-
-Finally, to test our hypothesis that stomatal length is modulated by the area of the leaf to which it supplies CO$_2$, we examined the relationship between stomatal zone area and stomatal length using a Bayesian generalized non-linear multilevel model with the R package **brms** version `r packageVersion("brms")`. Stomatal zone area was calculated using voronoi tessellation (e.g. Fig. \ref{fig:example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in `ImageJ` [@schneider_nih_2012].
+As all sides of an equilateral triangle have the same length, the average nearest neighbor distance for a given $D_S$ is maximized and each stomate occupies the same hexagonal area ($A_\text{hex}$). As $DI$ approaches 1, the more uniform an area each of its stomata supply with CO$_2$ during photosynthesis. 
+ -->
+ 
+Finally, we examined the relationship between stomatal zone area and stomatal length using a Bayesian generalized non-linear multilevel model with the R package **brms** version `r packageVersion("brms")` [@burkner_brms_2017; @burkner_advanced_2018]. Stomatal zone area was calculated using Voronoi tessellation (e.g. Fig. \ref{fig:example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in `ImageJ` [@schneider_nih_2012].
 
 ## Paired Abaxial and Adaxial Surface Analysis
 

@@ -354,10 +354,10 @@ the diffusion rate of CO\(_2\) though liquid is approximately
 \(10^4\times\) slower than CO\(_2\) diffusion through air, mesophyll
 resistance is generally thought to be primarily limited by liquid
 diffusion (\protect\hyperlink{ref-aalto_three-dimensional_2002}{Aalto
-and Juurola 2002}; \protect\hyperlink{ref-evans_resistances_2009}{Evans
-et al. 2009}), but diffusion through the IAS has also been shown to be a
-rate limiting process because the tortuous, disjunct nature of the IAS
-can greatly increase diffusion path lengths
+and Juurola 2002}; \protect\hyperlink{ref-evans_resistances_2009}{J. R.
+Evans et al. 2009}), but diffusion through the IAS has also been shown
+to be a rate limiting process because the tortuous, disjunct nature of
+the IAS can greatly increase diffusion path lengths
 (\protect\hyperlink{ref-harwood_understanding_2021}{Harwood,
 Théroux‐Rancourt, and Barbour 2021}). Additionally, tortuosity is higher
 in horizontal directions (parallel to leaf surface) than vertical
@@ -443,19 +443,19 @@ co-author and ask him to write methods on image acquisition.{]}
 
 \emph{Arabidopsis thaliana} plants were grown in three different light
 environments: low light (50 PAR), medium light (100 PAR), and high light
-(200 PAR) following the light standards from (CITE). Once leaves were
-mature, we captured images of the abaxial and adaxial leaf surfaces
-using xxx bifocal microscope. This microscope allows the capture of two
-focal lengths that are spatially correlated such that pixel (1,1) of the
-abaxial surface image is directly above pixel (1,1) of the adaxial
-surface image, and so on\ldots{} Images were 512 by 512 pixels and
-covered X leaf surface area. We captured 132 images in total, making 66
-abaxial-adaxial image pairs. The position of all stomata were recorded
-using ImageJ (\protect\hyperlink{ref-schneider_nih_2012}{Schneider,
-Rasband, and Eliceiri 2012}).
+(200 PAR)\ldots{} Once leaves were mature, we captured images of the
+abaxial and adaxial leaf surfaces using xxx bifocal microscope. This
+microscope allows the capture of two focal lengths that are spatially
+correlated such that pixel (1,1) of the abaxial surface image is
+directly above pixel (1,1) of the adaxial surface image, and so
+on\ldots{} Images were 512 by 512 pixels and covered X leaf surface
+area. We captured 132 images in total, making 66 abaxial-adaxial image
+pairs. The position of all stomata were recorded using ImageJ
+(\protect\hyperlink{ref-schneider_nih_2012}{Schneider, Rasband, and
+Eliceiri 2012}).
 
-\hypertarget{single-surface-analysis}{%
-\subsection{Single Surface Analysis}\label{single-surface-analysis}}
+\hypertarget{single-surface-analyses}{%
+\subsection{Single surface analyses}\label{single-surface-analyses}}
 
 We tested whether stomata are non-randomly distributed by comparing the
 observed stomatal patterning to a random uniform pattern. For each leaf
@@ -473,22 +473,25 @@ synthetic \(\mathrm{NNI}\) values (one-tailed test).
 where \(\overline{D}_E\) is:
 
 \begin{equation}\label{eq:emd}
-  \mathrm{\overline{D}_E} = \frac{0.5}{\sqrt{A_l/n_\text{stomata}}}
+  \overline{D}_E = \frac{0.5}{\sqrt{A_\text{leaf} / n_\text{stomata}}}
 \end{equation}
 
-\(A_l\) is leaf area and \(n_\text{stomata}\) the number of stomata.
-\(\overline{D}_E\) is the theoretical average distance to the nearest
-neighbor of each stomate if stomata were randomly distributed (CITE;
-Clark and Evans, 1954). And \(\overline{D}_O\) calculated for each
-synthetic data set is:
+\noindent \(A_\text{leaf}\) is leaf area visible in the sampled field
+and \(n_\text{stomata}\) the number of stomata. \(\overline{D}_E\) is
+the theoretical average distance to the nearest neighbor of each stomate
+if stomata were uniformly randomly distributed
+(\protect\hyperlink{ref-clark_distance_1954}{Clark and Evans 1954}). And
+\(\overline{D}_O\) calculated for each synthetic data set is:
 
 \begin{equation}\label{eq:omd}
-  \mathrm{\overline{D}_O} = \frac{\sum_{i=1}^{n_\text{stomata}}d_i}{n_\text{stomata}}
+  \overline{D}_O = \frac{\sum_{i=1}^{n_\text{stomata}}d_i}{n_\text{stomata}}
 \end{equation}
 
 \(d_i\) is the distance between \(\text{stomate}_i\) and its nearest
 neighbor. We calculated \(\mathrm{NNI}\) using the R package
-\textbf{spatialEco} version 2.0.1.
+\textbf{spatialEco} version 2.0.1
+(\protect\hyperlink{ref-evans_spatialeco_2023}{J. S. Evans and Murphy
+2023}).
 
 For each sample image, we also simulated \(10^3\) synthetic data with
 \(n\) stomata ideally dispersed in an equilateral triangular grid. For
@@ -501,43 +504,34 @@ posterior distribution of \(\lambda\) with a flat prior distribution.
 This allows us to integrate over uncertainty in the stomatal density
 from the sample image.
 
-We calculated the dispersion index \(\mathrm{DI}\)) which varies from
-zero to one. Zero is uniformly random and one is ideally dispersed:
+We developed a dispersion index \(\mathrm{DI}\) to quantify how close
+observed stomatal distributions are to random uniform versus maximally
+dispered in an equilateral triangular grid. \(\mathrm{DI}\) varies from
+zero to one, where zero is uniformly random and one is ideally
+dispersed:
 
 \begin{equation}\label{eq:disp}
   \mathrm{DI} = \frac{\mathrm{NNI} - \text{median}(\mathrm{NNI_{random}})}{\text{median}(\mathrm{NNI_{uniform}}) - \text{median}(\mathrm{NNI_{random}})}
 \end{equation}
 
-Uniformly distributed stomata on a leaf with stomatal density (\(D_S\))
-maximize \(\overline{D}_O\) in an equilateral triangle pattern with side
-lengths (\(s\)) equal to two times the incircle radius or apothem,
-\(a\), of a regular hexagon with area (\(A_\text{hex}\)) equal to the
-area of the leaf (\(A_l\)) divided by the number of stomata
-(\(n_\text{stomata}\)) on the leaf according to Eq. \ref{eq:eq2}:
+\noindent \(\mathrm{NNI}\) is calculated for each sample image as
+described above; \(\text{median}(\mathrm{NNI_{random}})\) and
+\(\text{median}(\mathrm{NNI_{uniform}})\) are calculated from the dry og
+synthetic data specific to each sample image as described above. We
+tested whether light treatment affects \(\mathrm{DI}\) and \(D_S\) using
+analysis of variance (ANOVA).
 
-\begin{equation}\label{eq:eq2}
-  s = \frac{\sqrt{2}} {3^{1/4} \sqrt{n_\text{stomata} / A_l}}
-\end{equation}
-
-As all sides of an equilateral triangle have the same length, the
-average nearest neighbor distance for a given \(D_S\) is maximized and
-each stomate occupies the same hexagonal area (\(A_\text{hex}\)). The
-closer to one \(DI\) is, the more uniform an area each of its stomata
-supply with CO\(_2\) during photosynthesis. We tested whether light
-treatment affects \(\mathrm{DI}\) and \(D_S\) using analysis of variance
-(ANOVA).
-
-Finally, to test our hypothesis that stomatal length is modulated by the
-area of the leaf to which it supplies CO\(_2\), we examined the
-relationship between stomatal zone area and stomatal length using a
-Bayesian generalized non-linear multilevel model with the R package
-\textbf{brms} version 2.20.1. Stomatal zone area was calculated using
-voronoi tessellation (e.g.~Fig. \ref{fig:example}). The stomatal zone
-area, \(S_\text{area}\), is the region of the leaf surface whose
-distance to stomate, \(S\), is less than the distance to any other
-stomate, \(S\). Stomatal length was measured in \texttt{ImageJ}
-(\protect\hyperlink{ref-schneider_nih_2012}{Schneider, Rasband, and
-Eliceiri 2012}).
+Finally, we examined the relationship between stomatal zone area and
+stomatal length using a Bayesian generalized non-linear multilevel model
+with the R package \textbf{brms} version 2.20.1
+(\protect\hyperlink{ref-burkner_brms_2017}{Bürkner 2017},
+\protect\hyperlink{ref-burkner_advanced_2018}{2018}). Stomatal zone area
+was calculated using Voronoi tessellation (e.g.~Fig. \ref{fig:example}).
+The stomatal zone area, \(S_\text{area}\), is the region of the leaf
+surface whose distance to stomate, \(S\), is less than the distance to
+any other stomate, \(S\). Stomatal length was measured in
+\texttt{ImageJ} (\protect\hyperlink{ref-schneider_nih_2012}{Schneider,
+Rasband, and Eliceiri 2012}).
 
 \hypertarget{paired-abaxial-and-adaxial-surface-analysis}{%
 \subsection{Paired Abaxial and Adaxial Surface
@@ -929,8 +923,8 @@ A_\text{max} = A_\text{mm} * \varphi * i / (A_\text{mm} + \varphi * i)
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-\hypertarget{single-surface-analysis-1}{%
-\subsection{Single surface analysis}\label{single-surface-analysis-1}}
+\hypertarget{single-surface-analysis}{%
+\subsection{Single surface analysis}\label{single-surface-analysis}}
 
 \begin{figure}[ht]
 \includegraphics[width=\textwidth]{figures/single-surface.pdf}
@@ -1096,6 +1090,17 @@ Buckley, Thomas N, Lawren Sack, and Graham D Farquhar. 2017. {``Optimal
 Plant Water Economy.''} \emph{Plant, Cell \& Environment} 40 (6):
 881--96. \url{https://doi.org/10.1111/pce.12823}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-burkner_brms_2017}{}}%
+Bürkner, Paul-Christian. 2017. {``\textbf{Brms} : {An} \emph{r}
+{Package} for {Bayesian} {Multilevel} {Models} {Using} \emph{Stan}.''}
+\emph{Journal of Statistical Software} 80 (1).
+\url{https://doi.org/10.18637/jss.v080.i01}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-burkner_advanced_2018}{}}%
+---------. 2018. {``Advanced {Bayesian} {Multilevel} {Modeling} with the
+{R} {Package} Brms.''} \emph{The R Journal} 10 (1): 395.
+\url{https://doi.org/10.32614/RJ-2018-017}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-bussis_stomatal_2006}{}}%
 Büssis, Dirk, Uritza von Groll, Joachim Fisahn, and Thomas Altmann.
 2006. {``Stomatal Aperture Can Compensate Altered Stomatal Density in
@@ -1115,6 +1120,11 @@ Lower Photosynthetic Capacity of Ferns as Compared with Angiosperms in a
 Common Garden Study: {Photosynthetic} Comparison in Ferns and
 Angiosperms.''} \emph{Plant, Cell \& Environment} 38 (3): 448--60.
 \url{https://doi.org/10.1111/pce.12402}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-clark_distance_1954}{}}%
+Clark, Philip J., and Francis C. Evans. 1954. {``Distance to Nearest
+Neighbor as a Measure of Spatial Relationships in Populations.''}
+\emph{Ecology} 35 (4): 445--53. \url{https://doi.org/10.2307/1931034}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-cowan_stomatal_1977}{}}%
 Cowan, IR, and GD Farquhar. 1977. {``Stomatal Function in Relation to
@@ -1162,6 +1172,10 @@ Evans, J. R., R. Kaldenhoff, B. Genty, and I. Terashima. 2009.
 Leaves.''} \emph{Journal of Experimental Botany} 60 (8): 2235--48.
 \url{https://doi.org/10.1093/jxb/erp117}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-evans_spatialeco_2023}{}}%
+Evans, Jeffrey S., and Melanie A. Murphy. 2023. \emph{{spatialEco}}.
+\url{https://github.com/jeffreyevans/spatialEco}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-farquhar_biochemical_1980}{}}%
 Farquhar, G. D., S. von Caemmerer, and J. A. Berry. 1980. {``A
 Biochemical Model of Photosynthetic {CO2} Assimilation in Leaves of {C3}
@@ -1177,9 +1191,9 @@ Society B: Biological Sciences} 367 (1588): 537--46.
 \url{https://doi.org/10.1098/rstb.2011.0270}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-gay_influence_1975}{}}%
-Gay, A. P., and R. G. Hurd. 1975. {``{THE} {INFLUENCE} {OF} {LIGHT} {ON}
-{STOMATAL} {DENSITY} {IN} {THE} {TOMATO}.''} \emph{New Phytologist} 75
-(1): 37--46. \url{https://doi.org/10.1111/j.1469-8137.1975.tb01368.x}.
+Gay, A. P., and R. G. Hurd. 1975. {``The Influence of Light on Stomatal
+Density in the Tomato.''} \emph{New Phytologist} 75 (1): 37--46.
+\url{https://doi.org/10.1111/j.1469-8137.1975.tb01368.x}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-geisler_oriented_2000}{}}%
 Geisler, Matt, Jeanette Nadeau, and Fred D. Sack. 2000. {``Oriented

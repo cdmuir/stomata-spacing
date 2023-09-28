@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  27 SEP 2023 21:49
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  28 SEP 2023 08:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -680,76 +680,80 @@ LaTeX Warning: Reference `fig:amphi_grid' on page 4 undefined on input line 384
 \openout5 = `ms.ttt'.
 
 (ms.ttt) [4] [5] [6]
-Overfull \hbox (8.94621pt too wide) in paragraph at lines 567--583
+Overfull \hbox (8.94621pt too wide) in paragraph at lines 561--577
 \TU/lmr/m/n/12 We modeled photosynthesis CO$[]$ assimilation rate using a spati
 ally-explicit two-dimensional
  []
 
 [7]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 638.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 632.
 [8]
-Overfull \hbox (13.10547pt too wide) in paragraph at lines 721--721
+Overfull \hbox (13.10547pt too wide) in paragraph at lines 715--715
 []|\TU/lmr/m/n/12 Biochemical 
  []
 
 
-Overfull \hbox (15.22597pt too wide) in paragraph at lines 741--741
+Overfull \hbox (15.22597pt too wide) in paragraph at lines 735--735
 []|$\OML/cmm/m/it/12 molCO\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 =molRubisco=molChl$
 |  
  []
 
 
-Overfull \hbox (26.83347pt too wide) in paragraph at lines 747--747
+Overfull \hbox (26.83347pt too wide) in paragraph at lines 741--741
 []|\TU/lmr/m/n/12 Environmental 
  []
 
 
-Overfull \hbox (1.10225pt too wide) in paragraph at lines 751--751
+Overfull \hbox (1.10225pt too wide) in paragraph at lines 745--745
 []|\TU/lmr/m/n/12 16.96367|  
  []
 
 
-Overfull \hbox (1.10225pt too wide) in paragraph at lines 753--753
+Overfull \hbox (1.10225pt too wide) in paragraph at lines 747--747
 []|\TU/lmr/m/n/12 8.584027|  
  []
 
 [9] [10]
 
 LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 793.
+(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 787.
+
+
+Overfull \vbox (1.32216pt too high) detected at line 828
+ []
 
 [11] [12] [13]
 \openout6 = `ms.fff'.
 
-(ms.fff) [14] [15] [16]
-Overfull \hbox (17.48116pt too wide) in paragraph at lines 1119--1123
+(ms.fff) [14] [15]
+Overfull \hbox (17.48116pt too wide) in paragraph at lines 1129--1133
 \TU/lmr/m/n/12 and Environment.” \TU/lmr/m/it/12 STOMATAL FUNCTION IN RELATION 
 TO LEAF METABOLISM
  []
 
-
-Overfull \hbox (38.84813pt too wide) in paragraph at lines 1144--1151
+[16]
+Overfull \hbox (38.84813pt too wide) in paragraph at lines 1154--1161
 \TU/lmr/m/n/12 “Two Sides to Every Leaf: Water and <Span Style=”font-Variant:sm
 all-Caps;”>CO</Span>
  []
 
 [17]
-Overfull \hbox (10.27614pt too wide) in paragraph at lines 1197--1203
+Overfull \hbox (10.27614pt too wide) in paragraph at lines 1211--1217
 \TU/lmr/m/n/12 derstanding Airspace in Leaves: <Span Style=”font-Variant:small-
 Caps;”>3D</Span>
  []
 
 Missing character: There is no � (U+FFFD) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[18] [19] [20]
-Overfull \hbox (7.5516pt too wide) in paragraph at lines 1397--1403
+[18] [19]
+Overfull \hbox (7.5516pt too wide) in paragraph at lines 1411--1417
 [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][
 ][] [] [][] [] [][][] [] [][] [] [][][][][][][][] [] [][][][] [] [][][][][] [][
 ] [][][][]$[]\TU/lmr/m/n/12 . 
  []
 
-AED endfloat: Processing end Figures and Tables [21] (./ms.lot)
+[20] AED endfloat: Processing end Figures and Tables [21] (./ms.lot)
 \tf@lot=\write8
 \openout8 = `ms.lot'.
 
@@ -802,13 +806,13 @@ File: figures/dual-surface.pdf Graphic file (type pdf)
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: B6362290AAC409B2A4B3171515311F44;2897.
+(rerunfilecheck)             Checksum: 8726B41C6A5AB49E3E13E9ABC6CB5A7B;2897.
  ) 
 Here is how much of TeX's memory you used:
- 14147 strings out of 476683
- 223802 string characters out of 5804047
- 1873018 words of memory out of 5000000
- 34116 multiletter control sequences out of 15000+600000
+ 14146 strings out of 476683
+ 223792 string characters out of 5804047
+ 1872018 words of memory out of 5000000
+ 34115 multiletter control sequences out of 15000+600000
  523100 words of font info for 100 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,9n,76p,539b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s

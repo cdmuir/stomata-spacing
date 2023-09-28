@@ -373,11 +373,11 @@ simulate_grids_from_data <- function(
   while (i < n_grid) {
     lambda = rgamma(1, shape = n_stomata, scale = 1)
     U = D2U(lambda / (pixels_x * pixels_y))
-    g <- make_equal_stomata_grid(U, pixels_x = pixels_x, pixels_y = pixels_y,
+    g = make_equal_stomata_grid(U, pixels_x = pixels_x, pixels_y = pixels_y,
                                  jitter = TRUE, rotate = TRUE)
     if (g$n_stomata[1] == n_stomata) {
-      i <- i + 1
-      equal_grids[[i]] <- g
+      i = i + 1
+      equal_grids[[i]] = g
     }
   }
 
@@ -480,16 +480,12 @@ kerneldensity = function(
 
   # kernel density function
   # define extent of analysis
-  e <- extent(0, pixels_x, 0, pixels_y)
+  e = extent(0, pixels_x, 0, pixels_y)
   # run sp.kde which builds a kernel density estimate
-  kernelden <- sp.kde(x = stomata_sp, bw = 120,
+  kernelden = sp.kde(x = stomata_sp, bw = 120,
                       nr = pixels_y, nc = pixels_x,
                       newdata = e, standardize = TRUE,
-                      mask = F)
-
-  # return kernel density raster
-  return(kernelden)
-
+                      mask = FALSE)
 
   # return result
   return(kernelden)
