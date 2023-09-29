@@ -7,7 +7,53 @@
 source("r/header.R")
 source("r/photo_2d_pm.R")
 
-ph2d = photo_2d_pm("aligned", replace = list(I_0 = 0.002, n_z = 300))
+library(furrr)
+plan(multisession, workers = 10)
+
+library(progressr)
+handlers(global = TRUE)
+handlers("progress", "beepr")
+
+input = crossing(
+  n_x = c(50, 100),
+  n_z = c(250, 500),
+  stomatal_arrangement = c("aligned", "offset"),
+  I_0 = round(seq(0.0, 0.001, 0.0001), 4)
+) %>%
+  split(~ seq_len(nrow(.)))
+
+run_photo_2d_pm = function(input, fit_rubisco) {
+
+  p = progressor(along = input)
+  out = future_map(input, \(.x, fit_rubisco) {
+
+    r = with(.x, list(I_0 = I_0, n_x = n_x, n_z = n_z))
+    ph2d = photo_2d_pm(.x$stomatal_arrangement, fit_rubisco = fit_rubisco, replace = r)
+    ph2d$parms$stomatal_arrangement = .x$stomatal_arrangement
+    ph2d$parms$A_n = calc_2d_pm_An(ph2d)
+    p()
+    ph2d
+
+  }, fit_rubisco = fit_rubisco)
+
+  out
+
+}
+
+tmp = run_photo_2d_pm(input, fit_rubisco)
+
+tmp |>
+  map("parms") |>
+  map_dfr(\(x) as_tibble(x[c("stomatal_arrangement", "n_z", "n_x", "I_0", "A_n")])) |>
+  ggplot(aes(I_0, A_n, color = stomatal_arrangement)) +
+  facet_grid(n_z ~ n_x) +
+  geom_point()
+
+
+r = list(I_0 = 0.0003, n_x = 50, n_z = 500)
+ph2d = photo_2d_pm("aligned", replace = r)
+
+ph2d = photo_2d_pm("aligned", replace = list(I_0 = 0.001))
 
 # Plot results
 df_C = expand.grid(
@@ -23,18 +69,6 @@ ggplot(df_C, aes(x, z, z = value)) +
   coord_equal()
 
 # Calculate area-based A_n
-C_liq_mat = matrix(
-  ph2d$fit$y[(ph2d$parms$n_x * ph2d$parms$n_z + 1):(2 * ph2d$parms$n_x * ph2d$parms$n_z)],
-  nrow = ph2d$parms$n_z, ncol = ph2d$parms$n_x
-)
-r_c = calc_2d_pm_rc(C_liq_mat, ph2d$parms)
-r_d = ph2d$parms[["r_d"]]
-r_p = r_c * ph2d$parms[["gamma_star"]] / C_liq_mat
-
-a_n = (r_c - r_p - r_d) * (ph2d$parms[["S_m_mat"]] / ph2d$parms[["T_leaf"]]) * ph2d$parms[["V_strom"]]
-
-# 1 m^2 of 200 um thick leaf is 2e-04 m^3
-mean(a_n) * ph2d$parms[["T_leaf"]] * 1e6 # 24.7955
 
 df_A = expand.grid(
   z = seq_len(parms[["n_z"]]),

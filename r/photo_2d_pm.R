@@ -142,7 +142,7 @@ derive_2d_pm_jmax = function(parms, ...) {
   jscale = parms[["J_max"]] / mu_j_max_z1
   parms$j_max_z = jscale * j_max_z1
   # Check
-  checkmate::assert_true(parms[["J_max"]] == mean(parms$j_max_z * parms[["S_m_z"]] * parms[["V_strom"]]))
+  checkmate::assert_true(abs(parms[["J_max"]] - mean(parms$j_max_z * parms[["S_m_z"]] * parms[["V_strom"]])) < 1e-6)
 
   parms
 
@@ -158,7 +158,7 @@ derive_2d_pm_jinf = function(parms, ...) {
   jscale = J_inf / mu_j_inf_z1
   parms$j_inf_z = jscale * j_inf_z1
   # Check
-  checkmate::assert_true(J_inf == mean(parms$j_inf_z * parms[["S_m_z"]] * parms[["V_strom"]]))
+  checkmate::assert_true(abs(J_inf - mean(parms$j_inf_z * parms[["S_m_z"]] * parms[["V_strom"]])) < 1e-6)
 
   parms
 
@@ -286,3 +286,27 @@ rd_2p_pm = function(t, y, parms, ...) {
 
 }
 
+# Calculate A_n per area from output
+calc_2d_pm_An = function(ph2d) {
+
+  # ph2d is object returned from photo_2d_pm()
+  df_C = expand.grid(
+    z = seq_len(ph2d$parms[["n_z"]]),
+    x = seq_len(ph2d$parms[["n_x"]]),
+    name = c("C_ias", "C_liq")
+  ) |>
+    mutate(value = ph2d$fit$y)
+
+  C_liq_mat = matrix(
+    ph2d$fit$y[(ph2d$parms$n_x * ph2d$parms$n_z + 1):(2 * ph2d$parms$n_x * ph2d$parms$n_z)],
+    nrow = ph2d$parms$n_z, ncol = ph2d$parms$n_x
+  )
+  r_c = calc_2d_pm_rc(C_liq_mat, ph2d$parms)
+  r_d = ph2d$parms[["r_d"]]
+  r_p = r_c * ph2d$parms[["gamma_star"]] / C_liq_mat
+
+  a_n = (r_c - r_p - r_d) * (ph2d$parms[["S_m_mat"]] / ph2d$parms[["T_leaf"]]) * ph2d$parms[["V_strom"]]
+
+  mean(a_n) * ph2d$parms[["T_leaf"]] * 1e6
+
+}
