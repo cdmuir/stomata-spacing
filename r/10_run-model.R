@@ -15,11 +15,12 @@ c(10, 100, 1000) |>
   divide_by(2)
 
 # Palisade porosity based on Lundgren et al. (2019), fig 5I
+
 input = crossing(
   n_x = c(17, 53, 169),
-  n_z = c(100, 300, 500),
+  n_z = c(101, 301, 501),
   stomatal_arrangement = c("aligned", "offset"),
-  I_0 = round(c(0.00005, 0.00025, 0.001), 4),
+  I_0 = round(c(0.00005, 0.00025, 0.001), 5),
   phi_pal = c(0.1, 0.2, 0.3)
 ) %>%
   split(~ seq_len(nrow(.)))

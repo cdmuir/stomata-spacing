@@ -53,6 +53,8 @@ library(tidyr)
 library(tripack)
 library(units)
 
+theme_set(theme_cowplot())
+
 # Fit Rubisco model
 x_depth = c(145, 830.5)
 y_depth = c(0, 700)
