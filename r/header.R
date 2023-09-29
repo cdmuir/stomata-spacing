@@ -17,6 +17,7 @@ library(corrplot)
 library(cowplot)
 library(dplyr)
 library(forcats)
+library(furrr)
 library(ggdist)
 library(ggforce)
 library(ggimage)
@@ -31,6 +32,7 @@ library(metR)
 library(mgcv)
 library(parallel)
 library(progress)
+library(progressr)
 library(purrr)
 library(purrrlyr)
 library(RANN)
@@ -56,7 +58,8 @@ x_depth = c(145, 830.5)
 y_depth = c(0, 700)
 x_rubisco = c(558, 56.5)
 y_rubisco = c(0, 100)
-nishio_carbon_1993_fig5 = read_csv("raw-data/nishio_carbon_1993_fig5.csv") |>
+nishio_carbon_1993_fig5 = read_csv("raw-data/nishio_carbon_1993_fig5.csv",
+                                   show_col_types = FALSE) |>
   mutate(
     depth = raw_depth * (diff(y_depth) / diff(x_depth)) - x_depth[1],
     rubisco = raw_rubisco * (diff(y_rubisco) / diff(x_rubisco)) -

@@ -1,3 +1,4 @@
 objects/nni_synthetic.rds filter=lfs diff=lfs merge=lfs -text
 objects/synthetic_data.rds filter=lfs diff=lfs merge=lfs -text
 raw-data/images.zip filter=lfs diff=lfs merge=lfs -text
+objects/model_output.rds filter=lfs diff=lfs merge=lfs -text
