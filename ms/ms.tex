@@ -442,15 +442,14 @@ coordination in amphistomatous leaves.
 co-author and ask him to write methods on image acquisition.{]}
 
 \emph{Arabidopsis thaliana} plants were grown in three different light
-environments: low light (50 PAR), medium light (100 PAR), and high light
-(200 PAR)\ldots{} Once leaves were mature, we captured images of the
-abaxial and adaxial leaf surfaces using xxx bifocal microscope. This
-microscope allows the capture of two focal lengths that are spatially
-correlated such that pixel (1,1) of the abaxial surface image is
-directly above pixel (1,1) of the adaxial surface image, and so
-on\ldots{} Images were 512 by 512 pixels and covered X leaf surface
-area. We captured 132 images in total, making 66 abaxial-adaxial image
-pairs. The position of all stomata were recorded using ImageJ
+environments: low light (PAR = 50
+\(\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}\)), medium light (100
+\(\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}\)), and high light (200
+\(\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}\)). PAR stands for
+photosynthetically active radiation. Once leaves were mature, we
+captured images of the abaxial and adaxial leaf surfaces using XXX. We
+captured 132 images in total, making 66 abaxial-adaxial image pairs. We
+measured stomatal position and size using ImageJ
 (\protect\hyperlink{ref-schneider_nih_2012}{Schneider, Rasband, and
 Eliceiri 2012}).
 
@@ -463,35 +462,33 @@ surface image with \(n\) stomata we generated \(10^3\) synthetic
 surfaces with \(n\) stomata uniformly randomly distributed on the
 surface. For each sample image, we compared the observed Nearest
 Neighbor Index (\(\mathrm{NNI}\)) to the null distribution of
-\(\mathrm{NNI}\) values calculated from the synthetic data set. The
-observed stomatal distribution is dispersed relative to a uniform random
-distribution if the observed \(NNI\) is greater than 95\% of the
-synthetic \(\mathrm{NNI}\) values (one-tailed test).
-
+\(\mathrm{NNI}\) values calculated from the synthetic data set.
 \(\mathrm{NNI}\) is the ratio of observed mean distance
 (\(\overline{D}_O\)) to the expected mean distance (\(\overline{D}_E\))
 where \(\overline{D}_E\) is:
 
 \begin{equation}\label{eq:emd}
-  \overline{D}_E = \frac{0.5}{\sqrt{A_\text{leaf} / n_\text{stomata}}}
+  \overline{D}_E = \frac{0.5}{\sqrt{A_\text{leaf} / n_\text{stomata}}}.
 \end{equation}
 
 \noindent \(A_\text{leaf}\) is leaf area visible in the sampled field
 and \(n_\text{stomata}\) the number of stomata. \(\overline{D}_E\) is
 the theoretical average distance to the nearest neighbor of each stomate
 if stomata were uniformly randomly distributed
-(\protect\hyperlink{ref-clark_distance_1954}{Clark and Evans 1954}). And
+(\protect\hyperlink{ref-clark_distance_1954}{Clark and Evans 1954}).
 \(\overline{D}_O\) calculated for each synthetic data set is:
 
 \begin{equation}\label{eq:omd}
-  \overline{D}_O = \frac{\sum_{i=1}^{n_\text{stomata}}d_i}{n_\text{stomata}}
+  \overline{D}_O = \frac{\sum_{i=1}^{n_\text{stomata}}d_i}{n_\text{stomata}},
 \end{equation}
 
-\(d_i\) is the distance between \(\text{stomate}_i\) and its nearest
-neighbor. We calculated \(\mathrm{NNI}\) using the R package
-\textbf{spatialEco} version 2.0.1
+\noindent where \(d_i\) is the distance between \(\text{stomate}_i\) and
+its nearest neighbor. We calculated \(\mathrm{NNI}\) using the \emph{R}
+package \textbf{spatialEco} version 2.0.1
 (\protect\hyperlink{ref-evans_spatialeco_2023}{J. S. Evans and Murphy
-2023}).
+2023}). The observed stomatal distribution is dispersed relative to a
+uniform random distribution if the observed \(NNI\) is greater than 95\%
+of the synthetic \(\mathrm{NNI}\) values (one-tailed test).
 
 For each sample image, we also simulated \(10^3\) synthetic data with
 \(n\) stomata ideally dispersed in an equilateral triangular grid. For
@@ -516,22 +513,25 @@ dispersed:
 
 \noindent \(\mathrm{NNI}\) is calculated for each sample image as
 described above; \(\text{median}(\mathrm{NNI_{random}})\) and
-\(\text{median}(\mathrm{NNI_{uniform}})\) are calculated from the dry og
+\(\text{median}(\mathrm{NNI_{uniform}})\) are calculated from the
 synthetic data specific to each sample image as described above. We
-tested whether light treatment affects \(\mathrm{DI}\) and \(D_S\) using
-analysis of variance (ANOVA).
+tested whether light treatment affects \(\mathrm{DI}\) and stomatla
+density (\(D_S\)) using analysis of variance (ANOVA).
 
 Finally, we examined the relationship between stomatal zone area and
 stomatal length using a Bayesian generalized non-linear multilevel model
-with the R package \textbf{brms} version 2.20.1
+fit with the \emph{R} package \textbf{brms} version 2.15.0
 (\protect\hyperlink{ref-burkner_brms_2017}{Bürkner 2017},
-\protect\hyperlink{ref-burkner_advanced_2018}{2018}). Stomatal zone area
-was calculated using Voronoi tessellation (e.g.~Fig. \ref{fig:example}).
-The stomatal zone area, \(S_\text{area}\), is the region of the leaf
-surface whose distance to stomate, \(S\), is less than the distance to
-any other stomate, \(S\). Stomatal length was measured in
-\texttt{ImageJ} (\protect\hyperlink{ref-schneider_nih_2012}{Schneider,
-Rasband, and Eliceiri 2012}).
+\protect\hyperlink{ref-burkner_advanced_2018}{2018}) and \emph{Stan}
+version 2.27.0
+(\protect\hyperlink{ref-stan_development_team_stan_2023}{\textbf{stan\_development\_team\_stan\_2023?}}).
+Stomatal zone area was calculated using Voronoi tessellation (e.g.~Fig.
+\ref{fig:example}). The stomatal zone area, \(S_\text{area}\), is the
+region of the leaf surface whose distance to stomate, \(S\), is less
+than the distance to any other stomate, \(S\). Stomatal length was
+measured in ImageJ
+(\protect\hyperlink{ref-schneider_nih_2012}{Schneider, Rasband, and
+Eliceiri 2012}).
 
 \hypertarget{paired-abaxial-and-adaxial-surface-analysis}{%
 \subsection{Paired Abaxial and Adaxial Surface
@@ -541,55 +541,72 @@ To test whether the position of ab- and adaxial stomata are coordinated
 we compared the observed distribution to a null distribution where the
 positions on each surface are random. For each pair of surfaces
 (observed or synthetic) we calculated the distance squared between each
-to the nearest stomatal centroid with the R package \textbf{raster}
-version 3.6.23. Then we calculated the cell-wise Pearson correlation
-coefficient. If stomatal positions on each surface are coordinated to
-minimize the distance between mesophyll and the nearest stomate, then we
-expect a negative correlation. A cell that is far from a stomate on one
-surface should be near a stomate on the other surface (Fig.
-\ref{fig:amphi}). We generated a null distribution of the correlation
-coefficient by simulating \(10^3\) synthetic data sets for each observed
-pair. For each synthetic data set, we simulated stomatal position using
-a random uniform distribution, as described above, matching the number
-of stomata on abaxial and adaxial leaf surfaces. Stomatal positions on
-each surface are coordinated if the correlation coefficient is greater
-than 95\% of the synthetic correlation values (one-tailed test).
+to the nearest stomatal centroid with the \emph{R} package
+\textbf{raster} version 3.6.23. Then we calculated the cell-wise Pearson
+correlation coefficient. If stomatal positions on each surface are
+coordinated to minimize the distance between mesophyll and the nearest
+stomate, then we expect a negative correlation. A cell that is far from
+a stomate on one surface should be near a stomate on the other surface
+(Fig. \ref{fig:amphi}). We generated a null distribution of the
+correlation coefficient by simulating \(10^3\) synthetic data sets for
+each observed pair. For each synthetic data set, we simulated stomatal
+position using a random uniform distribution, as described above,
+matching the number of stomata on abaxial and adaxial leaf surfaces.
+Stomatal positions on each surface are coordinated if the correlation
+coefficient is greater than 95\% of the synthetic correlation values
+(one-tailed test).
 
 \hypertarget{modeling-photosynthesis}{%
 \subsection{Modeling Photosynthesis}\label{modeling-photosynthesis}}
 
 We modeled photosynthesis CO\(_2\) assimilation rate using a
 spatially-explicit two-dimensional reaction diffusion model using a
-porous medium approximation (Parkhurst 1994). Consider a two-dimensional
-leaf where stomata occur on each surface in a regular sequence with
-interstomatal distance \(U\). The main outcome we assessed is the
-advantage of offsetting the position of stomata on each surface compared
-to have stomata on the same \(x\) position on each surface. With these
-assumptions, by symmetry, we only need to model two stomata, one abaxial
-and one adaxial, from \(x = 0\) to \(x = U/2\) and from the adaxial
-surface at \(y = 0\) to the abaxial surface at \(y = L\), the leaf
-thickness. We arbitrarily set the adaxial stomate at \(x = 0\) and
-toggled the abaxial stomata position between \(x = U/2\) (offset) or
-\(x = 0\) (below adaxial stomate). The advantage of offsetting stomatal
-position on each surface is the photosynthetic rate of the leaf with
-offset stomata compared to that with stomata aligned in the same \(x\)
-position:
+porous medium approximation
+(\protect\hyperlink{ref-parkhurst_intercellular_1994}{\textbf{parkhurst\_intercellular\_1994?}})
+using the finite element method (FEM) following
+(\protect\hyperlink{ref-earles_excess_2017}{\textbf{earles\_excess\_2017?}}).
+Consider a two-dimensional leaf where stomata occur on each surface in a
+regular sequence with interstomatal distance \(U\). The main outcome we
+assessed is the advantage of offsetting the position of stomata on each
+surface compared to have stomata on the same \(x\) position on each
+surface. With these assumptions, by symmetry, we only need to model two
+stomata, one abaxial and one adaxial, from \(x = 0\) to \(x = U/2\) and
+from the adaxial surface at \(y = 0\) to the abaxial surface at
+\(y = L\), the leaf thickness. We arbitrarily set the adaxial stomate at
+\(x = 0\) and toggled the abaxial stomata position between \(x = U/2\)
+(offset) or \(x = 0\) (below adaxial stomate). The `coordination
+advantage' of offsett stomatal position on each surface is the
+photosynthetic rate of the leaf with offset stomata compared to that
+with stomata aligned in the same \(x\) position:
 
 \begin{equation} \label{eq:coordination_advantage}
   \text{coordination advantage} = \frac{A_\text{offset}}{A_\text{aligned}}
 \end{equation}
 
-We modelled the coordination advantage over a range of leaf thicknesses,
+We modeled the coordination advantage over a range of leaf thicknesses,
 stomatal densities, photosynthetic capacities, and light environments to
 understand when offsetting stomatal position on each surface might
-deliver a significant photosynthetic advantage.
+deliver a significant photosynthetic advantage (Table
+\ref{tab:model_var}).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Variable & Parameter range & Units \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(I_0\) & \(50-1000\) & \(\mu\)mol m\(^{-2}\) s\(^{-1}\) \\
+\(\varphi_\text{pal}\) & \(0.1-0.3\) & m\(^3\) airspace m\(^{-3}\)
+leaf \\
+\(T_\text{leaf}\) & \(101-501\) & \(\mu\)m \\
+\(U\) & \(17-169\) & \(\mu\)m \\
+\end{longtable}
+
+WORKING HERE - make table of parameter combinations!
 
 \hypertarget{light-propogation-model}{%
 \subsubsection{Light propogation model}\label{light-propogation-model}}
-
-{[}NOTE: we should probably adjust light attenuation to be proportional
-to the chlorophyll concentration which is one of the parameters in the
-biochemical models.{]}
 
 Irradiance at depth \(y\) in a leaf with thickness \(L\) is modeled
 following Lloyd \emph{et al.} (1992):
@@ -758,16 +775,9 @@ conductance \\
 \hypertarget{two-dimensional-model}{%
 \subsection{Two-dimensional model}\label{two-dimensional-model}}
 
-FYI - something is wrong with the model. I think the units are off
-somewhere because the result is very sensitive to grid size and the
-values often aren't reasonable. I'll need to troubleshoot more, but
-maybe something will be obvious to you.
-
-We used the \texttt{steady.2D()} function in the R package
-\textbf{rootSolve}. The function needs a function to calculate the time
-differential for node \(ij\), \(\frac{dC_{m,ij}}{dt}\). The R function
-below uses the light propagation, biochemical, and diffusional model to
-calculate a matrix of \(\frac{dC_{m,ij}}{dt}\) values:
+We used the \texttt{steady.2D()} function in the \emph{R} package
+\textbf{rootSolve} version 1.8.2.4
+(\protect\hyperlink{ref-soetaert_practical_2009}{\textbf{soetaert\_practical\_2009?}}).
 
 \begin{Shaded}
 \begin{Highlighting}[]

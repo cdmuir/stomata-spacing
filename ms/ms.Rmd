@@ -76,6 +76,7 @@ knitr::opts_knit$set(root.dir = "..")
 ```{r}
 source("r/header.R")
 fit = readr::read_rds("objects/fit.rds")
+model_var_table = readr::read_rds("objects/model_var_table.rds")
 ```
 
 # Introduction
@@ -169,7 +170,11 @@ We modeled photosynthesis CO$_2$ assimilation rate using a spatially-explicit tw
   \text{coordination advantage} = \frac{A_\text{offset}}{A_\text{aligned}}
 \end{equation}
 
-We modeled the coordination advantage over a range of leaf thicknesses, stomatal densities, photosynthetic capacities, and light environments to understand when offsetting stomatal position on each surface might deliver a significant photosynthetic advantage (Table X).
+We modeled the coordination advantage over a range of leaf thicknesses, stomatal densities, photosynthetic capacities, and light environments to understand when offsetting stomatal position on each surface might deliver a significant photosynthetic advantage (Table \ref{tab:model_var}).
+
+```{r, model_var}
+knitr::kable(model_var_table)
+```
 
 WORKING HERE - make table of parameter combinations!
 

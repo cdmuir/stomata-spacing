@@ -6,11 +6,19 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE) 
+knitr::opts_chunk$set(fig.pos = 'p') # Places figures on pages separate from text
+knitr::opts_chunk$set(out.width = '100%', dpi = 300) # Figure resolution and size
+knitr::opts_chunk$set(fig.env = "figure") # Latex figure environment
+knitr::opts_knit$set(root.dir = "..")
 ```
 
-```{r dispersion, fig.cap = "Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1)", echo = TRUE}
+```{r}
+source("r/header.R")
+fit = readr::read_rds("objects/fit.rds")
+model_var_table = readr::read_rds("objects/model_var_table.rds")
+```
 
-knitr::include_graphics("figures/dispersion.pdf")
-
+```{r, model_var}
+knitr::kable(model_var_table)
 ```
