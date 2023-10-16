@@ -1,7 +1,7 @@
 \begin{figure}[ht]
 \includegraphics[width=\textwidth]{figures/single-surface.pdf}
 \caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
-\label{fig:dispersion}
+\label{fig:single-surface}
 \end{figure}
 \efloatseparator
  
@@ -15,7 +15,7 @@
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
 \caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
-\label{fig:example}
+\label{fig:tessellation-example}
 \end{figure}
 \efloatseparator
  
@@ -29,7 +29,7 @@
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/ideal-amphi-grid.pdf}
 \caption{Idealized amphistomatous stomatal grid with uniform stomatal patterning and perfect abaxial-adaxial coordination.}
-\label{fig:amphi}
+\label{fig:ideal-amphi-grid}
 \end{figure}
 \efloatseparator
  

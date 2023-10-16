@@ -64,6 +64,4 @@ model_output[, vars] |>
     by = join_by(r)
   ) |>
   select(Variable, `Parameter range`, Units) |>
-  write_rds("objects/model_var_table.rds")
-
-
+  write_rds("objects/model_var.rds")

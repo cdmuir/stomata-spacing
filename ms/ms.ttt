@@ -1,19 +1,36 @@
 \begin{table}[ht]
 \centering
-\begin{tabular}{rll}
+\begin{tabular}{ll}
   \hline
- & trait & relationship \\
+trait & relationship \\
   \hline
-1 & leaf thickness & + \\
-  2 & stomatal density & - \\
-  3 & leaf porosity & - \\
-  4 & lat.-vert. diffusion ratio & - \\
-  5 & temperature & - \\
-  6 & pressure & - \\
-  7 & Rubisco concentration & + \\
-  8 & light & + \\
+leaf thickness & + \\
+  stomatal density & - \\
+  leaf porosity & - \\
+  lat.-vert. diffusion ratio & - \\
+  temperature & - \\
+  pressure & - \\
+  Rubisco concentration & + \\
+  light & + \\
    \hline
 \end{tabular}
 \caption{A summary of the hypothesized relationships between leaf traits and environmental conditions and photosynthetic advantage of stomatal spatial coordination in amphistomatous leaves.}
 \label{tab:hypotheses}
+\end{table}
+\efloatseparator
+ 
+\begin{table}
+
+\caption{\label{tab:model_var}The parameter range of model variables tested for their effect on coordination advantage (\autoref{eq:coordination_advantage}) using a 2-D porous medium approximation. We used regularly spaced values within each range and simulated across all combinations. Here we converted model units to more conventional units (e.g. m to $\mu$m). $I_0$: PPFD incident on the leaf surface; $\varphi_\text{pal}$: Fraction of intercellular airspace (aka porosity), palisade; $T_\text{leaf}$: Leaf thickness; $U$: Interstomatal distance}
+\centering
+\begin{tabular}[t]{lll}
+\toprule
+Variable & Parameter range & Units\\
+\midrule
+$I_0$ & $50-1000$ & $\mu$mol m$^{-2}$ s$^{-1}$\\
+$\varphi_\text{pal}$ & $0.1-0.3$ & m$^3$ airspace m$^{-3}$ leaf\\
+$T_\text{leaf}$ & $101-501$ & $\mu$m\\
+$U$ & $17-169$ & $\mu$m\\
+\bottomrule
+\end{tabular}
 \end{table}

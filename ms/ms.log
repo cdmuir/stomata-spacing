@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.3.21)  16 OCT 2023 11:26
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.3.21)  16 OCT 2023 14:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -558,31 +558,31 @@ File: l3backend-xetex.def 2023-01-16 L3 backend support: XeTeX
 ) (./ms.aux)
 \openout1 = `ms.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 157.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-57.
+59.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 157.
-LaTeX Font Info:    ... okay on input line 157.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -617,123 +617,114 @@ LaTeX Font Info:    ... okay on input line 157.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 157.
+Package hyperref Info: Link coloring OFF on input line 159.
 (./ms.out) (./ms.out)
 \@outlinefile=\write7
 \openout7 = `ms.out'.
 
 \c@lstlisting=\count341
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 217.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 219.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 217.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 219.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 217
+LaTeX Font Info:    Trying to load font information for U+msa on input line 219
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 217
+LaTeX Font Info:    Trying to load font information for U+msb on input line 219
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+lasy on input line 21
-7.
+9.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 217.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 219.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 217.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 219.
 
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 217.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 219.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 217.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 219.
 
 \c@FNCT@1=\count342
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 217.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 219.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 217.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 219.
 
 
-LaTeX Warning: Hyper reference `FN' on page 1 undefined on input line 217.
+LaTeX Warning: Hyper reference `FN' on page 1 undefined on input line 219.
 
 
-LaTeX Warning: Reference `FN' on page 1 undefined on input line 217.
+LaTeX Warning: Reference `FN' on page 1 undefined on input line 219.
 
 [1
 
 
 ] [2] [3]
-
-LaTeX Warning: Reference `fig:amphi_grid' on page 4 undefined on input line 384
-.
-
 \openout5 = `ms.ttt'.
 
 (ms.ttt) [4] [5]
-Overfull \hbox (70.34898pt too wide) in paragraph at lines 521--535
+Overfull \hbox (70.34898pt too wide) in paragraph at lines 523--537
 \TU/lmr/m/n/12 sion 2.15.0 ([]Bürkner 2017[], []2018[]) and \TU/lmr/m/it/12 Sta
 n \TU/lmr/m/n/12 version 2.27.0 ([]\TU/lmr/bx/n/12 stan_development_team_stan_2
 023?[]\TU/lmr/m/n/12 ).
  []
 
 
-Overfull \hbox (8.94621pt too wide) in paragraph at lines 562--581
+Overfull \hbox (8.94621pt too wide) in paragraph at lines 564--583
 \TU/lmr/m/n/12 We modeled photosynthesis CO$[]$ assimilation rate using a spati
 ally-explicit two-dimensional
  []
 
 
-Overfull \hbox (57.35214pt too wide) in paragraph at lines 562--581
+Overfull \hbox (57.35214pt too wide) in paragraph at lines 564--583
 \TU/lmr/m/n/12 reaction diffusion model using a porous medium approximation ([]
 \TU/lmr/bx/n/12 parkhurst_intercellular_1994?[]\TU/lmr/m/n/12 )
  []
 
-[6]
-
-LaTeX Warning: Reference `tab:model_var' on page 7 undefined on input line 590.
-
-
-[7]
+[6] [7]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 649.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 653.
 [8]
-Overfull \hbox (13.10547pt too wide) in paragraph at lines 732--732
+Overfull \hbox (13.10547pt too wide) in paragraph at lines 736--736
 []|\TU/lmr/m/n/12 Biochemical 
  []
 
 
-Overfull \hbox (15.22597pt too wide) in paragraph at lines 752--752
+Overfull \hbox (15.22597pt too wide) in paragraph at lines 756--756
 []|$\OML/cmm/m/it/12 molCO\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 =molRubisco=molChl$
 |  
  []
 
 
-Overfull \hbox (26.83347pt too wide) in paragraph at lines 758--758
+Overfull \hbox (26.83347pt too wide) in paragraph at lines 762--762
 []|\TU/lmr/m/n/12 Environmental 
  []
 
 
-Overfull \hbox (1.10225pt too wide) in paragraph at lines 762--762
+Overfull \hbox (1.10225pt too wide) in paragraph at lines 766--766
 []|\TU/lmr/m/n/12 16.96367|  
  []
 
 
-Overfull \hbox (1.10225pt too wide) in paragraph at lines 764--764
+Overfull \hbox (1.10225pt too wide) in paragraph at lines 768--768
 []|\TU/lmr/m/n/12 8.584027|  
  []
 
 [9] [10]
-Overfull \hbox (108.46288pt too wide) in paragraph at lines 778--781
+Overfull \hbox (108.46288pt too wide) in paragraph at lines 782--785
 \TU/lmr/m/n/12 We used the \TU/lmtt/m/n/12 steady.2D() \TU/lmr/m/n/12 function 
 in the \TU/lmr/m/it/12 R \TU/lmr/m/n/12 package \TU/lmr/bx/n/12 rootSolve \TU/l
 mr/m/n/12 version 1.8.2.4 ([]\TU/lmr/bx/n/12 soetaert_practical_2009?[]\TU/lmr/
@@ -742,52 +733,57 @@ m/n/12 ).
 
 
 LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 797.
+(Font)              Font shape `TU/lmtt/b/sl' tried instead on input line 801.
 
-[11] [12] [13]
+
+Overfull \vbox (1.32216pt too high) detected at line 842
+ []
+
+[11] [12]
 \openout6 = `ms.fff'.
 
-(ms.fff) [14] [15] [16]
-Overfull \hbox (17.48116pt too wide) in paragraph at lines 1139--1143
+(ms.fff) [13] [14] [15]
+Overfull \hbox (17.48116pt too wide) in paragraph at lines 1109--1113
 \TU/lmr/m/n/12 and Environment.” \TU/lmr/m/it/12 STOMATAL FUNCTION IN RELATION 
 TO LEAF METABOLISM
  []
 
 
-Overfull \hbox (38.84813pt too wide) in paragraph at lines 1164--1171
+Overfull \hbox (38.84813pt too wide) in paragraph at lines 1134--1141
 \TU/lmr/m/n/12 “Two Sides to Every Leaf: Water and <Span Style=”font-Variant:sm
 all-Caps;”>CO</Span>
  []
 
-[17]
-Overfull \hbox (10.27614pt too wide) in paragraph at lines 1221--1227
+[16]
+Overfull \hbox (10.27614pt too wide) in paragraph at lines 1191--1197
 \TU/lmr/m/n/12 derstanding Airspace in Leaves: <Span Style=”font-Variant:small-
 Caps;”>3D</Span>
  []
 
 Missing character: There is no � (U+FFFD) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[18] [19] [20]
-Overfull \hbox (7.5516pt too wide) in paragraph at lines 1421--1427
+[17] [18] [19]
+Overfull \hbox (7.5516pt too wide) in paragraph at lines 1391--1397
 [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][
 ][] [] [][] [] [][][] [] [][] [] [][][][][][][][] [] [][][][] [] [][][][][] [][
 ] [][][][]$[]\TU/lmr/m/n/12 . 
  []
 
-AED endfloat: Processing end Figures and Tables [21] (./ms.lot)
+AED endfloat: Processing end Figures and Tables [20] (./ms.lot)
 \tf@lot=\write8
 \openout8 = `ms.lot'.
 
-[22
+[21
 
 
-] (./ms.ttt) [23
+] (./ms.ttt [22
 
-] (./ms.lof)
+]) [23] (./ms.lof)
 \tf@lof=\write9
 \openout9 = `ms.lof'.
 
 [24
+
 
 
 ] (./ms.fff
@@ -827,15 +823,15 @@ File: figures/dual-surface.pdf Graphic file (type pdf)
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: 8726B41C6A5AB49E3E13E9ABC6CB5A7B;2897.
+(rerunfilecheck)             Checksum: 936103C564C5127AB77699C8D83C1C02;2776.
  ) 
 Here is how much of TeX's memory you used:
- 14148 strings out of 476683
- 223812 string characters out of 5804047
- 1873018 words of memory out of 5000000
- 34117 multiletter control sequences out of 15000+600000
+ 14143 strings out of 476683
+ 223791 string characters out of 5804047
+ 1872018 words of memory out of 5000000
+ 34112 multiletter control sequences out of 15000+600000
  523100 words of font info for 100 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 72i,9n,76p,539b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,12n,76p,666b,444s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on ms.pdf (30 pages).

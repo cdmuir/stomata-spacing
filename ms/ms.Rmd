@@ -63,6 +63,8 @@ header-includes:
  - \usepackage[nomarkers,tablesfirst]{endfloat} # For figures and tables at end
  - \usepackage{lineno} # For line numbering
  - \linenumbers # For line numbering
+ - \usepackage{hyperref} # For autoref
+ - \renewcommand{\figureautorefname}{Fig.}
 ---
 
 ```{r setup, include=FALSE}
@@ -76,7 +78,8 @@ knitr::opts_knit$set(root.dir = "..")
 ```{r}
 source("r/header.R")
 fit = readr::read_rds("objects/fit.rds")
-model_var_table = readr::read_rds("objects/model_var_table.rds")
+pm_pars = readr::read_csv("raw-data/2d-pm-parameters.csv", show_col_types = FALSE)
+model_var = readr::read_rds("objects/model_var.rds")
 ```
 
 # Introduction
@@ -89,9 +92,9 @@ The patterning and spacing of stomata on the leaf affects photosynthesis in $C_3
 
 To maximize CO$_2$ supply from the stomatal pore to chloroplasts, stomata should be uniformly distributed in an equilateral triangular grid on the leaf surface so as to minimize stomatal number and CO$_2$ diffusion path length [@parkhurst_diffusion_1994]. As the diffusion rate of CO$_2$ though liquid is approximately $10^4\times$ slower than CO$_2$ diffusion through air, mesophyll resistance is generally thought to be primarily limited by liquid diffusion [@aalto_three-dimensional_2002; @evans_resistances_2009], but diffusion through the IAS has also been shown to be a rate limiting process because the tortuous, disjunct nature of the IAS can greatly increase diffusion path lengths [@harwood_understanding_2021]. Additionally, tortuosity is higher in horizontal directions (parallel to leaf surface) than vertical directions (perpendicular to leaf surface) because of the cylindrical shape and vertical arrangement of pallisade mesophyll cells [@earles_beyond_2018; @harwood_understanding_2021]. However, the ratio of lateral to vertical diffusion rate is still largely unknown [@morison_lateral_2005; @pieruschka_lateral_2005; @pieruschka_lateral_2006]. Depending on the thickness of the leaf, porosity of the leaf mesophyll, tortuosity of the IAS, and lateral to vertical diffusion rate ratio, minimizing diffusion path length for CO$_2$ via optimally distributed stomata may yield significant increases in CO$_2$ supply for photosynthesis and higher $A_\text{max}$.
 
-We hypothesized that natural selection will favor stomatal patterning and distribution to minimize the diffusion path length. In amphistomatous leaves, this would be accomplished by 1) a uniform distribution of stomata on both abaxial and adaxial leaf surfaces and 2) coordinated stomatal spacing on each surface that offsets the position of stomata (Fig. \ref{fig:amphi_grid}). Coordination between leaf surfaces is defined in this study as the occurrence of stomata in areas farthest from stomata on the opposite leaf surface. Additionally, because CO$_2$ is more limiting for photosynthesis under high light, we hypothesize that in high light 3) there should be more stomata, and 4) stomata should be more uniformly distributed than in low light. Finally, as stomatal densities are selected for optimal operational aperture, we hypothesize that 5) stomatal length will be positively correlated with the area of the leaf surface to which it is closest. We refer to this as the 'stomatal zone', the leaf area surrounding a focal stomate closest to that stomate and therefore the zone it supplies with CO$_2$). This way, each stomate can be optimally sized relative to the mesophyll volume it supplies.
+We hypothesized that natural selection will favor stomatal patterning and distribution to minimize the diffusion path length. In amphistomatous leaves, this would be accomplished by 1) a uniform distribution of stomata on both abaxial and adaxial leaf surfaces and 2) coordinated stomatal spacing on each surface that offsets the position of stomata (\autoref{fig:ideal-amphi-grid}). Coordination between leaf surfaces is defined in this study as the occurrence of stomata in areas farthest from stomata on the opposite leaf surface. Additionally, because CO$_2$ is more limiting for photosynthesis under high light, we hypothesize that in high light 3) there should be more stomata, and 4) stomata should be more uniformly distributed than in low light. Finally, as stomatal densities are selected for optimal operational aperture, we hypothesize that 5) stomatal length will be positively correlated with the area of the leaf surface to which it is closest. We refer to this as the 'stomatal zone', the leaf area surrounding a focal stomate closest to that stomate and therefore the zone it supplies with CO$_2$). This way, each stomate can be optimally sized relative to the mesophyll volume it supplies.
 
-To test these hypotheses, we grew the model plant *Arabidopsis thaliana* in high, medium, and low light and measured stomatal density, size, and patterning on both leaf surfaces, and spatial coordination between them. We use Voronoi tessellation techniques to calculate stomatal zones. We also used a 2-D porous medium approximation of CO$_2$ diffusion and photosynthesis to predict the photosynthetic advantage of optimal versus suboptimal coordination in stomatal coordination between surfaces. Specifically, we predicted that traits which affect diffusion path length (leaf thickness, stomatal density, leaf porosity, lateral-vertical diffusion rate ratio), diffusion rate (temperature, pressure), and CO$_2$ demand (Rubisco concentration, light) would modulate the advantage of optimal stomatal arrangement following the relationships outlined in Table \ref{tab:hypotheses}. Here, we integrate over reasonable parameter space to determine the ecophysiological context most likely to favor stomatal spatial coordination in amphistomatous leaves.
+To test these hypotheses, we grew the model plant *Arabidopsis thaliana* in high, medium, and low light and measured stomatal density, size, and patterning on both leaf surfaces, and spatial coordination between them. We use Voronoi tessellation techniques to calculate stomatal zones. We also used a 2-D porous medium approximation of CO$_2$ diffusion and photosynthesis to predict the photosynthetic advantage of optimal versus suboptimal coordination in stomatal coordination between surfaces. Specifically, we predicted that traits which affect diffusion path length (leaf thickness, stomatal density, leaf porosity, lateral-vertical diffusion rate ratio), diffusion rate (temperature, pressure), and CO$_2$ demand (Rubisco concentration, light) would modulate the advantage of optimal stomatal arrangement following the relationships outlined in \autoref{tab:hypotheses}. Here, we integrate over reasonable parameter space to determine the ecophysiological context most likely to favor stomatal spatial coordination in amphistomatous leaves.
 
 ```{r hypotheses, results="asis"}
 
@@ -109,7 +112,7 @@ df = tibble::tribble(
 
 # Creates tables that follow OUP guidelines using xtable
 print(xtable::xtable(df, caption = "A summary of the hypothesized relationships between leaf traits and environmental conditions and photosynthetic advantage of stomatal spatial coordination in amphistomatous leaves.", label = "tab:hypotheses"),
-      comment = FALSE)
+      comment = FALSE, include.rownames = FALSE)
 ```
 
 # Materials and methods
@@ -156,11 +159,11 @@ Uniformly distributed stomata on a leaf with stomatal density ($D_S$) maximize $
 As all sides of an equilateral triangle have the same length, the average nearest neighbor distance for a given $D_S$ is maximized and each stomate occupies the same hexagonal area ($A_\text{hex}$). As $DI$ approaches 1, the more uniform an area each of its stomata supply with CO$_2$ during photosynthesis. 
  -->
  
-Finally, we examined the relationship between stomatal zone area and stomatal length using a Bayesian generalized non-linear multilevel model fit with the *R* package **brms** version `r fit$version$brms` [@burkner_brms_2017; @burkner_advanced_2018] and *Stan* version `r fit$version$cmdstan` [@stan_development_team_stan_2023]. Stomatal zone area was calculated using Voronoi tessellation (e.g. Fig. \ref{fig:example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in ImageJ [@schneider_nih_2012].
+Finally, we examined the relationship between stomatal zone area and stomatal length using a Bayesian generalized non-linear multilevel model fit with the *R* package **brms** version `r fit$version$brms` [@burkner_brms_2017; @burkner_advanced_2018] and *Stan* version `r fit$version$cmdstan` [@stan_development_team_stan_2023]. Stomatal zone area was calculated using Voronoi tessellation (e.g. \autoref{fig:tessellation-example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in ImageJ [@schneider_nih_2012].
 
 ## Paired Abaxial and Adaxial Surface Analysis
 
-To test whether the position of ab- and adaxial stomata are coordinated we compared the observed distribution to a null distribution where the positions on each surface are random. For each pair of surfaces (observed or synthetic) we calculated the distance squared between each to the nearest stomatal centroid with the *R* package **raster** version `r packageVersion("raster")`. Then we calculated the cell-wise Pearson correlation coefficient. If stomatal positions on each surface are coordinated to minimize the distance between mesophyll and the nearest stomate, then we expect a negative correlation. A cell that is far from a stomate on one surface should be near a stomate on the other surface (Fig. \ref{fig:amphi}). We generated a null distribution of the correlation coefficient by simulating $10^3$ synthetic data sets for each observed pair. For each synthetic data set, we simulated stomatal position using a random uniform distribution, as described above, matching the number of stomata on abaxial and adaxial leaf surfaces. Stomatal positions on each surface are coordinated if the correlation coefficient is greater than 95% of the synthetic correlation values (one-tailed test).
+To test whether the position of ab- and adaxial stomata are coordinated we compared the observed distribution to a null distribution where the positions on each surface are random. For each pair of surfaces (observed or synthetic) we calculated the distance squared between each to the nearest stomatal centroid with the *R* package **raster** version `r packageVersion("raster")`. Then we calculated the cell-wise Pearson correlation coefficient. If stomatal positions on each surface are coordinated to minimize the distance between mesophyll and the nearest stomate, then we expect a negative correlation. A cell that is far from a stomate on one surface should be near a stomate on the other surface (\autoref{fig:ideal-amphi-grid}). We generated a null distribution of the correlation coefficient by simulating $10^3$ synthetic data sets for each observed pair. For each synthetic data set, we simulated stomatal position using a random uniform distribution, as described above, matching the number of stomata on abaxial and adaxial leaf surfaces. Stomatal positions on each surface are coordinated if the correlation coefficient is greater than 95% of the synthetic correlation values (one-tailed test).
 
 ## Modeling Photosynthesis
 
@@ -170,13 +173,33 @@ We modeled photosynthesis CO$_2$ assimilation rate using a spatially-explicit tw
   \text{coordination advantage} = \frac{A_\text{offset}}{A_\text{aligned}}
 \end{equation}
 
-We modeled the coordination advantage over a range of leaf thicknesses, stomatal densities, photosynthetic capacities, and light environments to understand when offsetting stomatal position on each surface might deliver a significant photosynthetic advantage (Table \ref{tab:model_var}).
+We modeled the coordination advantage over a range of leaf thicknesses, stomatal densities, photosynthetic capacities, and light environments to understand when offsetting stomatal position on each surface might deliver a significant photosynthetic advantage (\autoref{tab:model_var}).
 
-```{r, model_var}
-knitr::kable(model_var_table)
+```{r, model_var, results="asis"}
+#| label: tbl-model_var
+
+symbol_descriptions = left_join(rename(model_var, symbol = Variable),
+                                pm_pars,
+                                by = join_by(symbol)) |>
+  transmute(x = glue("{symbol}: {name}")) |>
+  pull(x) |>
+  str_c(collapse = "; ")
+
+# print(xtable::xtable(model_var, caption = paste0("The parameter range of model variables tested for their effect on coordination advantage (\\autoref{eq:coordination_advantage}) using a 2-D porous medium approximation. We used regularly spaced values within each range and simulated across all combinations. Here we converted model units to more conventional units (e.g. m to $\\mu$m). ", symbol_descriptions), label = "tab:model_var"),
+#       comment = FALSE, include.rownames = FALSE, type = "latex")
+
+model_var_caption = paste0("The parameter range of model variables tested for their effect on coordination advantage (\\autoref{eq:coordination_advantage}) using a 2-D porous medium approximation. We used regularly spaced values within each range and simulated across all combinations. Here we converted model units to more conventional units (e.g. m to $\\mu$m). ", symbol_descriptions)
+
+knitr::kable(
+  model_var, 
+  caption = model_var_caption,
+  label = "model_var",
+  booktabs = TRUE, format = "latex", escape = FALSE
+) #|>
+#   kableExtra::kable_styling()
 ```
 
-WORKING HERE - make table of parameter combinations!
+WORKING HERE - ???
 
 ### Light propogation model
 
@@ -360,37 +383,17 @@ Stomatal density of *Arabidopsis thaliana* the 132 leaves measured ranged from 1
 
 ## Single Surface Results
 
-If our hypotheses that natural selection will act to reduce the diffusion path length of CO$_2$ while minimizing stomatal number are correct, then we would expect to find leaf surfaces with uniformly distributed stomata. However, to the contrary, we find that though 57 of the 132 (43.1%) leaf surfaces were significantly more uniformly dispersed than uniform random synthetic stomatal grids ($\alpha$ = 0.05), none of the leaf surfaces exhibited perfectly uniform stomatal patterning (dispersion index = 1) (Fig. \ref{fig:dispersion}). Additionally, we hypothesized that as CO$_2$ is more limiting to photosynthesis under high light, stomata would be more uniformly dispersed in plants grown in high light than plants grown in low and medium light. The data also fail to support this hypothesis as there is no strong, discernible trend between light and stomatal patterning. Interestingly, adaxial leaf surfaces were more uniformly dispersed than associated abaxial leaf surfaces across all light treatments (F$_\text{1,126}$ = 28.8; p-value < 0.001). Rather than regulate stomatal patterning in response to light regimes, plants respond by increasing stomatal density (Fig. \ref{fig:density}). Stomatal density drastically increased in plants grown under high light, validating the long held hypothesis that light strongly influences stomatal density (F$_\text{2,126}$ = 680.7; p-value < 0.001).
+If our hypotheses that natural selection will act to reduce the diffusion path length of CO$_2$ while minimizing stomatal number are correct, then we would expect to find leaf surfaces with uniformly distributed stomata. However, to the contrary, we find that though 57 of the 132 (43.1%) leaf surfaces were significantly more uniformly dispersed than uniform random synthetic stomatal grids ($\alpha$ = 0.05), none of the leaf surfaces exhibited perfectly uniform stomatal patterning (dispersion index = 1) (\autoref{fig:single-surface}). Additionally, we hypothesized that as CO$_2$ is more limiting to photosynthesis under high light, stomata would be more uniformly dispersed in plants grown in high light than plants grown in low and medium light. The data also fail to support this hypothesis as there is no strong, discernible trend between light and stomatal patterning. Interestingly, adaxial leaf surfaces were more uniformly dispersed than associated abaxial leaf surfaces across all light treatments (F$_\text{1,126}$ = 28.8; p-value < 0.001). Rather than regulate stomatal patterning in response to light regimes, plants respond by increasing stomatal density (\autoref{fig:density}). Stomatal density drastically increased in plants grown under high light, validating the long held hypothesis that light strongly influences stomatal density (F$_\text{2,126}$ = 680.7; p-value < 0.001).
 
-Across all light treatments and leaf surfaces, stomatal length and stomatal area were weakly positively correlated, indicating some support for our hypothesis that stomata are selected for an optimal operational aperture (Fig. \ref{fig:length-area}).
+Across all light treatments and leaf surfaces, stomatal length and stomatal area were weakly positively correlated, indicating some support for our hypothesis that stomata are selected for an optimal operational aperture (\autoref{fig:length-area}).
 
 ## Dual Surface Analysis
 
-As evidence against our hypothesis that natural selection should favor spatial coordination in the placement of stomata between abaxial and adaxial leaf surfaces, we found no correlation between paired abaxial and adaxial leaf surfaces (Fig. \ref{fig:dual-surface}). Light treatment had no effect on correlation between surfaces (F$_\text{2,63}$ = 2.28; p-value = 0.11). All but one abaxial, adaxial surface pairs were independent ($\alpha$ = 0.05).
+As evidence against our hypothesis that natural selection should favor spatial coordination in the placement of stomata between abaxial and adaxial leaf surfaces, we found no correlation between paired abaxial and adaxial leaf surfaces (\autoref{fig:dual-surface}). Light treatment had no effect on correlation between surfaces (F$_\text{2,63}$ = 2.28; p-value = 0.11). All but one abaxial, adaxial surface pairs were independent ($\alpha$ = 0.05).
 
 ### Example output
 
 We wrapped the above functions to adjust environmental and anatomical variables. We're going to simulate over a grid of parameters, but here is what the output looks like plotted:
-
-
-### DRAFT TEXT
-
-During a model run, CO$_2$ flux between neighboring nodes was determined according to the mesophyll CO$_2$ concentration ($C_m$) in each node, distance between cells, temperature, pressure, and leaf porosity. Assimilation rate ($A$) in each node was determined by $A_\text{max}$, $c_i$, irradiance, temperature, chlorophyll volume concentration, Rubisco octamer concentration per mol chlorophyll, and maximal oxygenation and carboxylation rates of Rubisco. Stomata were placed either 1) directly on top of one another to represent anticoordination or 2) offset from one another to represent coordination between leaf surfaces. $c_i$ and CO$_2$ assimilation rate (A) were set to 415ppm and 0 respectively and the model ran until $c_i$ and A reached equilibrium in each cell. Total A and average $c_i$ were then calculated for each parameter combination.
-
-
-A was calculated in terms of $A_\text{max}$ and $c_i$ following Eq. \ref{eq:eq4}
-
-\begin{equation}\label{eq:eq4}
-A = A_\text{max} * c_i / (c_i + K_c)
-\end{equation}
-
-where $K_c$ is the Michaelis constant for CO$_2$: 0.0184 mol $m^\text{-3}$.
-
-$A_\text{max}$ was calculated in terms of irradiance (i), light saturated maximum A ($A_\text{mm}$), and quantum yield ($\varphi$) following Eq. \ref{eq:eq5}
-
-\begin{equation}\label{eq:eq5}
-A_\text{max} = A_\text{mm} * \varphi * i / (A_\text{mm} + \varphi * i)
-\end{equation}
 
 # Results
 
@@ -399,7 +402,7 @@ A_\text{max} = A_\text{mm} * \varphi * i / (A_\text{mm} + \varphi * i)
 \begin{figure}[ht]
 \includegraphics[width=\textwidth]{figures/single-surface.pdf}
 \caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
-\label{fig:dispersion}
+\label{fig:single-surface}
 \end{figure}
 
 \begin{figure}[ht]
@@ -411,7 +414,7 @@ A_\text{max} = A_\text{mm} * \varphi * i / (A_\text{mm} + \varphi * i)
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
 \caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
-\label{fig:example}
+\label{fig:tessellation-example}
 \end{figure}
 
 \begin{figure}[ht]
@@ -425,7 +428,7 @@ A_\text{max} = A_\text{mm} * \varphi * i / (A_\text{mm} + \varphi * i)
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/ideal-amphi-grid.pdf}
 \caption{Idealized amphistomatous stomatal grid with uniform stomatal patterning and perfect abaxial-adaxial coordination.}
-\label{fig:amphi}
+\label{fig:ideal-amphi-grid}
 \end{figure}
 
 \begin{figure}[ht]
@@ -436,13 +439,13 @@ A_\text{max} = A_\text{mm} * \varphi * i / (A_\text{mm} + \varphi * i)
 
 # Discussion
 
-Stomata are expensive. A theoretical, optimized plant would minimize stomatal density while also allowing competitive gas exchange rates for its environment so as to maximize C assimilation per unit investment in stomata. Natural selection operates within developmental and physical constraints to drive each plant species toward its theoretical optimum. This study provides evidence that stomata in *Arbidopsis thaliana*, the model angiosperm, are non-randomly distributed, favoring dispersion over clustering (Fig. \ref{fig:dispersion}). However, stomata are not ideally dispersed in an equilateral triangular grid as would be optimal to minimize CO$_2$ diffusion path length and standardize the area supplied by each stomate (Fig. \ref{fig:example}). Additionally, when grown in high light environments, *A. thaliana* exhibited increased stomatal density rather than increased stomatal dispersion (Fig. \ref{fig:density}), which suggests that natural selection has acted more strongly on developmental pathways that modulate stomatal density than those that control stomatal dispersion. In other words, plants optimize gas exchange by adding more stomata rather than dispersing them more evenly across the leaf surface. This study also demonstrates that stomata that supply larger leaf areas with CO$_2$ tend to be larger (Fig. \ref{fig:length-area}). These results could suggest that 1) the added energetic and hydraulic cost of non-ideally dispersed stomata is negligible and therefore not acted on by natural selection; 2) no developmental pathway exists to ensure the ideal placement of stomata on the leaf; or 3) the regulation of stomatal size limits the cost incurred by non-ideal stomatal dispersion.
+Stomata are expensive. A theoretical, optimized plant would minimize stomatal density while also allowing competitive gas exchange rates for its environment so as to maximize C assimilation per unit investment in stomata. Natural selection operates within developmental and physical constraints to drive each plant species toward its theoretical optimum. This study provides evidence that stomata in *Arbidopsis thaliana*, the model angiosperm, are non-randomly distributed, favoring dispersion over clustering (\autoref{fig:single-surface}). However, stomata are not ideally dispersed in an equilateral triangular grid as would be optimal to minimize CO$_2$ diffusion path length and standardize the area supplied by each stomate (\autoref{fig:tessellation-example}). Additionally, when grown in high light environments, *A. thaliana* exhibited increased stomatal density rather than increased stomatal dispersion (\autoref{fig:density}), which suggests that natural selection has acted more strongly on developmental pathways that modulate stomatal density than those that control stomatal dispersion. In other words, plants optimize gas exchange by adding more stomata rather than dispersing them more evenly across the leaf surface. This study also demonstrates that stomata that supply larger leaf areas with CO$_2$ tend to be larger (\autoref{fig:length-area}). These results could suggest that 1) the added energetic and hydraulic cost of non-ideally dispersed stomata is negligible and therefore not acted on by natural selection; 2) no developmental pathway exists to ensure the ideal placement of stomata on the leaf; or 3) the regulation of stomatal size limits the cost incurred by non-ideal stomatal dispersion.
 
-In high light environments, amphistomy is favorable as high light photosynthesis is limited by CO$_2$ and amphistomy halves diffusion path length and boundary layer resistance, thereby reducing CO$_2$ limitation - increasing theoretical $A_\text{max}$. An optimal amphistomatous leaf has offset stomata such that stomata are more likely to appear on one leaf surface if there is not a stomata directly opposite it on the other surface as shown in figure \ref{fig:amphi}. However, our results show that leaf surfaces are not coordinated but are independent, regardless of light (Fig. \ref{fig:dual-surface}). Additionally, gas exchange models show little photosynthetic efficiency gain from abaxial-adaxial stomatal coordination compared to anticoordination (INSERT FIG FROM MODELING). We posit that this marginal gain is not sufficient to be acted upon strongly by natural selection. Thus, amphistomatous plants do not exhibit abaxial-adaxial stomatal coordination for there is little selective advantage of it.
+In high light environments, amphistomy is favorable as high light photosynthesis is limited by CO$_2$ and amphistomy halves diffusion path length and boundary layer resistance, thereby reducing CO$_2$ limitation - increasing theoretical $A_\text{max}$. An optimal amphistomatous leaf has offset stomata such that stomata are more likely to appear on one leaf surface if there is not a stomata directly opposite it on the other surface as shown in \autoref{fig:ideal-amphi-grid}. However, our results show that leaf surfaces are not coordinated but are independent, regardless of light (\autoref{fig:dual-surface}). Additionally, gas exchange models show little photosynthetic efficiency gain from abaxial-adaxial stomatal coordination compared to anticoordination (INSERT FIG FROM MODELING). We posit that this marginal gain is not sufficient to be acted upon strongly by natural selection. Thus, amphistomatous plants do not exhibit abaxial-adaxial stomatal coordination for there is little selective advantage of it.
 
 Our study corroborates previous studies which demonstrate that stomata are non-randomly distributed along the leaf surface as a result of developmental mechanisms such as spatially biased arrest of stomatal initials [@boetsch_arrest_1995], oriented asymmetric cell division [@geisler_oriented_2000], and cell cycle controls [@croxdale_stomatal_2000]. We do not investigate the potential developmental pathways that influence stomatal dispersion in this study; however, they are important to consider as these pathways could limit plants from reaching the theoretical peak in the adaptive landscape: uniform stomatal dispersion. Instead, as this study suggests, plants may simply compensate with higher stomatal density and by fitting stomatal size to the area that they supply with CO$_2$. To understand why stomata are not ideally dispersed, more modelling should be done to estimate the fitness gain of stomatal dispersion. Additionally, genetic manipulation studies should attempt to create mutants with clustered and ideally dispersed stomata for a comparison of their photosynthetic traits. This could have extremely important implications for maximum assimilation rates in crops as most crop species are grown in high light where CO$_2$ is often limiting. In drought-prone environments, increased stomatal dispersion may increase water use efficiency by reducing the number of stomata needed to achieve the same internal CO$_2$ concentration, $C_\text{i}$.
 
-Beyond disperson on a single surface, gas exchange can be optimized via stomatal coordination of abaxial and adaxial surfaces in amphistomatous leaves. Given that leaf thicknesses are generally multiple times greater than interstomatal distance (GIVE DISTANCES HERE). As a result, abaxial-adaxial stomatal coordination reduces CO$_2$ diffusion path length far less than single surface dispersion, so we hypothesize this strategy to afford less photosynthetic advantage to the leaf. Our modelling results demonstrate that, even in ideal conditions, i.e. thick leaf, low stomatal densities, high light, low leaf porosity, high rubisco concentration, etc., the photosynthetic advantage of coordination is minimal. We are not surprised by these results, but still highlight them here as we are the first to report this finding.
+Beyond disperson on a single surface, gas exchange can be optimized via stomatal coordination of abaxial and adaxial surfaces in amphistomatous leaves. Given that leaf thicknesses are generally multiple times greater than interstomatal distance (GIVE DISTANCES HERE). As a result, abaxial-adaxial stomatal coordination reduces CO$_2$ diffusion path length far less than single surface dispersion, so we hypothesize this strategy to afford less photosynthetic advantage to the leaf. Our modelling results demonstrate that, even in ideal conditions, i.e. thick leaf, low stomatal densities, high light, low leaf porosity, high Rubisco concentration, etc., the photosynthetic advantage of coordination is minimal. We are not surprised by these results, but still highlight them here as we are the first to report this finding.
 
 Amphistomy is a unique and important adaptation found around the world across many plant lineages [@muir_light_2018], yet much of the dynamics of amphistomy remain poorly understood. Here, we show that in *Arabidopsis thaliana* 1) stomata in are non-randomly dispersed, but not ideally dispersed; 2) stomatal size and density are modulated by light; 3) stomatal size is positively correlated with the area to which it supplies CO$_2$; and 4) abaxial-adaxial stomatal coordination is not exhibited and is not shown to provide a strong photosynthetic advantage using CO$_2$ diffusion models. Interestingly, these findings did not validate many of our hypotheses which were based on first principles, suggesting that there may be limits on plants' ability to control stomatal placement. Future studies which elucidate these limitations may have important implications for agriculturaly productivity in a rapidly changing world.
 
