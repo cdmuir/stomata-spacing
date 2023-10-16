@@ -62,63 +62,11 @@ HI 96822}
 
 % Part for setting citation format package: biblatex
 
-% Pandoc syntax highlighting
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % tightlist command for lists without linebreak
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-% From pandoc table feature
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
 
 % Pandoc citation processing
 \newlength{\cslhangindent}
@@ -155,6 +103,7 @@ HI 96822}
 \linenumbers
 \usepackage{hyperref}
 \renewcommand{\figureautorefname}{Fig.}
+\usepackage{booktabs}
 
 \begin{document}
 
@@ -577,7 +526,7 @@ from the adaxial surface at \(y = 0\) to the abaxial surface at
 \(y = L\), the leaf thickness. We arbitrarily set the adaxial stomate at
 \(x = 0\) and toggled the abaxial stomata position between \(x = U/2\)
 (offset) or \(x = 0\) (below adaxial stomate). The `coordination
-advantage' of offsett stomatal position on each surface is the
+advantage' of offset stomatal position on each surface is the
 photosynthetic rate of the leaf with offset stomata compared to that
 with stomata aligned in the same \(x\) position:
 
@@ -589,7 +538,8 @@ We modeled the coordination advantage over a range of leaf thicknesses,
 stomatal densities, photosynthetic capacities, and light environments to
 understand when offsetting stomatal position on each surface might
 deliver a significant photosynthetic advantage
-(\autoref{tab:model_var}).
+(\autoref{tab:model_var}). The complete model description is available
+in the Supporting Information.
 
 \begin{table}
 
@@ -607,248 +557,20 @@ $U$ & $17-169$ & $\mu$m\\
 \end{tabular}
 \end{table}
 
-WORKING HERE - ???
-
-\hypertarget{light-propogation-model}{%
-\subsubsection{Light propogation model}\label{light-propogation-model}}
-
-Irradiance at depth \(y\) in a leaf with thickness \(L\) is modeled
-following Lloyd \emph{et al.} (1992):
-
-\begin{equation}\label{eq:light_propogation}
-  I(y) = 1.1 I_0 e ^ {-2.4 y / L}
-\end{equation}
-
-where \(I_0\) is photosynthetically active irradiance incident on the
-adaxial leaf surface.
-
-\hypertarget{biochemical-model}{%
-\subsubsection{Biochemical model}\label{biochemical-model}}
-
-All parameter symbols, units, descriptions, and values are described in
-Table X below. Following Gutschick (1984), we modeled photosynthetic
-rate per unit chlorophyll \(A_\text{chl}\) then calculated the
-volumetric photosynthetic rate \(A_\text{volume}\) by multiplying by the
-chlorophyll concentration \(Q_\text{chl}\):
-
-\[A_\text{volume} = A_\text{chl} Q_\text{chl}\] A description of the
-model is given on page 553-556 of Gutschick (1984). The R code below is
-how we implemented the model.
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{C\_m} is a vector CO\(_2\) concentrations in
-  \(\text{mmol m}^{-3}\) at different positions within the leaf
-\item
-  \texttt{I\_m} is a vector of irradiances in
-  \(\mu \text{mol m}^{-2} \text{s}^{-1}\) at different positions within
-  the leaf (same order as \texttt{C\_m}).
-\item
-  \texttt{pars} is a list of parameters
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pars }\OtherTok{=} \FunctionTok{list}\NormalTok{(}
-
-    \AttributeTok{P =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{101.325}\NormalTok{, kPa), }\CommentTok{\# air pressure at sea level}
-    \AttributeTok{temp =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{298.15}\NormalTok{, K), }\CommentTok{\# assume constant temperature}
-    \AttributeTok{R\_gas =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{8.314}\NormalTok{, J}\SpecialCharTok{/}\NormalTok{K}\SpecialCharTok{/}\NormalTok{mol), }\CommentTok{\# ideal gas constant}
-
-    \CommentTok{\# Calculations for C\_a and O ued below}
-    \CommentTok{\# 21\% O2}
-    \CommentTok{\# set\_units(0.21 * P / (R\_gas * temp), mol/m\^{}3)}
-    \CommentTok{\# 415 ppm}
-    \CommentTok{\# set\_units((415/1e6) * P / (R\_gas * temp), mmol/m\^{}3)}
-
-    \CommentTok{\# Environmental}
-    \AttributeTok{C\_a =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{16.96367}\NormalTok{, mmol}\SpecialCharTok{/}\NormalTok{m}\SpecialCharTok{\^{}}\DecValTok{3}\NormalTok{),}
-    \AttributeTok{O =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{8.584027}\NormalTok{, mol}\SpecialCharTok{/}\NormalTok{m}\SpecialCharTok{\^{}}\DecValTok{3}\NormalTok{),}
-    \AttributeTok{PAR =} \FunctionTok{set\_units}\NormalTok{(}\DecValTok{1000}\NormalTok{, umol}\SpecialCharTok{/}\NormalTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{s),}
-
-    \CommentTok{\# Biochemical}
-    \AttributeTok{E\_t =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{0.01}\NormalTok{, mol}\SpecialCharTok{/}\NormalTok{mol),}
-    \AttributeTok{eta\_t =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{0.59}\NormalTok{, }\DecValTok{1}\NormalTok{),}
-    \AttributeTok{k\_c =} \FunctionTok{set\_units}\NormalTok{(}\DecValTok{20}\NormalTok{, mol}\SpecialCharTok{/}\NormalTok{mol}\SpecialCharTok{/}\NormalTok{s),}
-    \AttributeTok{k\_o =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{4.2}\NormalTok{, mol}\SpecialCharTok{/}\NormalTok{mol}\SpecialCharTok{/}\NormalTok{s),}
-    \AttributeTok{K\_c =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{0.0184}\NormalTok{, mol}\SpecialCharTok{/}\NormalTok{m}\SpecialCharTok{\^{}}\DecValTok{3}\NormalTok{),}
-    \AttributeTok{K\_o =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{13.2}\NormalTok{, mol}\SpecialCharTok{/}\NormalTok{m}\SpecialCharTok{\^{}}\DecValTok{3}\NormalTok{),}
-    \AttributeTok{Q\_chl =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{3.3}\NormalTok{, mol}\SpecialCharTok{/}\NormalTok{m}\SpecialCharTok{\^{}}\DecValTok{3}\NormalTok{),}
-    \AttributeTok{R\_p =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{0.273}\NormalTok{, mol}\SpecialCharTok{/}\NormalTok{mol),}
-
-    \CommentTok{\# Diffusivity of CO2 in leaf airspace. From Gutschick 1984. Should be updated and include temperature dependence, effect of cell packing, tortuosity, etc.}
-    \AttributeTok{D\_mc =} \FunctionTok{set\_units}\NormalTok{(}\FloatTok{7e{-}7}\NormalTok{, m}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{s)}
-
-\NormalTok{)}
-
-\CommentTok{\# strip units to speed up calculation}
-\NormalTok{upars }\OtherTok{=}\NormalTok{ purrr}\SpecialCharTok{::}\FunctionTok{map}\NormalTok{(pars, }\SpecialCharTok{\textasciitilde{}}\NormalTok{ \{}\ControlFlowTok{if}\NormalTok{(}\FunctionTok{inherits}\NormalTok{(.x, }\StringTok{"units"}\NormalTok{)) \{}\FunctionTok{drop\_units}\NormalTok{(.x)\}\})}
-
-\CommentTok{\# multiply/divide by 1e3 because C\_m is mmol and parameters are in mol}
-\NormalTok{k\_vc }\OtherTok{=}\NormalTok{ upars[[}\StringTok{"k\_c"}\NormalTok{]] }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (}\FloatTok{1e3} \SpecialCharTok{*}\NormalTok{ upars[[}\StringTok{"K\_c"}\NormalTok{]] }\SpecialCharTok{/}\NormalTok{ C\_m) }\SpecialCharTok{*}
-\NormalTok{                           (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ upars[[}\StringTok{"O"}\NormalTok{]] }\SpecialCharTok{/}\NormalTok{ upars[[}\StringTok{"K\_o"}\NormalTok{]])) }\CommentTok{\# [1/s]}
-\CommentTok{\# Given light\_propagation assumptions, k = 2.4/L assuming no scattering}
-\NormalTok{k\_i }\OtherTok{=} \FloatTok{2.4} \SpecialCharTok{/}\NormalTok{ upars[[}\StringTok{"leaf\_thickness"}\NormalTok{]] }\CommentTok{\# [1/um] \# I\textquotesingle{}m not sure sure this is right}
-\NormalTok{b\_x }\OtherTok{=}\NormalTok{ k\_i }\SpecialCharTok{*}\NormalTok{ I\_m }\CommentTok{\# [mol/m\^{}3/s]}
-\NormalTok{a\_x }\OtherTok{=}\NormalTok{ b\_x }\SpecialCharTok{/}\NormalTok{ upars[[}\StringTok{"Q\_chl"}\NormalTok{]] }\CommentTok{\# [1/s]}
-\NormalTok{j }\OtherTok{=} \FloatTok{0.5} \SpecialCharTok{*}\NormalTok{ a\_x }\SpecialCharTok{*}\NormalTok{ upars[[}\StringTok{"eta\_t"}\NormalTok{]] }\CommentTok{\# [1/s] \# eqn 9}
-\NormalTok{phi }\OtherTok{=}\NormalTok{ upars[[}\StringTok{"k\_o"}\NormalTok{]] }\SpecialCharTok{/}\NormalTok{ upars[[}\StringTok{"k\_c"}\NormalTok{]] }\SpecialCharTok{*}\NormalTok{ (upars[[}\StringTok{"O"}\NormalTok{]] }\SpecialCharTok{/}\NormalTok{ upars[[}\StringTok{"K\_o"}\NormalTok{]]) }\SpecialCharTok{/}
-\NormalTok{  (}\FloatTok{1e{-}3} \SpecialCharTok{*}\NormalTok{ C\_m }\SpecialCharTok{/}\NormalTok{ upars[[}\StringTok{"K\_c"}\NormalTok{]]) }\CommentTok{\# [1]}
-\NormalTok{v\_cj }\OtherTok{=}\NormalTok{ j }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{4} \SpecialCharTok{+} \DecValTok{4} \SpecialCharTok{*}\NormalTok{ phi) }\CommentTok{\# [1/s]}
-\NormalTok{v\_cp }\OtherTok{=}\NormalTok{ k\_vc }\SpecialCharTok{*}\NormalTok{ upars[[}\StringTok{"R\_p"}\NormalTok{]] }\CommentTok{\# [1/s]}
-\NormalTok{v\_cr }\OtherTok{=} \FunctionTok{apply}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(v\_cj, v\_cp), }\DecValTok{1}\NormalTok{, min) }\CommentTok{\# [1/s]}
-\NormalTok{v\_c }\OtherTok{=} \FunctionTok{apply}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(k\_vc }\SpecialCharTok{*}\NormalTok{ upars[[}\StringTok{"E\_t"}\NormalTok{]], v\_cr), }\DecValTok{1}\NormalTok{, min) }\CommentTok{\# [1/s]}
-\NormalTok{v\_o }\OtherTok{=}\NormalTok{ phi }\SpecialCharTok{*}\NormalTok{ v\_c }\CommentTok{\# [1/s]}
-\NormalTok{A\_chl }\OtherTok{=}\NormalTok{ v\_c }\SpecialCharTok{{-}} \FloatTok{0.5} \SpecialCharTok{*}\NormalTok{ v\_o }\CommentTok{\# [1/s] \# i.e mol CO2 / mol Chl / s}
-\NormalTok{A\_volume }\OtherTok{=}\NormalTok{ A\_chl }\SpecialCharTok{*}\NormalTok{ upars[[}\StringTok{"Q\_chl"}\NormalTok{]] }\CommentTok{\# [mol/m\^{}3/s]}
-\end{Highlighting}
-\end{Shaded}
-
-To model photosynthesis and CO\(_2\) transport within a two-dimensional
-cross section of the leaf, we built a grid of nodes of dimensions leaf
-thickness by half the interstomatal distance. Nodes represent the leaf
-mesophyll where CO\(_2\) diffusion and assimilation occur.
-
-\textbf{Table X} Glossary of mathematical symbols. The columns indicate
-the mathematical Symbol used in the paper, the associated symbol used in
-R scripts, scientific Units, and a verbal Description.
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1169}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1039}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3377}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4416}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Symbol
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Value(s)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Units
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Description
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Biochemical Parameters & & & \\
-\(A_\text{volume}\) & NA & \(mol CO_2/m^3/s\) & volumetric assimilation
-rate \\
-\(A_\text{chl}\) & NA & \(mol CO2/mol Chl/s\) & assimilation rate per
-mol chlorophyll \\
-\(E_t\) & 0.01 & \(mol / mol Chl\) & rubisco octamer concentration per
-chlorophyll \\
-\(eta_t\) & 0.59 & unitless & quantum efficiency of photoexcitation
-transfer to reaction centers \\
-\(k_c\) & 20 & \(mol CO2/mol Rubisco/s\) at 25 C & maximal carboxylation
-velocity of Rubisco \\
-\(k_o\) & 4.2 & \(mol O2/mol Rubisco/s\) at 25 C & maximal oxygenation
-velocity of Rubisco \\
-\(K_c\) & 0.0184 & \(mol/m^3\) at 25 C & Michaelis constant for CO2 \\
-\(K_o\) & 13.2 & \(mol/m^3\) at 25 C & Michaelis constant for O2 \\
-\(J_\text{max}\) & 0.253 & \(mol e\text{-}/mol Chl/s\) & maximal
-electron transport rate per mol Chl \\
-\(Q_\text{chl}\) & 3.3 & \(mol/m^3\) & Chl volume concentration \\
-\(v_c\) & NA & \(mol CO2/mol Chl/s\) & carboxylation rate \\
-\(v_o\) & NA & \(mol O2/mol Chl/s\) & oxygenation rate \\
-\(k_\text{vc}\) & NA & \(mol CO2/mol Rubisco/mol Chl\) & carboxylation
-velocity per Rubisco octamer at ambient CO2 \\
-\(R_p\) & 0.273 & \(mol RuBP/mol Chl\) & RuBP pool size \\
-\(k_i\) & 2.4 & \(1/m^2\) or \(1/L\) & light attenuation coefficient \\
-\(D_\text{mc}\) & 7e-7 & \(m^2/s\) & diffusivity of CO\(_2\) in
-mesophyll airspace \\
-Environmental Parameters & & & \\
-\(P\) & 101.325 & \(kPa\) & air pressure at sea level \\
-\(temp\) & 298.15 & \(K\) & temperature \\
-\(R_\text{gas}\) & 8.314 & \(J/K/mol\) & ideal gas constant \\
-\(C_a\) & 16.96367 & \(mmol CO_2/m^3\) & atmospheric CO\(_2\)
-concentration \\
-\(O\) & 8.584027 & \(mol O_2/m^3\) & atmospheric \(O_2\)
-concentration \\
-\(PAR\) & 1000 & \(umol photons/m^2/s\) & photosynthetically active
-radiation \\
-Variables & & & \\
-\(U_s\) & .05, .10, .15\ldots{} & \(mm\) & interstomatal distance \\
-\(T_l\) & .1, .2, .3\ldots{} & \(mm\) & leaf thickness \\
-\(g_\text{sc}\) & 0.2, 0.3, 0.4\ldots{} & \(mol/m^2/s\) & stomatal
-conductance \\
-\end{longtable}
-
-\hypertarget{two-dimensional-model}{%
-\subsection{Two-dimensional model}\label{two-dimensional-model}}
-
-We used the \texttt{steady.2D()} function in the \emph{R} package
-\textbf{rootSolve} version 1.8.2.4
-(\protect\hyperlink{ref-soetaert_practical_2009}{\textbf{soetaert\_practical\_2009?}}).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{diffusion2D }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{ (time, state, pars, stomata\_offset) \{}
-
-\NormalTok{  n\_row }\OtherTok{=}\NormalTok{ pars[[}\StringTok{"n\_row"}\NormalTok{]]}
-\NormalTok{  n\_col }\OtherTok{=}\NormalTok{ pars[[}\StringTok{"n\_col"}\NormalTok{]]}
-
-\NormalTok{  n\_node }\OtherTok{=}\NormalTok{ n\_row }\SpecialCharTok{*}\NormalTok{ n\_col}
-
-\NormalTok{  node\_length\_m }\OtherTok{=}\NormalTok{ node\_length }\SpecialCharTok{*} \FloatTok{1e{-}6} \CommentTok{\# node\_length in [m]}
-
-  \CommentTok{\# matrix of C\_m values}
-\NormalTok{  C\_m\_mat }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow =}\NormalTok{ n\_row, }\AttributeTok{ncol =}\NormalTok{ n\_col, state)}
-
-  \CommentTok{\# Photosynthetic demand}
-  \DocumentationTok{\#\# Light matrix}
-\NormalTok{  I\_mat }\OtherTok{=} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{by =}\NormalTok{ pars[[}\StringTok{"node\_length"}\NormalTok{]], }\AttributeTok{length.out =}\NormalTok{ n\_row) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{light\_propogation}\NormalTok{(pars[[}\StringTok{"leaf\_thickness"}\NormalTok{]], pars[[}\StringTok{"PAR"}\NormalTok{]]) }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{matrix}\NormalTok{(n\_row, }\AttributeTok{ncol =}\NormalTok{ n\_col)}
-
-  \DocumentationTok{\#\# Biochemical model}
-  \CommentTok{\# Units have to be correct for this to work, but unitless = TRUE should be faster}
-\NormalTok{  A }\OtherTok{=} \FunctionTok{biochemical\_model}\NormalTok{(C\_m\_mat, I\_mat, }\AttributeTok{pars =}\NormalTok{ pars, }\AttributeTok{unitless =} \ConstantTok{TRUE}\NormalTok{)}
-
-  \DocumentationTok{\#\# Photosynthesis matrix}
-  \DocumentationTok{\#\# multiply by 1000 to convert from mol / m\^{}3 / s to mmol / m\^{}3 / s}
-\NormalTok{  A\_mat }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow =}\NormalTok{ n\_row, }\AttributeTok{ncol =}\NormalTok{ n\_col, }\FloatTok{1e3} \SpecialCharTok{*}\NormalTok{ A)}
-
-  \CommentTok{\# CO2 diffusion}
-\NormalTok{  C\_a }\OtherTok{=} \FunctionTok{drop\_units}\NormalTok{(pars[[}\StringTok{"C\_a"}\NormalTok{]])}
-\NormalTok{  flux\_mat }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow =}\NormalTok{ n\_row, }\AttributeTok{ncol =}\NormalTok{ n\_col, }\DecValTok{0}\NormalTok{)}
-\NormalTok{  flux\_mat[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{] }\OtherTok{=}\NormalTok{ pars[[}\StringTok{"g\_sc"}\NormalTok{]] }\SpecialCharTok{*}\NormalTok{ (C\_a }\SpecialCharTok{{-}}\NormalTok{ C\_m\_mat[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{])}
-
-  \DocumentationTok{\#\# 1. Flux through stomata}
-  \ControlFlowTok{if}\NormalTok{ (stomata\_offset) \{}
-\NormalTok{    flux\_mat[n\_row, n\_col] }\OtherTok{=}\NormalTok{ pars[[}\StringTok{"g\_sc"}\NormalTok{]] }\SpecialCharTok{*}\NormalTok{ (C\_a }\SpecialCharTok{{-}}\NormalTok{ C\_m\_mat[n\_row, n\_col])}
-\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
-\NormalTok{    flux\_mat[n\_row, }\DecValTok{1}\NormalTok{] }\OtherTok{=}\NormalTok{ pars[[}\StringTok{"g\_sc"}\NormalTok{]] }\SpecialCharTok{*}\NormalTok{ (C\_a }\SpecialCharTok{{-}}\NormalTok{ C\_m\_mat[n\_row, }\DecValTok{1}\NormalTok{])}
-\NormalTok{  \}}
-
-\NormalTok{  zero\_x }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n\_row)}
-\NormalTok{  zero\_y }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n\_col)}
-
-  \DocumentationTok{\#\# 2. Mesophyll flux; zero fluxes near boundaries}
-\NormalTok{  flux\_above }\OtherTok{=} \FunctionTok{rbind}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n\_col), C\_m\_mat[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(n\_row }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{), ] }\SpecialCharTok{{-}}\NormalTok{ C\_m\_mat[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{n\_row, ])}
-\NormalTok{  flux\_below }\OtherTok{=} \FunctionTok{rbind}\NormalTok{(C\_m\_mat[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{n\_row, ] }\SpecialCharTok{{-}}\NormalTok{ C\_m\_mat[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(n\_row }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{), ], }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n\_col))}
-\NormalTok{  flux\_left  }\OtherTok{=} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n\_col), C\_m\_mat[, }\DecValTok{1}\SpecialCharTok{:}\NormalTok{(n\_col }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)] }\SpecialCharTok{{-}}\NormalTok{ C\_m\_mat[, }\DecValTok{2}\SpecialCharTok{:}\NormalTok{n\_col])}
-\NormalTok{  flux\_right }\OtherTok{=} \FunctionTok{cbind}\NormalTok{(C\_m\_mat[, }\DecValTok{2}\SpecialCharTok{:}\NormalTok{n\_col] }\SpecialCharTok{{-}}\NormalTok{ C\_m\_mat[, }\DecValTok{1}\SpecialCharTok{:}\NormalTok{(n\_col }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)], }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n\_col))}
-
-  \CommentTok{\# g\_mc [m/s] = D\_mc [m\^{}2/s] / node\_length [m]}
-\NormalTok{  flux\_mat }\OtherTok{=}\NormalTok{ flux\_mat }\SpecialCharTok{+}\NormalTok{ pars[[}\StringTok{"g\_mc"}\NormalTok{]] }\SpecialCharTok{*}\NormalTok{ (flux\_above }\SpecialCharTok{+}\NormalTok{ flux\_below }\SpecialCharTok{+}\NormalTok{ flux\_left }\SpecialCharTok{+}\NormalTok{ flux\_right)}
-
-    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{as.vector}\NormalTok{(flux\_mat }\SpecialCharTok{/}\NormalTok{ node\_length\_m }\SpecialCharTok{{-}}\NormalTok{ A\_mat))))}
-
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{global-results}{%
-\subsection{Global Results}\label{global-results}}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
 Stomatal density of \emph{Arabidopsis thaliana} the 132 leaves measured
 ranged from 12 to 93 (units) with high light leaves ranging from 93 to
 55 (units), medium light from 15 to 35 (units), and low light from 12 to
 42 (units). Leaves were amphistomatous with a mean stomatal ratio of
 0.45.
+
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/density.pdf}
+\caption{Stomatal density is higher in \textit{A. thaliana} plants grown under high light conditions. We determined statistical significance between light treatments using Tukey's post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
+\label{fig:density}
+\end{figure}
 
 \hypertarget{single-surface-results}{%
 \subsection{Single Surface Results}\label{single-surface-results}}
@@ -899,8 +621,8 @@ We wrapped the above functions to adjust environmental and anatomical
 variables. We're going to simulate over a grid of parameters, but here
 is what the output looks like plotted:
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\hypertarget{results-1}{%
+\section{Results}\label{results-1}}
 
 \hypertarget{single-surface-analysis}{%
 \subsection{Single surface analysis}\label{single-surface-analysis}}
@@ -909,12 +631,6 @@ is what the output looks like plotted:
 \includegraphics[width=\textwidth]{figures/single-surface.pdf}
 \caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
 \label{fig:single-surface}
-\end{figure}
-
-\begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/density.pdf}
-\caption{Stomatal density is higher in plants grown under high light conditions. Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
-\label{fig:density}
 \end{figure}
 
 \begin{figure}[ht]

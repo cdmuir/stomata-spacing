@@ -1,14 +1,14 @@
 \begin{figure}[ht]
-\includegraphics[width=\textwidth]{figures/single-surface.pdf}
-\caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
-\label{fig:single-surface}
+\includegraphics[width = \textwidth]{figures/density.pdf}
+\caption{Stomatal density is higher in \textit{A. thaliana} plants grown under high light conditions. We determined statistical significance between light treatments using Tukey's post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
+\label{fig:density}
 \end{figure}
 \efloatseparator
  
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/density.pdf}
-\caption{Stomatal density is higher in plants grown under high light conditions. Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
-\label{fig:density}
+\includegraphics[width=\textwidth]{figures/single-surface.pdf}
+\caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
+\label{fig:single-surface}
 \end{figure}
 \efloatseparator
  

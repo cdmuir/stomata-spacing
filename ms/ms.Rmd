@@ -65,6 +65,7 @@ header-includes:
  - \linenumbers # For line numbering
  - \usepackage{hyperref} # For autoref
  - \renewcommand{\figureautorefname}{Fig.}
+ - \usepackage{booktabs} # for tables
 ---
 
 ```{r setup, include=FALSE}
@@ -167,13 +168,13 @@ To test whether the position of ab- and adaxial stomata are coordinated we compa
 
 ## Modeling Photosynthesis
 
-We modeled photosynthesis CO$_2$ assimilation rate using a spatially-explicit two-dimensional reaction diffusion model using a porous medium approximation [@parkhurst_intercellular_1994] using the finite element method (FEM) following @earles_excess_2017. Consider a two-dimensional leaf where stomata occur on each surface in a regular sequence with interstomatal distance $U$. The main outcome we assessed is the advantage of offsetting the position of stomata on each surface compared to have stomata on the same $x$ position on each surface. With these assumptions, by symmetry, we only need to model two stomata, one abaxial and one adaxial, from $x = 0$ to $x = U/2$ and from the adaxial surface at $y = 0$ to the abaxial surface at $y = L$, the leaf thickness. We arbitrarily set the adaxial stomate at $x = 0$ and toggled the abaxial stomata position between $x = U/2$ (offset) or $x = 0$ (below adaxial stomate). The 'coordination advantage' of offsett stomatal position on each surface is the photosynthetic rate of the leaf with offset stomata compared to that with stomata aligned in the same $x$ position:
+We modeled photosynthesis CO$_2$ assimilation rate using a spatially-explicit two-dimensional reaction diffusion model using a porous medium approximation [@parkhurst_intercellular_1994] using the finite element method (FEM) following @earles_excess_2017. Consider a two-dimensional leaf where stomata occur on each surface in a regular sequence with interstomatal distance $U$. The main outcome we assessed is the advantage of offsetting the position of stomata on each surface compared to have stomata on the same $x$ position on each surface. With these assumptions, by symmetry, we only need to model two stomata, one abaxial and one adaxial, from $x = 0$ to $x = U/2$ and from the adaxial surface at $y = 0$ to the abaxial surface at $y = L$, the leaf thickness. We arbitrarily set the adaxial stomate at $x = 0$ and toggled the abaxial stomata position between $x = U/2$ (offset) or $x = 0$ (below adaxial stomate). The 'coordination advantage' of offset stomatal position on each surface is the photosynthetic rate of the leaf with offset stomata compared to that with stomata aligned in the same $x$ position:
 
 \begin{equation} \label{eq:coordination_advantage}
   \text{coordination advantage} = \frac{A_\text{offset}}{A_\text{aligned}}
 \end{equation}
 
-We modeled the coordination advantage over a range of leaf thicknesses, stomatal densities, photosynthetic capacities, and light environments to understand when offsetting stomatal position on each surface might deliver a significant photosynthetic advantage (\autoref{tab:model_var}).
+We modeled the coordination advantage over a range of leaf thicknesses, stomatal densities, photosynthetic capacities, and light environments to understand when offsetting stomatal position on each surface might deliver a significant photosynthetic advantage (\autoref{tab:model_var}). The complete model description is available in the Supporting Information.
 
 ```{r, model_var, results="asis"}
 #| label: tbl-model_var
@@ -195,191 +196,19 @@ knitr::kable(
   caption = model_var_caption,
   label = "model_var",
   booktabs = TRUE, format = "latex", escape = FALSE
-) #|>
-#   kableExtra::kable_styling()
-```
-
-WORKING HERE - ???
-
-### Light propogation model
-
-
-Irradiance at depth $y$ in a leaf with thickness $L$ is modeled following Lloyd *et al.* (1992):
-
-\begin{equation}\label{eq:light_propogation}
-  I(y) = 1.1 I_0 e ^ {-2.4 y / L}
-\end{equation}
-
-where $I_0$ is photosynthetically active irradiance incident on the adaxial leaf surface.
-
-### Biochemical model
-
-All parameter symbols, units, descriptions, and values are described in Table X below. Following Gutschick (1984), we modeled photosynthetic rate per unit chlorophyll $A_\text{chl}$ then calculated the volumetric photosynthetic rate $A_\text{volume}$ by multiplying by the chlorophyll concentration $Q_\text{chl}$:
-
-$$A_\text{volume} = A_\text{chl} Q_\text{chl}$$
-A description of the model is given on page 553-556 of Gutschick (1984). The R code below is how we implemented the model. 
-
-* `C_m` is a vector CO$_2$ concentrations in $\text{mmol m}^{-3}$ at different positions within the leaf
-* `I_m` is a vector of irradiances in $\mu \text{mol m}^{-2} \text{s}^{-1}$ at different positions within the leaf (same order as `C_m`).
-* `pars` is a list of parameters
-
-```{r, echo = TRUE, eval = FALSE}
-
-pars = list(
-
-    P = set_units(101.325, kPa), # air pressure at sea level
-    temp = set_units(298.15, K), # assume constant temperature
-    R_gas = set_units(8.314, J/K/mol), # ideal gas constant
-
-    # Calculations for C_a and O ued below
-    # 21% O2
-    # set_units(0.21 * P / (R_gas * temp), mol/m^3)
-    # 415 ppm
-    # set_units((415/1e6) * P / (R_gas * temp), mmol/m^3)
-
-    # Environmental
-    C_a = set_units(16.96367, mmol/m^3),
-    O = set_units(8.584027, mol/m^3),
-    PAR = set_units(1000, umol/m^2/s),
-
-    # Biochemical
-    E_t = set_units(0.01, mol/mol),
-    eta_t = set_units(0.59, 1),
-    k_c = set_units(20, mol/mol/s),
-    k_o = set_units(4.2, mol/mol/s),
-    K_c = set_units(0.0184, mol/m^3),
-    K_o = set_units(13.2, mol/m^3),
-    Q_chl = set_units(3.3, mol/m^3),
-    R_p = set_units(0.273, mol/mol),
-
-    # Diffusivity of CO2 in leaf airspace. From Gutschick 1984. Should be updated and include temperature dependence, effect of cell packing, tortuosity, etc.
-    D_mc = set_units(7e-7, m^2/s)
-
-)
-
-# strip units to speed up calculation
-upars = purrr::map(pars, ~ {if(inherits(.x, "units")) {drop_units(.x)}})
-
-# multiply/divide by 1e3 because C_m is mmol and parameters are in mol
-k_vc = upars[["k_c"]] / (1 + (1e3 * upars[["K_c"]] / C_m) *
-                           (1 + upars[["O"]] / upars[["K_o"]])) # [1/s]
-# Given light_propagation assumptions, k = 2.4/L assuming no scattering
-k_i = 2.4 / upars[["leaf_thickness"]] # [1/um] # I'm not sure sure this is right
-b_x = k_i * I_m # [mol/m^3/s]
-a_x = b_x / upars[["Q_chl"]] # [1/s]
-j = 0.5 * a_x * upars[["eta_t"]] # [1/s] # eqn 9
-phi = upars[["k_o"]] / upars[["k_c"]] * (upars[["O"]] / upars[["K_o"]]) /
-  (1e-3 * C_m / upars[["K_c"]]) # [1]
-v_cj = j / (4 + 4 * phi) # [1/s]
-v_cp = k_vc * upars[["R_p"]] # [1/s]
-v_cr = apply(cbind(v_cj, v_cp), 1, min) # [1/s]
-v_c = apply(cbind(k_vc * upars[["E_t"]], v_cr), 1, min) # [1/s]
-v_o = phi * v_c # [1/s]
-A_chl = v_c - 0.5 * v_o # [1/s] # i.e mol CO2 / mol Chl / s
-A_volume = A_chl * upars[["Q_chl"]] # [mol/m^3/s]
+) 
 
 ```
 
-To model photosynthesis and CO$_2$ transport within a two-dimensional cross section of the leaf, we built a grid of nodes of dimensions leaf thickness by half the interstomatal distance. Nodes represent the leaf mesophyll where CO$_2$ diffusion and assimilation occur. 
-
-**Table X** Glossary of mathematical symbols. The columns indicate the mathematical Symbol used in the paper, the associated symbol used in R scripts, scientific Units, and a verbal Description.
-
- Symbol              | Value(s) | Units            | Description
----------|--------|--------------------------|----------------------------------
-Biochemical Parameters |||
-$A_\text{volume}$    | NA    | $mol CO_2/m^3/s$    | volumetric assimilation rate
-$A_\text{chl}$       | NA    | $mol CO2/mol Chl/s$ | assimilation rate per mol chlorophyll
-$E_t$                | 0.01  | $mol / mol Chl$     | rubisco octamer concentration per chlorophyll  
-$eta_t$              | 0.59  | unitless            | quantum efficiency of photoexcitation transfer to reaction centers
-$k_c$                | 20    | $mol CO2/mol Rubisco/s$ at 25 C | maximal carboxylation velocity of Rubisco
-$k_o$                | 4.2   | $mol O2/mol Rubisco/s$ at 25 C | maximal oxygenation velocity of Rubisco
-$K_c$                | 0.0184 | $mol/m^3$ at 25 C  | Michaelis constant for CO2
-$K_o$                | 13.2  | $mol/m^3$ at 25 C   | Michaelis constant for O2
-$J_\text{max}$       | 0.253 | $mol e\text{-}/mol Chl/s$ | maximal electron transport rate per mol Chl
-$Q_\text{chl}$       | 3.3   | $mol/m^3$           | Chl volume concentration
-$v_c$                | NA    | $mol CO2/mol Chl/s$ | carboxylation rate
-$v_o$                | NA    | $mol O2/mol Chl/s$  | oxygenation rate
-$k_\text{vc}$        | NA    | $mol CO2/mol Rubisco/mol Chl$ | carboxylation velocity per Rubisco octamer at ambient CO2
-$R_p$                | 0.273 | $mol RuBP/mol Chl$  | RuBP pool size
-$k_i$                | 2.4   | $1/m^2$ or $1/L$    | light attenuation coefficient
-$D_\text{mc}$        | 7e-7  | $m^2/s$             | diffusivity of CO$_2$ in mesophyll airspace
-Environmental Parameters |||
-$P$                  | 101.325 | $kPa$             | air pressure at sea level
-$temp$               | 298.15 | $K$                | temperature
-$R_\text{gas}$       | 8.314 | $J/K/mol$           | ideal gas constant
-$C_a$                | 16.96367 | $mmol CO_2/m^3$  | atmospheric CO$_2$ concentration
-$O$                  | 8.584027 | $mol O_2/m^3$    | atmospheric $O_2$ concentration
-$PAR$                | 1000  | $umol photons/m^2/s$ | photosynthetically active radiation
-Variables |||
-$U_s$                | .05, .10, .15... | $mm$     | interstomatal distance
-$T_l$                | .1, .2, .3... | $mm$        | leaf thickness
-$g_\text{sc}$        | 0.2, 0.3, 0.4... | $mol/m^2/s$ | stomatal conductance
-
-## Two-dimensional model
-
-We used the `steady.2D()` function in the *R* package **rootSolve** version `r packageVersion("rootSolve")` [@soetaert_practical_2009].
-
-```{r, echo = TRUE, eval=FALSE}
-
-diffusion2D <- function (time, state, pars, stomata_offset) {
-
-  n_row = pars[["n_row"]]
-  n_col = pars[["n_col"]]
-
-  n_node = n_row * n_col
-
-  node_length_m = node_length * 1e-6 # node_length in [m]
-
-  # matrix of C_m values
-  C_m_mat = matrix(nrow = n_row, ncol = n_col, state)
-
-  # Photosynthetic demand
-  ## Light matrix
-  I_mat = seq(0, by = pars[["node_length"]], length.out = n_row) |>
-    light_propogation(pars[["leaf_thickness"]], pars[["PAR"]]) |>
-    matrix(n_row, ncol = n_col)
-
-  ## Biochemical model
-  # Units have to be correct for this to work, but unitless = TRUE should be faster
-  A = biochemical_model(C_m_mat, I_mat, pars = pars, unitless = TRUE)
-
-  ## Photosynthesis matrix
-  ## multiply by 1000 to convert from mol / m^3 / s to mmol / m^3 / s
-  A_mat = matrix(nrow = n_row, ncol = n_col, 1e3 * A)
-
-  # CO2 diffusion
-  C_a = drop_units(pars[["C_a"]])
-  flux_mat = matrix(nrow = n_row, ncol = n_col, 0)
-  flux_mat[1, 1] = pars[["g_sc"]] * (C_a - C_m_mat[1, 1])
-
-  ## 1. Flux through stomata
-  if (stomata_offset) {
-    flux_mat[n_row, n_col] = pars[["g_sc"]] * (C_a - C_m_mat[n_row, n_col])
-  } else {
-    flux_mat[n_row, 1] = pars[["g_sc"]] * (C_a - C_m_mat[n_row, 1])
-  }
-
-  zero_x <- rep(0, n_row)
-  zero_y <- rep(0, n_col)
-
-  ## 2. Mesophyll flux; zero fluxes near boundaries
-  flux_above = rbind(rep(0, n_col), C_m_mat[1:(n_row - 1), ] - C_m_mat[2:n_row, ])
-  flux_below = rbind(C_m_mat[2:n_row, ] - C_m_mat[1:(n_row - 1), ], rep(0, n_col))
-  flux_left  = cbind(rep(0, n_col), C_m_mat[, 1:(n_col - 1)] - C_m_mat[, 2:n_col])
-  flux_right = cbind(C_m_mat[, 2:n_col] - C_m_mat[, 1:(n_col - 1)], rep(0, n_col))
-
-  # g_mc [m/s] = D_mc [m^2/s] / node_length [m]
-  flux_mat = flux_mat + pars[["g_mc"]] * (flux_above + flux_below + flux_left + flux_right)
-
-    return(list(c(as.vector(flux_mat / node_length_m - A_mat))))
-
-}
-
-```
-
-## Global Results
+# Results
 
 Stomatal density of *Arabidopsis thaliana* the 132 leaves measured ranged from 12 to 93 (units) with high light leaves ranging from 93 to 55 (units), medium light from 15 to 35 (units), and low light from 12 to 42 (units). Leaves were amphistomatous with a mean stomatal ratio of 0.45.
+
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/density.pdf}
+\caption{Stomatal density is higher in \textit{A. thaliana} plants grown under high light conditions. We determined statistical significance between light treatments using Tukey's post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
+\label{fig:density}
+\end{figure}
 
 ## Single Surface Results
 
@@ -403,12 +232,6 @@ We wrapped the above functions to adjust environmental and anatomical variables.
 \includegraphics[width=\textwidth]{figures/single-surface.pdf}
 \caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
 \label{fig:single-surface}
-\end{figure}
-
-\begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/density.pdf}
-\caption{Stomatal density is higher in plants grown under high light conditions. Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
-\label{fig:density}
 \end{figure}
 
 \begin{figure}[ht]
