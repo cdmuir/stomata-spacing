@@ -5,20 +5,7 @@ single_surface_results = readr::read_rds("objects/single_surface_results.rds") |
 
 # anova
 single_surface_anova = aov(dispersion ~ light * surface, data = single_surface_results)
-summary(single_surface_anova)
 write_rds(single_surface_anova, "objects/single_surface_anova.rds")
-
-# some preliminary ideas how to make a table for this
-tmp = single_surface_anova |>
-  broom::tidy()
-  #mutate(p = formatC(tmp$p.value, format = "e", digits = 2))
-tmp
-tmp$p.value = format(tmp$p.value, format = "e", digits = 2)
-tmp
-  mutate(x = if.else(is.na(p.value), NA, scientize(p.value)))
-  rename(SS = sumsq, MS = meansq, `$F$` = statistic, `$P$` = p.value) |>
-
-  knitr::kable()
 
 stat.test <- aov(dispersion ~ light * surface, data = single_surface_results) |>
   tukey_hsd()
@@ -26,7 +13,7 @@ stat.test = stat.test[1:3,]
 
 # anova
 density_anova = aov(n_stomata ~ light * surface, data = single_surface_results)
-summary(density_anova)
+write_rds(density_anova, "objects/density_anova.rds")
 
 stat.test.density <- aov(n_stomata ~ light * surface, data = single_surface_results) |>
   tukey_hsd()
