@@ -445,7 +445,13 @@ package \textbf{spatialEco} version 2.0.1
 (\protect\hyperlink{ref-evans_spatialeco_2023}{J. S. Evans and Murphy
 2023}). The observed stomatal distribution is dispersed relative to a
 uniform random distribution if the observed \(NNI\) is greater than 95\%
-of the synthetic \(\mathrm{NNI}\) values (one-tailed test).
+of the synthetic \(\mathrm{NNI}\) values (one-tailed test). We adjusted
+\(P\)-values to account for multiple comparisons using the
+Benjamini-Hochberg
+(\protect\hyperlink{ref-benjamini_controlling_1995}{\textbf{benjamini\_controlling\_1995?}})
+false discovery rate procedure implemented in the \emph{R} package
+\textbf{multtest} version 2.56.0
+(\protect\hyperlink{ref-pollard_multiple_2005}{\textbf{pollard\_multiple\_2005?}}).
 
 For each sample image, we also simulated \(10^3\) synthetic data with
 \(n\) stomata ideally dispersed in an equilateral triangular grid. For
@@ -499,7 +505,7 @@ we compared the observed distribution to a null distribution where the
 positions on each surface are random. For each pair of surfaces
 (observed or synthetic) we calculated the distance squared between each
 to the nearest stomatal centroid with the \emph{R} package
-\textbf{raster} version 3.6.23. Then we calculated the cell-wise Pearson
+\textbf{raster} version 3.6.26. Then we calculated the cell-wise Pearson
 correlation coefficient. If stomatal positions on each surface are
 coordinated to minimize the distance between mesophyll and the nearest
 stomate, then we expect a negative correlation. A cell that is far from
@@ -566,11 +572,11 @@ $U$ & $17-169$ & $\mu$m\\
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-Stomatal density of \emph{Arabidopsis thaliana} the 132 leaves measured
-ranged from 12 to 93 (units) with high light leaves ranging from 93 to
-55 (units), medium light from 15 to 35 (units), and low light from 12 to
-42 (units). Leaves were amphistomatous with a mean stomatal ratio of
-0.45.
+Stomatal density of \emph{Arabidopsis thaliana} the 132 leaf surfaces
+measured ranged from 12 to 93 (units) with high light leaves ranging
+from 93 to 55 (units), medium light from 15 to 35 (units), and low light
+from 12 to 42 (units). Leaves were amphistomatous with a mean stomatal
+ratio of 0.45.
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/density.pdf}
@@ -582,17 +588,21 @@ ranged from 12 to 93 (units) with high light leaves ranging from 93 to
 \subsection{Stomatal distribution is nonrandom, but far from
 ideal}\label{stomatal-distribution-is-nonrandom-but-far-from-ideal}}
 
-Many leaf surface (57 of 132, 43.2\%) are significantly overdispersed
-compared to a random uniform distribution, none of the leaf surfaces
-exhibited perfectly uniform stomatal patterning (dispersion index = 1)
-(\autoref{fig:single-surface}). Additionally, we hypothesized that as
-CO\(_2\) is more limiting to photosynthesis under high light, stomata
-would be more uniformly dispersed in plants grown in high light than
-plants grown in low and medium light. The data also fail to support this
-hypothesis as there is no strong, discernible trend between light and
-stomatal patterning. Interestingly, adaxial leaf surfaces were more
-uniformly dispersed than associated abaxial leaf surfaces across all
-light treatments (F\(_\text{1,126}\) = 28.8; p-value \textless{} 0.001).
+Many leaf surfaces (37 of 132, 28\%; ) are significantly overdispersed
+compared to a random uniform distribution, but none were close to an
+ideal hexagonal pattern (dispersion index = 1;
+\autoref{fig:single-surface}). Before controlling for multiple
+comparisons, 43.2\% are significantly overdispersed. The dispersion
+index differs significantly among light treatments (ANOVA, \(F = `r\))
+is significantly greater Additionally, we hypothesized that as CO\(_2\)
+is more limiting to photosynthesis under high light, the dispersion
+index would closer to 1 in high light\ldots WORKING HERE would be more
+uniformly dispersed in plants grown in high light than plants grown in
+low and medium light. The data also fail to support this hypothesis as
+there is no strong, discernible trend between light and stomatal
+patterning. Interestingly, adaxial leaf surfaces were more uniformly
+dispersed than associated abaxial leaf surfaces across all light
+treatments (F\(_\text{1,126}\) = 28.8; p-value \textless{} 0.001).
 Rather than regulate stomatal patterning in response to light regimes,
 plants respond by increasing stomatal density (\autoref{fig:density}).
 Stomatal density drastically increased in plants grown under high light,
