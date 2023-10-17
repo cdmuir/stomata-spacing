@@ -6,6 +6,13 @@
 \efloatseparator
  
 \begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
+\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
+\label{fig:tessellation-example}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/density.pdf}
 \caption{Stomatal density is higher in \textit{A. thaliana} plants grown under high light conditions. We determined statistical significance between light treatments using Tukey post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
 \label{fig:density}
@@ -20,9 +27,9 @@
 \efloatseparator
  
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
-\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
-\label{fig:tessellation-example}
+\includegraphics[width = \textwidth]{figures/dual-surface.pdf}
+\caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
+\label{fig:dual-surface}
 \end{figure}
 \efloatseparator
  
@@ -30,11 +37,4 @@
 \includegraphics[width = \textwidth]{figures/length-area.pdf}
 \caption{Stomatal length and stomatal zone area. Lines of best fit computed using a bayesian generalized non-linear multilevel model. Each light level and leaf surface exhibits a unique, weakly positive relationship between stomatal zone area and length.}
 \label{fig:length-area}
-\end{figure}
-\efloatseparator
- 
-\begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/dual-surface.pdf}
-\caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
-\label{fig:dual-surface}
 \end{figure}

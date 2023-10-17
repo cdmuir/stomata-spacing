@@ -1,46 +1,16 @@
 # woorking on stuff to automate results for paper
 source("r/header.R")
-single_surface_results = read_rds("objects/single_surface_results.rds")
 
-hist(tmp$p_value)
-plot(tmp$NNI_observed, log(tmp$p_value))
+dual_surface_results = readr::read_rds("objects/dual_surface_results.rds")
 
-nni = tmp |>
+nsd1 = dual_surface_results |>
+  ungroup() |>
   dplyr::transmute(sig = p_value < 0.05) |>
   dplyr::summarize(n1 = sum(sig), n2 = sum(!sig))
 
-adjp = mt.rawp2adjp(single_surface_results$p_value, proc = "BH")
+adjp = mt.rawp2adjp(dual_surface_results$p_value, proc = "BH")
 
-bind_cols(single_surface_results[adjp$index,], adjp$adjp)
-
-single_surface_anova = read_rds("objects/single_surface_anova.rds")
-
-TukeyHSD(single_surface_anova)
-
-single_surface_anova
-
-summary(single_surface_anova)["light", ]
-
-str(single_surface_anova)
-
-single_surface_anova$df.residual
-
-m = single_surface_anova
-x = "light"
-
-report_fstat = function(m, x) {
-
-  assert_class(m, c("aov", "lm"))
-  s = summary(m)
-  r = str_detect(rownames(s[[1]]), glue("^{x}\\s*$"))
-  assert_true(sum(r) == 1)
-
-glue(
-  "F_{{{df1},{df2}}} = {Fstat}, P = {pval}",
-  df1 = s[[1]][r, "Df"],
-  df2 = m$df.residual,
-  Fstat = scientize(s[[1]][r, "F value"]),
-  pval = scientize(s[[1]][r, "Pr(>F)"])
-)
-
-}
+nsd2 = bind_cols(dual_surface_results[adjp$index,], adjp$adjp) |>
+  ungroup() |>
+  dplyr::transmute(sig = BH < 0.05) |>
+  dplyr::summarize(n1 = sum(sig), n2 = sum(!sig))

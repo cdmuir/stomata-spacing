@@ -496,6 +496,12 @@ Stomatal length was measured in ImageJ
 (\protect\hyperlink{ref-schneider_nih_2012}{Schneider, Rasband, and
 Eliceiri 2012}).
 
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
+\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
+\label{fig:tessellation-example}
+\end{figure}
+
 \hypertarget{paired-abaxial-and-adaxial-surface-analysis}{%
 \subsection{Paired Abaxial and Adaxial Surface
 Analysis}\label{paired-abaxial-and-adaxial-surface-analysis}}
@@ -504,11 +510,12 @@ To test whether the position of ab- and adaxial stomata are coordinated
 we compared the observed distribution to a null distribution where the
 positions on each surface are random. For each pair of surfaces
 (observed or synthetic) we calculated the distance squared between each
-to the nearest stomatal centroid with the \emph{R} package
-\textbf{raster} version 3.6.26. Then we calculated the cell-wise Pearson
+pixel to the nearest stomatal centroid with the \emph{R} package
+\textbf{raster} version 3.6.26. We refer to this as the `nearest
+stomatal distance' or NSD. Then we calculated the pixel-wise Pearson
 correlation coefficient. If stomatal positions on each surface are
 coordinated to minimize the distance between mesophyll and the nearest
-stomate, then we expect a negative correlation. A cell that is far from
+stomate, then we expect a negative correlation. A pixel that is far from
 a stomate on one surface should be near a stomate on the other surface
 (\autoref{fig:ideal-amphi-grid}). We generated a null distribution of
 the correlation coefficient by simulating \(10^3\) synthetic data sets
@@ -616,41 +623,34 @@ between light treatment and surface (ANOVA,
 \label{fig:single-surface}
 \end{figure}
 
-Across all light treatments and leaf surfaces, stomatal length and
-stomatal area were weakly positively correlated, indicating some support
-for our hypothesis that stomata are selected for an optimal operational
-aperture (\autoref{fig:length-area}).
+\hypertarget{no-evidence-for-coordinated-stomatal-position-between-surfaces}{%
+\subsection{No evidence for coordinated stomatal position between
+surfaces}\label{no-evidence-for-coordinated-stomatal-position-between-surfaces}}
 
-\hypertarget{dual-surface-analysis}{%
-\subsection{Dual Surface Analysis}\label{dual-surface-analysis}}
-
-As evidence against our hypothesis that natural selection should favor
-spatial coordination in the placement of stomata between abaxial and
-adaxial leaf surfaces, we found no correlation between paired abaxial
-and adaxial leaf surfaces (\autoref{fig:dual-surface}). Light treatment
-had no effect on correlation between surfaces (F\(_\text{2,63}\) = 2.28;
-p-value = 0.11). All but one abaxial, adaxial surface pairs were
-independent (\(\alpha\) = 0.05).
-
-\begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
-\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
-\label{fig:tessellation-example}
-\end{figure}
-
-\begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/length-area.pdf}
-\caption{Stomatal length and stomatal zone area. Lines of best fit computed using a bayesian generalized non-linear multilevel model. Each light level and leaf surface exhibits a unique, weakly positive relationship between stomatal zone area and length.}
-\label{fig:length-area}
-\end{figure}
-
-\hypertarget{dual-surface-analysis-1}{%
-\subsection{Dual surface analysis}\label{dual-surface-analysis-1}}
+There is no evidence of spatial coordination between abaxial and adaxial
+leaf surfaces. The pixel-wise correlation between nearest stomatal
+distance (NSD) squared on paired abaxial and adaxial leaf surfaces is
+not significantly less than zero in any of the 66 leaves
+(\autoref{fig:dual-surface}). Before controlling for multiple
+comparisons, 3\% are significantly \emph{positively} correlated. The NSD
+correlation is not different among light treatments (ANOVA,
+\(F_{2,63} = 2.28, P = 0.111\); \autoref{fig:dual-surface}).
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/dual-surface.pdf}
 \caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
 \label{fig:dual-surface}
+\end{figure}
+
+Across all light treatments and leaf surfaces, stomatal length and
+stomatal area were weakly positively correlated, indicating some support
+for our hypothesis that stomata are selected for an optimal operational
+aperture (\autoref{fig:length-area}).
+
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/length-area.pdf}
+\caption{Stomatal length and stomatal zone area. Lines of best fit computed using a bayesian generalized non-linear multilevel model. Each light level and leaf surface exhibits a unique, weakly positive relationship between stomatal zone area and length.}
+\label{fig:length-area}
 \end{figure}
 
 \hypertarget{discussion}{%

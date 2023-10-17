@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  17 OCT 2023 08:24
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  17 OCT 2023 09:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -664,13 +664,13 @@ n \TU/lmr/m/n/12 version 2.27.0 ([]\TU/lmr/bx/n/12 stan_development_team_stan_2
  []
 
 [6]
-Overfull \hbox (8.94621pt too wide) in paragraph at lines 525--544
+Overfull \hbox (8.94621pt too wide) in paragraph at lines 532--551
 \TU/lmr/m/n/12 We modeled photosynthesis CO$[]$ assimilation rate using a spati
 ally-explicit two-dimensional
  []
 
 
-Overfull \hbox (57.35214pt too wide) in paragraph at lines 525--544
+Overfull \hbox (57.35214pt too wide) in paragraph at lines 532--551
 \TU/lmr/m/n/12 reaction diffusion model using a porous medium approximation ([]
 \TU/lmr/bx/n/12 parkhurst_intercellular_1994?[]\TU/lmr/m/n/12 )
  []
@@ -725,30 +725,30 @@ File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
 [20
 
 ]
+File: figures/tessellation-example.pdf Graphic file (type pdf)
+<use figures/tessellation-example.pdf>
+
+LaTeX Warning: Float too large for page by 49.4412pt on input line 12.
+
+[21]
 File: figures/density.pdf Graphic file (type pdf)
 <use figures/density.pdf>
-[21
+[22
+
 
 ]
 File: figures/single-surface.pdf Graphic file (type pdf)
 <use figures/single-surface.pdf>
-[22
-
-]
-File: figures/tessellation-example.pdf Graphic file (type pdf)
-<use figures/tessellation-example.pdf>
-
-LaTeX Warning: Float too large for page by 49.4412pt on input line 26.
-
-[23]
-File: figures/length-area.pdf Graphic file (type pdf)
-<use figures/length-area.pdf>
-[24
-
+[23
 
 ]
 File: figures/dual-surface.pdf Graphic file (type pdf)
 <use figures/dual-surface.pdf>
+[24
+
+]
+File: figures/length-area.pdf Graphic file (type pdf)
+<use figures/length-area.pdf>
 ) [25
 
 ] (./ms.aux)
@@ -756,13 +756,13 @@ File: figures/dual-surface.pdf Graphic file (type pdf)
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: 7FB180BC8D9438B7452FA45F9FC5A771;1989.
+(rerunfilecheck)             Checksum: 07CA7AD03023B29E38FE567D5716FDF3;2040.
  ) 
 Here is how much of TeX's memory you used:
- 13876 strings out of 476683
- 219118 string characters out of 5804047
+ 13875 strings out of 476683
+ 219134 string characters out of 5804047
  1868018 words of memory out of 5000000
- 33858 multiletter control sequences out of 15000+600000
+ 33857 multiletter control sequences out of 15000+600000
  523076 words of font info for 97 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,12n,76p,666b,440s stack positions out of 10000i,1000n,20000p,200000b,200000s

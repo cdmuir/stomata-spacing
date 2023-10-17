@@ -82,6 +82,8 @@ fit = readr::read_rds("objects/fit.rds")
 single_surface_results = readr::read_rds("objects/single_surface_results.rds")
 single_surface_anova = readr::read_rds("objects/single_surface_anova.rds")
 density_anova = readr::read_rds("objects/density_anova.rds")
+dual_surface_results = readr::read_rds("objects/dual_surface_results.rds")
+correlation_anova = readr::read_rds("objects/correlation_anova.rds")
 pm_pars = readr::read_csv("raw-data/2d-pm-parameters.csv", show_col_types = FALSE)
 model_var = readr::read_rds("objects/model_var.rds")
 
@@ -96,6 +98,18 @@ nni2 = bind_cols(single_surface_results[adjp$index,], adjp$adjp) |>
   dplyr::transmute(sig = BH < 0.05) |>
   dplyr::summarize(n1 = sum(sig), n2 = sum(!sig))
 
+# Summarize results on corr(NSD)
+nsd1 = dual_surface_results |>
+  ungroup() |>
+  dplyr::transmute(sig = p_value < 0.05) |>
+  dplyr::summarize(n1 = sum(sig), n2 = sum(!sig))
+
+adjp = mt.rawp2adjp(dual_surface_results$p_value, proc = "BH")
+
+nsd2 = bind_cols(dual_surface_results[adjp$index,], adjp$adjp) |>
+  ungroup() |>
+  dplyr::transmute(sig = BH < 0.05) |>
+  dplyr::summarize(n1 = sum(sig), n2 = sum(!sig))
 
 ```
 
@@ -184,9 +198,15 @@ As all sides of an equilateral triangle have the same length, the average neares
  
 Finally, we examined the relationship between stomatal zone area and stomatal length using a Bayesian generalized non-linear multilevel model fit with the *R* package **brms** version `r fit$version$brms` [@burkner_brms_2017; @burkner_advanced_2018] and *Stan* version `r fit$version$cmdstan` [@stan_development_team_stan_2023]. Stomatal zone area was calculated using Voronoi tessellation (e.g. \autoref{fig:tessellation-example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in ImageJ [@schneider_nih_2012].
 
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
+\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
+\label{fig:tessellation-example}
+\end{figure}
+
 ## Paired Abaxial and Adaxial Surface Analysis
 
-To test whether the position of ab- and adaxial stomata are coordinated we compared the observed distribution to a null distribution where the positions on each surface are random. For each pair of surfaces (observed or synthetic) we calculated the distance squared between each to the nearest stomatal centroid with the *R* package **raster** version `r packageVersion("raster")`. Then we calculated the cell-wise Pearson correlation coefficient. If stomatal positions on each surface are coordinated to minimize the distance between mesophyll and the nearest stomate, then we expect a negative correlation. A cell that is far from a stomate on one surface should be near a stomate on the other surface (\autoref{fig:ideal-amphi-grid}). We generated a null distribution of the correlation coefficient by simulating $10^3$ synthetic data sets for each observed pair. For each synthetic data set, we simulated stomatal position using a random uniform distribution, as described above, matching the number of stomata on abaxial and adaxial leaf surfaces. Stomatal positions on each surface are coordinated if the correlation coefficient is greater than 95% of the synthetic correlation values (one-tailed test).
+To test whether the position of ab- and adaxial stomata are coordinated we compared the observed distribution to a null distribution where the positions on each surface are random. For each pair of surfaces (observed or synthetic) we calculated the distance squared between each pixel to the nearest stomatal centroid with the *R* package **raster** version `r packageVersion("raster")`. We refer to this as the 'nearest stomatal distance' or NSD. Then we calculated the pixel-wise Pearson correlation coefficient. If stomatal positions on each surface are coordinated to minimize the distance between mesophyll and the nearest stomate, then we expect a negative correlation. A pixel that is far from a stomate on one surface should be near a stomate on the other surface (\autoref{fig:ideal-amphi-grid}). We generated a null distribution of the correlation coefficient by simulating $10^3$ synthetic data sets for each observed pair. For each synthetic data set, we simulated stomatal position using a random uniform distribution, as described above, matching the number of stomata on abaxial and adaxial leaf surfaces. Stomatal positions on each surface are coordinated if the correlation coefficient is greater than 95% of the synthetic correlation values (one-tailed test).
 
 ## Modeling Photosynthesis
 
@@ -232,13 +252,8 @@ Stomatal density of *Arabidopsis thaliana* the `r nrow(single_surface_results)` 
 \label{fig:density}
 \end{figure}
 
-<!-- Copying Q's from Intro 
-1) a uniform distribution of stomata on both abaxial and adaxial leaf surfaces and 2) coordinated stomatal spacing on each surface that offsets the position of stomata (\autoref{fig:ideal-amphi-grid}). Coordination between leaf surfaces is defined in this study as the occurrence of stomata in areas farthest from stomata on the opposite leaf surface. Additionally, because CO$_2$ is more limiting for photosynthesis under high light, we hypothesize that in high light 3) there should be more stomata, and 4) stomata should be more uniformly distributed than in low light. Finally, as stomatal densities are selected for optimal operational aperture, we hypothesize that 5) stomatal length will be positively correlated with the area of the leaf surface to which it is closest. We refer to this as the 'stomatal zone', the leaf area surrounding a focal stomate closest to that stomate and therefore the zone it supplies with CO$_2$). This way, each stomate can be optimally sized relative to the mesophyll volume it supplies.
--->
-
 ## Stomatal distribution is nonrandom, but far from ideal
 
-<!-- WORKING HERE -->
 Many leaf surfaces (`r nni2[['n1']]` of `r nni2[['n1']] + nni2[['n2']]`, `r round(100 * nni2[['n1']] / (nni2[['n1']] + nni2[['n2']]), 1)`%) are significantly overdispersed compared to a random uniform distribution, but none were close to an ideal hexagonal pattern (dispersion index = 1; \autoref{fig:single-surface}). Before controlling for multiple comparisons, `r round(100 * nni1[['n1']] / (nni1[['n1']] + nni1[['n2']]), 1)`% are significantly overdispersed. The dispersion index differs significantly among light treatments (ANOVA, $`r report_fstat(single_surface_anova, 'light')`$) because the medium light treatment is significantly less than the low treatment (\autoref{fig:single-surface}). Dispersion index is consistently greater on adaxial leaf surfaces across all light treatments (ANOVA, $`r report_fstat(single_surface_anova, 'surface')`$; \autoref{fig:single-surface}). There is no evidence for an interaction between light treatment and surface (ANOVA, $`r report_fstat(single_surface_anova, 'light:surface')`$).
 
 \begin{figure}[ht]
@@ -247,19 +262,21 @@ Many leaf surfaces (`r nni2[['n1']]` of `r nni2[['n1']] + nni2[['n2']]`, `r roun
 \label{fig:single-surface}
 \end{figure}
 
-<!-- WORKING HERE -->
-Across all light treatments and leaf surfaces, stomatal length and stomatal area were weakly positively correlated, indicating some support for our hypothesis that stomata are selected for an optimal operational aperture (\autoref{fig:length-area}).
+## No evidence for coordinated stomatal position between surfaces
 
-## Dual Surface Analysis
-
-As evidence against our hypothesis that natural selection should favor spatial coordination in the placement of stomata between abaxial and adaxial leaf surfaces, we found no correlation between paired abaxial and adaxial leaf surfaces (\autoref{fig:dual-surface}). Light treatment had no effect on correlation between surfaces (F$_\text{2,63}$ = 2.28; p-value = 0.11). All but one abaxial, adaxial surface pairs were independent ($\alpha$ = 0.05).
-
+There is no evidence of spatial coordination between abaxial and adaxial leaf surfaces. The pixel-wise correlation between nearest stomatal distance (NSD) squared on paired abaxial and adaxial leaf surfaces is not significantly less than zero in any of the `r nrow(dual_surface_results)` leaves (\autoref{fig:dual-surface}). Before controlling for multiple comparisons, `r round(100 * nsd1[['n1']] / (nsd1[['n1']] + nsd1[['n2']]), 1)`% are significantly  *positively* correlated. The NSD correlation is not different among light treatments (ANOVA, $`r report_fstat(correlation_anova, 'light')`$; \autoref{fig:dual-surface}).
 
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
-\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
-\label{fig:tessellation-example}
+\includegraphics[width = \textwidth]{figures/dual-surface.pdf}
+\caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
+\label{fig:dual-surface}
 \end{figure}
+
+<!-- WORKING HERE -->
+<!-- Copying Q's from Intro 
+1) a uniform distribution of stomata on both abaxial and adaxial leaf surfaces and 2) coordinated stomatal spacing on each surface that offsets the position of stomata (\autoref{fig:ideal-amphi-grid}). Coordination between leaf surfaces is defined in this study as the occurrence of stomata in areas farthest from stomata on the opposite leaf surface. Additionally, because CO$_2$ is more limiting for photosynthesis under high light, we hypothesize that in high light 3) there should be more stomata, and 4) stomata should be more uniformly distributed than in low light. Finally, as stomatal densities are selected for optimal operational aperture, we hypothesize that 5) stomatal length will be positively correlated with the area of the leaf surface to which it is closest. We refer to this as the 'stomatal zone', the leaf area surrounding a focal stomate closest to that stomate and therefore the zone it supplies with CO$_2$). This way, each stomate can be optimally sized relative to the mesophyll volume it supplies.
+-->
+Across all light treatments and leaf surfaces, stomatal length and stomatal area were weakly positively correlated, indicating some support for our hypothesis that stomata are selected for an optimal operational aperture (\autoref{fig:length-area}).
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/length-area.pdf}
@@ -267,13 +284,6 @@ As evidence against our hypothesis that natural selection should favor spatial c
 \label{fig:length-area}
 \end{figure}
 
-## Dual surface analysis
-
-\begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/dual-surface.pdf}
-\caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
-\label{fig:dual-surface}
-\end{figure}
 
 # Discussion
 

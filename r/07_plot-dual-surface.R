@@ -15,11 +15,10 @@ dual_surface_results = readr::read_rds("objects/dual_surface_results.rds") |>
 
 # anova
 correlation_anova = aov(corr ~ light, data = dual_surface_results)
-summary(correlation_anova)
+write_rds(correlation_anova, "objects/correlation_anova.rds")
 
-stat.test.correlation <- aov(corr ~ light, data = dual_surface_results) |>
+stat.test.correlation = aov(corr ~ light, data = dual_surface_results) |>
   tukey_hsd()
-stat.test.correlation
 
 plot = ggplot(dual_surface_results, aes(light_reorder, corr)) +
   stat_boxplot() +
