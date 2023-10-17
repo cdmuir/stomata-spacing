@@ -1,10 +1,11 @@
 source("r/header.R")
 
-fit <- read_rds("objects/fit.rds")
+fit = read_rds("objects/fit.rds")
 
-summary(fit)
+emtrends(fit, specs = c("light", "surface"), var = "length") |>
+  write_rds("objects/fit_emtrends.rds")
 
-df_new <- fit$data |>
+df_new = fit$data |>
   dplyr::group_by(light, surface) |>
   summarise(length_min = min(length), length_max = max(length)) |>
   rowwise() |>
@@ -12,20 +13,20 @@ df_new <- fit$data |>
     tibble(light = ..1, surface = ..2, length = seq(..3, ..4, length.out = 1e2))
   })
 
-df <- posterior_epred(fit, newdata = df_new, re_formula = NA)
+df = posterior_epred(fit, newdata = df_new, re_formula = NA)
 
-df_med <- df |>
+df_med = df |>
   apply(2, median) |>
   as_tibble(.name_repair = "minimal") |>
   rename(sqrt_area = value)
 
-df_qi <- df |>
+df_qi = df |>
   apply(2, ggdist::qi) |>
   t() |>
   as_tibble(.name_repair = "minimal") |>
   magrittr::set_colnames(c("lower", "upper"))
 
-df_pred <- df_new |>
+df_pred = df_new |>
   bind_cols(df_med, df_qi) |>
   arrange(light)
 

@@ -66,6 +66,9 @@ header-includes:
  - \usepackage{hyperref} # For autoref
  - \renewcommand{\figureautorefname}{Fig.}
  - \usepackage{booktabs} # for tables
+ - \usepackage[detect-none]{siunitx} # for \numrange{}{}
+ - \sisetup{range-phrase = \text{--}}
+
 ---
 
 ```{r setup, include=FALSE}
@@ -84,6 +87,7 @@ single_surface_anova = readr::read_rds("objects/single_surface_anova.rds")
 density_anova = readr::read_rds("objects/density_anova.rds")
 dual_surface_results = readr::read_rds("objects/dual_surface_results.rds")
 correlation_anova = readr::read_rds("objects/correlation_anova.rds")
+fit_emtrend = read_rds("objects/fit_emtrends.rds")
 pm_pars = readr::read_csv("raw-data/2d-pm-parameters.csv", show_col_types = FALSE)
 model_var = readr::read_rds("objects/model_var.rds")
 
@@ -110,6 +114,18 @@ nsd2 = bind_cols(dual_surface_results[adjp$index,], adjp$adjp) |>
   ungroup() |>
   dplyr::transmute(sig = BH < 0.05) |>
   dplyr::summarize(n1 = sum(sig), n2 = sum(!sig))
+
+# Summarize slopes of length against stomatal zone area
+fit_slopes = gsub(" ", "", print(fit_emtrend, export = TRUE)$summary) |>
+  as_tibble() %>%
+  set_colnames(gsub(" ", "", colnames(.))) |>
+  mutate(light = factor(light, levels = c("low", "medium", "high"))) |>
+  arrange(light, surface) |>
+  pmap_chr(~ {
+    glue("{light} light, {surface} surface: {s}",
+         light = ..1, surface = ..2, s = pretty_est(..3, ..4, ..5))
+  }) |> 
+  str_c(collapse = "; ")
 
 ```
 
@@ -174,7 +190,7 @@ We tested whether stomata are non-randomly distributed by comparing the observed
   \overline{D}_O = \frac{\sum_{i=1}^{n_\text{stomata}}d_i}{n_\text{stomata}},
 \end{equation}
 
-\noindent where $d_i$ is the distance between $\text{stomate}_i$ and its nearest neighbor. We calculated $\mathrm{NNI}$ using the *R* package **spatialEco** version `r packageVersion("spatialEco")` [@evans_spatialeco_2023]. The observed stomatal distribution is dispersed relative to a uniform random distribution if the observed $NNI$ is greater than 95% of the synthetic $\mathrm{NNI}$ values (one-tailed test). We adjusted $P$-values to account for multiple comparisons using the Benjamini-Hochberg [@benjamini_controlling_1995] false discovery rate procedure implemented in the *R* package **multtest** version `r packageVersion("multtest")` [@pollard_multiple_2005].
+\noindent where $d_i$ is the distance between $\text{stomate}_i$ and its nearest neighbor. We calculated $\mathrm{NNI}$ using the *R* package **spatialEco** version `r packageVersion("spatialEco")` [@evans_spatialeco_2023]. The observed stomatal distribution is dispersed relative to a uniform random distribution if the observed $NNI$ is greater than 95% of the synthetic $\mathrm{NNI}$ values (one-tailed test). We adjusted $P$-values to account for multiple comparisons using the Benjamini-Hochberg [@benjamini_controlling_1995] false discovery rate procedure implemented in the *R* package **multtest** version `r packageVersion("multtest")` [@wong_multiple_2005].
 
 For each sample image, we also simulated $10^3$ synthetic data with $n$ stomata ideally dispersed in an equilateral triangular grid. For these grids, we integrated over plausible stomatal densities and then conditioned on stomatal grids with exactly $n$ stomata. The simulated stomatal count was drawn from a Poisson distribution with the mean parameter $\lambda$ drawn from a Gamma distribution with shape $n$ and scale 1 $\lambda \sim \Gamma(n, 1)$. $\Gamma(n, 1)$ is the posterior distribution of $\lambda$ with a flat prior distribution. This allows us to integrate over uncertainty in the stomatal density from the sample image. 
 
@@ -196,7 +212,7 @@ Uniformly distributed stomata on a leaf with stomatal density ($D_S$) maximize $
 As all sides of an equilateral triangle have the same length, the average nearest neighbor distance for a given $D_S$ is maximized and each stomate occupies the same hexagonal area ($A_\text{hex}$). As $DI$ approaches 1, the more uniform an area each of its stomata supply with CO$_2$ during photosynthesis. 
  -->
  
-Finally, we examined the relationship between stomatal zone area and stomatal length using a Bayesian linear mixed-effects model fit with the *R* package **brms** version `r fit$version$brms` [@burkner_brms_2017; @burkner_advanced_2018] and *Stan* version `r fit$version$cmdstan` [@stan_development_team_stan_2023]. Stomatal zone area was calculated using Voronoi tessellation (e.g. \autoref{fig:tessellation-example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in ImageJ [@schneider_nih_2012].
+Finally, we examined the relationship between stomatal zone area and stomatal length using a Bayesian linear mixed-effects model fit with the *R* package **brms** version `r fit$version$brms` [@burkner_brms_2017; @burkner_advanced_2018] and *Stan* version `r fit$version$cmdstan` [@stan_development_team_stan_2023]. Stomatal zone area was calculated using Voronoi tessellation (e.g. \autoref{fig:tessellation-example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in ImageJ [@schneider_nih_2012]. We modeled fixed effects of surface, light treatment, stomatal length, and their 2- and 3-way interactions on $\sqrt{S_\text{area}}$. We included random intercepts, random effects of surface, random slopes, and random surface-by-slope interactions within both plant and individual to account for nonindependence of stomata within the same plant or individual. We also modeled residual variance as a function of light treatment. We sampled the posterior distribution from `r dim(fit$fit)[2]` chains with `r dim(fit$fit)[1]` iterations each after `r dim(fit$fit)[1]` warmup iterations. We calculated convergence diagnostics ($\hat{R}$) and effective sample sizes following @vehtari_rank-normalization_2021. We estimated the marginal slope and 95% highest posterior density (HPD) intervals between stomatal length and $\sqrt{S_\text{area}}$ using the *emtrends* function in the *R* package **emmeans** version `r packageVersion('emmeans')` [@lenth_emmeans_2023].
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
@@ -210,7 +226,7 @@ To test whether the position of ab- and adaxial stomata are coordinated we compa
 
 ## Modeling Photosynthesis
 
-We modeled photosynthesis CO$_2$ assimilation rate using a spatially-explicit two-dimensional reaction diffusion model using a porous medium approximation [@parkhurst_intercellular_1994] using the finite element method (FEM) following @earles_excess_2017. Consider a two-dimensional leaf where stomata occur on each surface in a regular sequence with interstomatal distance $U$. The main outcome we assessed is the advantage of offsetting the position of stomata on each surface compared to have stomata on the same $x$ position on each surface. With these assumptions, by symmetry, we only need to model two stomata, one abaxial and one adaxial, from $x = 0$ to $x = U/2$ and from the adaxial surface at $y = 0$ to the abaxial surface at $y = L$, the leaf thickness. We arbitrarily set the adaxial stomate at $x = 0$ and toggled the abaxial stomata position between $x = U/2$ (offset) or $x = 0$ (below adaxial stomate). The 'coordination advantage' of offset stomatal position on each surface is the photosynthetic rate of the leaf with offset stomata compared to that with stomata aligned in the same $x$ position:
+We modeled photosynthesis CO$_2$ assimilation rate using a spatially-explicit two-dimensional reaction diffusion model using a porous medium approximation [@parkhurst_diffusion_1994] using the finite element method (FEM) following @earles_excess_2017. Consider a two-dimensional leaf where stomata occur on each surface in a regular sequence with interstomatal distance $U$. The main outcome we assessed is the advantage of offsetting the position of stomata on each surface compared to have stomata on the same $x$ position on each surface. With these assumptions, by symmetry, we only need to model two stomata, one abaxial and one adaxial, from $x = 0$ to $x = U/2$ and from the adaxial surface at $y = 0$ to the abaxial surface at $y = L$, the leaf thickness. We arbitrarily set the adaxial stomate at $x = 0$ and toggled the abaxial stomata position between $x = U/2$ (offset) or $x = 0$ (below adaxial stomate). The 'coordination advantage' of offset stomatal position on each surface is the photosynthetic rate of the leaf with offset stomata compared to that with stomata aligned in the same $x$ position:
 
 \begin{equation} \label{eq:coordination_advantage}
   \text{coordination advantage} = \frac{A_\text{offset}}{A_\text{aligned}}
@@ -274,7 +290,7 @@ There is no evidence of spatial coordination between abaxial and adaxial leaf su
 
 ## Larger stomata supply larger mesophyll volumes
 
-Across all light treatments and leaf surfaces, stomatal length and stomatal area are weakly positively correlated, indicating some support for our hypothesis that stomata are selected for an optimal operational aperture (\autoref{fig:length-area}).
+All parameters converged ($\hat{R} < 1.01$) and effective sample sizes were exceeded $10^3$. Across all light treatments and leaf surfaces, stomatal length and stomatal area are weakly positively correlated (\autoref{fig:length-area}). The slope was significantly greater than zero for all abaxial surfaces, but not for the adaxial surface in low and medium light treatments. The estimated marginal slopes and 95% HPD intervals for each combination of light and surface is: `r fit_slopes`.
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/length-area.pdf}

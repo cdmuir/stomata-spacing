@@ -1519,3 +1519,12 @@ report_fstat = function(m, x) {
   )
 
 }
+
+# Function to print estimates and CIs
+pretty_est = function(estimate, lower, upper, ...) {
+  .e = prettyNum(estimate, ...)
+  .l = prettyNum(lower, ...)
+  .u = prettyNum(upper, ...)
+  # glue("{.e}~[{.l}-{.u}]")
+  glue("{.e} [\\numrange{{{.l}}}{{{.u}}}]")
+}

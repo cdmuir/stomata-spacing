@@ -28,13 +28,13 @@
  
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/dual-surface.pdf}
-\caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
+\caption{Pixel-wise correlation between near stomatal distance (NSD) squared on paired abaxial and adaxial leaf surfaces. Dashed line indicates zero correlation. Weak positive correlations are not significantly different from zero after correcting for multiple comparisons. The correlation does not differ among light treatments.}
 \label{fig:dual-surface}
 \end{figure}
 \efloatseparator
  
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/length-area.pdf}
-\caption{Stomatal length and stomatal zone area. Lines of best fit computed using a bayesian generalized non-linear multilevel model. Each light level and leaf surface exhibits a unique, weakly positive relationship between stomatal zone area and length.}
+\caption{Stomatal length and stomatal zone area are positively correlated. Linear regression lines and 95\% confidence ribbons are from a Bayesian linear mixed-effects model.}
 \label{fig:length-area}
 \end{figure}

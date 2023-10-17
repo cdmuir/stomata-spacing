@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  17 OCT 2023 09:07
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.3.21)  17 OCT 2023 16:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -526,41 +526,85 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count330
 \@lastruleclass=\count331
 \@thisrulewidth=\dimen264
-) (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/siunitx/siunitx.sty
+Package: siunitx 2023-03-04 v3.2.2 A comprehensive (SI) units package
+\l__siunitx_angle_tmp_dim=\dimen265
+\l__siunitx_angle_marker_box=\box108
+\l__siunitx_angle_unit_box=\box109
+\l__siunitx_compound_count_int=\count332
+(/usr/local/texlive/2023/texmf-dist/tex/latex/translations/translations.sty
+Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
+ (CN)
+)
+\l__siunitx_number_exponent_fixed_int=\count333
+\l__siunitx_number_min_decimal_int=\count334
+\l__siunitx_number_min_integer_int=\count335
+\l__siunitx_number_round_precision_int=\count336
+\l__siunitx_number_lower_threshold_int=\count337
+\l__siunitx_number_upper_threshold_int=\count338
+\l__siunitx_number_group_first_int=\count339
+\l__siunitx_number_group_size_int=\count340
+\l__siunitx_number_group_minimum_int=\count341
+\l__siunitx_table_tmp_box=\box110
+\l__siunitx_table_tmp_dim=\dimen266
+\l__siunitx_table_column_width_dim=\dimen267
+\l__siunitx_table_integer_box=\box111
+\l__siunitx_table_decimal_box=\box112
+\l__siunitx_table_uncert_box=\box113
+\l__siunitx_table_before_box=\box114
+\l__siunitx_table_after_box=\box115
+\l__siunitx_table_before_dim=\dimen268
+\l__siunitx_table_carry_dim=\dimen269
+\l__siunitx_unit_tmp_int=\count342
+\l__siunitx_unit_position_int=\count343
+\l__siunitx_unit_total_int=\count344
+
+Package siunitx Info: Option "detect-none" has been deprecated in this
+(siunitx)             release.
+(siunitx)             
+(siunitx)             Use "mode = math, propagate-math-font = false,
+(siunitx)             reset-math-version = true, reset-text-family = true,
+(siunitx)             reset-text-series = true, text-family-to-math = false,
+(siunitx)             text-series-to-math = false" as a replacement.
+
+)
+Package translations Info: No language package found. I am going to use `englis
+h' as default language. on input line 110.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2023-01-16 L3 backend support: XeTeX
-\g__graphics_track_int=\count332
-\l__pdf_internal_box=\box108
-\g__pdf_backend_object_int=\count333
-\g__pdf_backend_annotation_int=\count334
-\g__pdf_backend_link_int=\count335
+\g__graphics_track_int=\count345
+\l__pdf_internal_box=\box116
+\g__pdf_backend_object_int=\count346
+\g__pdf_backend_annotation_int=\count347
+\g__pdf_backend_link_int=\count348
 ) (./ms.aux)
 \openout1 = `ms.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 108.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 110.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-08.
+10.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -595,57 +639,65 @@ LaTeX Font Info:    ... okay on input line 108.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 108.
+Package hyperref Info: Link coloring OFF on input line 110.
 (./ms.out) (./ms.out)
 \@outlinefile=\write7
 \openout7 = `ms.out'.
 
-\c@lstlisting=\count336
+\c@lstlisting=\count349
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 168.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/translations/translations-basic-d
+ictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `tra
+nslations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' f
+or `english'. on input line 110.
+
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 170.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 168.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 170.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 168
+LaTeX Font Info:    Trying to load font information for U+msa on input line 170
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 168
+LaTeX Font Info:    Trying to load font information for U+msb on input line 170
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 16
-8.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 17
+0.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 168.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 170.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 168.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 170.
 
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 168.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 170.
 
 
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 168.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 170.
 
-\c@FNCT@1=\count337
+\c@FNCT@1=\count350
 
-LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 168.
-
-
-LaTeX Warning: Reference `ADR' on page 1 undefined on input line 168.
+LaTeX Warning: Hyper reference `ADR' on page 1 undefined on input line 170.
 
 
-LaTeX Warning: Hyper reference `FN' on page 1 undefined on input line 168.
+LaTeX Warning: Reference `ADR' on page 1 undefined on input line 170.
 
 
-LaTeX Warning: Reference `FN' on page 1 undefined on input line 168.
+LaTeX Warning: Hyper reference `FN' on page 1 undefined on input line 170.
+
+
+LaTeX Warning: Reference `FN' on page 1 undefined on input line 170.
 
 [1
 
@@ -656,73 +708,60 @@ LaTeX Warning: Reference `FN' on page 1 undefined on input line 168.
 (ms.fff)
 \openout5 = `ms.ttt'.
 
-(ms.ttt) [4] [5]
-Overfull \hbox (70.34898pt too wide) in paragraph at lines 484--498
-\TU/lmr/m/n/12 sion 2.15.0 ([]Bürkner 2017[], []2018[]) and \TU/lmr/m/it/12 Sta
-n \TU/lmr/m/n/12 version 2.27.0 ([]\TU/lmr/bx/n/12 stan_development_team_stan_2
-023?[]\TU/lmr/m/n/12 ).
- []
-
-[6]
-Overfull \hbox (8.94621pt too wide) in paragraph at lines 532--551
+(ms.ttt) [4] [5] [6]
+Overfull \hbox (8.94621pt too wide) in paragraph at lines 549--568
 \TU/lmr/m/n/12 We modeled photosynthesis CO$[]$ assimilation rate using a spati
 ally-explicit two-dimensional
  []
 
-
-Overfull \hbox (57.35214pt too wide) in paragraph at lines 532--551
-\TU/lmr/m/n/12 reaction diffusion model using a porous medium approximation ([]
-\TU/lmr/bx/n/12 parkhurst_intercellular_1994?[]\TU/lmr/m/n/12 )
- []
-
 [7] [8] [9] [10]
-Overfull \hbox (17.48116pt too wide) in paragraph at lines 818--822
+Overfull \hbox (17.48116pt too wide) in paragraph at lines 854--858
 \TU/lmr/m/n/12 and Environment.” \TU/lmr/m/it/12 STOMATAL FUNCTION IN RELATION 
 TO LEAF METABOLISM
  []
 
-
-Overfull \hbox (38.84813pt too wide) in paragraph at lines 843--850
+[11]
+Overfull \hbox (38.84813pt too wide) in paragraph at lines 879--886
 \TU/lmr/m/n/12 “Two Sides to Every Leaf: Water and <Span Style=”font-Variant:sm
 all-Caps;”>CO</Span>
  []
 
-[11]
-Overfull \hbox (10.27614pt too wide) in paragraph at lines 900--906
+[12]
+Overfull \hbox (10.27614pt too wide) in paragraph at lines 943--949
 \TU/lmr/m/n/12 derstanding Airspace in Leaves: <Span Style=”font-Variant:small-
 Caps;”>3D</Span>
  []
 
 Missing character: There is no � (U+FFFD) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[12] [13] [14]
-Overfull \hbox (7.5516pt too wide) in paragraph at lines 1100--1106
+[13] [14] [15]
+Overfull \hbox (7.5516pt too wide) in paragraph at lines 1169--1175
 [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][
 ][] [] [][] [] [][][] [] [][] [] [][][][][][][][] [] [][][][] [] [][][][][] [][
 ] [][][][]$[]\TU/lmr/m/n/12 . 
  []
 
-AED endfloat: Processing end Figures and Tables [15] (./ms.lot)
+AED endfloat: Processing end Figures and Tables [16] (./ms.lot)
 \tf@lot=\write8
 \openout8 = `ms.lot'.
 
-[16
+[17
 
 
-] (./ms.ttt [17
+] (./ms.ttt [18
 
-]) [18] (./ms.lof)
+]) [19] (./ms.lof)
 \tf@lof=\write9
 \openout9 = `ms.lof'.
 
-[19
+[20
 
 
 
 ] (./ms.fff
 File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
 <use figures/ideal-amphi-grid.pdf>
-[20
+[21
 
 ]
 File: figures/tessellation-example.pdf Graphic file (type pdf)
@@ -730,41 +769,41 @@ File: figures/tessellation-example.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 49.4412pt on input line 12.
 
-[21]
+[22]
 File: figures/density.pdf Graphic file (type pdf)
 <use figures/density.pdf>
-[22
+[23
 
 
 ]
 File: figures/single-surface.pdf Graphic file (type pdf)
 <use figures/single-surface.pdf>
-[23
+[24
 
 ]
 File: figures/dual-surface.pdf Graphic file (type pdf)
 <use figures/dual-surface.pdf>
-[24
+[25
 
 ]
 File: figures/length-area.pdf Graphic file (type pdf)
 <use figures/length-area.pdf>
-) [25
+) [26
 
 ] (./ms.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: 07CA7AD03023B29E38FE567D5716FDF3;2040.
+(rerunfilecheck)             Checksum: A2487E4920B7C112171131760E02FCD7;2343.
  ) 
 Here is how much of TeX's memory you used:
- 13875 strings out of 476683
- 219134 string characters out of 5804047
- 1868018 words of memory out of 5000000
- 33857 multiletter control sequences out of 15000+600000
+ 17410 strings out of 476683
+ 329664 string characters out of 5804047
+ 1867018 words of memory out of 5000000
+ 37380 multiletter control sequences out of 15000+600000
  523076 words of font info for 97 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 72i,12n,76p,666b,440s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,12n,78p,666b,890s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ms.pdf (25 pages).
+Output written on ms.pdf (26 pages).

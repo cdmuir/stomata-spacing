@@ -104,6 +104,8 @@ HI 96822}
 \usepackage{hyperref}
 \renewcommand{\figureautorefname}{Fig.}
 \usepackage{booktabs}
+\usepackage[detect-none]{siunitx}
+\sisetup{range-phrase = \text{--}}
 
 \begin{document}
 
@@ -448,10 +450,11 @@ uniform random distribution if the observed \(NNI\) is greater than 95\%
 of the synthetic \(\mathrm{NNI}\) values (one-tailed test). We adjusted
 \(P\)-values to account for multiple comparisons using the
 Benjamini-Hochberg
-(\protect\hyperlink{ref-benjamini_controlling_1995}{\textbf{benjamini\_controlling\_1995?}})
-false discovery rate procedure implemented in the \emph{R} package
-\textbf{multtest} version 2.56.0
-(\protect\hyperlink{ref-pollard_multiple_2005}{\textbf{pollard\_multiple\_2005?}}).
+(\protect\hyperlink{ref-benjamini_controlling_1995}{Benjamini and
+Hochberg 1995}) false discovery rate procedure implemented in the
+\emph{R} package \textbf{multtest} version 2.56.0
+(\protect\hyperlink{ref-wong_multiple_2005}{Pollard, Dudoit, and Van Der
+Laan 2005}).
 
 For each sample image, we also simulated \(10^3\) synthetic data with
 \(n\) stomata ideally dispersed in an equilateral triangular grid. For
@@ -482,19 +485,33 @@ tested whether light treatment affects \(\mathrm{DI}\) and stomatla
 density (\(D_S\)) using analysis of variance (ANOVA).
 
 Finally, we examined the relationship between stomatal zone area and
-stomatal length using a Bayesian generalized non-linear multilevel model
-fit with the \emph{R} package \textbf{brms} version 2.15.0
+stomatal length using a Bayesian linear mixed-effects model fit with the
+\emph{R} package \textbf{brms} version 2.20.4
 (\protect\hyperlink{ref-burkner_brms_2017}{Bürkner 2017},
 \protect\hyperlink{ref-burkner_advanced_2018}{2018}) and \emph{Stan}
-version 2.27.0
-(\protect\hyperlink{ref-stan_development_team_stan_2023}{\textbf{stan\_development\_team\_stan\_2023?}}).
-Stomatal zone area was calculated using Voronoi tessellation
-(e.g.~\autoref{fig:tessellation-example}). The stomatal zone area,
-\(S_\text{area}\), is the region of the leaf surface whose distance to
-stomate, \(S\), is less than the distance to any other stomate, \(S\).
-Stomatal length was measured in ImageJ
+version 2.33.1
+(\protect\hyperlink{ref-stan_development_team_stan_2023}{Stan
+Development Team 2023}). Stomatal zone area was calculated using Voronoi
+tessellation (e.g.~\autoref{fig:tessellation-example}). The stomatal
+zone area, \(S_\text{area}\), is the region of the leaf surface whose
+distance to stomate, \(S\), is less than the distance to any other
+stomate, \(S\). Stomatal length was measured in ImageJ
 (\protect\hyperlink{ref-schneider_nih_2012}{Schneider, Rasband, and
-Eliceiri 2012}).
+Eliceiri 2012}). We modeled fixed effects of surface, light treatment,
+stomatal length, and their 2- and 3-way interactions on
+\(\sqrt{S_\text{area}}\). We included random intercepts, random effects
+of surface, random slopes, and random surface-by-slope interactions
+within both plant and individual to account for nonindependence of
+stomata within the same plant or individual. We also modeled residual
+variance as a function of light treatment. We sampled the posterior
+distribution from 4 chains with 1000 iterations each after 1000 warmup
+iterations. We calculated convergence diagnostics (\(\hat{R}\)) and
+effective sample sizes following Vehtari et al.
+(\protect\hyperlink{ref-vehtari_rank-normalization_2021}{2021}). We
+estimated the marginal slope and 95\% highest posterior density (HPD)
+intervals between stomatal length and \(\sqrt{S_\text{area}}\) using the
+\emph{emtrends} function in the \emph{R} package \textbf{emmeans}
+version 1.8.8 (\protect\hyperlink{ref-lenth_emmeans_2023}{Lenth 2023}).
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
@@ -532,22 +549,22 @@ correlation values (one-tailed test).
 We modeled photosynthesis CO\(_2\) assimilation rate using a
 spatially-explicit two-dimensional reaction diffusion model using a
 porous medium approximation
-(\protect\hyperlink{ref-parkhurst_intercellular_1994}{\textbf{parkhurst\_intercellular\_1994?}})
-using the finite element method (FEM) following
-(\protect\hyperlink{ref-earles_excess_2017}{\textbf{earles\_excess\_2017?}}).
-Consider a two-dimensional leaf where stomata occur on each surface in a
-regular sequence with interstomatal distance \(U\). The main outcome we
-assessed is the advantage of offsetting the position of stomata on each
-surface compared to have stomata on the same \(x\) position on each
-surface. With these assumptions, by symmetry, we only need to model two
-stomata, one abaxial and one adaxial, from \(x = 0\) to \(x = U/2\) and
-from the adaxial surface at \(y = 0\) to the abaxial surface at
-\(y = L\), the leaf thickness. We arbitrarily set the adaxial stomate at
-\(x = 0\) and toggled the abaxial stomata position between \(x = U/2\)
-(offset) or \(x = 0\) (below adaxial stomate). The `coordination
-advantage' of offset stomatal position on each surface is the
-photosynthetic rate of the leaf with offset stomata compared to that
-with stomata aligned in the same \(x\) position:
+(\protect\hyperlink{ref-parkhurst_diffusion_1994}{Parkhurst 1994}) using
+the finite element method (FEM) following Earles et al.
+(\protect\hyperlink{ref-earles_excess_2017}{2017}). Consider a
+two-dimensional leaf where stomata occur on each surface in a regular
+sequence with interstomatal distance \(U\). The main outcome we assessed
+is the advantage of offsetting the position of stomata on each surface
+compared to have stomata on the same \(x\) position on each surface.
+With these assumptions, by symmetry, we only need to model two stomata,
+one abaxial and one adaxial, from \(x = 0\) to \(x = U/2\) and from the
+adaxial surface at \(y = 0\) to the abaxial surface at \(y = L\), the
+leaf thickness. We arbitrarily set the adaxial stomate at \(x = 0\) and
+toggled the abaxial stomata position between \(x = U/2\) (offset) or
+\(x = 0\) (below adaxial stomate). The `coordination advantage' of
+offset stomatal position on each surface is the photosynthetic rate of
+the leaf with offset stomata compared to that with stomata aligned in
+the same \(x\) position:
 
 \begin{equation} \label{eq:coordination_advantage}
   \text{coordination advantage} = \frac{A_\text{offset}}{A_\text{aligned}}
@@ -638,18 +655,31 @@ correlation is not different among light treatments (ANOVA,
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/dual-surface.pdf}
-\caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
+\caption{Pixel-wise correlation between near stomatal distance (NSD) squared on paired abaxial and adaxial leaf surfaces. Dashed line indicates zero correlation. Weak positive correlations are not significantly different from zero after correcting for multiple comparisons. The correlation does not differ among light treatments.}
 \label{fig:dual-surface}
 \end{figure}
 
-Across all light treatments and leaf surfaces, stomatal length and
-stomatal area were weakly positively correlated, indicating some support
-for our hypothesis that stomata are selected for an optimal operational
-aperture (\autoref{fig:length-area}).
+\hypertarget{larger-stomata-supply-larger-mesophyll-volumes}{%
+\subsection{Larger stomata supply larger mesophyll
+volumes}\label{larger-stomata-supply-larger-mesophyll-volumes}}
+
+All parameters converged (\(\hat{R} < 1.01\)) and effective sample sizes
+were exceeded \(10^3\). Across all light treatments and leaf surfaces,
+stomatal length and stomatal area are weakly positively correlated
+(\autoref{fig:length-area}). The slope was significantly greater than
+zero for all abaxial surfaces, but not for the adaxial surface in low
+and medium light treatments. The estimated marginal slopes and 95\% HPD
+intervals for each combination of light and surface is: low light,
+abaxial surface: 1.928 {[}\numrange{0.779}{3.133}{]}; low light, adaxial
+surface: 1.745 {[}\numrange{-0.041}{3.373}{]}; medium light, abaxial
+surface: 1.085 {[}\numrange{0.328}{1.957}{]}; medium light, adaxial
+surface: 0.656 {[}\numrange{-0.399}{1.691}{]}; high light, abaxial
+surface: 0.597 {[}\numrange{0.316}{0.911}{]}; high light, adaxial
+surface: 1.269 {[}\numrange{0.831}{1.721}{]}.
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/length-area.pdf}
-\caption{Stomatal length and stomatal zone area. Lines of best fit computed using a bayesian generalized non-linear multilevel model. Each light level and leaf surface exhibits a unique, weakly positive relationship between stomatal zone area and length.}
+\caption{Stomatal length and stomatal zone area are positively correlated. Linear regression lines and 95\% confidence ribbons are from a Bayesian linear mixed-effects model.}
 \label{fig:length-area}
 \end{figure}
 
@@ -767,6 +797,12 @@ Birch Leaf: {CO} \(_{\textrm{2}}\) Transport Inside a Birch Leaf.''}
 \emph{Plant, Cell \& Environment} 25 (11): 1399--409.
 \url{https://doi.org/10.1046/j.0016-8025.2002.00906.x}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-benjamini_controlling_1995}{}}%
+Benjamini, Yoav, and Yosef Hochberg. 1995. {``Controlling the False
+Discovery Rate: A Practical and Powerful Approach to Multiple
+Testing.''} \emph{Journal of the Royal Statistical Society. Series B
+(Methodological)} 57 (1): 289--300.
+
 \leavevmode\vadjust pre{\hypertarget{ref-boetsch_arrest_1995}{}}%
 Boetsch, John, Jonathan Chin, and Judith Croxdale. 1995. {``Arrest of
 {Stomatal} {Initials} in {Tradescantia} {Is} {Linked} to the {Proximity}
@@ -854,6 +890,13 @@ Gilbert, Andrew J. McElrone, and Craig R. Brodersen. 2018. {``Beyond
 {Porosity}: {3D} {Leaf} {Intercellular} {Airspace} {Traits} {That}
 {Impact} {Mesophyll} {Conductance}.''} \emph{Plant Physiology} 178 (1):
 148--62. \url{https://doi.org/10.1104/pp.18.00550}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-earles_excess_2017}{}}%
+Earles, J. Mason, Guillaume Théroux-Rancourt, Matthew E. Gilbert, Andrew
+J. McElrone, and Craig R. Brodersen. 2017. {``Excess Diffuse Light
+Absorption in Upper Mesophyll Limits {CO}\(_{\textrm{2}}\) Drawdown and
+Depresses Photosynthesis.''} \emph{Plant Physiology} 174 (2): 1082--96.
+\url{https://doi.org/10.1104/pp.17.00223}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-evans_resistances_2009}{}}%
 Evans, J. R., R. Kaldenhoff, B. Genty, and I. Terashima. 2009.
@@ -945,6 +988,11 @@ Mathers, Jen Sloan, Marion Bauch, Alice Mitchell, et al. 2017. {``Cell
 Density and Airspace Patterning in the Leaf Can Be Manipulated to
 Increase Leaf Photosynthetic Capacity.''} \emph{The Plant Journal} 92
 (6): 981--94. \url{https://doi.org/10.1111/tpj.13727}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-lenth_emmeans_2023}{}}%
+Lenth, Russell V. 2023. \emph{Emmeans: {Estimated} {Marginal} {Means},
+Aka {Least}-{Squares} {Means}}.
+\url{https://CRAN.R-project.org/package=emmeans}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-liu_scaling_2021}{}}%
 Liu, Congcong, Christopher D. Muir, Ying Li, Li Xu, Mingxu Li, Jiahui
@@ -1047,6 +1095,16 @@ and Siegfried Jahnke. 2006. {``Lateral Diffusion of {CO}
 Photosynthesis Inside Homobaric Leaves.''} \emph{New Phytologist} 169
 (4): 779--88. \url{https://doi.org/10.1111/j.1469-8137.2005.01605.x}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-wong_multiple_2005}{}}%
+Pollard, K. S., S. Dudoit, and M. J. Van Der Laan. 2005. {``Multiple
+{Testing} {Procedures}: The Multtest {Package} and {Applications} to
+{Genomics}.''} In \emph{Bioinformatics and {Computational} {Biology}
+{Solutions} {Using} {R} and {Bioconductor}}, edited by Wing Wong, M.
+Gail, K. Krickeberg, A. Tsiatis, J. Samet, Robert Gentleman, Vincent J.
+Carey, Wolfgang Huber, Rafael A. Irizarry, and Sandrine Dudoit, 249--71.
+New York, NY: Springer New York.
+\url{https://doi.org/10.1007/0-387-29362-0_15}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-roddy_scaling_2020}{}}%
 Roddy, Adam B., Guillaume Théroux-Rancourt, Tito Abbo, Joseph W.
 Benedetti, Craig R. Brodersen, Mariana Castro, Silvia Castro, et al.
@@ -1091,6 +1149,17 @@ Mencuccini, D. Scott Mackay, Yujie Wang, and David M. Love. 2017.
 Optimization of Photosynthetic Gain and Hydraulic Cost: {A} Stomatal
 Optimization Model.''} \emph{Plant, Cell \& Environment} 40 (6):
 816--30. \url{https://doi.org/10.1111/pce.12852}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-stan_development_team_stan_2023}{}}%
+Stan Development Team. 2023. \emph{Stan {Modeling} {Language} {Users}
+{Guide} and {Reference} {Manual}}. \url{https://mc-stan.org}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-vehtari_rank-normalization_2021}{}}%
+Vehtari, Aki, Andrew Gelman, Daniel Simpson, Bob Carpenter, and
+Paul-Christian Bürkner. 2021. {``Rank-{Normalization}, {Folding}, and
+{Localization}: {An} {Improved} {Rˆ} for {Assessing} {Convergence} of
+{MCMC} (with {Discussion}).''} \emph{Bayesian Analysis} 16 (2).
+\url{https://doi.org/10.1214/20-BA1221}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-woodward_stomatal_1987}{}}%
 Woodward, F. I. 1987. {``Stomatal Numbers Are Sensitive to Increases in
