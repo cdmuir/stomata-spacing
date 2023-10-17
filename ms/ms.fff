@@ -1,4 +1,11 @@
 \begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/ideal-amphi-grid.pdf}
+\caption{Idealized amphistomatous stomatal grid with uniform stomatal patterning and perfect abaxial-adaxial coordination.}
+\label{fig:ideal-amphi-grid}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/density.pdf}
 \caption{Stomatal density is higher in \textit{A. thaliana} plants grown under high light conditions. We determined statistical significance between light treatments using Tukey's post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
 \label{fig:density}
@@ -23,13 +30,6 @@
 \includegraphics[width = \textwidth]{figures/length-area.pdf}
 \caption{Stomatal length and stomatal zone area. Lines of best fit computed using a bayesian generalized non-linear multilevel model. Each light level and leaf surface exhibits a unique, weakly positive relationship between stomatal zone area and length.}
 \label{fig:length-area}
-\end{figure}
-\efloatseparator
- 
-\begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/ideal-amphi-grid.pdf}
-\caption{Idealized amphistomatous stomatal grid with uniform stomatal patterning and perfect abaxial-adaxial coordination.}
-\label{fig:ideal-amphi-grid}
 \end{figure}
 \efloatseparator
  

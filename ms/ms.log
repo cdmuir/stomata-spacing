@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.3.21)  16 OCT 2023 15:14
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  16 OCT 2023 20:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -651,53 +651,52 @@ LaTeX Warning: Reference `FN' on page 1 undefined on input line 168.
 
 
 ] [2] [3]
+\openout6 = `ms.fff'.
+
+(ms.fff)
 \openout5 = `ms.ttt'.
 
 (ms.ttt) [4] [5]
-Overfull \hbox (70.34898pt too wide) in paragraph at lines 472--486
+Overfull \hbox (70.34898pt too wide) in paragraph at lines 478--492
 \TU/lmr/m/n/12 sion 2.15.0 ([]Bürkner 2017[], []2018[]) and \TU/lmr/m/it/12 Sta
 n \TU/lmr/m/n/12 version 2.27.0 ([]\TU/lmr/bx/n/12 stan_development_team_stan_2
 023?[]\TU/lmr/m/n/12 ).
  []
 
 
-Overfull \hbox (8.94621pt too wide) in paragraph at lines 513--532
+Overfull \hbox (8.94621pt too wide) in paragraph at lines 519--538
 \TU/lmr/m/n/12 We modeled photosynthesis CO$[]$ assimilation rate using a spati
 ally-explicit two-dimensional
  []
 
 
-Overfull \hbox (57.35214pt too wide) in paragraph at lines 513--532
+Overfull \hbox (57.35214pt too wide) in paragraph at lines 519--538
 \TU/lmr/m/n/12 reaction diffusion model using a porous medium approximation ([]
 \TU/lmr/bx/n/12 parkhurst_intercellular_1994?[]\TU/lmr/m/n/12 )
  []
 
-[6]
-\openout6 = `ms.fff'.
-
-(ms.fff) [7] [8] [9] [10]
-Overfull \hbox (17.48116pt too wide) in paragraph at lines 825--829
+[6] [7] [8] [9] [10]
+Overfull \hbox (17.48116pt too wide) in paragraph at lines 814--818
 \TU/lmr/m/n/12 and Environment.” \TU/lmr/m/it/12 STOMATAL FUNCTION IN RELATION 
 TO LEAF METABOLISM
  []
 
 
-Overfull \hbox (38.84813pt too wide) in paragraph at lines 850--857
+Overfull \hbox (38.84813pt too wide) in paragraph at lines 839--846
 \TU/lmr/m/n/12 “Two Sides to Every Leaf: Water and <Span Style=”font-Variant:sm
 all-Caps;”>CO</Span>
  []
 
 [11]
-Overfull \hbox (10.27614pt too wide) in paragraph at lines 907--913
+Overfull \hbox (10.27614pt too wide) in paragraph at lines 896--902
 \TU/lmr/m/n/12 derstanding Airspace in Leaves: <Span Style=”font-Variant:small-
 Caps;”>3D</Span>
  []
 
-[12]
 Missing character: There is no � (U+FFFD) in font [lmroman12-regular]:mapping=t
 ex-text;!
-[13] [14]
-Overfull \hbox (7.5516pt too wide) in paragraph at lines 1107--1113
+[12] [13] [14]
+Overfull \hbox (7.5516pt too wide) in paragraph at lines 1096--1102
 [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][
 ][] [] [][] [] [][][] [] [][] [] [][][][][][][][] [] [][][][] [] [][][][][] [][
 ] [][][][]$[]\TU/lmr/m/n/12 . 
@@ -721,31 +720,31 @@ AED endfloat: Processing end Figures and Tables [15] (./ms.lot)
 
 
 ] (./ms.fff
+File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
+<use figures/ideal-amphi-grid.pdf>
+[20
+
+]
 File: figures/density.pdf Graphic file (type pdf)
 <use figures/density.pdf>
-[20
+[21
 
 ]
 File: figures/single-surface.pdf Graphic file (type pdf)
 <use figures/single-surface.pdf>
-[21
+[22
 
 ]
 File: figures/tessellation-example.pdf Graphic file (type pdf)
 <use figures/tessellation-example.pdf>
 
-LaTeX Warning: Float too large for page by 49.4412pt on input line 19.
+LaTeX Warning: Float too large for page by 49.4412pt on input line 26.
 
-[22]
+[23]
 File: figures/length-area.pdf Graphic file (type pdf)
 <use figures/length-area.pdf>
-[23
-
-
-]
-File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
-<use figures/ideal-amphi-grid.pdf>
 [24
+
 
 ]
 File: figures/dual-surface.pdf Graphic file (type pdf)
@@ -757,13 +756,13 @@ File: figures/dual-surface.pdf Graphic file (type pdf)
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: C1BB8AA3A268D3A07407E406DB8DEE0A;2213.
+(rerunfilecheck)             Checksum: A770FBF6862956B2A6FE128AB810060E;2247.
  ) 
 Here is how much of TeX's memory you used:
- 13881 strings out of 476683
- 219166 string characters out of 5804047
- 1868018 words of memory out of 5000000
- 33863 multiletter control sequences out of 15000+600000
+ 13879 strings out of 476683
+ 219165 string characters out of 5804047
+ 1867018 words of memory out of 5000000
+ 33861 multiletter control sequences out of 15000+600000
  523076 words of font info for 97 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,12n,76p,666b,440s stack positions out of 10000i,1000n,20000p,200000b,200000s

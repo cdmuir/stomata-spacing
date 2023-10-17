@@ -6,6 +6,7 @@ single_surface_results = readr::read_rds("objects/single_surface_results.rds") |
 # anova
 single_surface_anova = aov(dispersion ~ light * surface, data = single_surface_results)
 summary(single_surface_anova)
+write_rds(single_surface_anova, "objects/single_surface_anova.rds")
 
 # some preliminary ideas how to make a table for this
 tmp = single_surface_anova |>

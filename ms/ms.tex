@@ -346,6 +346,12 @@ stomate closest to that stomate and therefore the zone it supplies with
 CO\(_2\)). This way, each stomate can be optimally sized relative to the
 mesophyll volume it supplies.
 
+\begin{figure}[ht]
+\includegraphics[width = \textwidth]{figures/ideal-amphi-grid.pdf}
+\caption{Idealized amphistomatous stomatal grid with uniform stomatal patterning and perfect abaxial-adaxial coordination.}
+\label{fig:ideal-amphi-grid}
+\end{figure}
+
 To test these hypotheses, we grew the model plant \emph{Arabidopsis
 thaliana} in high, medium, and low light and measured stomatal density,
 size, and patterning on both leaf surfaces, and spatial coordination
@@ -572,28 +578,24 @@ ranged from 12 to 93 (units) with high light leaves ranging from 93 to
 \label{fig:density}
 \end{figure}
 
-\hypertarget{single-surface-results}{%
-\subsection{Single Surface Results}\label{single-surface-results}}
+\hypertarget{stomatal-distribution-is-nonrandom-but-far-from-ideal}{%
+\subsection{Stomatal distribution is nonrandom, but far from
+ideal}\label{stomatal-distribution-is-nonrandom-but-far-from-ideal}}
 
-If our hypotheses that natural selection will act to reduce the
-diffusion path length of CO\(_2\) while minimizing stomatal number are
-correct, then we would expect to find leaf surfaces with uniformly
-distributed stomata. However, to the contrary, we find that though 57 of
-the 132 (43.1\%) leaf surfaces were significantly more uniformly
-dispersed than uniform random synthetic stomatal grids (\(\alpha\) =
-0.05), none of the leaf surfaces exhibited perfectly uniform stomatal
-patterning (dispersion index = 1) (\autoref{fig:single-surface}).
-Additionally, we hypothesized that as CO\(_2\) is more limiting to
-photosynthesis under high light, stomata would be more uniformly
-dispersed in plants grown in high light than plants grown in low and
-medium light. The data also fail to support this hypothesis as there is
-no strong, discernible trend between light and stomatal patterning.
-Interestingly, adaxial leaf surfaces were more uniformly dispersed than
-associated abaxial leaf surfaces across all light treatments
-(F\(_\text{1,126}\) = 28.8; p-value \textless{} 0.001). Rather than
-regulate stomatal patterning in response to light regimes, plants
-respond by increasing stomatal density (\autoref{fig:density}). Stomatal
-density drastically increased in plants grown under high light,
+Many leaf surface (57 of 132, 43.2\%) are significantly overdispersed
+compared to a random uniform distribution, none of the leaf surfaces
+exhibited perfectly uniform stomatal patterning (dispersion index = 1)
+(\autoref{fig:single-surface}). Additionally, we hypothesized that as
+CO\(_2\) is more limiting to photosynthesis under high light, stomata
+would be more uniformly dispersed in plants grown in high light than
+plants grown in low and medium light. The data also fail to support this
+hypothesis as there is no strong, discernible trend between light and
+stomatal patterning. Interestingly, adaxial leaf surfaces were more
+uniformly dispersed than associated abaxial leaf surfaces across all
+light treatments (F\(_\text{1,126}\) = 28.8; p-value \textless{} 0.001).
+Rather than regulate stomatal patterning in response to light regimes,
+plants respond by increasing stomatal density (\autoref{fig:density}).
+Stomatal density drastically increased in plants grown under high light,
 validating the long held hypothesis that light strongly influences
 stomatal density (F\(_\text{2,126}\) = 680.7; p-value \textless{}
 0.001).
@@ -613,13 +615,6 @@ and adaxial leaf surfaces (\autoref{fig:dual-surface}). Light treatment
 had no effect on correlation between surfaces (F\(_\text{2,63}\) = 2.28;
 p-value = 0.11). All but one abaxial, adaxial surface pairs were
 independent (\(\alpha\) = 0.05).
-
-\hypertarget{example-output}{%
-\subsubsection{Example output}\label{example-output}}
-
-We wrapped the above functions to adjust environmental and anatomical
-variables. We're going to simulate over a grid of parameters, but here
-is what the output looks like plotted:
 
 \hypertarget{results-1}{%
 \section{Results}\label{results-1}}
@@ -647,12 +642,6 @@ is what the output looks like plotted:
 
 \hypertarget{dual-surface-analysis-1}{%
 \subsection{Dual surface analysis}\label{dual-surface-analysis-1}}
-
-\begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/ideal-amphi-grid.pdf}
-\caption{Idealized amphistomatous stomatal grid with uniform stomatal patterning and perfect abaxial-adaxial coordination.}
-\label{fig:ideal-amphi-grid}
-\end{figure}
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/dual-surface.pdf}
