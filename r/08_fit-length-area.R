@@ -5,11 +5,12 @@ stomata = readr::read_rds("objects/stomata_position_length_area.rds") |>
   filter(length > 5, !reject, !is.na(area)) |>
   mutate(sqrt_area = sqrt(area))
 
-fit <- brm(bf(
+fit = brm(bf(
   sqrt_area ~ surface + length:light + (1 + surface:length|trt_leaf_number),
   sigma ~ light
 ),
-  data = stomata, backend = "cmdstanr", chains = 1L, seed = 226140189
+  data = stomata, backend = "cmdstanr", chains = 4L, cores = 4L,
+seed = 226140189, iter = 4e3, thin = 2, silent = 0
 )
 
 write_rds(fit, "objects/fit.rds")

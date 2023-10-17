@@ -196,7 +196,7 @@ Uniformly distributed stomata on a leaf with stomatal density ($D_S$) maximize $
 As all sides of an equilateral triangle have the same length, the average nearest neighbor distance for a given $D_S$ is maximized and each stomate occupies the same hexagonal area ($A_\text{hex}$). As $DI$ approaches 1, the more uniform an area each of its stomata supply with CO$_2$ during photosynthesis. 
  -->
  
-Finally, we examined the relationship between stomatal zone area and stomatal length using a Bayesian generalized non-linear multilevel model fit with the *R* package **brms** version `r fit$version$brms` [@burkner_brms_2017; @burkner_advanced_2018] and *Stan* version `r fit$version$cmdstan` [@stan_development_team_stan_2023]. Stomatal zone area was calculated using Voronoi tessellation (e.g. \autoref{fig:tessellation-example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in ImageJ [@schneider_nih_2012].
+Finally, we examined the relationship between stomatal zone area and stomatal length using a Bayesian linear mixed-effects model fit with the *R* package **brms** version `r fit$version$brms` [@burkner_brms_2017; @burkner_advanced_2018] and *Stan* version `r fit$version$cmdstan` [@stan_development_team_stan_2023]. Stomatal zone area was calculated using Voronoi tessellation (e.g. \autoref{fig:tessellation-example}). The stomatal zone area, $S_\text{area}$, is the region of the leaf surface whose distance to stomate, $S$, is less than the distance to any other stomate, $S$. Stomatal length was measured in ImageJ [@schneider_nih_2012].
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
@@ -268,19 +268,17 @@ There is no evidence of spatial coordination between abaxial and adaxial leaf su
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/dual-surface.pdf}
-\caption{Correlation between paired abaxial and adaxial leaf surfaces. Dashed line indicates no correlation. Weak positive correlations are not significantly different from null simulations. No differences in abaxial-adaxial correlation were observed between light levels according to an analysis of variance ($\alpha$ = 0.05).}
+\caption{Pixel-wise correlation between near stomatal distance (NSD) squared on paired abaxial and adaxial leaf surfaces. Dashed line indicates zero correlation. Weak positive correlations are not significantly different from zero after correcting for multiple comparisons. The correlation does not differ among light treatments.}
 \label{fig:dual-surface}
 \end{figure}
 
-<!-- WORKING HERE -->
-<!-- Copying Q's from Intro 
-1) a uniform distribution of stomata on both abaxial and adaxial leaf surfaces and 2) coordinated stomatal spacing on each surface that offsets the position of stomata (\autoref{fig:ideal-amphi-grid}). Coordination between leaf surfaces is defined in this study as the occurrence of stomata in areas farthest from stomata on the opposite leaf surface. Additionally, because CO$_2$ is more limiting for photosynthesis under high light, we hypothesize that in high light 3) there should be more stomata, and 4) stomata should be more uniformly distributed than in low light. Finally, as stomatal densities are selected for optimal operational aperture, we hypothesize that 5) stomatal length will be positively correlated with the area of the leaf surface to which it is closest. We refer to this as the 'stomatal zone', the leaf area surrounding a focal stomate closest to that stomate and therefore the zone it supplies with CO$_2$). This way, each stomate can be optimally sized relative to the mesophyll volume it supplies.
--->
-Across all light treatments and leaf surfaces, stomatal length and stomatal area were weakly positively correlated, indicating some support for our hypothesis that stomata are selected for an optimal operational aperture (\autoref{fig:length-area}).
+## Larger stomata supply larger mesophyll volumes
+
+Across all light treatments and leaf surfaces, stomatal length and stomatal area are weakly positively correlated, indicating some support for our hypothesis that stomata are selected for an optimal operational aperture (\autoref{fig:length-area}).
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/length-area.pdf}
-\caption{Stomatal length and stomatal zone area. Lines of best fit computed using a bayesian generalized non-linear multilevel model. Each light level and leaf surface exhibits a unique, weakly positive relationship between stomatal zone area and length.}
+\caption{Stomatal length and stomatal zone area are positively correlated. Linear regression lines and 95\% confidence ribbons are from a Bayesian linear mixed-effects model.}
 \label{fig:length-area}
 \end{figure}
 
