@@ -1501,3 +1501,21 @@ plot_photo_2d_pm = function(parms, soln = NULL, ...) {
     theme_void()
 
 }
+
+# Convenience function for reporting F-statistics
+report_fstat = function(m, x) {
+
+  assert_class(m, c("aov", "lm"))
+  s = summary(m)
+  r = str_detect(rownames(s[[1]]), glue("^{x}\\s*$"))
+  assert_true(sum(r) == 1)
+
+  glue(
+    "F_{{{df1},{df2}}} = {Fstat}, P = {pval}",
+    df1 = s[[1]][r, "Df"],
+    df2 = m$df.residual,
+    Fstat = scientize(s[[1]][r, "F value"]),
+    pval = scientize(s[[1]][r, "Pr(>F)"])
+  )
+
+}

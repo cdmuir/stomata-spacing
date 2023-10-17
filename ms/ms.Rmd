@@ -80,6 +80,7 @@ knitr::opts_knit$set(root.dir = "..")
 source("r/header.R")
 fit = readr::read_rds("objects/fit.rds")
 single_surface_results = readr::read_rds("objects/single_surface_results.rds")
+single_surface_anova = readr::read_rds("objects/single_surface_anova.rds")
 pm_pars = readr::read_csv("raw-data/2d-pm-parameters.csv", show_col_types = FALSE)
 model_var = readr::read_rds("objects/model_var.rds")
 
@@ -93,6 +94,7 @@ adjp = mt.rawp2adjp(single_surface_results$p_value, proc = "BH")
 nni2 = bind_cols(single_surface_results[adjp$index,], adjp$adjp) |>
   dplyr::transmute(sig = BH < 0.05) |>
   dplyr::summarize(n1 = sum(sig), n2 = sum(!sig))
+
 
 ```
 
@@ -225,7 +227,7 @@ Stomatal density of *Arabidopsis thaliana* the `r nrow(single_surface_results)` 
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/density.pdf}
-\caption{Stomatal density is higher in \textit{A. thaliana} plants grown under high light conditions. We determined statistical significance between light treatments using Tukey's post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
+\caption{Stomatal density is higher in \textit{A. thaliana} plants grown under high light conditions. We determined statistical significance between light treatments using Tukey post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
 \label{fig:density}
 \end{figure}
 
@@ -236,7 +238,15 @@ Stomatal density of *Arabidopsis thaliana* the `r nrow(single_surface_results)` 
 ## Stomatal distribution is nonrandom, but far from ideal
 
 <!-- WORKING HERE -->
-Many leaf surfaces (`r nni2[['n1']]` of `r nni2[['n1']] + nni2[['n2']]`, `r round(100 * nni2[['n1']] / (nni2[['n1']] + nni2[['n2']]), 1)`%) are significantly overdispersed compared to a random uniform distribution, but none were close to an ideal hexagonal pattern (dispersion index = 1; \autoref{fig:single-surface}). Before controlling for multiple comparisons, `r round(100 * nni1[['n1']] / (nni1[['n1']] + nni1[['n2']]), 1)`% are significantly overdispersed. The dispersion index differs significantly among light treatments (ANOVA, $F = `r$) is significantly greater Additionally, we hypothesized that as CO$_2$ is more limiting to photosynthesis under high light, the dispersion index would closer to 1 in high light...WORKING HERE would be more uniformly dispersed in plants grown in high light than plants grown in low and medium light. The data also fail to support this hypothesis as there is no strong, discernible trend between light and stomatal patterning. Interestingly, adaxial leaf surfaces were more uniformly dispersed than associated abaxial leaf surfaces across all light treatments (F$_\text{1,126}$ = 28.8; p-value < 0.001). Rather than regulate stomatal patterning in response to light regimes, plants respond by increasing stomatal density (\autoref{fig:density}). Stomatal density drastically increased in plants grown under high light, validating the long held hypothesis that light strongly influences stomatal density (F$_\text{2,126}$ = 680.7; p-value < 0.001).
+Many leaf surfaces (`r nni2[['n1']]` of `r nni2[['n1']] + nni2[['n2']]`, `r round(100 * nni2[['n1']] / (nni2[['n1']] + nni2[['n2']]), 1)`%) are significantly overdispersed compared to a random uniform distribution, but none were close to an ideal hexagonal pattern (dispersion index = 1; \autoref{fig:single-surface}). Before controlling for multiple comparisons, `r round(100 * nni1[['n1']] / (nni1[['n1']] + nni1[['n2']]), 1)`% are significantly overdispersed. The dispersion index differs significantly among light treatments (ANOVA, $`r report_fstat(single_surface_anova, 'light')`$) because the medium light treatment is significantly less than the low treatment (\autoref{fig:single-surface}). Dispersion index is consistently greater on adaxial leaf surfaces across all light treatments (ANOVA, $`r report_fstat(single_surface_anova, 'surface')`$; \autoref{fig:single-surface}). There is no evidence for an interaction between light treatment and surface (ANOVA, $`r report_fstat(single_surface_anova, 'light:surface')`$).
+
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{figures/single-surface.pdf}
+\caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). We determined statistical significance between light treatments using Tukey post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
+\label{fig:single-surface}
+\end{figure}
+
+Rather than regulate stomatal patterning in response to light regimes, plants respond by increasing stomatal density (\autoref{fig:density}). Stomatal density drastically increased in plants grown under high light, validating the long held hypothesis that light strongly influences stomatal density (F$_\text{2,126}$ = 680.7; p-value < 0.001).
 
 Across all light treatments and leaf surfaces, stomatal length and stomatal area were weakly positively correlated, indicating some support for our hypothesis that stomata are selected for an optimal operational aperture (\autoref{fig:length-area}).
 
@@ -244,15 +254,6 @@ Across all light treatments and leaf surfaces, stomatal length and stomatal area
 
 As evidence against our hypothesis that natural selection should favor spatial coordination in the placement of stomata between abaxial and adaxial leaf surfaces, we found no correlation between paired abaxial and adaxial leaf surfaces (\autoref{fig:dual-surface}). Light treatment had no effect on correlation between surfaces (F$_\text{2,63}$ = 2.28; p-value = 0.11). All but one abaxial, adaxial surface pairs were independent ($\alpha$ = 0.05).
 
-# Results
-
-## Single surface analysis
-
-\begin{figure}[ht]
-\includegraphics[width=\textwidth]{figures/single-surface.pdf}
-\caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). Significant differences between light treatments are indicated by asterisks according to analysis of variance followed by a post-hoc tukey honest significant difference test ($\alpha$ = 0.05).}
-\label{fig:single-surface}
-\end{figure}
 
 \begin{figure}[ht]
 \includegraphics[width = \textwidth]{figures/tessellation-example.pdf}

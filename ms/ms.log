@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  17 OCT 2023 07:14
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  17 OCT 2023 08:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -676,19 +676,19 @@ Overfull \hbox (57.35214pt too wide) in paragraph at lines 525--544
  []
 
 [7] [8] [9] [10]
-Overfull \hbox (17.48116pt too wide) in paragraph at lines 824--828
+Overfull \hbox (17.48116pt too wide) in paragraph at lines 818--822
 \TU/lmr/m/n/12 and Environment.” \TU/lmr/m/it/12 STOMATAL FUNCTION IN RELATION 
 TO LEAF METABOLISM
  []
 
 
-Overfull \hbox (38.84813pt too wide) in paragraph at lines 849--856
+Overfull \hbox (38.84813pt too wide) in paragraph at lines 843--850
 \TU/lmr/m/n/12 “Two Sides to Every Leaf: Water and <Span Style=”font-Variant:sm
 all-Caps;”>CO</Span>
  []
 
 [11]
-Overfull \hbox (10.27614pt too wide) in paragraph at lines 906--912
+Overfull \hbox (10.27614pt too wide) in paragraph at lines 900--906
 \TU/lmr/m/n/12 derstanding Airspace in Leaves: <Span Style=”font-Variant:small-
 Caps;”>3D</Span>
  []
@@ -696,7 +696,7 @@ Caps;”>3D</Span>
 Missing character: There is no � (U+FFFD) in font [lmroman12-regular]:mapping=t
 ex-text;!
 [12] [13] [14]
-Overfull \hbox (7.5516pt too wide) in paragraph at lines 1106--1112
+Overfull \hbox (7.5516pt too wide) in paragraph at lines 1100--1106
 [][][][][][][][][] [] [][][] [] [][][][][] [] [][][][] [] [][][][][][] [] [][][
 ][] [] [][] [] [][][] [] [][] [] [][][][][][][][] [] [][][][] [] [][][][][] [][
 ] [][][][]$[]\TU/lmr/m/n/12 . 
@@ -756,13 +756,13 @@ File: figures/dual-surface.pdf Graphic file (type pdf)
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: A770FBF6862956B2A6FE128AB810060E;2247.
+(rerunfilecheck)             Checksum: 7FB180BC8D9438B7452FA45F9FC5A771;1989.
  ) 
 Here is how much of TeX's memory you used:
- 13879 strings out of 476683
- 219165 string characters out of 5804047
- 1868018 words of memory out of 5000000
- 33861 multiletter control sequences out of 15000+600000
+ 13876 strings out of 476683
+ 219118 string characters out of 5804047
+ 1867018 words of memory out of 5000000
+ 33858 multiletter control sequences out of 15000+600000
  523076 words of font info for 97 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,12n,76p,666b,440s stack positions out of 10000i,1000n,20000p,200000b,200000s

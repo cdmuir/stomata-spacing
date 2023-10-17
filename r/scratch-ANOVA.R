@@ -15,6 +15,7 @@ bind_cols(single_surface_results[adjp$index,], adjp$adjp)
 
 single_surface_anova = read_rds("objects/single_surface_anova.rds")
 
+TukeyHSD(single_surface_anova)
 
 single_surface_anova
 
@@ -27,8 +28,19 @@ single_surface_anova$df.residual
 m = single_surface_anova
 x = "light"
 
+report_fstat = function(m, x) {
+
+  assert_class(m, c("aov", "lm"))
+  s = summary(m)
+  r = str_detect(rownames(s[[1]]), glue("^{x}\\s*$"))
+  assert_true(sum(r) == 1)
+
 glue(
   "F_{{{df1},{df2}}} = {Fstat}, P = {pval}",
-  df1 = 1,
-  df2 = m$df.residual
+  df1 = s[[1]][r, "Df"],
+  df2 = m$df.residual,
+  Fstat = scientize(s[[1]][r, "F value"]),
+  pval = scientize(s[[1]][r, "Pr(>F)"])
 )
+
+}
