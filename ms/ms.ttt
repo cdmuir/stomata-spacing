@@ -5,12 +5,8 @@
 trait & relationship \\
   \hline
 leaf thickness & + \\
-  stomatal density & - \\
+  interstomatal distance & + \\
   leaf porosity & - \\
-  lat.-vert. diffusion ratio & - \\
-  temperature & - \\
-  pressure & - \\
-  Rubisco concentration & + \\
   light & + \\
    \hline
 \end{tabular}

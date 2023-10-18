@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  17 OCT 2023 22:24
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  18 OCT 2023 10:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -864,6 +864,9 @@ Package siunitx Info: Option "detect-none" has been deprecated in this
 (siunitx)             reset-text-series = true, text-family-to-math = false,
 (siunitx)             text-series-to-math = false" as a replacement.
 
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
+Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen316
@@ -885,7 +888,7 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisrulewidth=\dimen328
 )
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 117.
+h' as default language. on input line 130.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2023-01-16 L3 backend support: XeTeX
 \g__graphics_track_int=\count379
@@ -901,27 +904,27 @@ LaTeX Warning: Unused global option(s):
 (./ms.aux)
 \openout1 = `ms.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-Package crop Info: using `pdftex' graphics driver on input line 117.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+Package crop Info: using `pdftex' graphics driver on input line 130.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
@@ -929,13 +932,13 @@ Package caption Info: listings package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 117.
+LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 130.
 LaTeX Font Info:    Overwriting symbol font `AMSa' in version `normal'
-(Font)                  U/msa/m/n --> U/msa/m/n on input line 117.
+(Font)                  U/msa/m/n --> U/msa/m/n on input line 130.
 LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
-(Font)                  U/msa/m/n --> U/msa/m/n on input line 117.
+(Font)                  U/msa/m/n --> U/msa/m/n on input line 130.
 \c@lstlisting=\count383
-Package hyperref Info: Link coloring OFF on input line 117.
+Package hyperref Info: Link coloring OFF on input line 130.
 (./ms.out) (./ms.out)
 \@outlinefile=\write6
 \openout6 = `ms.out'.
@@ -947,43 +950,46 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 117.
+or `english'. on input line 130.
 \c@thisauthcorresp=\count384
 \c@thisauththanks=\count385
-\c@ADDR@Colgate University=\count386
-\c@ADDR@ETH=\count387
-\c@ADDR@University of California Davis=\count388
-\c@CORRESP@1=\count389
-\c@ADDR@University of Hawaii at Manoa=\count390
+\c@ADDR@UHM=\count386
+\c@ADDR@CU=\count387
+\c@ADDR@NIAB=\count388
+\c@ADDR@UCD=\count389
+\c@ADDR@UWM=\count390
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8.03> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 214.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <18> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 214.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 214
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 227.
+LaTeX Font Info:    Calculating math sizes for size <18> on input line 227.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 227
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 214
+LaTeX Font Info:    Trying to load font information for U+msb on input line 227
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 21
-4.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 22
+7.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-\c@ADDRLBL@Colgate University=\count391
-\c@ADDRLBL@ETH=\count392
-\c@ADDRLBL@University of California Davis=\count393
-\c@CORRESPLBL@1=\count394
-\c@ADDRLBL@University of Hawaii at Manoa=\count395
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 214.
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 214.
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <18> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 227.
 
-Underfull \hbox (badness 10000) detected at line 214
+\c@ADDRLBL@UHM=\count391
+\c@ADDRLBL@CU=\count392
+\c@ADDRLBL@NIAB=\count393
+\c@ADDRLBL@UCD=\count394
+\c@ADDRLBL@UWM=\count395
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 227.
+Missing character: There is no ʻ (U+02BB) in font [lmsans9-regular]:mapping=tex
+-text;!
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 227.
+
+Underfull \hbox (badness 10000) detected at line 227
 []
  []
 
@@ -1005,19 +1011,25 @@ Overfull \hbox (1.89508pt too wide) has occurred while \output is active
 (ms.ttt) [2] [3]
 
 LaTeX Warning: Reference `fig:model_example' on page 4 undefined on input line 
-695.
+705.
 
-[4] (./ms.bbl
+
+Package natbib Warning: Citation `sung_drift-barrier_2012' on page 4 undefined 
+on input line 731.
+
+[4] (./ms.bbl [5]
 Invalid UTF-8 byte or sequence at line 90 replaced by U+FFFD.
 Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
 x-text;!
-[5]
+[6]
 Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
 x-text;!
-[6]
 Invalid UTF-8 byte or sequence at line 457 replaced by U+FFFD.
 Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
 x-text;!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 [7]
 Underfull \hbox (badness 1132) in paragraph at lines 643--651
 []\TU/lmr/m/n/8.03 A. Vehtari, A. Gelman, D. Simpson, B. Carpenter, and P.-C. B
@@ -1032,7 +1044,11 @@ URL []$[][][][][] [] [] [] [][][][][][][][][][][][][] [] [][][] [] [][][][][][]
 ][][][][] []
  []
 
-) [8] AED endfloat: Processing end Figures and Tables (./ms.lot
+) [8]
+
+Package natbib Warning: There were undefined citations.
+
+AED endfloat: Processing end Figures and Tables (./ms.lot
 Underfull \hbox (badness 10000) detected at line 1
 \TU/lmr/m/n/8.03 1
  []
@@ -1053,7 +1069,7 @@ Underfull \hbox (badness 10000) detected at line 2
 ] (./ms.ttt [10
 
 ]
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 24.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 20.
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1109,7 +1125,7 @@ File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
 File: figures/tessellation-example.pdf Graphic file (type pdf)
 <use figures/tessellation-example.pdf>
 
-LaTeX Warning: Float too large for page by 137.5264pt on input line 12.
+LaTeX Warning: Float too large for page by 47.80003pt on input line 12.
 
 [14]
 File: figures/density.pdf Graphic file (type pdf)
@@ -1142,15 +1158,15 @@ File: figures/model_summary.pdf Graphic file (type pdf)
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: 6C737F77295C5342D2FD863DC7107971;2665.
+(rerunfilecheck)             Checksum: B8E00FEE1BBB46F53619C79170BA5AE7;3007.
  ) 
 Here is how much of TeX's memory you used:
- 29880 strings out of 476683
- 605360 string characters out of 5804047
- 1911018 words of memory out of 5000000
- 49582 multiletter control sequences out of 15000+600000
- 536655 words of font info for 159 fonts, out of 8000000 for 9000
+ 29930 strings out of 476683
+ 605861 string characters out of 5804047
+ 1910018 words of memory out of 5000000
+ 49625 multiletter control sequences out of 15000+600000
+ 539911 words of font info for 172 fonts, out of 8000000 for 9000
  1352 hyphenation exceptions out of 8191
- 99i,12n,94p,17345b,993s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,94p,17345b,981s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on ms.pdf (19 pages).

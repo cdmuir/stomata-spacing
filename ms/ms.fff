@@ -1,47 +1,47 @@
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/ideal-amphi-grid.pdf}
+\includegraphics[width = 4in]{figures/ideal-amphi-grid.pdf}
 \caption{Idealized amphistomatous stomatal grid with uniform stomatal patterning and perfect abaxial-adaxial coordination.}
 \label{fig:ideal-amphi-grid}
 \end{figure}
 \efloatseparator
  
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/tessellation-example.pdf}
+\includegraphics[height = \textheight]{figures/tessellation-example.pdf}
 \caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
 \label{fig:tessellation-example}
 \end{figure}
 \efloatseparator
  
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/density.pdf}
+\includegraphics[width = 4in]{figures/density.pdf}
 \caption{Stomatal density is higher in \textit{A. thaliana} plants grown under high light conditions. We determined statistical significance between light treatments using Tukey post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
 \label{fig:density}
 \end{figure}
 \efloatseparator
  
 \begin{figure}[ht]
-\includegraphics[width=\textwidth]{figures/single-surface.pdf}
+\includegraphics[width=4in]{figures/single-surface.pdf}
 \caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). We determined statistical significance between light treatments using Tukey post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
 \label{fig:single-surface}
 \end{figure}
 \efloatseparator
  
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/dual-surface.pdf}
+\includegraphics[width = 4in]{figures/dual-surface.pdf}
 \caption{Pixel-wise correlation between near stomatal distance (NSD) squared on paired abaxial and adaxial leaf surfaces. Dashed line indicates zero correlation. Weak positive correlations are not significantly different from zero after correcting for multiple comparisons. The correlation does not differ among light treatments.}
 \label{fig:dual-surface}
 \end{figure}
 \efloatseparator
  
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/length-area.pdf}
+\includegraphics[width = 4in]{figures/length-area.pdf}
 \caption{Stomatal length and stomatal zone area are positively correlated. Linear regression lines and 95\% confidence ribbons are from a Bayesian linear mixed-effects model.}
 \label{fig:length-area}
 \end{figure}
 \efloatseparator
  
 \begin{figure}[ht]
-\includegraphics[width = \textwidth]{figures/model_summary.pdf}
+\includegraphics[width = 5in]{figures/model_summary.pdf}
 \caption{There is little photosynthetic benefit of offsetting stomatal position each surface based on a 2-D model of photosynthesis. The coordination advantage (\autoref{eq:coordination_advantage}) is close to zero under nearly all of the parameter space \autoref{tab:model_var}, meaning that the photosynthetic rate of amphistomatous leaves with stomata optimally offset is nearly equal to leaves with stomata on each surface in the same position along the leaf plane. $I_0$: PPFD incident on the leaf surface; $\varphi_\text{pal}$: Fraction of intercellular airspace (aka porosity), palisade; $T_\text{leaf}$: Leaf thickness; $U$: Interstomatal distance.}
 \label{fig:model_summary}
 \end{figure}
