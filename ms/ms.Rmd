@@ -8,7 +8,7 @@ author:
     affiliation: 
       - UHM
       - CU
-  - name: Graham Dow
+  - name: Graham J. Dow
     email: graham.dow@niab.com
     affiliation: NIAB
   - name: Thomas N. Buckley
@@ -26,7 +26,7 @@ address:
   - code: CU
     address: Ecology and Evolutionary Biology, Universtity of Colorado, Boulder, CO 80309
   - code: NIAB
-    address: National Institute of Agricultural Botany, Cambridge, United Kingdom CB3 0LE
+    address: Department of Crop Science and Production Systems, NIAB, Cambridge, CB3 0LE, UK
   - code: UCD
     address: Department of Plant Sciences, University of California, Davis, CA 95616
   - code: UWM
@@ -142,6 +142,15 @@ fit_slopes = gsub(" ", "", print(fit_emtrend, export = TRUE)$summary) |>
   }) |> 
   str_c(collapse = "; ")
 
+# Mean stomatal density ratio
+mean_sr = single_surface_results |>
+  mutate(rep = str_extract(image_number, "[0-9]+")) |>
+  select(treatment, light, leaf_number, rep, surface, n_stomata) |>
+  pivot_wider(values_from = "n_stomata", names_from = surface) |>
+  mutate(sr = adaxial / (abaxial + adaxial)) |>
+  pull(sr) |>
+  mean()
+
 ```
 
 # Introduction
@@ -187,9 +196,7 @@ print(xtable::xtable(df, caption = "A summary of the hypothesized relationships 
 
 ## Data Preparation
 
-[Graham - can you fill in details on growth conditions, image aquisitiion, and image dimensions?]
-
-*Arabidopsis thaliana* plants were grown in three different light environments: low light (PAR = 50 $\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}$), medium light (100 $\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}$), and high light (200 $\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}$). PAR stands for photosynthetically active radiation. Once leaves were mature, we captured images of the abaxial and adaxial leaf surfaces using XXX. We captured 132 images in total, making 66 abaxial-adaxial image pairs. We measured stomatal position and size using ImageJ [@schneider_nih_2012].
+Plant material, growth conditions, and three-dimensional confocal imaging are described in @dow_disruption_2017. Briefly, Columbia (Col-0) ecotype of *Arabidopsis thaliana* (L.) Heynh. plants were grown in three different light environments: low light (PAR = 50 $\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}$), medium light (100 $\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}$), and high light (200 $\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}$). PAR stands for photosynthetically active radiation. Seeds were surface-sterilized and stratified at 4°C for 3–5 d in 0.15% agarose solution and then sown directly into Pro-Mix HP soil (Premier Horticulture; Quakerstown, PA, USA) and supplemented with Scott's Osmocote Classic 14-14-14 fertilizer (Scotts-Sierra, Marysville, OH, USA). At 10–14 d, seedlings were thinned so only one seedling per container remained. Plants were grown to maturity in growth chambers where the conditions were as follows: 16 : 8 h, 22 : 20°C, day : night cycle. Imaging of the epidermis and internal leaf structures was performed using a Leica SP5 confocal microscope with the protocol developed by @wuyts_high-contrast_2010 with additional modification described in @dow_disruption_2017. We captured 132 images in total, making 66 abaxial-adaxial image pairs. We measured stomatal position and size using ImageJ [@schneider_nih_2012].
 
 ## Single surface analyses
 
@@ -272,7 +279,7 @@ knitr::kable(
 
 # Results
 
-Stomatal density of *Arabidopsis thaliana* the `r nrow(single_surface_results)` leaf surfaces measured range from 12 to 93 (units) with high light leaves ranging from 93 to 55 (units), medium light from 15 to 35 (units), and low light from 12 to 42 (units). Stomatal density varies among light treatments (ANOVA, $`r report_fstat(density_anova, 'light')`$) because the density is much greater in the high light treatment (\autoref{fig:density}). Density is consistently greater on abaxial leaf surfaces across all light treatments (ANOVA, $`r report_fstat(density_anova, 'surface')`$; \autoref{fig:density}). There is no evidence for an interaction between light treatment and surface (ANOVA, $`r report_fstat(density_anova, 'light:surface')`$). Leaves are amphistomatous with a mean stomatal density ratio of 0.45.
+Stomatal density of *Arabidopsis thaliana* varies among light treatments (ANOVA, $`r report_fstat(density_anova, 'light')`$) because the density is much greater in the high light treatment (\autoref{fig:density}). Density is consistently greater on abaxial leaf surfaces across all light treatments (ANOVA, $`r report_fstat(density_anova, 'surface')`$; \autoref{fig:density}). There is no evidence for an interaction between light treatment and surface (ANOVA, $`r report_fstat(density_anova, 'light:surface')`$). Leaves are amphistomatous with a mean stomatal density ratio of `r prettyNum(mean_sr, digits = 2)`.
 
 \begin{figure}[ht]
 \includegraphics[width = 4in]{figures/density.pdf}

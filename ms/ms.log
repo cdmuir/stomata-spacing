@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  18 OCT 2023 10:07
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.4.20)  19 OCT 2023 09:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1008,47 +1008,48 @@ Overfull \hbox (1.89508pt too wide) has occurred while \output is active
 (ms.fff)
 \openout4 = `ms.ttt'.
 
-(ms.ttt) [2] [3]
+(ms.ttt)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[2] [3]
 
 LaTeX Warning: Reference `fig:model_example' on page 4 undefined on input line 
-705.
+710.
 
+[4] (./ms.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package natbib Warning: Citation `sung_drift-barrier_2012' on page 4 undefined 
-on input line 731.
-
-[4] (./ms.bbl [5]
+[5]
 Invalid UTF-8 byte or sequence at line 90 replaced by U+FFFD.
 Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
 x-text;!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 [6]
 Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
 x-text;!
-Invalid UTF-8 byte or sequence at line 457 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 466 replaced by U+FFFD.
 Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
 x-text;!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [7]
-Underfull \hbox (badness 1132) in paragraph at lines 643--651
+Underfull \hbox (badness 1132) in paragraph at lines 662--670
 []\TU/lmr/m/n/8.03 A. Vehtari, A. Gelman, D. Simpson, B. Carpenter, and P.-C. B
 ürkner.  Rank-Normalization, Folding, and Localization:
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 643--651
+Underfull \hbox (badness 1742) in paragraph at lines 662--670
 \TU/lmr/m/n/8.03 1936-0975.  doi: $[][] [] [][][][] [] [][][][][][][][][][]$.  
 URL []$[][][][][] [] [] [] [][][][][][][][][][][][][] [] [][][] [] [][][][][][]
 [][] [] [][][][][][][][][][][][][][][][][][] [] [][][][][][][][][][] [] [][][][
 ][][][][] []
  []
 
-) [8]
-
-Package natbib Warning: There were undefined citations.
-
-AED endfloat: Processing end Figures and Tables (./ms.lot
+[8]) [9] AED endfloat: Processing end Figures and Tables (./ms.lot
 Underfull \hbox (badness 10000) detected at line 1
 \TU/lmr/m/n/8.03 1
  []
@@ -1062,18 +1063,18 @@ Underfull \hbox (badness 10000) detected at line 2
 \tf@lot=\write7
 \openout7 = `ms.lot'.
 
-[9
+[10
 
 
 
-] (./ms.ttt [10
+] (./ms.ttt [11
 
 ]
 LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 20.
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[11] (./ms.lof
+[12] (./ms.lof
 Underfull \hbox (badness 10000) detected at line 1
 \TU/lmr/m/n/8.03 1
  []
@@ -1112,14 +1113,14 @@ Underfull \hbox (badness 10000) detected at line 7
 \tf@lof=\write8
 \openout8 = `ms.lof'.
 
-[12
+[13
 
 
 
 ] (./ms.fff
 File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
 <use figures/ideal-amphi-grid.pdf>
-[13
+[14
 
 ]
 File: figures/tessellation-example.pdf Graphic file (type pdf)
@@ -1127,31 +1128,31 @@ File: figures/tessellation-example.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 47.80003pt on input line 12.
 
-[14]
+[15]
 File: figures/density.pdf Graphic file (type pdf)
 <use figures/density.pdf>
-[15
+[16
 
 
 ]
 File: figures/single-surface.pdf Graphic file (type pdf)
 <use figures/single-surface.pdf>
-[16
+[17
 
 ]
 File: figures/dual-surface.pdf Graphic file (type pdf)
 <use figures/dual-surface.pdf>
-[17
+[18
 
 ]
 File: figures/length-area.pdf Graphic file (type pdf)
 <use figures/length-area.pdf>
-[18
+[19
 
 ]
 File: figures/model_summary.pdf Graphic file (type pdf)
 <use figures/model_summary.pdf>
-) [19
+) [20
 
 ] (./ms.aux)
 
@@ -1161,12 +1162,12 @@ Package rerunfilecheck Info: File `ms.out' has not changed.
 (rerunfilecheck)             Checksum: B8E00FEE1BBB46F53619C79170BA5AE7;3007.
  ) 
 Here is how much of TeX's memory you used:
- 29930 strings out of 476683
- 605861 string characters out of 5804047
- 1910018 words of memory out of 5000000
- 49625 multiletter control sequences out of 15000+600000
+ 29939 strings out of 476683
+ 606131 string characters out of 5804047
+ 1912018 words of memory out of 5000000
+ 49634 multiletter control sequences out of 15000+600000
  539911 words of font info for 172 fonts, out of 8000000 for 9000
  1352 hyphenation exceptions out of 8191
- 99i,12n,94p,17345b,981s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,94p,17345b,1017s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ms.pdf (19 pages).
+Output written on ms.pdf (20 pages).

@@ -40,8 +40,12 @@ plot = ggplot(
   geom_point(alpha = 0.2) +
   scale_color_viridis_d() +
   scale_fill_viridis_d() +
-  xlab("Stomata length [UNITS]") +
-  ylab(expression(paste(sqrt(Tessellation~zone), " [UNITS]"))) +
+  xlab(expression(paste("Stomata length [", mu, "m]"))) +
+  ylab(expression(paste(sqrt(Tessellation~zone~area)~bgroup('[', paste(mu, "m"), ']')))) +
+  scale_x_continuous(labels = scales::number_format(scale = pixels_per_um),
+                     breaks = seq(15, 35, 5) / pixels_per_um) +
+  scale_y_continuous(labels = scales::number_format(scale = pixels_per_um),
+                     breaks = seq(50, 200, 50) / pixels_per_um) +
   theme_pubr() +
   theme(legend.position = "right", panel.background = element_rect(fill = "grey"))
 

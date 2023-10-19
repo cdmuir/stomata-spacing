@@ -59,6 +59,9 @@ library(units)
 
 theme_set(theme_cowplot())
 
+# Scale for conversion from pixel to um according to image metadata
+pixels_per_um = 621.21 / 512
+
 # Fit Rubisco model
 x_depth = c(145, 830.5)
 y_depth = c(0, 700)
@@ -75,38 +78,3 @@ nishio_carbon_1993_fig5 = read_csv("raw-data/nishio_carbon_1993_fig5.csv",
   )
 
 fit_rubisco = gam(rubisco ~ s(rel_depth), data = nishio_carbon_1993_fig5)
-
-# Resolve conflicts
-# library(conflicted)
-# conflict_prefer("abbreviate", "arules")
-# conflict_prefer("write", "arules")
-# conflict_prefer("intersect", "dplyr")
-# conflict_prefer("recode", "dplyr")
-# conflict_prefer("setdiff", "dplyr")
-# conflict_prefer("setequal", "dplyr")
-# conflict_prefer("union", "dplyr")
-# conflict_prefer("filter", "dplyr")
-# conflict_prefer("lag", "dplyr")
-# conflict_prefer("src", "dplyr")
-# conflict_prefer("summarize", "dplyr")
-# conflict_prefer("select", "dplyr")
-# conflict_prefer("combine", "dplyr")
-# conflict_prefer("format.pval", "base")
-# conflict_prefer("units", "base")
-# conflict_prefer("label", "Hmisc")
-# conflict_prefer("lift", "purrr")
-# conflict_prefer("mask", "raster")
-# conflict_prefer("zoom", "raster")
-# conflict_prefer("shift", "raster")
-# conflict_prefer("rotate", "raster")
-# conflict_prefer("cluster", "survival")
-# conflict_prefer("concordance", "survival")
-# conflict_prefer("getData", "raster")
-# conflict_prefer("collapse", "dplyr")
-# conflict_prefer("panel.histogram", "lattice")
-# conflict_prefer("cells", "terra")
-# conflict_prefer("rescale", "terra")
-# conflict_prefer("project", "rgdal")
-# conflict_prefer("describe", "Hmisc")
-# conflict_prefer("size", "arules")
-

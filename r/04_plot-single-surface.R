@@ -41,19 +41,24 @@ ggsave("single-surface.pdf", plot = plot, path = "ms/figures",
        width = 4, height = 4)
 
 # 2. plot stomatal density ----
+# Each field is 621.21 um^2 = 0.62121^2 mm^2 = 0.3859019 mm ^ 2
+# so multiply by (1 / 0.62121^2) to get stomata per mm^2
+
 density_plot = ggplot(
     single_surface_results,
     aes(light_reorder, n_stomata, fill = surface)
   ) +
   stat_boxplot() +
   xlab("Light treatment") +
-  ylab(expression(paste("Stomatal density [pores are", a^-2, "]"))) +
+  ylab(expression(paste("Stomatal density [pores m", m^-2, "]"))) +
   scale_fill_grey(start = 0.3) +
   stat_pvalue_manual(
     stat.test.density, label = "p.adj.signif",
     y.position = c(100, 110, 50),
     inherit.aes = FALSE
   ) +
+  scale_y_continuous(labels = scales::number_format(scale = 1 / 0.62121 ^ 2),
+                     breaks = seq(50, 250, 50) * (0.62121 ^ 2)) +
   theme_pubr()
 
 ggsave("density.pdf", plot = density_plot, path = "ms/figures",
