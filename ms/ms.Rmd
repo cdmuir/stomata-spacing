@@ -48,10 +48,10 @@ fontsize: 12pt
 competing_interests: |
   The authors declare no competing interests.
 author_contributions: |
-  JLW and CDM conceived of the project, analyzed data, and wrote the manuscript. GW provided data. TNB contributed to model development and helped edit the manuscript.
+  JLW and CDM conceived of the project, analyzed data, and wrote the manuscript. GJD provided data. TNB contributed to model development and helped edit the manuscript.
 acknowledgements: |
   This work was supported by NSF Award 1929167 to CDM and NSF Award 2307341 to TNB.
-bibliography: stomata-spacing_new.bib
+bibliography: stomata-spacing.bib
 link-citations: yes
 output: 
   rticles::oup_article:
@@ -224,7 +224,7 @@ We developed a dispersion index $\mathrm{DI}$ to quantify how close observed sto
   \mathrm{DI} = \frac{\mathrm{NNI} - \text{median}(\mathrm{NNI_{random}})}{\text{median}(\mathrm{NNI_{uniform}}) - \text{median}(\mathrm{NNI_{random}})}
 \end{equation}
 
-\noindent $\mathrm{NNI}$ is calculated for each sample image as described above; $\text{median}(\mathrm{NNI_{random}})$ and $\text{median}(\mathrm{NNI_{uniform}})$ are calculated from the synthetic data specific to each sample image as described above. We tested whether light treatment affects $\mathrm{DI}$ and stomatla density ($D_S$) using analysis of variance (ANOVA).
+\noindent $\mathrm{NNI}$ is calculated for each sample image as described above; $\text{median}(\mathrm{NNI_{random}})$ and $\text{median}(\mathrm{NNI_{uniform}})$ are calculated from the synthetic data specific to each sample image as described above. We tested whether light treatment affects $\mathrm{DI}$ and stomatal density ($D_S$) using analysis of variance (ANOVA).
 
 <!-- CDM: I am not sure this part is needed
 Uniformly distributed stomata on a leaf with stomatal density ($D_S$) maximize $\overline{D}_O$ in an equilateral triangle pattern with side lengths ($s$) equal to two times the incircle radius or apothem, $a$, of a regular hexagon with area ($A_\text{hex}$) equal to $A_\text{leaf}$ divided by the number of stomata ($n_\text{stomata}$) on the leaf according to Eq. \ref{eq:eq2}:
