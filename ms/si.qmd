@@ -1,35 +1,38 @@
 ---
 title: "2-D Photosynthesis Model"
-format: docx
+format: pdf
 editor: visual
 bibliography: ../ms/stomata-spacing.bib
 ---
 
-We model leaf photosynthesis using a two-dimensional porous medium approximation. The model is solved using a finite element method (FEM) in the *R* package **deSolve** [@soetaert_solving_2010]. Table 1 is a glossary model terms and symbols. Here we describe the model and associated *R* code.
+```{r, echo=FALSE}
+knitr::opts_knit$set(root.dir = "..")
+```
+
+We model leaf photosynthesis using a two-dimensional porous medium approximation. The model is solved using a finite element method (FEM) using the `steady.2d()` function in the *R* package **rootSolve** version `r packageVersion("rootSolve")` [@soetaert_practical_2009]. Table S1 is a glossary model terms and symbols.
 
 ## Leaf anatomy
 
-We assume that the leaf is a homogenous 2-D medium. In the final version, we will incorporate differences in spongy and palisade porosity, gradients in light absorption, electron transport capacity, and Rubisco concentration. The mesophyll is $T_\text{leaf}$ thick and the stomata are regularly spaced apart by distance $U$ on both ab- and adaxial surfaces. In this scenario, we assume that the stomata on each surface are precisely offset from each other by distance $U/2$. This minimizes the average distance between any point in the mesophyll and its nearest stomate. Because of the regular spacing, we only need to model the region between a stomate on surface and the next stomate on the other surface (fig. 1). The rest of the mesophyll will be the same because of symmetry.
+We assume that the leaf is a homogenous 2-D medium. The mesophyll is $T_\text{leaf}$ thick and the stomata are regularly spaced apart by distance $U$ on both ab- and adaxial surfaces. In this scenario, we assume that the stomata on each surface are precisely offset from each other by distance $U/2$. This minimizes the average distance between any point in the mesophyll and its nearest stomate. Because of the regular spacing, we only need to model the region between a stomate on surface and the next stomate on the other surface (Fig. S1). The rest of the mesophyll will be the same because of symmetry.
 
-```{r, packages1, echo = FALSE, message=FALSE}
+```{r, header, echo=FALSE, message=FALSE}
 
 library(dplyr)
 library(ggforce)
 library(ggplot2)
-library(magrittr)
+library(glue)
 library(readr)
-library(rootSolve)
+library(stringr)
 library(tidyr)
 
+source("r/functions.R")
+
+parms = read_csv("raw-data/2d-pm-parameters.csv")
+ph2d_offset = read_rds("objects/ph2d_offset.rds")
+
 ```
 
-```{r, functions, echo=FALSE, message=FALSE}
-
-source("../r/functions.R")
-
-```
-
-```{r, fig1, message = FALSE, fig.cap='Figure 1: Example leaf anatomy analyzed by the 2-D FEM.', echo = FALSE, fig.height=6, fig.width=3}
+```{r, fig1, message = FALSE, fig.cap='Example leaf anatomy analyzed by the 2-D FEM.', echo = FALSE, fig.height=6, fig.width=3}
 
 # Example leaf where leaf thickness equals interstomatal distance
  xz_ratio = 0.5
@@ -82,18 +85,17 @@ source("../r/functions.R")
 
 ```{r, glossary, echo = FALSE, message = FALSE}
 
-readr::read_csv("../raw-data/2d-pm-parameters.csv") |>
+parms |>
   # filter(!calculated) |>
   mutate(Value = glue::glue("${x}$", x = scientize(default_value))) |>
   select(Name = name, Symbol = symbol, Value, Units = units, Notes = notes) |>
   knitr::kable(caption = "Table 1: glossary of model terms and mathematical symbols.")
+
 ```
 
-## Solution
+## Solving within gradients in CO$_2$ assimilation and concentration
 
-Below I have copied the section from @earles_excess_2017 (pg. 1094) on which I based my model. After that, I'll explain my modification for 2-D. I also think @earles_excess_2017 made one error that I will describe below.
-
-"We developed a FEM to solve a set of partial differential equations that describe CO$_2$ diffusion, photosynthesis, and respiration throughout the 1-D leaf geometry. The partial differential equations were solved for steady state using the R library **deSolve** [@soetaert_solving_2010]. Specifically, the diffusive flux of CO$_2$ through the stomatal boundaries, intercellular airspace, and mesophyll cells was described by:
+We extended the 1-D FEM of @earles_excess_2017 to solve a set of partial differential equations describing CO$_2$ diffusion, photosynthesis, and respiration throughout a 2-D leaf geometry. The diffusive flux of CO$_2$ through ab- and adaxial stoamta, intercellular airspace, and mesophyll cells was described by:
 
 $$D_\text{e} \frac{\partial^2 C_\text{ias}}{\partial x^2} = -f_\text{liq}$$ {#eq-1d_pm_flux}
 
@@ -105,7 +107,7 @@ $$
 D_\text{e} = \frac{\phi}{\tau} D_\text{c}
 $$ {#eq-De}
 
-is the effective diffusivity of a porous medium composed of a porous intercellular airspace with a given porosity ($\phi$; m$^3$ m$^{-3}$) and tortuosity ($\tau$; m m$^{-1}$), $D_\text{c}$\] is the diffusion coefficient (m s$^{-1}$) for CO$_2$ in the intercellular airspace, $C_\text{ias}$ is the \[CO$_2$\] (mol m$^{-3}$) at a depth $z$ in the intercellular airspace, $f_\text{liq}$ is the volumetric rate of CO$_2$ diffusion from the intercellular airspace into the chloroplast stroma (mol m$^{-3}$ s$^{-1}$), $r_\text{c}$ is the volumetric rate of ribulose 1,5-bisphosphate (RuBP) carboxylation (mol m$^{-3}$ s$^{-1}$), $r_\text{d}$ is the volumetric respiration rate (mol m$^{-3}$ s$^{-1}$), and $r_\text{p}$ is the volumetric photorespiration rate by Rubisco (mol m$^{-3}$ s$^{-1}$).
+is the effective diffusivity of CO$_2$ though a porous medium composed of an intercellular airspace with a porosity ($\phi$; m$^3$ m$^{-3}$) and tortuosity ($\tau$; m m$^{-1}$). $D_\text{c}$ is the diffusion coefficient (m s$^{-1}$) for CO$_2$ in the intercellular airspace, $C_\text{ias}$ is the \[CO$_2$\] (mol m$^{-3}$) at depth $z$ in the intercellular airspace, $f_\text{liq}$ is the volumetric rate of CO$_2$ diffusion from the intercellular airspace into the chloroplast stroma (mol m$^{-3}$ s$^{-1}$), $r_\text{c}$ is the volumetric rate of ribulose 1,5-bisphosphate (RuBP) carboxylation (mol m$^{-3}$ s$^{-1}$), $r_\text{d}$ is the volumetric respiration rate (mol m$^{-3}$ s$^{-1}$), and $r_\text{p}$ is the volumetric photorespiration rate by Rubisco (mol m$^{-3}$ s$^{-1}$).
 
 The volumetric rate of CO$_2$ diffusion from the intercellular airspace into the chloroplast stroma, $f_\text{liq}$, is defined as:
 
@@ -129,142 +131,44 @@ The boundary conditions are that the CO$_2$ concentration in the substomatal cav
 
 I've copied the *R* code to set up the model and solve it if you want to copy and paste on your own machine. I annotated the *R* code you would need to run the model and include an example result.
 
-```{r, model}
+```{r}
 
-library(dplyr)
-library(ggforce)
-library(ggplot2)
-library(magrittr)
-library(readr)
-library(rootSolve)
-library(tidyr)
+# Variables
+vars1 = read_rds("objects/model_var.rds") |>
+  left_join(rename(parms, Variable = symbol), by = join_by(Variable))
 
-source("../r/photo_2d_pm.R")
-
-# Define function for 2D FEM
-photo_2d_pm = function(t, Y, parms) {
-
-  # Arguments:
-  # * t, time step used by steady.2d() to find steady-state solution
-  # * Y, vector of length 2 * n_x * n_z. The first half are the elements
-  # corresponding to C_ias[i,j]; the second half are correspoding elements for
-  # C_liq[i,j].
-  # * parms, list of model parameters. Use `get_2d_pm_default_parms()` for
-  #  default parameter values.
-
-  # Set up:
-  # The leaf is divided to an area n_x elements wide, n_z units deep
-  n = parms[["n_z"]] * parms[["n_x"]]
-
-  # Create empty matrices for computation
-  C_ias = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]],
-                 data = Y[1:n])
-  C_liq = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]],
-                 data = Y[(n + 1):(2 * n)])
-  dC_ias = dC_liq = numeric(length = n) # empty vectors
-
-    # FLUX ----
-  D_e = parms[["D_c"]] * parms[["phi"]] / parms[["tau"]]
-
-  # Boundary conditions
-  bound_bottom = C_ias[1,]
-  bound_top = C_ias[parms[["n_z"]],]
-  bound_left = C_ias[,1]
-  bound_right = C_ias[, parms[["n_x"]]]
-  bound_top[1] = parms[["C_stom"]]
-  bound_bottom[parms[["n_x"]]] = parms[["C_stom"]]
-  # bound_bottom[1] = parms[["C_stom"]]
-
-  # diffusion in Z-direction; boundaries=imposed concentration
-  Flux = -D_e / parms[["t_elem"]] * rbind(
-    C_ias[1, ] - bound_bottom,
-    (C_ias[2:parms[["n_z"]], ] - C_ias[1:(parms[["n_z"]] - 1), ]),
-    bound_top - C_ias[parms[["n_z"]], ]
+vars2 = ph2d_offset$parms[pull(vars1, r)] |>
+  as_tibble() |>
+  pivot_longer(everything(), names_to = "r") |>
+  full_join(vars1, by = join_by(r)) |>
+  mutate(
+    # convert from model unit to print unit
+    value1 = case_when(
+      r == "I_0" ~ value * 1e6,
+      r == "phi_pal" ~ value,
+      r == "T_leaf" ~ value * 1e6 - 1,
+      r == "U" ~ 2 * (value * 1e6 - 1)
+    )
   )
-  dC_ias = dC_ias -
-    (Flux[2:(parms[["n_z"]] + 1), ] - Flux[1:parms[["n_z"]], ]) / parms[["t_elem"]]
 
-  # diffusion in X-direction
-  Flux = -D_e / parms[["t_elem"]] * cbind(
-    C_ias[, 1] - bound_left,
-    (C_ias[, 2:parms[["n_x"]]] - C_ias[, 1:(parms[["n_x"]] - 1)]),
-    bound_right - C_ias[, parms[["n_x"]]]
-  )
-  dC_ias = dC_ias -
-    (Flux[, 2:(parms[["n_x"]] + 1)] - Flux[, 1:parms[["n_x"]]]) /
-    parms[["t_elem"]]
+vars3 = vars2 |>
+  transmute(
+    s = glue("{var} = {value1}$ {Units}", var = str_remove(Variable, "\\$$"))
+  ) |>
+  pull(s) |>
+  str_c(collapse = "; ")
 
-  dC_ias = dC_ias + parms[["g_liq"]] * (C_liq - C_ias) /
-    (parms[["T_leaf"]] / parms[["S_m"]])
-
-  # CARBOXYLATION AND RESPIRATION ----
-  # Calculate volumetric j_max from area-based J_max. Here, I assume a single
-  # j_max for every part of the leaf, but in the final model I will have a
-  # gradient of j_max following Earles et al. (2017).
-  j_max = parms[["J_max"]] / (parms[["S_m"]] * parms[["V_strom"]])
-
-  # Carboxylation (n.b. Rubisco concentration is assumed constant throughout
-  # the leaf, but in the final model I will have a garudent of X_c following
-  # Earles et al. (2017))
-  w_c = (parms[["k_c"]] * parms[["X_c"]] * C_liq) / (parms[["K_m"]] + C_liq)
-  w_j = C_liq * j_max / (4 * C_liq + 8 * parms[["gamma_star"]])
-  r_c = pmin(w_c, w_j)
-  r_d = parms[["r_d"]]
-  r_p = r_c * parms[["gamma_star"]] / C_liq
-
-  dC_liq = dC_liq +
-    parms[["g_liq"]] * (C_ias - C_liq) / (parms[["T_leaf"]] / parms[["S_m"]]) +
-    (-r_c + r_p + r_d) * (parms[["S_m"]] / parms[["T_leaf"]]) * parms[["V_strom"]]
-
-  return(list(c(dC_ias, dC_liq)))
-
-}
-
-# Model parameters
-parms = get_2d_pm_default_parms() |>
-  derive_2d_pm_parms()
-
-# Initial values
-C_ias_mat = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]], parms[["C_stom"]])
-C_liq_mat = matrix(nrow = parms[["n_z"]], ncol = parms[["n_x"]], parms[["C_stom"]])
-
-# Solve for C_ias and C_liq
-soln = steady.2D(c(C_ias_mat, C_liq_mat), func = photo_2d_pm, parms = parms,
-                 pos = FALSE, dimens = c(parms[["n_z"]], parms[["n_x"]]),
-                 nspec = 2, lrw = 1e8, atol = 1e-10, rtol = 1e-10, ctol = 1e-10)
-
-# Plot results
-df_C = expand.grid(
-  z = seq_len(parms[["n_z"]]),
-  x = seq_len(parms[["n_x"]]),
-  name = c("C_ias", "C_liq")
-) |>
-  mutate(value = soln$y)
-
-ggplot(df_C, aes(x, z, z = value)) +
-  facet_grid(~ name) +
-  geom_contour_filled() +
-  coord_equal()
-
-# Calculate area-based net photosynthesis
-C_liq = df_C |>
-  filter(name == "C_liq") |>
-  pull(value)
-
-j_max = parms[["J_max"]] / (parms[["S_m"]] * parms[["V_strom"]])
-
-w_c = (parms[["k_c"]] * parms[["X_c"]] * C_liq) / (parms[["K_m"]] + C_liq)
-w_j = C_liq * j_max / (4 * C_liq + 8 * parms[["gamma_star"]])
-r_c = pmin(w_c, w_j)
-r_d = parms[["r_d"]]
-r_p = r_c * parms[["gamma_star"]] / C_liq
-
-T_leaf = parms[["n_z"]] * parms[["t_elem"]]
-a_n = (r_c - r_p - r_d) * (parms[["S_m"]] * 1 / T_leaf) * parms[["V_strom"]]
-
-# 1 m^2 of 200 um thick leaf is 2e-04 m^3
-mean(a_n) * T_leaf * 1e6
+# Guide to symbols
+symbols = parms |>
+  filter(r %in% c("C_ias", "C_liq", "I_0", "phi_pal", "T_leaf", "U")) |>
+  transmute(s = glue("{symbol} = {name}")) |> 
+  pull(s) |>
+  str_c(collapse = "; ")
 
 ```
+
+extra words
+
+![Example profiles of volumetric CO$_2$ concentrations within otherwise identical amphistomatous leaves that have stomatal positions offset (top row) or aligned (bottom row) based on the 2-D porous medium model. When stomata are aligned, both ab- and adaxial stomata are position 0 along the $x$-axis; when stomata are offset, the adaxial stomate is positioned $U/2$ distance away. In this example, variables are set as: `r vars3`. All other parameter values are described in Table S1. `r symbols`.](figures/ph2d-example.pdf){fig-align="center"}
 
 ## References
