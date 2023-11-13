@@ -4,6 +4,9 @@
 % Set document class options
 \documentclass[webpdf,large,modern,unnumsec,namedate]{oup-authoring-template}
 
+\usepackage{newunicodechar,graphicx}
+\DeclareRobustCommand{\okina}{\raisebox{\dimexpr\fontcharht\font`A-\height}{\scalebox{0.8}{`}}}
+\newunicodechar{ʻ}{\okina}
 % one column
 \onecolumn
 
@@ -21,7 +24,7 @@
 \usepackage{hyperref}
 
 \hypersetup{
-  pdftitle={Does stomatal patterning in amphistomatous leaves minimize the CO\_2 diffusion path length with leaves of Arabidopsis thaliana?},
+  pdftitle={Does stomatal patterning in amphistomatous leaves minimize the CO\_2 diffusion path length within leaves?},
   pdfkeywords={amphistomy, Arabidopsis thaliana, CO\(_2\)
 diffusion, finite element method, optimality, photosynthesis, stomata},
   breaklinks=true,
@@ -116,16 +119,13 @@ CB3 0LE, UK%
 
 % Pandoc header-include feature
 \usepackage{setspace}
-\doublespacing
+\onehalfspacing
 \usepackage[nomarkers,tablesfirst]{endfloat}
 \usepackage{hyperref}
 \renewcommand{\figureautorefname}{Fig.}
 \usepackage[detect-none]{siunitx}
 \sisetup{range-phrase = \text{--}}
 \usepackage{caption}
-\usepackage{newunicodechar,graphicx}
-\DeclareRobustCommand{\okina}{\raisebox{\dimexpr\fontcharht\font`A-\height}{\scalebox{0.8}{`}}}
-\newunicodechar{ʻ}{\okina}
 % Pandoc header-include feature
 \usepackage{booktabs}
 
@@ -143,8 +143,7 @@ CB3 0LE, UK%
 
 
 \title[]{Does stomatal patterning in amphistomatous leaves minimize the
-CO\(_2\) diffusion path length with leaves of \emph{Arabidopsis
-thaliana}?}
+CO\(_2\) diffusion path length within leaves?}
 
 \newcounter{thisauthcorresp} % For storage if author is corresponding author
 \newcounter{thisauththanks} % For storage if author has thanks
@@ -222,35 +221,35 @@ thaliana}?}
 Photosynthesis is co-limited by multiple factors depending on the plant
 and its environment. These include biochemical rate limitations,
 internal and external water potentials, temperature, irradiance, and
-carbon dioxide (CO2). Amphistomatous leaves have stomata on both abaxial
-and adaxial leaf surfaces. This feature is considered an adaptation to
-alleviate CO2 diffusion limitations in productive environments where
-other factors are not limiting as the diffusion path length from stomate
-to chloroplast is effectively halved. Plants can also reduce CO2
-limitations through other aspects of optimal stomatal anatomy: stomatal
-density, distribution and patterning, and size. A number of studies have
-demonstrated that stomata are overdispersed on a single leaf surface;
-however, much less is known about stomatal anatomy in amphistomatous
-plants, especially the coordination between leaf surfaces, despite their
-prevelance in nature and near ubiquity among crop species. Here we use
-novel spatial statistics based on simulations and photosynthesis
-modelling to test hypotheses about how amphistomatous plants may
-optimize CO2 limitations in the model angiosperm Arabidopsis thaliana
-grown in different light environments. We find that 1) stomata are
-overdispersed, but not ideally dispersed, on both leaf surfaces across
-all light treatments; 2) abaxial and adaxial leaf surfaces are
-independent; and 3) the theoretical improvements to photosynthesis from
-abaxial-adaxial stomatal coordination are miniscule (\textasciitilde1\%)
-across the range of feasible traitspace. However, we also find that 4)
-stomatal size is correlated with the mesophyll volume that it supplies
-with CO2, suggesting that plants may optimize CO2 diffusion limitations
+carbon dioxide (CO\(_2\)). Amphistomatous leaves have stomata on both
+abaxial and adaxial leaf surfaces. This feature is considered an
+adaptation to alleviate CO\(_2\) diffusion limitations in productive
+environments where other factors are not limiting as the diffusion path
+length from stomate to chloroplast is effectively halved. Plants can
+also reduce CO\(_2\) limitations through other aspects of optimal
+stomatal anatomy: stomatal density, distribution, patterning, and size.
+A number of studies have demonstrated that stomata are overdispersed on
+a single leaf surface; however, much less is known about stomatal
+anatomy in amphistomatous leaves, especially the coordination between
+leaf surfaces, despite their prevelance in nature and near ubiquity
+among crop species. Here we use novel spatial statistics based on
+simulations and photosynthesis modeling to test hypotheses about how
+amphistomatous plants may optimize CO\(_2\) limitations in the model
+angiosperm \emph{Arabidopsis thaliana} grown in different light
+environments. We find that 1) stomata are overdispersed, but not ideally
+dispersed, on both leaf surfaces across all light treatments; 2) abaxial
+and adaxial leaf surface patterning are independent; and 3) the
+theoretical improvements to photosynthesis from abaxial-adaxial stomatal
+coordination are miniscule (\(\ll 1\)\%) across the range of feasible
+parameter space. However, we also find that 4) stomatal size is
+correlated with the mesophyll volume that it supplies with CO\(_2\),
+suggesting that plants may optimize CO\(_2\) diffusion limitations
 through alternative pathways other than ideal, uniform stomatal spacing.
-We discuss the myriad developmental, physical, and evolutionary
-constraits which may prohibit plants from reaching the theoretical
-adaptive peak of uniform stomatal spacing and inter-surface stomatal
-coordination. These findings contribute to our understanding of
-amphistomatous plants' exploration of the leaf anatomy adaptive
-landscape.}
+We discuss the developmental, physical, and evolutionary constraits
+which may prohibit plants from reaching the theoretical adaptive peak of
+uniform stomatal spacing and inter-surface stomatal coordination. These
+findings contribute to our understanding of variation in the anatomy of
+amphistomatous leaves.}
 
 \keywords{amphistomy; Arabidopsis thaliana; CO\(_2\) diffusion; finite
 element method; optimality; photosynthesis; stomata}
@@ -777,7 +776,7 @@ mesophyll should increase carbon gain, all else being equal. However,
 reducing this distance to its absolute minimum may be constrained by
 developmental processes, or the photosynthetic benefit may be too small
 to be `seen' by natural selection (i.e.~the selection coefficient is
-less than drift barrier \citep{sung_drift-barrier_2012}).
+less than drift barrier \emph{sensu} \citet{sung_drift-barrier_2012}).
 
 We tested five related hypotheses about stomatal spacing in
 amphistomatous leaves using the model angiosperm \emph{Arabidopsis
@@ -843,7 +842,7 @@ tissue.
 
 No developmental pathway exists to ensure an idealized placement of
 stomata on the leaf surface. Rather, stomatal development is a dynamic
-process that must be plastic to environmental ques. Leaves develop based
+process that must be plastic to environmental cues. Leaves develop based
 on short and long distance signalling pathways which relay information
 about incoming light, humidity, temperature, and surrounding stomata to
 developing leaf tissues \citep{pillitteri_mechanisms_2012}. Our results
@@ -877,12 +876,9 @@ which would suggest that small changes in lateral diffusion distance are
 significant. As described above, the positive correlation between
 stomatal size and zone may be explained by common developmental
 processes rather than as an adaptation to maximize CO\(_2\) diffusion.
-Such flexibility in mature stomate size is an alternate peak in the
-adaptive landscape which cannot be assessed with our simplistic model
-assumptions. In any case, there is no evidence for coordinated
-development of both leaf surfaces, and very little theoretical benefit
-to photosynthesis, except in marginal circumstances which are
-exceptionally rare in nature.
+In any case, there is no evidence for coordinated development of both
+leaf surfaces, and very little theoretical benefit to photosynthesis,
+except in marginal circumstances which are exceptionally rare in nature.
 
 Our study corroborates previous studies which demonstrate that stomata
 are non-randomly distributed along the leaf surface as a result of
@@ -896,7 +892,7 @@ plants from reaching a theoretical peak in the adaptive landscape:
 uniform stomatal dispersion. Instead, as this study suggests, plants may
 simply compensate with higher stomatal density and by fitting stomatal
 size to the area that they supply with CO\(_2\). To understand why
-stomata are not ideally dispersed, more modelling (with a more complex
+stomata are not ideally dispersed, more modeling (with a more complex
 set of assumptions including vein density and IAS structure) should be
 done to estimate the fitness gain of stomatal dispersion. Additionally,
 genetic manipulation studies should attempt to create mutants with
@@ -917,16 +913,16 @@ not the ``tallest'' fitness peak must also be explored, as stomate size
 is demonstrated in this study to covary with mesophyll volume supplied
 with CO\(_2\). This may be especially true in highly variable
 environments or in large tree species with sun and shade leaves where
-developmental ques may change rapidly. The temporal component, not
+developmental cues may change rapidly. The temporal component, not
 considered here, could also have significant implications, as CO\(_2\)
 may only be limiting to photosynthesis during short periods when all
 other conditions are ideal. In these cases, the theoretical benefits of
 ideal stomatal spacing are further diminished. Future exploration of
-these competing hypotheses would require more advanced modelling,
+these competing hypotheses would require more advanced modeling,
 additional exploration of IAS space development and its effects on gas
 exchange, both real and modeled, and knowledge about how often the
 species of interest is CO\(_2\) limited across of range of natural
-settings. Despite these additional considerations, this paper represents
+settings. Despite these additional considerations, this study represents
 an important contribution to understanding the potential drivers of and
 limitations to stomatal anatomy in amphistomatous plants.
 

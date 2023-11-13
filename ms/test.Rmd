@@ -1,24 +1,99 @@
 ---
-title: "test"
-output:
-  pdf_document: default
-  html_document: default
+title: Does stomatal patterning in amphistomatous leaves minimize the CO$_2$ diffusion path length within leaves?
+date: "`r Sys.Date()`"
+author:
+  - name: Jacob L. Watts
+    email: Jacob.Watts-1@colorado.edu
+    corresponding_author: yes # Footnote using corresponding_author
+    affiliation: 
+      - UHM
+      - CU
+  - name: Graham J. Dow
+    email: graham.dow@niab.com
+    affiliation: NIAB
+  - name: Thomas N. Buckley
+    email: tnbuckley@ucdavis.edu
+    affiliation: UCD
+  - name: Christopher D. Muir
+    email: cdmuir@wisc.edu
+    affiliation: 
+      - UHM
+      - UWM
+    # footnote: 1 # Footnote using reference
+address:
+  - code: UHM
+    address: School of Life Sciences, University of Hawaiʻi at Mānoa, Honolulu, HI 96822
+  - code: CU
+    address: Ecology and Evolutionary Biology, University of Colorado, Boulder, CO 80309
+  - code: NIAB
+    address: Department of Crop Science and Production Systems, NIAB, Cambridge, CB3 0LE, UK
+  - code: UCD
+    address: Department of Plant Sciences, University of California, Davis, CA 95616
+  - code: UWM
+    address: Department of Botany, University of Wisconsin, Madison, WI 53706
+# footnote:
+#   - code: 1
+#     text: "Current email address: \\href{mailto:cdmuir@wisc.edu}{cdmuir@wisc.edu}"
+abstract:
+  - "Photosynthesis is co-limited by multiple factors depending on the plant and its environment. These include biochemical rate limitations, internal and external water potentials, temperature, irradiance, and carbon dioxide (CO$_2$). Amphistomatous leaves have stomata on both abaxial and adaxial leaf surfaces. This feature is considered an adaptation to alleviate CO$_2$ diffusion limitations in productive environments where other factors are not limiting as the diffusion path length from stomate to chloroplast is effectively halved. Plants can also reduce CO$_2$ limitations through other aspects of optimal stomatal anatomy: stomatal density, distribution, patterning, and size. A number of studies have demonstrated that stomata are overdispersed on a single leaf surface; however, much less is known about stomatal anatomy in amphistomatous leaves, especially the coordination between leaf surfaces, despite their prevelance in nature and near ubiquity among crop species. Here we use novel spatial statistics based on simulations and photosynthesis modeling to test hypotheses about how amphistomatous plants may optimize CO$_2$ limitations in the model angiosperm *Arabidopsis thaliana* grown in different light environments. We find that 1) stomata are overdispersed, but not ideally dispersed, on both leaf surfaces across all light treatments; 2) abaxial and adaxial leaf surface patterning are independent; and 3) the theoretical improvements to photosynthesis from abaxial-adaxial stomatal coordination are miniscule ($\\ll 1$%) across the range of feasible parameter space. However, we also find that 4) stomatal size is correlated with the mesophyll volume that it supplies with CO$_2$, suggesting that plants may optimize CO$_2$ diffusion limitations through alternative pathways other than ideal, uniform stomatal spacing. We discuss the developmental, physical, and evolutionary constraits which may prohibit plants from reaching the theoretical adaptive peak of uniform stomatal spacing and inter-surface stomatal coordination. These findings contribute to our understanding of variation in the anatomy of amphistomatous leaves."
+keywords:
+  - amphistomy
+  - Arabidopsis thaliana
+  - CO$_2$ diffusion
+  - finite element method
+  - optimality
+  - photosynthesis
+  - stomata
+fontsize: 12pt
+competing_interests: |
+  The authors declare no competing interests.
+author_contributions: |
+  JLW and CDM conceived of the project, analyzed data, and wrote the manuscript. GJD provided data. TNB contributed to model development and helped edit the manuscript.
+acknowledgements: |
+  This work was supported by NSF Award 1929167 to CDM and NSF Award 2307341 to TNB.
+bibliography: stomata-spacing.bib
+link-citations: yes
+output: 
+  rticles::oup_article:
+    latex_engine: xelatex
+    oup_version: 1 # 1 = 2020 CTAN OUP CLS package; 0 = 2009 OUP CLS package
+    # journal: "AoB PLANTS"
+    document_style: "modern" # Can be contemporary, modern, traditional
+    papersize: "large" # Can be large, medium, small
+    #citation_package: "default" # Uncomment when using a CSL; default "natbib"
+    namedate: TRUE # Set FALSE to use numeric refs; Default FALSE
+    number_sections: FALSE # Uncomment to not number sections; default TRUE
+    number_lines: TRUE # Use `lineno` package - Default FALSE
+    #number_lines_options: ["mathlines","switch"]  # Options for latex lineno package.
+    onecolumn: TRUE # Uncomment for one column format; default FALSE
+    extra_dependencies:
+      - booktabs # to use with knitr::kable() example below
+    #fontsize: 12pt
+header-includes:
+ - \usepackage{setspace}
+ - \onehalfspacing
+ - \usepackage[nomarkers,tablesfirst]{endfloat} # For figures and tables at end
+ - \usepackage{hyperref} # For autoref
+ - \renewcommand{\figureautorefname}{Fig.}
+ - \usepackage[detect-none]{siunitx} # for \numrange{}{}
+ - \sisetup{range-phrase = \text{--}}
+ - \usepackage{caption} # for \captionsetup{}
+ - \usepackage{newunicodechar,graphicx}
+ - \DeclareRobustCommand{\okina}{\raisebox{\dimexpr\fontcharht\font`A-\height}{\scalebox{0.8}{`}}}
+ - \newunicodechar{ʻ}{\okina}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE) 
-knitr::opts_chunk$set(fig.pos = 'p') # Places figures on pages separate from text
-knitr::opts_chunk$set(out.width = '100%', dpi = 300) # Figure resolution and size
-knitr::opts_chunk$set(fig.env = "figure") # Latex figure environment
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  message = FALSE,
+  fig.pos = 'th',
+  out.width = '100%', dpi = 300,
+  fig.env = "figure"
+)
 knitr::opts_knit$set(root.dir = "..")
 ```
 
-```{r}
-source("r/header.R")
-fit = readr::read_rds("objects/fit.rds")
-model_var_table = readr::read_rds("objects/model_var_table.rds")
-```
+# Introduction
 
-```{r, model_var}
-knitr::kable(model_var_table)
-```
+Stomatal anatomy (e.g. size, density, distribution, and patterning) and movement regulate gas exchange during photosynthesis, namely CO$_2$ assimilation and water loss through transpiration. Since waxy cuticles are mostly impermeable to CO$_2$ and H$_2$O, stomata are the primary entry and exit points through which gas exchange occurs despite making up a small percentage of the leaf area [@lange_responses_1971]. Stomata consist of two guard cells which open and close upon changes in turgor pressure or hormonal cues [@mcadam_linking_2016]. The stomatal pore leads to an internal space known as the substomatal cavity where gases contact the mesophyll. Once in the mesophyll, CO$_2$ diffuses throughout a network of intercellular air space (IAS) and into mesophyll cells where CO$_2$ assimilation ($A$) occurs within the chloroplasts [@lee_diffusion_1964]. Stomatal conductance and transpiration are determined by numerous environmental and anatomical parameters such as vapor pressure deficit (VPD), irradiance, temperature, wind speed, leaf water potential, IAS geometry, mesophyll cell anatomy, and stomatal anatomy.

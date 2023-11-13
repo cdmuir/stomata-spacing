@@ -1,0 +1,300 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+
+% Set document class options
+\documentclass[webpdf,large,modern,unnumsec,namedate]{oup-authoring-template}
+
+% one column
+\onecolumn
+
+%\usepackage{showframe}
+
+% line numbers
+\usepackage{lineno}
+\linenumbers
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+% From Pandoc template for its feature
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{
+  pdftitle={Does stomatal patterning in amphistomatous leaves minimize the CO\_2 diffusion path length within leaves?},
+  pdfkeywords={amphistomy, Arabidopsis thaliana, CO\(_2\)
+diffusion, finite element method, optimality, photosynthesis, stomata},
+  breaklinks=true,
+  bookmarks=true,
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+
+
+% tightlist command for lists without linebreak
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+
+% Counters for addresses and footnotes
+\newcounter{correspcnt} % For author footnotes
+\renewcommand*{\thecorrespcnt}{\fnsymbol{correspcnt}}
+\newcounter{addrcnt} % For author addresses
+
+% Macros for dealing with affiliations, footnotes, etc.
+\makeatletter
+
+\def\MyNewLabel#1#2#3{\expandafter\gdef\csname #1@#2\endcsname{#3}}
+
+\def\MyRef#1#2{\@ifundefined{#1@#2}{???}{\csname #1@#2\endcsname}}
+
+\newcommand*\ifcounter[1]{%
+  \ifcsname c@#1\endcsname
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+}
+
+\newcommand*\addrlblbycode[1]{%
+  \ifcounter{ADDRLBL@#1}
+    {}
+    {\refstepcounter{addrcnt}\newcounter{ADDRLBL@#1}\setcounter{ADDRLBL@#1}{\value{addrcnt}}}%
+    \arabic{ADDRLBL@#1}%
+}
+
+\newcommand*\addrbycode[1]{%
+  \ifcounter{ADDR@#1}
+    {}
+    {\newcounter{ADDR@#1}%
+     \address[\addrlblbycode{#1}]{\MyRef{ADDRTXT}{#1}}}%
+}
+
+\newcommand*\corresplblbycode[1]{%
+  \ifcounter{CORRESPLBL@#1}
+    {}
+    {\refstepcounter{correspcnt}\newcounter{CORRESPLBL@#1}\setcounter{CORRESPLBL@#1}{\value{correspcnt}}}%
+    \fnsymbol{CORRESPLBL@#1}%
+}
+
+\newcommand*\correspbycode[1]{%
+  \ifcounter{CORRESP@#1}
+    {}
+    {\newcounter{CORRESP@#1}%
+     \corresp[\corresplblbycode{#1}]{\MyRef{CORRESPTXT}{#1}}}%
+}
+
+\makeatother
+
+% Add missing \city command mentioned in documentation but absent from cls
+\providecommand\city[1]{#1}
+
+% Create labels for Addresses if the are given in Elsevier format
+   \MyNewLabel{ADDRTXT}{UHM}{%
+  School of Life Sciences, University of Hawaiʻi at Mānoa, Honolulu, HI
+96822%
+ }
+   \MyNewLabel{ADDRTXT}{CU}{%
+  Ecology and Evolutionary Biology, University of Colorado, Boulder, CO
+80309%
+ }
+   \MyNewLabel{ADDRTXT}{NIAB}{%
+  Department of Crop Science and Production Systems, NIAB, Cambridge,
+CB3 0LE, UK%
+ }
+   \MyNewLabel{ADDRTXT}{UCD}{%
+  Department of Plant Sciences, University of California, Davis, CA
+95616%
+ }
+   \MyNewLabel{ADDRTXT}{UWM}{%
+  Department of Botany, University of Wisconsin, Madison, WI 53706%
+ }
+
+% Create labels for Footnotes if they are given in Elsevier format
+
+% Pandoc header-include feature
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[nomarkers,tablesfirst]{endfloat}
+\usepackage{hyperref}
+\renewcommand{\figureautorefname}{Fig.}
+\usepackage[detect-none]{siunitx}
+\sisetup{range-phrase = \text{--}}
+\usepackage{caption}
+\usepackage{newunicodechar,graphicx}
+\DeclareRobustCommand{\okina}{\raisebox{\dimexpr\fontcharht\font`A-\height}{\scalebox{0.8}{`}}}
+\newunicodechar{ʻ}{\okina}
+% Pandoc header-include feature
+\usepackage{booktabs}
+
+\begin{document}
+
+\journaltitle{Journal Title Here}
+\DOI{DOI HERE}
+\copyrightyear{YYYY}
+\pubyear{YYYY}
+\access{Advance Access Publication Date: Day Month Year}
+\appnotes{Paper}
+
+\firstpage{1}
+
+
+
+\title[]{Does stomatal patterning in amphistomatous leaves minimize the
+CO\(_2\) diffusion path length within leaves?}
+
+\newcounter{thisauthcorresp} % For storage if author is corresponding author
+\newcounter{thisauththanks} % For storage if author has thanks
+
+
+
+\author[%
+\addrlblbycode{UHM},\addrlblbycode{CU}%
+,\refstepcounter{correspcnt}\setcounter{thisauthcorresp}{\value{correspcnt}}\fnsymbol{thisauthcorresp}%
+%
+%
+]{Jacob L. Watts}
+
+\addrbycode{UHM}
+\addrbycode{CU}
+
+\corresp[\fnsymbol{thisauthcorresp}]{Corresponding author. \href{mailto:Jacob.Watts-1@colorado.edu}{\nolinkurl{Jacob.Watts-1@colorado.edu}}}
+
+
+
+
+\author[%
+\addrlblbycode{NIAB}%
+%
+%
+%
+]{Graham J. Dow}
+
+\addrbycode{NIAB}
+
+
+
+
+
+
+\author[%
+\addrlblbycode{UCD}%
+%
+%
+%
+]{Thomas N. Buckley}
+
+\addrbycode{UCD}
+
+
+
+
+
+
+\author[%
+\addrlblbycode{UHM},\addrlblbycode{UWM}%
+%
+%
+%
+]{Christopher D. Muir}
+
+\addrbycode{UHM}
+\addrbycode{UWM}
+
+
+
+
+
+
+% Add author mark
+\authormark{Jacob L. Watts et al.}
+
+\received{Date}{0}{Year}
+\revised{Date}{0}{Year}
+\accepted{Date}{0}{Year}
+
+%\editor{Associate Editor: Name}
+
+\abstract{
+Photosynthesis is co-limited by multiple factors depending on the plant
+and its environment. These include biochemical rate limitations,
+internal and external water potentials, temperature, irradiance, and
+carbon dioxide (CO\(_2\)). Amphistomatous leaves have stomata on both
+abaxial and adaxial leaf surfaces. This feature is considered an
+adaptation to alleviate CO\(_2\) diffusion limitations in productive
+environments where other factors are not limiting as the diffusion path
+length from stomate to chloroplast is effectively halved. Plants can
+also reduce CO\(_2\) limitations through other aspects of optimal
+stomatal anatomy: stomatal density, distribution, patterning, and size.
+A number of studies have demonstrated that stomata are overdispersed on
+a single leaf surface; however, much less is known about stomatal
+anatomy in amphistomatous leaves, especially the coordination between
+leaf surfaces, despite their prevelance in nature and near ubiquity
+among crop species. Here we use novel spatial statistics based on
+simulations and photosynthesis modeling to test hypotheses about how
+amphistomatous plants may optimize CO\(_2\) limitations in the model
+angiosperm \emph{Arabidopsis thaliana} grown in different light
+environments. We find that 1) stomata are overdispersed, but not ideally
+dispersed, on both leaf surfaces across all light treatments; 2) abaxial
+and adaxial leaf surface patterning are independent; and 3) the
+theoretical improvements to photosynthesis from abaxial-adaxial stomatal
+coordination are miniscule (\(\ll 1\)\%) across the range of feasible
+parameter space. However, we also find that 4) stomatal size is
+correlated with the mesophyll volume that it supplies with CO\(_2\),
+suggesting that plants may optimize CO\(_2\) diffusion limitations
+through alternative pathways other than ideal, uniform stomatal spacing.
+We discuss the developmental, physical, and evolutionary constraits
+which may prohibit plants from reaching the theoretical adaptive peak of
+uniform stomatal spacing and inter-surface stomatal coordination. These
+findings contribute to our understanding of variation in the anatomy of
+amphistomatous leaves.}
+
+\keywords{amphistomy; Arabidopsis thaliana; CO\(_2\) diffusion; finite
+element method; optimality; photosynthesis; stomata}
+
+
+\maketitle
+
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Stomatal anatomy (e.g.~size, density, distribution, and patterning) and
+movement regulate gas exchange during photosynthesis, namely CO\(_2\)
+assimilation and water loss through transpiration. Since waxy cuticles
+are mostly impermeable to CO\(_2\) and H\(_2\)O, stomata are the primary
+entry and exit points through which gas exchange occurs despite making
+up a small percentage of the leaf area \citep{lange_responses_1971}.
+Stomata consist of two guard cells which open and close upon changes in
+turgor pressure or hormonal cues \citep{mcadam_linking_2016}. The
+stomatal pore leads to an internal space known as the substomatal cavity
+where gases contact the mesophyll. Once in the mesophyll, CO\(_2\)
+diffuses throughout a network of intercellular air space (IAS) and into
+mesophyll cells where CO\(_2\) assimilation (\(A\)) occurs within the
+chloroplasts \citep{lee_diffusion_1964}. Stomatal conductance and
+transpiration are determined by numerous environmental and anatomical
+parameters such as vapor pressure deficit (VPD), irradiance,
+temperature, wind speed, leaf water potential, IAS geometry, mesophyll
+cell anatomy, and stomatal anatomy.
+
+\section{Competing interests}
+
+The authors declare no competing interests.
+
+\section{Author contributions statement}
+
+JLW and CDM conceived of the project, analyzed data, and wrote the
+manuscript. GJD provided data. TNB contributed to model development and
+helped edit the manuscript.
+
+
+
+\bibliographystyle{abbrvnat}
+\bibliography{stomata-spacing.bib}
+
+%% Author bio-pics with images
+
+
+\end{document}
