@@ -10,6 +10,8 @@
 %\usepackage{showframe}
 
 % line numbers
+\usepackage{lineno}
+\linenumbers
 
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -113,9 +115,9 @@ CB3 0LE, UK%
 % Create labels for Footnotes if they are given in Elsevier format
 
 % Pandoc header-include feature
+\usepackage{setspace}
+\doublespacing
 \usepackage[nomarkers,tablesfirst]{endfloat}
-\usepackage{lineno}
-\linenumbers
 \usepackage{hyperref}
 \renewcommand{\figureautorefname}{Fig.}
 \usepackage[detect-none]{siunitx}
@@ -749,8 +751,8 @@ major constraint on CO\(_2\) supply. However, such thin leaves with so
 few stomata are uncommon among C\(_3\) plants (some CAM plants have low
 stomatal density \citep{males_stomatal_2017}). In other areas of
 parameter space, lateral diffusion limitations were small relative to
-those along the ab-adaxial axis (see \autoref{fig:model_example} for a
-representative model solution).
+those along the ab-adaxial axis (see Fig. S1 for a representative model
+solution).
 
 \begin{figure}[ht]
 \includegraphics[width = 5in]{figures/model_summary.pdf}
@@ -922,14 +924,11 @@ other conditions are ideal. In these cases, the theoretical benefits of
 ideal stomatal spacing are further diminished. Future exploration of
 these competing hypotheses would require more advanced modelling,
 additional exploration of IAS space development and its effects on gas
-exchange, both real and modelled, and knowledge about how often the
+exchange, both real and modeled, and knowledge about how often the
 species of interest is CO\(_2\) limited across of range of natural
 settings. Despite these additional considerations, this paper represents
 an important contribution to understanding the potential drivers of and
 limitations to stomatal anatomy in amphistomatous plants.
-
-\hypertarget{references}{%
-\section{References}\label{references}}
 
 \section{Competing interests}
 
@@ -942,6 +941,7 @@ manuscript. GJD provided data. TNB contributed to model development and
 helped edit the manuscript.
 
 
+\renewcommand\refname{References}
 
 \bibliographystyle{abbrvnat}
 \bibliography{stomata-spacing.bib}

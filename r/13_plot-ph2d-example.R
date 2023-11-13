@@ -14,12 +14,19 @@ df_C = expand.grid(
 ) |>
   mutate(value = c(ph2d_offset$fit$y, ph2d_aligned$fit$y))
 
-ggplot(df_C, aes(x, z, z = value)) +
+df_points = crossing(
+  name = c("italic(C)[ias]", "italic(C)[liq]"),
+  arrangement = c("offset", "aligned"),
+  z = c(0, r$n_z)
+) |>
+  mutate(x = 0 + (z > 0 & arrangement == "offset") * r$n_x, value = numeric(8))
+
+ggplot(df_C, aes(x, z)) +
   facet_grid(arrangement ~ name, labeller = label_parsed) +
-  # geom_contour_filled() +
-  scale_x_continuous(breaks = c(0, 50, 100)) +
+  scale_x_continuous(breaks = c(0, 50, 100), expand = expansion(mult = rep(0.1, 2))) +
   scale_y_continuous(breaks = c(0, 100, 200)) +
-  geom_contour_filled(breaks = seq(0.004, 0.015, 0.0005)) +
+  geom_contour_filled(mapping = aes(z = value), breaks = seq(0.004, 0.015, 0.0005)) +
+  geom_point( data = df_points) +
   xlab(expression(distance~from~abaxial~stomate~bgroup("[", paste(mu, 'm'), "]"))) +
   ylab(expression(distance~from~abaxial~epidermis~bgroup("[", paste(mu, 'm'), "]"))) +
   coord_equal() +

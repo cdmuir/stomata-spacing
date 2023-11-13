@@ -63,15 +63,16 @@ output:
     #citation_package: "default" # Uncomment when using a CSL; default "natbib"
     namedate: TRUE # Set FALSE to use numeric refs; Default FALSE
     number_sections: FALSE # Uncomment to not number sections; default TRUE
-    #number_lines: TRUE # Use `lineno` package - Default FALSE
+    number_lines: TRUE # Use `lineno` package - Default FALSE
     #number_lines_options: ["mathlines","switch"]  # Options for latex lineno package.
     onecolumn: TRUE # Uncomment for one column format; default FALSE
     extra_dependencies:
       - booktabs # to use with knitr::kable() example below
+    #fontsize: 12pt
 header-includes:
+ - \usepackage{setspace}
+ - \doublespacing
  - \usepackage[nomarkers,tablesfirst]{endfloat} # For figures and tables at end
- - \usepackage{lineno} # For line numbering
- - \linenumbers # For line numbering
  - \usepackage{hyperref} # For autoref
  - \renewcommand{\figureautorefname}{Fig.}
  - \usepackage[detect-none]{siunitx} # for \numrange{}{}
@@ -80,7 +81,6 @@ header-includes:
  - \usepackage{newunicodechar,graphicx}
  - \DeclareRobustCommand{\okina}{\raisebox{\dimexpr\fontcharht\font`A-\height}{\scalebox{0.8}{`}}}
  - \newunicodechar{ʻ}{\okina}
-
 ---
 
 ```{r setup, include=FALSE}
@@ -321,7 +321,7 @@ All parameters converged ($\hat{R} < 1.01$) and effective sample sizes were exce
 
 ## Little benefit of coordinated stomatal arrangement
 
-We used the finite element method (FEM) to model CO$_2$ diffusion within the leaf and photosynthesis as a 2-D porous medium. Across all realistic parts of parameter space, the coordination advantage is much less than 0.01 (\autoref{fig:model_summary}). For reference, a log-response of ratio is 0.01 is approximately 1%. The only exception was for thin leaves ($T_\text{leaf} = 100~\mu \text{m}$) with few stomata ($U = 338~\mu \text{m}$, which corresponds to a stomatal density of $\approx 10~\text{mm}^{-2}$), where lateral diffusion is major constraint on CO$_2$ supply. However, such thin leaves with so few stomata are uncommon among C$_3$ plants (some CAM plants have low stomatal density [@males_stomatal_2017]). In other areas of parameter space, lateral diffusion limitations were small relative to those along the ab-adaxial axis (see \autoref{fig:model_example} for a representative model solution).
+We used the finite element method (FEM) to model CO$_2$ diffusion within the leaf and photosynthesis as a 2-D porous medium. Across all realistic parts of parameter space, the coordination advantage is much less than 0.01 (\autoref{fig:model_summary}). For reference, a log-response of ratio is 0.01 is approximately 1%. The only exception was for thin leaves ($T_\text{leaf} = 100~\mu \text{m}$) with few stomata ($U = 338~\mu \text{m}$, which corresponds to a stomatal density of $\approx 10~\text{mm}^{-2}$), where lateral diffusion is major constraint on CO$_2$ supply. However, such thin leaves with so few stomata are uncommon among C$_3$ plants (some CAM plants have low stomatal density [@males_stomatal_2017]). In other areas of parameter space, lateral diffusion limitations were small relative to those along the ab-adaxial axis (see Fig. S1 for a representative model solution).
 
 \begin{figure}[ht]
 \includegraphics[width = 5in]{figures/model_summary.pdf}
@@ -345,22 +345,6 @@ In amphistomatous leaves, ideal stomatal spacing is complicated by a third dimen
 
 Our study corroborates previous studies which demonstrate that stomata are non-randomly distributed along the leaf surface as a result of developmental mechanisms such as spatially biased arrest of stomatal initials [@boetsch_arrest_1995], oriented asymmetric cell division [@geisler_oriented_2000], and cell cycle controls [@croxdale_stomatal_2000]. We do not investigate the potential developmental pathways that influence stomatal dispersion in this study; however, they are important to consider as these pathways could limit plants from reaching a theoretical peak in the adaptive landscape: uniform stomatal dispersion. Instead, as this study suggests, plants may simply compensate with higher stomatal density and by fitting stomatal size to the area that they supply with CO$_2$. To understand why stomata are not ideally dispersed, more modelling (with a more complex set of assumptions including vein density and IAS structure) should be done to estimate the fitness gain of stomatal dispersion. Additionally, genetic manipulation studies should attempt to create mutants with clustered and ideally dispersed stomata for a comparison of their photosynthetic traits. This could have extremely important implications for maximum assimilation rates in crops as most crop species are grown in high light where CO$_2$ is often limiting. In drought-prone environments, increased stomatal dispersion may increase water use efficiency by reducing the number of stomata needed to achieve the same internal CO$_2$ concentration, $C_\text{i}$.
 
-Our results suggest that after optimizing stomatal density and having developmental rules for spacing stomata relatively evenly, there may be limited gains to further optimization. Therefore, developmental constraints may be necessary to make sense of some features of stomatal spacing and distribution. The possibility that ideal stomatal spacing is not the "tallest" fitness peak must also be explored, as stomate size is demonstrated in this study to covary with mesophyll volume supplied with CO$_2$. This may be especially true in highly variable environments or in large tree species with sun and shade leaves where developmental ques may change rapidly. The temporal component, not considered here, could also have significant implications, as CO$_2$ may only be limiting to photosynthesis during short periods when all other conditions are ideal. In these cases, the theoretical benefits of ideal stomatal spacing are further diminished. Future exploration of these competing hypotheses would require more advanced modelling, additional exploration of IAS space development and its effects on gas exchange, both real and modelled, and knowledge about how often the species of interest is CO$_2$ limited across of range of natural settings. Despite these additional considerations, this paper represents an important contribution to understanding the potential drivers of and limitations to stomatal anatomy in amphistomatous plants.
+Our results suggest that after optimizing stomatal density and having developmental rules for spacing stomata relatively evenly, there may be limited gains to further optimization. Therefore, developmental constraints may be necessary to make sense of some features of stomatal spacing and distribution. The possibility that ideal stomatal spacing is not the "tallest" fitness peak must also be explored, as stomate size is demonstrated in this study to covary with mesophyll volume supplied with CO$_2$. This may be especially true in highly variable environments or in large tree species with sun and shade leaves where developmental ques may change rapidly. The temporal component, not considered here, could also have significant implications, as CO$_2$ may only be limiting to photosynthesis during short periods when all other conditions are ideal. In these cases, the theoretical benefits of ideal stomatal spacing are further diminished. Future exploration of these competing hypotheses would require more advanced modelling, additional exploration of IAS space development and its effects on gas exchange, both real and modeled, and knowledge about how often the species of interest is CO$_2$ limited across of range of natural settings. Despite these additional considerations, this paper represents an important contribution to understanding the potential drivers of and limitations to stomatal anatomy in amphistomatous plants.
 
 # References
-
-<!-- Placeholders for supplemental figures 
-
-\renewcommand\thefigure{S\arabic{figure}}    
-\renewcommand\thetable{S\arabic{table}}    
-\renewcommand\theequation{S\arabic{equation}}    
-\setcounter{figure}{0}    
-\setcounter{table}{0}    
-\setcounter{equation}{0}
-
-\begin{figure}
-  \captionsetup{labelformat=empty}
-  \caption{}
-  \label{fig:model_example}
-\end{figure}
--->
