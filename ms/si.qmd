@@ -34,11 +34,11 @@ bibliography: stomata-spacing.bib
 knitr::opts_knit$set(root.dir = "..")
 ```
 
-We model leaf photosynthesis using a two-dimensional porous medium approximation. The model is solved using a finite element method (FEM) using the `steady.2d()` function in the *R* package **rootSolve** version `r packageVersion("rootSolve")` [@soetaert_practical_2009]. Table S1 is a glossary model terms and symbols.
+We modeled leaf photosynthesis using a two-dimensional porous medium approximation. The `steady.2d()` function in the *R* package **rootSolve** version `r packageVersion("rootSolve")` [@soetaert_practical_2009] solves the model using a finite element method (FEM). The 2-D leaf profile is $n_x$ elements long and $n_z$ elements deep with square elements of area $t_\text{elem}^2$. In all cases, we set $t_\text{elem} = 1~\mu \text{m}$. Table S1 is a glossary model terms and symbols.
 
 ## Leaf anatomy
 
-We assume that the leaf is a homogenous 2-D medium. The mesophyll is $T_\text{leaf}$ thick and the stomata are regularly spaced apart by distance $U$ on both ab- and adaxial surfaces. In this scenario, we assume that the stomata on each surface are precisely offset from each other by distance $U/2$. This minimizes the average distance between any point in the mesophyll and its nearest stomate. Because of the regular spacing, we only need to model the region between a stomate on surface and the next stomate on the other surface (Fig. S1). The rest of the mesophyll will be the same because of symmetry.
+We assume that the leaf is a homogenous 2-D medium. The mesophyll is $T_\text{leaf}$ thick and the stomata are regularly spaced apart by distance $U$ on both ab- and adaxial surfaces. In this scenario, we assume that the stomata on each surface are precisely offset from each other by distance $U/2$. This minimizes the average distance between any point in the mesophyll and its nearest stomate. Because of the regular spacing, we only need to model the region between a stomate on surface and the next stomate on the other surface (Fig. S1). The rest of the mesophyll will be the same because of symmetry. This allowed us to set the boundary fluxes on the left and right sides of the leaf profile to 0.
 
 ```{r, header, echo=FALSE, message=FALSE}
 
@@ -108,61 +108,29 @@ ph2d_offset = read_rds("objects/ph2d_offset.rds")
     
 ```
 
-```{r, glossary, echo = FALSE, message = FALSE, results="asis"}
-#| label: glossary
-#| tbl-cap: "Glossary of model terms and mathematical symbols."
-
-parms |>
-  # filter(!calculated) |>
-  mutate(Value = ifelse(
-    is.na(default_value),
-    "$-$",
-    glue::glue("${x}$", x = scientize(default_value))
-  ),
-  units = ifelse(
-    is.na(units) | units == "NA",
-    "$-$",
-    units
-  )) |>
-  select(Name = name, Symbol = symbol, Value, Units = units, Notes = notes) |>
-  knitr::kable(booktabs = TRUE, escape = FALSE, longtable = TRUE)
-  # Option 1
-  # gt::gt() |>
-  # gt::fmt_markdown()
-  
-  # Option 2
-  # knitr::kable(booktabs = TRUE, escape = FALSE, longtable = TRUE) |>
-  # kableExtra::kable_styling(latex_options = c("striped", "no_vertical_lines")) |>
-  # kableExtra::column_spec(1, width = "3in") |>
-  # kableExtra::column_spec(2, width = "0.5in") |>
-  # kableExtra::column_spec(3, width = "1in") |>
-  # kableExtra::column_spec(4, width = "1.5in") |>
-  # kableExtra::column_spec(5, width = "1.5in") |>
-  # kableExtra::landscape()
-
-```
-
 ## Solving within-leaf gradients in CO$_2$ assimilation and concentration
 
 We extended the 1-D FEM of @earles_excess_2017 to solve a set of partial differential equations describing CO$_2$ diffusion, photosynthesis, and respiration throughout a 2-D leaf geometry. The diffusive flux of CO$_2$ through ab- and adaxial stoamta, intercellular airspace, and mesophyll cells in the $x$ (length) and $z$ (depth) dimensions is:
 
-$$D_\text{e} \nabla^2 C_\text{ias} = D_\text{e} \bigg(\frac{\partial^2 C_\text{ias}}{\partial x^2} + \frac{\partial^2 C_\text{ias}}{\partial z^2}\bigg) = -f_\text{liq}$$ {#eq-2d_pm_flux}
+$$D_\text{e} \nabla^2 C_\text{ias} = D_\text{e} \bigg(\frac{\partial^2 C_\text{ias}}{\partial x^2} + \frac{\partial^2 C_\text{ias}}{\partial z^2}\bigg) = -f_\text{liq},$$ {#eq-2d_pm_flux}
+
+where
 
 $$f_\text{liq} = r_\text{d} + r_\text{p} - r_\text{c}$$ {#eq-1d_pm_fliq}
 
-where
+and
 
 $$
 D_\text{e} = \frac{\varphi}{\tau} D_\text{c}
 $$ {#eq-De}
 
-is the effective diffusivity of CO$_2$ though a porous medium composed of an intercellular airspace with a porosity ($\varphi$; m$^3$ airspace m$^{-3}$ leaf) and tortuosity ($\tau$; m m$^{-1}$). $D_\text{c}$ is the diffusion coefficient (m s$^{-1}$) for CO$_2$ in the intercellular airspace, $C_\text{ias}$ is the \[CO$_2$\] (mol m$^{-3}$) at horizontal positions $x$ and depth $z$ in the intercellular airspace, $f_\text{liq}$ is the volumetric rate of CO$_2$ diffusion from the intercellular airspace into the chloroplast stroma (mol m$^{-3}$ s$^{-1}$), $r_\text{c}$ is the volumetric rate of ribulose 1,5-bisphosphate (RuBP) carboxylation (mol m$^{-3}$ s$^{-1}$), $r_\text{d}$ is the volumetric respiration rate (mol m$^{-3}$ s$^{-1}$), and $r_\text{p}$ is the volumetric photorespiration rate by Rubisco (mol m$^{-3}$ s$^{-1}$). Following @earles_excess_2017, $r_\text{d}$ is assumed constant per stroma surface area (Table S1) and $r_\text{p}$ is a function of carboxylation ($r_\text{c}$) and $C_\text{liq}$:
+is the effective diffusivity of CO$_2$ though a porous medium composed of an intercellular airspace with a porosity ($\varphi$; m$^3$ airspace m$^{-3}$ leaf) and tortuosity ($\tau$; m m$^{-1}$). We assume the palisade ($\varphi_\text{pal}$) is less porous than the spongy ($\varphi_\text{spg}$) mesophyll (Table S1). $D_\text{c}$ is the diffusion coefficient (m s$^{-1}$) for CO$_2$ in the intercellular airspace, $C_\text{ias}$ is the \[CO$_2$\] (mol m$^{-3}$) at horizontal positions $x$ and depth $z$ in the intercellular airspace, $f_\text{liq}$ is the volumetric rate of CO$_2$ diffusion from the intercellular airspace into the chloroplast stroma (mol m$^{-3}$ s$^{-1}$), $r_\text{c}$ is the volumetric rate of ribulose 1,5-bisphosphate (RuBP) carboxylation (mol m$^{-3}$ s$^{-1}$), $r_\text{d}$ is the volumetric respiration rate (mol m$^{-3}$ s$^{-1}$), and $r_\text{p}$ is the volumetric photorespiration rate by Rubisco (mol m$^{-3}$ s$^{-1}$). Following @earles_excess_2017, $r_\text{d}$ is assumed constant per stroma surface area (Table S1) and $r_\text{p}$ is a function of carboxylation ($r_\text{c}$) and $C_\text{liq}$:
 
-$$ r_\text{p} = r_\text{c} \frac{\Gamma^*}{C_\text{liq}} $$ {#eq-rp}
+$$ r_\text{p} = r_\text{c} \frac{\Gamma^*}{C_\text{liq}}. $$ {#eq-rp}
 
-Carboxylation rate is the minimum of the Rubisco-limited ($w_\text{c}$) or RuBP-regeneration limited ($w_\text{j}$) carboxylation rate:
+Carboxylation rate is the minimum of the Rubisco-limited ($w_\text{c}$) or RuBP-regeneration limited ($w_\text{j}$) carboxylation rates:
 
-$$ r_\text{c} = \text{min}(w_\text{c}, w_\text{j}) $$ {#eq-rc}
+$$ r_\text{c} = \text{min}(w_\text{c}, w_\text{j}) \frac{S_\text{m}}{T_\text{leaf}} V_\text{strom}, $$ {#eq-rc}
 
 where
 
@@ -170,33 +138,35 @@ $$ w_\text{c} = \frac{k_\text{c} X_\text{c} C_\text{liq}}{K_\text{m} + C_\text{l
 
 $$ w_\text{j} = \frac{C_\text{liq} j_\text{e}}{4 C_\text{liq} + 8 \Gamma^*}.$$ {#eq-wj}
 
-$k_\text{c}$ is the catalytic rate of Rubisco (m$^{-1}$) and $K_\text{m}$ is effective Michaelis-Menten constant for Rubisco (mol m$^{-3}$). Following @earles_excess_2017, we assumed the relative concentration of Rubisco follows that of @nishio_carbon_1993, but scaled such that the bulk leaf Rubisco concentration integrates to $X_\text{c}$ described in Table S1. We estimated a continuous function describing the relative Rubisco profile as a function of leaf depth using a generalized additive model with the `gam()` function in *R* package **mgcv** version `r packageVersion("mgcv")` [@wood_generalized_2017].
+Multiplying by $\frac{S_\text{m}}{T_\text{leaf}} V_\text{strom}$ converts carboxylation from per area to per stroma volume units. $k_\text{c}$ is the catalytic rate of Rubisco (m$^{-1}$) and $K_\text{m}$ is effective Michaelis-Menten constant for Rubisco (mol m$^{-3}$). Following @earles_excess_2017, we assumed the relative concentration of Rubisco follows that of @nishio_carbon_1993, but scaled such that the bulk leaf Rubisco concentration integrates to $X_\text{c}$ described in Table S1. We estimated a continuous function describing the relative Rubisco profile as a function of leaf depth using a generalized additive model with the `gam()` function in *R* package **mgcv** version `r packageVersion("mgcv")` [@wood_generalized_2017].
 
 The effective photosynthetic e$^{-}$ transport rate ($j_\text{e}$) is the minimum of the maximum ($j_\text{max}$) and potential ($j_\infty$) photosynthetic e$^{-}$ transport rates at each position within the mesophyll:
 
-$$ j_\text{e} = \text{min}(j_\text{max}, j_\infty) $$ {#eq-je}
+$$ j_\text{e} = \text{min}(j_\text{max}, j_\infty). $$ {#eq-je}
 
-The local $j_\text{max}$ follows the same profile as Rubisco as a function of leaf depth and is scaled so that it integrates to $J_\text{max}$ on a leaf-area basis [@earles_excess_2017]. Potential e$^{-}$ transport is assumed proportional to the local chloroplast concentration so that it integrates to $J_\infty$ on a leaf-area basis [@earles_excess_2017], where:
+The local $j_\text{max}$ follows the same depth profile as Rubisco and is scaled by local $S_\text{m}$ and $V_\text{strom}$ so that it integrates to $J_\text{max}$ on a leaf-area basis [@earles_excess_2017]:
 
-$$ J_\infty = I_0 \alpha \beta \phi_\text{PSII}.$$ {#eq-Jinf}
+$$J_\text{max} = \int_0^{T_\text{leaf}} j_{\text{max},i} S_{\text{m},i} V_\text{strom} dz.$$ {#eq-jmax}
+
+Potential e$^{-}$ transport follows the same depth profile as chlorophyll concentration and is scaled by local $S_\text{m}$ and $V_\text{strom}$ so that it integrates to $J_\infty$ on a leaf-area basis [@earles_excess_2017], where:
+
+$$ J_\infty = I_0 \alpha \beta \phi_\text{PSII} = \int_0^{T_\text{leaf}} j_{\infty,i} S_{\text{m},i} V_\text{strom} dz.$$ {#eq-Jinf}
 
 Potential e$^{-}$ transport is a product of PPFD incident on the leaf surface ($I_0$, mol m$^{-2}$ s$^{-1}$), whole-leaf light absorption ($\alpha$, mol mol$^{-1}$), the fraction of light absorbed by PSII ($\beta$, mol mol$^{-1}$), and the quantum yield of PSII e$^{-}$ transport ($\phi_\text{PSII}$, mol mol$^{-1}$).
 
-WORKING HERE
+The local chlorophyll concentration is a function of depth described by a quadratic equation [@johnson_leaf_2005]:
 
-The local chlorophyll concentration (SYMBOL) is a function of leaf depth following Equation XX from @borsuk_spatial_2019:
+$$F_\text{chl} = f(z) = b_{0,\text{chl}} + b_{1,\text{chl}} z + b_{2,\text{chl}} z ^ 2.$$ {#eq-Fchl}
 
-The volumetric rate of CO$_2$ diffusion from the intercellular airspace into the chloroplast stroma, $f_\text{liq}$, is:
+We used generic parameters from @borsuk_spatial_2019, rescaled to relative depth on a 0-1 rather than 0-100 interval.
 
-$$f_\text{liq} = \frac{g_\text{liq} (C_\text{liq} - C_\text{ias})}{T_\text{leaf} / S_\text{m}}$$ {#eq-fliq2}
+For mass balance, the CO$_2$ assimilated via carboxylation must be supplied by diffusive flux from the intercellular airspace into the chloroplast stroma. The volumetric rate of CO$_2$ diffusion from the intercellular airspace into the chloroplast stroma, $f_\text{liq}$, is:
 
-where $g_\text{liq}$ is the CO$_2$ conductance from the intercellular airspace into the chloroplast stroma (m s$^{-1}$), $C_\text{liq}$ (mol m$^{-3}$) is the \[CO$_2$\] in the stroma, and $S_\text{m}$ is leaf surface area-to-mesophyll surface area ratio. Noting that $g_\text{liq}$ is conductance per m$^2$ of stroma, this means the length scale to divide by should be the inverse of stroma area per unit bulk leaf volume, i.e. $1/[S_\text{c} (1 / T_\text{leaf})] = T_\text{leaf} / S_\text{c}$. For simplicity, we assume that the entire mesophyll surface area is lined with chloroplasts, hence $S_\text{m} = S_\text{c}$.
+$$f_\text{liq} = \frac{g_\text{liq} (C_\text{liq} - C_\text{ias})}{T_\text{leaf} / S_\text{m}},$$ {#eq-fliq2}
 
+where $g_\text{liq}$ is the CO$_2$ conductance from the intercellular airspace into the chloroplast stroma (m s$^{-1}$), $C_\text{liq}$ (mol m$^{-3}$) is the \[CO$_2$\] in the stroma, and $S_\text{m}$ is mesophyll surface area-to-leaf surface area ratio. Noting that $g_\text{liq}$ is conductance per m$^2$ of stroma, this means the length scale to divide by should be the inverse of stroma area per unit bulk leaf volume, i.e. $1/[S_\text{c} (1 / T_\text{leaf})] = T_\text{leaf} / S_\text{c}$. For simplicity, we assume that the entire mesophyll surface area is lined with chloroplasts, hence $S_\text{m} = S_\text{c}$. Following @earles_excess_2017, we assumed greater surface area in the palisade ($S_\text{m,pal}$) than spongy ($S_\text{m,spg}$) mesophyll. The fractions of palisade and spongy mesophyll are $f_\text{pal}$ and $f_\text{spg}$, respectively.
 
-
-I calculated assimilation and respiration the same way as @earles_excess_2017 using the standard C\$\_3\$ biochemical model.
-
-The boundary conditions are that the CO$_2$ concentration in the substomatal cavity is constant at $C_\text{stom}$. The fluxes on the left and right sides are 0 because of symmetry.
+Following @earles_excess_2017, we set boundary conditions at the stomata, $C_\text{stom}$, to be $0.85 \times$ atmospheric CO$_2$ (Table S1). The fluxes on the left and right sides are 0 because of symmetry; the other fluxes on the ab- and adaxial surface are assumed 0 (i.e. the epidermis is impermeable to CO$_2$).
 
 ```{r, echo = FALSE}
 
@@ -234,9 +204,41 @@ symbols = parms |>
 
 ```
 
-extra words
-
 ![Example profiles of volumetric CO$_2$ concentrations within otherwise identical amphistomatous leaves that have stomatal positions offset (top row) or aligned (bottom row) based on the 2-D porous medium model. Stomatal positions are indicated by black points at the top and bottom of panels. When stomata are aligned, both ab- and adaxial stomata are position 0 along the $x$-axis; when stomata are offset, the adaxial stomate is positioned $U/2$ distance away. In this example, variables are set as: `r vars3`. All other parameter values are described in Table S1. `r symbols`.](figures/ph2d-example.pdf){fig-align="center"}
+
+```{r, glossary, echo = FALSE, message = FALSE, results="asis"}
+#| label: glossary
+#| tbl-cap: "Glossary of model terms and mathematical symbols."
+
+parms |>
+  # filter(!calculated) |>
+  mutate(Value = case_when(
+    is.na(default_value) & !calculated ~ "variable",
+    is.na(default_value) & calculated ~ "calculated",
+    is.numeric(default_value) ~ glue::glue("${x}$", x = scientize(default_value))
+  ),
+  units = ifelse(
+    is.na(units) | units == "NA",
+    "$-$",
+    units
+  )) |>
+  select(Name = name, Symbol = symbol, Value, Units = units, Notes = notes) |>
+  knitr::kable(booktabs = TRUE, escape = FALSE, longtable = TRUE)
+  # Option 1
+  # gt::gt() |>
+  # gt::fmt_markdown()
+  
+  # Option 2
+  # knitr::kable(booktabs = TRUE, escape = FALSE, longtable = TRUE) |>
+  # kableExtra::kable_styling(latex_options = c("striped", "no_vertical_lines")) |>
+  # kableExtra::column_spec(1, width = "3in") |>
+  # kableExtra::column_spec(2, width = "0.5in") |>
+  # kableExtra::column_spec(3, width = "1in") |>
+  # kableExtra::column_spec(4, width = "1.5in") |>
+  # kableExtra::column_spec(5, width = "1.5in") |>
+  # kableExtra::landscape()
+
+```
 
 \newpage
 
