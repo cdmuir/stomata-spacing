@@ -6,7 +6,7 @@ x = which(ms %in% c(
   "\\newunicodechar{ʻ}{\\okina}"
 ))
 
-readr::write_lines(c(ms[1:6], ms[x], ms[7:(min(x) - 1)], ms[(max(x) + 1): length(ms)]), "ms/ms.tex")
+readr::write_lines(c(ms[1:6], ms[x], ms[7:(min(x) - 1)], ms[(max(x) + 1):length(ms)]), "ms/ms.tex")
 system("cd ms; xelatex ms.tex; xelatex ms.tex")
 
 # Copy and rename files for submission

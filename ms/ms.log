@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.12)  13 NOV 2023 11:30
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.11.12)  13 NOV 2023 15:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -12,55 +12,43 @@ ing-template.cls
 Document Class: oup-authoring-template 2022/03/18 1.1
 (/usr/local/texlive/2023/texmf-dist/tex/latex/crop/crop.sty
 Package: crop 2017/11/19 1.10 crop marks (mf)
-
 (/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
-
 (/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
 \CROP@index=\count182
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: xetex.def on input line 149.
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-def/xetex.def
 File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/usr/
+local/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 107.
 )
 \CROP@offset=\count183
 Package crop Info: Local config file crop.cfg used on input line 622.
-
-(/usr/local/texlive/2023/texmf-dist/tex/xelatex/xetexconfig/crop.cfg))
-(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2023/texmf-dist/tex/xelatex/xetexconfig/crop.cfg)) (/usr/lo
+cal/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
 \Gin@req@height=\dimen140
 \Gin@req@width=\dimen141
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@tempdima=\dimen142
@@ -77,25 +65,20 @@ Package caption Info: Document class w/o caption stuff detected.
 )
 \c@caption@flags=\count184
 \c@continuedfloat=\count185
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip50
-
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks18
 \ex@=\dimen150
-))
-(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen151
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count186
@@ -145,8 +128,7 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \mathdisplay@stack=\toks22
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/tools/array.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/array.sty
 Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen159
 \ar@mcellbox=\box53
@@ -155,16 +137,13 @@ Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \extratabsurround=\skip53
 \backup@length=\skip54
 \ar@cellbox=\box54
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: xetex.def on input line 227.
 LaTeX Info: Redefining \color on input line 711.
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1369.
@@ -174,10 +153,8 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
@@ -185,8 +162,7 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(/usr/local/texlive/2023/texmf-dist/tex/latex/sttools/flushend.sty
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/sttools/flushend.sty
 Package: flushend 2021/10/04 v4.0 Balancing columns in twocolumn mode
 \flushend@@lastskip@a=\skip55
 \flushend@@lastskip@b=\skip56
@@ -207,16 +183,13 @@ Package: flushend 2021/10/04 v4.0 Balancing columns in twocolumn mode
 \atColsBreak=\toks24
 \atColsEnd=\toks25
 \oldbreak@skip=\dimen165
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/sttools/stfloats.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/sttools/stfloats.sty
 Package: stfloats 2017/03/27 v3.3 Improve float mechanism and baselineskip sett
 ings
 \@dblbotnum=\count266
 \c@dblbotnumber=\count267
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/rotating.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
@@ -225,19 +198,15 @@ Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 \rotFPbot=\skip58
 \rot@float@box=\box63
 \rot@mess@toks=\toks26
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/changepage/chngpage.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/changepage/chngpage.sty
 Package: chngpage 2009/10/20 v1.2b change page layout
 \c@cp@cnt=\count269
 \c@cp@tempcnt=\count270
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/totcount/totcount.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/totcount/totcount.sty
 Package: totcount 2011/01/25 v1.2 package for gettingthe total value of LaTeX c
 ounters
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/base/fix-cm.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/base/fix-cm.sty
 Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
@@ -278,15 +247,13 @@ LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 \rotdimen=\dimen182
 \tempdime=\dimen183
 \temptbox=\box64
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip63
 \bibsep=\skip64
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count284
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen184
 \WF@size=\dimen185
 \c@WF@wrappedlines=\count285
@@ -298,7 +265,6 @@ Package: wrapfig 2003/01/31  v 3.6
 \@authorfigbox=\box66
 \@authorfigboxdim=\skip65
 \biofigadjskip=\skip66
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks28
@@ -310,44 +276,35 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip68
 \thm@headsep=\skip69
 \dth@everypar=\toks33
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/subfloat/subfloat.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/subfloat/subfloat.sty
 Package: subfloat 2003/08/21 version 2.14
-
 Package `subfloat', Version 2.14 of 2003/08/21.
 \c@subfloatfiguremax=\count287
 \c@subfloattablemax=\count288
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
 Invalid UTF-8 byte or sequence at line 3 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 3 replaced by U+FFFD.
 Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/multirow/multirow.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip70
 \multirow@cntb=\count289
 \multirow@dima=\skip71
 \bigstrutjot=\dimen186
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/mdwtools/footnote.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 \fn@notes=\box67
 \fn@width=\dimen187
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/url/url.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup6
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/algorithms/algorithm.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithms/algorithm.sty
 Invalid UTF-8 byte or sequence at line 11 replaced by U+FFFD.
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count290
@@ -358,10 +315,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 \@float@every@algorithm=\toks36
 \c@algorithm=\count291
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
-
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \c@ALG@line=\count292
 \c@ALG@rem=\count293
@@ -375,7 +330,6 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip74
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
-
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count299
@@ -390,86 +344,68 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 \lst@newlines=\count303
 \lst@lineno=\count304
 \lst@maxwidth=\dimen191
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 \c@lstnumber=\count305
 \lst@skipnumbers=\count306
 \lst@framebox=\box71
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.cfg
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
 \c@@pps=\count307
 \c@@ppsavesec=\count308
 \c@@ppsaveapp=\count309
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2023-11-09 v7.01f Hypertext links for LaTeX
-
 (/usr/local/texlive/2023/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
-
 (/usr/local/texlive/2023/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode not found.
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/hycolor/hycolor.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/auxhook/auxhook.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/nameref.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2023-11-09 v2.55 Cross-referencing by name of section
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
 (/usr/local/texlive/2023/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
- (/usr/local/texlive/2023/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count310
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count311
 )
 \@linkdim=\dimen192
 \Hy@linkcounter=\count312
 \Hy@pagecounter=\count313
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2023-11-09 v7.01f Hyperref: PDFDocEncoding definition (HO)
-)
-(/usr/local/texlive/2023/texmf-dist/tex/generic/intcalc/intcalc.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count314
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2023-11-09 v7.01f Hyperref: PDF Unicode definition (HO)
 )
@@ -484,10 +420,8 @@ Package hyperref Info: Bookmarks ON on input line 4438.
 \c@Hy@tempcnt=\count315
 LaTeX Info: Redefining \url on input line 4776.
 \XeTeXLinkMargin=\dimen193
-
 (/usr/local/texlive/2023/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-
 (/usr/local/texlive/2023/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
@@ -502,7 +436,6 @@ Package hyperref Info: backreferencing OFF on input line 6070.
 Package hyperref Info: Link coloring OFF on input line 6075.
 Package hyperref Info: Link coloring with OCG OFF on input line 6080.
 Package hyperref Info: PDF/A mode OFF on input line 6085.
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
@@ -512,10 +445,8 @@ package with kernel methods
 \c@Hfootnote=\count319
 )
 Package hyperref Info: Driver (autodetected): hxetex.
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/hyperref/hxetex.def
 File: hxetex.def 2023-11-09 v7.01f Hyperref driver for XeTeX
-
 (/usr/local/texlive/2023/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
@@ -540,9 +471,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 )
 \Hy@SectionHShift=\skip75
-) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/us
+r/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/local/te
+xlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
 \pgfutil@everybye=\toks38
@@ -556,9 +487,8 @@ x
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 ))
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
-
-(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/
+local/texlive/2023/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
@@ -589,7 +519,6 @@ tered.code.tex
 \t@pgf@tokb=\toks43
 \t@pgf@tokc=\toks44
 \pgf@sys@id@count=\count328
-
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -621,8 +550,8 @@ File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr
+/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen264
 \pgfmath@count=\count332
@@ -648,9 +577,9 @@ code.tex)
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
 code.tex)
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
-erarithmetics.code.tex)
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+erarithmetics.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/mat
+h/pgfmathcalc.code.tex) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/mat
+h/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count333
 )) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
@@ -770,13 +699,12 @@ Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
-))
-(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
-) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/usr
+/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/usr/local/
+texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/usr/loca
+l/texlive/2023/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/usr/local/texlive/20
+23/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/usr/local/texlive/2023/
+texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen291
 \pgffor@skip=\dimen292
@@ -844,9 +772,6 @@ File: pgfmoduleparser.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@lib@svg@max@num=\count348
 ))
 \@curXheight=\skip76
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
-Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2023/05/20 line numbers on paragraphs v5.3
 Invalid UTF-8 byte or sequence at line 292 replaced by U+FFFD.
@@ -866,33 +791,30 @@ Invalid UTF-8 byte or sequence at line 292 replaced by U+FFFD.
 \bframebox=\box84
 \linenoamsmath@ams@eqpen=\count356
 LaTeX Info: Redefining \\ on input line 3180.
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/upquote/upquote.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ))
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 33.
+(hyperref)                removing `math shift' on input line 30.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 33.
+(hyperref)                removing `subscript' on input line 30.
 
-Package hyperref Info: Option `breaklinks' set `true' on input line 33.
+Package hyperref Info: Option `breaklinks' set `true' on input line 30.
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 33.
+(hyperref)                setting the option has no effect on input line 30.
 
 \c@correspcnt=\count357
 \c@addrcnt=\count358
 (/usr/local/texlive/2023/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/endfloat/endfloat.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/endfloat/endfloat.sty
 Package: endfloat 2019/04/15 v2.7 LaTeX2e package puts figures and tables at en
 d (jdm)
 \c@posttable=\count359
@@ -901,8 +823,7 @@ d (jdm)
 \c@postfigure=\count361
 \efloat@postfff=\write5
 \@ef@fffopen=\count362
-)
-(/usr/local/texlive/2023/texmf-dist/tex/latex/siunitx/siunitx.sty
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/siunitx/siunitx.sty
 Package: siunitx 2023-11-06 v3.3.8 A comprehensive (SI) units package
 \l__siunitx_number_uncert_offset_int=\count363
 \l__siunitx_number_exponent_fixed_int=\count364
@@ -918,7 +839,6 @@ Package: siunitx 2023-11-06 v3.3.8 A comprehensive (SI) units package
 \l__siunitx_angle_marker_box=\box85
 \l__siunitx_angle_unit_box=\box86
 \l__siunitx_compound_count_int=\count373
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/translations/translations.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
  (CN)
@@ -946,7 +866,9 @@ Package siunitx Info: Option "detect-none" has been deprecated in this
 (siunitx)             text-series-to-math = false" as a replacement.
 
 )
-(/usr/local/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
+Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen316
 \lightrulewidth=\dimen317
@@ -968,7 +890,6 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 )
 Package translations Info: No language package found. I am going to use `englis
 h' as default language. on input line 132.
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2023-11-04 L3 backend support: XeTeX
 \g__graphics_track_int=\count381
@@ -1019,7 +940,7 @@ LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
 (Font)                  U/msa/m/n --> U/msa/m/n on input line 132.
 \c@lstlisting=\count385
 Package hyperref Info: Link coloring OFF on input line 132.
- (./ms.out) (./ms.out)
+(./ms.out) (./ms.out)
 \@outlinefile=\write6
 \openout6 = `ms.out'.
 
@@ -1043,19 +964,16 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8.03> not available
 LaTeX Font Info:    Calculating math sizes for size <18> on input line 259.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 259
 .
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 259
 .
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 25
 9.
-
 (/usr/local/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
@@ -1065,6 +983,8 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 \c@ADDRLBL@UCD=\count396
 \c@ADDRLBL@UWM=\count397
 LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 259.
+Missing character: There is no ʻ (U+02BB) in font [lmsans9-regular]:mapping=tex
+-text;!
 LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 259.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <9> not available
 (Font)              Font shape `TU/lmss/m/sl' tried instead on input line 259.
@@ -1079,25 +999,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-
 [1
 
 
 
 ]
-
-Package natbib Warning: Citation `lange_responses_1971' on page 2 undefined on 
-input line 269.
-
-
-Package natbib Warning: Citation `mcadam_linking_2016' on page 2 undefined on i
-nput line 271.
-
-
-Package natbib Warning: Citation `lee_diffusion_1964' on page 2 undefined on in
-put line 276.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1106,380 +1012,76 @@ Overfull \hbox (1.89508pt too wide) has occurred while \output is active
  []
 
 [2]
-
-Package natbib Warning: Citation `cowan_stomatal_1977' on page 3 undefined on i
-nput line 286.
-
-
-Package natbib Warning: Citation `buckley_optimal_2017' on page 3 undefined on 
-input line 286.
-
-
-Package natbib Warning: Citation `sperry_predicting_2017' on page 3 undefined o
-n input line 286.
-
-
-Package natbib Warning: Citation `franks_physiological_2012' on page 3 undefine
-d on input line 291.
-
-
-Package natbib Warning: Citation `liu_scaling_2021' on page 3 undefined on inpu
-t line 291.
-
-
-Package natbib Warning: Citation `bussis_stomatal_2006' on page 3 undefined on 
-input line 293.
-
-
-Package natbib Warning: Citation `sack_developmental_2016' on page 3 undefined 
-on input line 295.
-
-
-Package natbib Warning: Citation `murray_consistent_2020' on page 3 undefined o
-n input line 296.
-
-
-Package natbib Warning: Citation `pieruschka_lateral_2006' on page 3 undefined 
-on input line 299.
-
-
-Package natbib Warning: Citation `morison_lateral_2005' on page 3 undefined on 
-input line 299.
-
-
-Package natbib Warning: Citation `bussis_stomatal_2006' on page 3 undefined on 
-input line 301.
-
-
-Package natbib Warning: Citation `deans_optimization_2020' on page 3 undefined 
-on input line 302.
-
-
-Package natbib Warning: Citation `gay_influence_1975' on page 3 undefined on in
-put line 305.
-
-
-Package natbib Warning: Citation `schoch_dependence_1980' on page 3 undefined o
-n input line 305.
-
-
-Package natbib Warning: Citation `woodward_stomatal_1987' on page 3 undefined o
-n input line 305.
-
-
-Package natbib Warning: Citation `royer_stomatal_2001' on page 3 undefined on i
-nput line 305.
-
-
-Package natbib Warning: Citation `mott_adaptive_1982' on page 3 undefined on in
-put line 311.
-
-
-Package natbib Warning: Citation `jordan_using_2014' on page 3 undefined on inp
-ut line 311.
-
-
-Package natbib Warning: Citation `muir_light_2018' on page 3 undefined on input
- line 311.
-
-
-Package natbib Warning: Citation `drake_two_2019' on page 3 undefined on input 
-line 311.
-
-
-Package natbib Warning: Citation `muir_is_2019' on page 3 undefined on input li
-ne 311.
-
-
-Package natbib Warning: Citation `parkhurst_adaptive_1978' on page 3 undefined 
-on input line 314.
-
-
-Package natbib Warning: Citation `harrison_influence_2020' on page 3 undefined 
-on input line 314.
-
-
-Package natbib Warning: Citation `mott_amphistomy_1991' on page 3 undefined on 
-input line 314.
-
-
-Package natbib Warning: Citation `croxdale_stomatal_2000' on page 3 undefined o
-n input line 318.
-
-
-Package natbib Warning: Citation `harrison_influence_2020' on page 3 undefined 
-on input line 318.
-
-
-Package natbib Warning: Citation `muir_how_2023' on page 3 undefined on input l
-ine 318.
-
-
-Package natbib Warning: Citation `geisler_oriented_2000' on page 3 undefined on
- input line 325.
-
-
-Package natbib Warning: Citation `dow_physiological_2014' on page 3 undefined o
-n input line 325.
-
-
-Package natbib Warning: Citation `yi_gan_stomatal_2010' on page 3 undefined on 
-input line 329.
-
-
-Package natbib Warning: Citation `lehmann_effects_2015' on page 3 undefined on 
-input line 329.
-
-
-Package natbib Warning: Citation `papanatsiou_stomatal_2017' on page 3 undefine
-d on input line 329.
-
-
-Package natbib Warning: Citation `sachs_developmental_1974' on page 3 undefined
- on input line 332.
-
-
-Package natbib Warning: Citation `croxdale_stomatal_2000' on page 3 undefined o
-n input line 334.
-
-
-Package natbib Warning: Citation `pillitteri_mechanisms_2012' on page 3 undefin
-ed on input line 338.
-
-
-Package natbib Warning: Citation `jordan_environmental_2015' on page 3 undefine
-d on input line 346.
-
-
-Package natbib Warning: Citation `parkhurst_intercellular_1990' on page 3 undef
-ined on input line 356.
-
-
-Package natbib Warning: Citation `manter_ci_2004' on page 3 undefined on input 
-line 356.
-
-
-Package natbib Warning: Citation `carriqui_diffusional_2015' on page 3 undefine
-d on input line 356.
-
-
-Package natbib Warning: Citation `kaiser_metabolic_2016' on page 3 undefined on
- input line 359.
-
-
-Package natbib Warning: Citation `farquhar_biochemical_1980' on page 3 undefine
-d on input line 364.
-
-
-Package natbib Warning: Citation `lehmeier_cell_2017' on page 3 undefined on in
-put line 364.
-
-
-Package natbib Warning: Citation `parkhurst_diffusion_1994' on page 3 undefined
- on input line 371.
-
-
-Package natbib Warning: Citation `aalto_three-dimensional_2002' on page 3 undef
-ined on input line 375.
-
-
-Package natbib Warning: Citation `evans_resistances_2009' on page 3 undefined o
-n input line 375.
-
-
-Package natbib Warning: Citation `harwood_understanding_2021' on page 3 undefin
-ed on input line 378.
-
-
-Package natbib Warning: Citation `earles_beyond_2018' on page 3 undefined on in
-put line 382.
-
-
-Package natbib Warning: Citation `harwood_understanding_2021' on page 3 undefin
-ed on input line 382.
-
-
-Package natbib Warning: Citation `morison_lateral_2005' on page 3 undefined on 
-input line 385.
-
-
-Package natbib Warning: Citation `pieruschka_lateral_2005' on page 3 undefined 
-on input line 385.
-
-
-Package natbib Warning: Citation `pieruschka_lateral_2006' on page 3 undefined 
-on input line 385.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
-
 
 [3]
 \openout5 = `ms.fff'.
 
- (ms.fff)
+(ms.fff)
 \openout4 = `ms.ttt'.
 
- (ms.ttt)
-
-Package natbib Warning: Citation `dow_disruption_2017' on page 4 undefined on i
-nput line 458.
-
-
-Package natbib Warning: Citation `wuyts_high-contrast_2010' on page 4 undefined
- on input line 474.
-
-
-Package natbib Warning: Citation `dow_disruption_2017' on page 4 undefined on i
-nput line 475.
-
-
-Package natbib Warning: Citation `schneider_nih_2012' on page 4 undefined on in
-put line 477.
-
-
-Package natbib Warning: Citation `clark_distance_1954' on page 4 undefined on i
-nput line 501.
-
-
-Package natbib Warning: Citation `evans_spatialeco_2023' on page 4 undefined on
- input line 510.
-
-
-Package natbib Warning: Citation `benjamini_controlling_1995' on page 4 undefin
-ed on input line 515.
-
-
-Package natbib Warning: Citation `wong_multiple_2005' on page 4 undefined on in
-put line 517.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+(ms.ttt)
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
-
 
 [4]
-
-Package natbib Warning: Citation `burkner_brms_2017' on page 5 undefined on inp
-ut line 550.
-
-
-Package natbib Warning: Citation `burkner_advanced_2018' on page 5 undefined on
- input line 550.
-
-
-Package natbib Warning: Citation `stan_development_team_stan_2023' on page 5 un
-defined on input line 551.
-
-
-Package natbib Warning: Citation `schneider_nih_2012' on page 5 undefined on in
-put line 556.
-
-
-Package natbib Warning: Citation `vehtari_rank-normalization_2021' on page 5 un
-defined on input line 566.
-
-
-Package natbib Warning: Citation `lenth_emmeans_2023' on page 5 undefined on in
-put line 570.
-
-
-Package natbib Warning: Citation `parkhurst_diffusion_1994' on page 5 undefined
- on input line 607.
-
-
-Package natbib Warning: Citation `earles_excess_2017' on page 5 undefined on in
-put line 608.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
-
 
 [5]
-
-Package natbib Warning: Citation `males_stomatal_2017' on page 6 undefined on i
-nput line 751.
-
-
-Package natbib Warning: Citation `deans_optimization_2020' on page 6 undefined 
-on input line 765.
-
-
-Package natbib Warning: Citation `wang_theoretical_2020' on page 6 undefined on
- input line 767.
-
-
-Package natbib Warning: Citation `melotto_stomatal_2017' on page 6 undefined on
- input line 768.
-
-
-Package natbib Warning: Citation `sung_drift-barrier_2012' on page 6 undefined 
-on input line 779.
-
-
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-
 [6]
+Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-Package natbib Warning: Citation `fiorin_transport_2016' on page 7 undefined on
- input line 830.
+[7] (./ms.bbl
+Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-
-Package natbib Warning: Citation `pillitteri_mechanisms_2012' on page 7 undefin
-ed on input line 848.
-
-
-Package natbib Warning: Citation `baillie_developmental_2020' on page 7 undefin
-ed on input line 855.
-
-
-Package natbib Warning: Citation `morison_lateral_2005' on page 7 undefined on 
-input line 864.
-
-
-Package natbib Warning: Citation `pillitteri_mechanisms_2012' on page 7 undefin
-ed on input line 872.
-
-
-Package natbib Warning: Citation `baillie_developmental_2020' on page 7 undefin
-ed on input line 872.
-
+[8]
+Invalid UTF-8 byte or sequence at line 90 replaced by U+FFFD.
+Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
+x-text;!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-
-[7]
-
-Package natbib Warning: Citation `boetsch_arrest_1995' on page 8 undefined on i
-nput line 886.
-
-
-Package natbib Warning: Citation `geisler_oriented_2000' on page 8 undefined on
- input line 887.
-
-
-Package natbib Warning: Citation `croxdale_stomatal_2000' on page 8 undefined o
-n input line 888.
-
-No file ms.bbl.
+[9]
+Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
+x-text;!
 
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
+[10]
+Invalid UTF-8 byte or sequence at line 477 replaced by U+FFFD.
+Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
+x-text;!
 
-[8]
+Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-Package natbib Warning: There were undefined citations.
+[11]
+Underfull \hbox (badness 1132) in paragraph at lines 666--674
+[]\TU/lmr/m/n/8.03 A. Vehtari, A. Gelman, D. Simpson, B. Carpenter, and P.-C. B
+ürkner.  Rank-Normalization, Folding, and Localization:
+ []
 
-AED endfloat: Processing end Figures and Tables (./ms.lot
+
+Underfull \hbox (badness 1742) in paragraph at lines 666--674
+\TU/lmr/m/n/8.03 1936-0975.  doi: $[][] [] [][][][] [] [][][][][][][][][][]$.  
+URL []$[][][][][] [] [] [] [][][][][][][][][][][][][] [] [][][] [] [][][][][][]
+[][] [] [][][][][][][][][][][][][][][][][][] [] [][][][][][][][][][] [] [][][][
+][][][][] []
+ []
+
+)
+Overfull \vbox (2.49998pt too high) has occurred while \output is active []
+
+[12] AED endfloat: Processing end Figures and Tables (./ms.lot
 Underfull \hbox (badness 10000) detected at line 1
 \TU/lmr/m/n/8.03 1
  []
@@ -1493,19 +1095,18 @@ Underfull \hbox (badness 10000) detected at line 2
 \tf@lot=\write7
 \openout7 = `ms.lot'.
 
- [9
+[13
 
 
 
-] (./ms.ttt [10
+] (./ms.ttt [14
 
 ]
 LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 20.
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11]
-(./ms.lof
+[15] (./ms.lof
 Underfull \hbox (badness 10000) detected at line 1
 \TU/lmr/m/n/8.03 1
  []
@@ -1544,47 +1145,46 @@ Underfull \hbox (badness 10000) detected at line 7
 \tf@lof=\write8
 \openout8 = `ms.lof'.
 
- [12
+[16
 
 
 
 ] (./ms.fff
 File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
 <use figures/ideal-amphi-grid.pdf>
- [13
+[17
 
 ]
 File: figures/tessellation-example.pdf Graphic file (type pdf)
 <use figures/tessellation-example.pdf>
 
-
 LaTeX Warning: Float too large for page by 47.80003pt on input line 12.
 
-[14]
+[18]
 File: figures/density.pdf Graphic file (type pdf)
 <use figures/density.pdf>
- [15
+[19
 
 
 ]
 File: figures/single-surface.pdf Graphic file (type pdf)
 <use figures/single-surface.pdf>
- [16
+[20
 
 ]
 File: figures/dual-surface.pdf Graphic file (type pdf)
 <use figures/dual-surface.pdf>
- [17
+[21
 
 ]
 File: figures/length-area.pdf Graphic file (type pdf)
 <use figures/length-area.pdf>
- [18
+[22
 
 ]
 File: figures/model_summary.pdf Graphic file (type pdf)
 <use figures/model_summary.pdf>
-) [19
+) [23
 
 ] (./ms.aux)
  ***********
@@ -1595,12 +1195,12 @@ Package rerunfilecheck Info: File `ms.out' has not changed.
 (rerunfilecheck)             Checksum: 79E01B663CF0846EF1B581C1A46D69EB;2918.
  ) 
 Here is how much of TeX's memory you used:
- 29777 strings out of 474935
- 599375 string characters out of 5761826
- 1947161 words of memory out of 5000000
- 51230 multiletter control sequences out of 15000+600000
- 585677 words of font info for 174 fonts, out of 8000000 for 9000
+ 29991 strings out of 474935
+ 605475 string characters out of 5761826
+ 1974161 words of memory out of 5000000
+ 51439 multiletter control sequences out of 15000+600000
+ 585685 words of font info for 175 fonts, out of 8000000 for 9000
  1352 hyphenation exceptions out of 8191
- 99i,12n,101p,17345b,898s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,101p,17345b,1005s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ms.pdf (19 pages).
+Output written on ms.pdf (23 pages).

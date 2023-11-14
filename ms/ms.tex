@@ -4,9 +4,6 @@
 % Set document class options
 \documentclass[webpdf,large,modern,unnumsec,namedate]{oup-authoring-template}
 
-\usepackage{newunicodechar,graphicx}
-\DeclareRobustCommand{\okina}{\raisebox{\dimexpr\fontcharht\font`A-\height}{\scalebox{0.8}{`}}}
-\newunicodechar{ʻ}{\okina}
 % one column
 \onecolumn
 
@@ -126,6 +123,9 @@ CB3 0LE, UK%
 \usepackage[detect-none]{siunitx}
 \sisetup{range-phrase = \text{--}}
 \usepackage{caption}
+\usepackage{newunicodechar,graphicx}
+\DeclareRobustCommand{\okina}{\raisebox{\dimexpr\fontcharht\font`A-\height}{\scalebox{0.8}{`}}}
+\newunicodechar{ʻ}{\okina}
 % Pandoc header-include feature
 \usepackage{booktabs}
 
