@@ -1,0 +1,29 @@
+\usepackage{hyperref}
+
+% customize figure references
+\renewcommand{\figureautorefname}{Fig.}
+
+% toggle line numbers
+\usepackage{lineno}
+% \linenumbers
+
+% toggle spacing
+\usepackage{setspace}
+\singlespacing
+% \doublespacing
+
+% Hawaiian language characters
+% https://tex.stackexchange.com/questions/424535/how-to-type-a-proper-hawai%CA%BBian-%CA%BBokina
+\usepackage[utf8]{inputenc}
+\usepackage{newunicodechar,graphicx}
+
+\DeclareRobustCommand{\okina}{%
+  \raisebox{\dimexpr\fontcharht\font`A-\height}{%
+    \scalebox{0.8}{`}%
+  }%
+}
+\newunicodechar{ʻ}{\okina}
+
+% make better hyphen for numeric ranges, \numrange{}{}
+\usepackage[detect-none]{siunitx}
+\sisetup{range-phrase = \text{--}}

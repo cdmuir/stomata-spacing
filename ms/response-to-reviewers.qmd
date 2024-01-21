@@ -1,0 +1,196 @@
+---
+format: 
+  pdf:
+    # cite-method: biblatex
+    include-in-header: 
+      - preamble.tex
+header-includes: |
+  \addtokomafont{disposition}{\rmfamily}
+  \RedeclareSectionCommand[
+    font=\normalfont\Large]{section}
+  \RedeclareSectionCommand[
+    font=\normalfont\normalsize\bfseries]{subsection}
+  \RedeclareSectionCommand[
+    font=\normalfont\normalsize\itshape]{subsubsection}
+  \RedeclareSectionCommand[
+    font=\normalfont\normalsize]{paragraph}
+editor: visual
+bibliography: stomata-spacing.bib
+csl: https://www.zotero.org/styles/annals-of-botany
+nocite: |
+  @borsuk_structural_2022, @croxdale_stomatal_2000, @dow_disruption_2017, @earles_beyond_2018, @harwood_understanding_2021, @therouxrancourt_bias_2017 
+---
+
+**Covering Letter for a Revised Manuscript**
+
+*Manuscript reference number: 23184*
+
+Thank you for considering our revised manuscript. We have responded to all comments in \textcolor{blue}{blue font} below.
+
+-- Jacob Watts, on behalf of all authors
+
+------------------------------------------------------------------------
+
+## Response to Associate Editor
+
+Associate Editor Evaluations: Recommendation: Accept Revision Required
+
+Associate Editor (Comments for the Author (Required)):
+
+Dear authors,
+
+My apologies for the delay in returning this manuscript, as you can understand it can be difficult to find reviewers at this time of year. We have now received two comprehensive reviews of your manuscript. Both reviewers found the science to be interesting and thought provoking. I agree, it was a very interesting read. However, reviewer 1 found it difficult to understand some of the terminology and methods and reviewer 2 has requested clarity on some of the assumptions in your modeling. Both have provided detailed comments for you to address. Could you please revise the manuscript and address their comments before resubmission to AoBP.
+
+Kind regards, William
+
+```{=tex}
+\textcolor{blue}{Thank you so much for organizing a review of this manuscript. The reviewer's comments have been extremely useful in improving the manuscript for publication in \textit{AoBP}. We appreciate your help in getting this science in print. We summarize our changes here; details on specific comments can be found below.\\
+\\
+We have clarified our terminology, adding in definitions where needed and standardizing all uses of specific terms. We've clarified our methodology by being more explicit about which data are real and which are synthetic. We have added all the references and relevant discussion of them as suggested by reviewer 1. We've clarified the wording of our hypotheses following the suggestion of reviewer 1. And, as was addressed by both reviewers 1 and 2, we've clarified the limitations of our model assumptions and extensively addressed them in the introduction and discussion. To accommodate some of these changes, we've made some minor changes elsewhere in the text; however, the largest changes are all reflected in this document. We hope that, with these significant clarifications, changes, and additions of important caveats, our manuscript will be considered for publication in \textit{AoBP}. Thank you for your time and consideration.}
+```
+
+## Response to Reviewer #1
+
+The MS explore stomatal patterning on both adaxial and abaxial leaf surfaces in relative to CO2 diffusion and photosynthesis using both observations and modelling approaches. This is a topical area at the moment and some of the findings interesting and valuable to research in this area. However several sections of the MS were difficult to follow and further clarification of several aspects is required to widen the readership.
+
+There are several descriptions used that are not entirely clear. What exactly is meant by "over dispersal" in the context of stomatal patterning. Does this mean there are too many stomata on the leaf or their spacing is not optimal but the correct number? This is not common terminology when referring to stomatal patterning. The assessment of distribution relative to a uniform random distribution needs further explanation as it is well established that stomata are randomly distributed.
+
+**Response:** \textcolor{blue}{We appreciate the reviewer's time to read and comment on our manuscript. They have brought up important points of clarification that must be addressed before the manuscript is ready to be published.}
+
+\textcolor{blue}{We have clarified and standardized our terminology, adding explanations when needed. It has long been known that stomata are non-randomly distributed, tending to be more uniformly distribution than random (see Croxdale et al. (2000) for a nice review of historical evidence of stomatal patterning). In Croxdale et al. (2000), there is also confusion over terminology in the published literature, so we are not sure that there are field-accepted terms. So, we have adopted our own set of terminology which mirrors that of the field and related fields which discuss the spatial patterns of discrete objects. Specifically, see lines 111-117:}
+
+> "We compared observed stomatal patterning to an ideal pattern (uniform equilateral triangular grid) and a null model (random uniform distribution). The terminology is unfortunately confusing because the word `uniform' is used in different ways. A uniform equilateral triangular grid means that the distance between stomata is uniform; a random uniform distribution means that a stomate has an equal probability (i.e. uniform) of occurring anyone on the leaf surface. To limit confusion, we refer to the ideal pattern as uniform (equilateral triangle grid) and the null pattern as random (random uniform). When observed stomatal patterns are more dispersed than expected under random patterning, we refer to this as over-dispersed. Note, however, that over-dispersed compared to random is still less dispersed than ideal, because the ideal pattern is maximally dispersed."
+
+In the material and methods section it is often not clear which measurements/data are real and which are synthesized.
+
+**Response:** \textcolor{blue}{We have edited the methods section to be more explicit about which type of data are which. We’ve also added a sentence in the beginning of the methods on lines 106-109 describing how synthetic data fit into our analyses. It reads:}
+
+> "A number of synthetic leaf surface data sets were also simulated (details below) to generate null distributions against which to test our hypotheses and to avoid any methodological influence on our results (e.g. boundary effects when calculating stomatal patterning). All synthetic leaf surfaces were simulated based on the size of the real leaf images and stomatal densities matched those of real leaf images."
+
+There are several references missing I am surprised not to see included in the introduction and/or discussion- see specifics below.
+
+Line 19 - should include earlier references that examined Gopp - McElwain et al., 2016
+
+Line 24 - should include the work of De Boar et al.
+
+Line 59 - there are several other papers that have examined lateral flux and the impact of stomata and photosynthetic consumption, including Morison et al 2007.
+
+The work of Wall et al., 2021 is missing and should be included.
+
+The authors have not mentioned or considered the published references that have explored heterogeneity in stomatal distribution over the leaf surface and between surfaces (see work by Weyers et al.).
+
+**Response:** \textcolor{blue}{We appreciate the reviewer bringing these citation gaps to our attention. We have added all the references that they mention here and the appropriate discussion.}
+
+How do these findings for Arabidopsis translate to crops. Arabidopsis grows very close the ground and therefore boundary layers esp for the abaxial surface will be very different to key C3 crops.
+
+**Response:** \textcolor{blue}{Translating these findings to crops is beyond the scope of our study, however, these results may prove to be relevant to crops upon further investigation. We agree that the boundary layer dynamics may differ drastically between the short \textit{A. thaliana} and those of most crops. We added:}
+
+> "However, it would be necessary to account for many other differences between *A. thaliana* and crop leaves and canopies." (lines 295-296)
+
+Hypothesis 3 - it is well established that high light alters stomatal density.
+
+**Response:** \textcolor{blue}{We addressed this on lines 83-84:}
+
+> "Hypothesis 3 is already well supported in many species [@poorter_metaanalysis_2019], but it is useful here to confirm that light treatments induced plasticity in the expected direction."
+
+The wording of hypothesis 5 is particularly unclear. "5) stomatal length will be positively correlated with the area of the leaf surface to which it is closest". What is the area of the leaf surface to which is it closest?
+
+**Response:** \textcolor{blue}{Thanks for bringing up this potential ambiguity in our hypothesis. It now reads (lines 81-82):}
+
+> "Stomatal length (and hence its area) will be positively correlated with the area of the leaf surface to which it is spatial closest as defined by Voronoi tessellation techniques. We refer to this as the 'stomatal zone', the leaf area surrounding a focal stomate closest to that stomate and therefore the zone it supplies with CO$_2$). This way, each stomate may be optimally sized relative to the mesophyll volume it supplies."
+
+The high light used in the experiment is quite low at 200 umol m-2 s-1
+
+**Response:** \textcolor{blue}{$200~\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}$ is relatively low; however, it was high enough to drastically increase stomatal density, suggesting a change in many other leaf parameters (Dow et al. 2017). We added on lines 97-99 that:}
+
+> "*A. thaliana* responds strongly to light levels over this range [@bailey_acclimation_2001], though natural populations in open canopies can experience $\text{PAR} > 800~\mu \text{mol}~\text{m}^{-2}~\text{s}^{-1}$ [@callahan_shade-induced_2002]."
+
+Line 52 - provide more explanation as to why the equilateral triangular grid is the ideal distribution.
+
+**Response:** \textcolor{blue}{On lines 54-59, we added that:}
+
+> "An equilateral triangular grid is ideal because it maximizes the average distance between stomata, for a given stomatal density, and thereby minimizes the average distance between any point in the mesophyll to its nearest stomate. Assuming a homogenous mesophyll, this is the most efficient pattern to supply CO$_2$ to a leaf volume."
+
+Line 94 - details of the size of the image need to be included.
+
+**Response:** \textcolor{blue}{Thanks for catching this! We've now added the text in the appropriate spot on line 106. It now reads: ``Images were square with an area of 0.386 mm$^2$.''}
+
+Line 95 - sample image - is this real or synthetic? Terminology used needs to be clear and consistent.
+
+**Response:** \textcolor{blue}{As noted above in response to a previous comment, we have clarified when we are using observed and synthetic data throughout. Sample image is our standard term for real leaf surface. Synthetic leaf surface is our standard term for simulated leaf surfaces against which the real leaves were compared.}
+
+Line 105 - please provide further clarification on why the ideal dispersal is an equilateral triangle.
+
+**Response:** \textcolor{blue}{We believe that the clarification about why this pattern is ideal has been addressed in response to the comment on line 52 above.}
+
+Line 106 - wording of this sentence is difficult to follow.
+
+**Response:** \textcolor{blue}{We've changed it be more clear following your suggestion on lines 132-133: "To account for uncertainty in the stomatal density of each sample image with $n$ stomata, we integrated over plausible stomatal densities and then conditioned on synthetic leaf surfaces with exactly $n$ stomata."}
+
+Line 129 - each pixel of what?
+
+**Response:** \textcolor{blue}{It now reads: ``pixel of the surface'' on line 156.}
+
+Line 157 - ideal pattern is "hexagonal"?
+
+**Response:** \textcolor{blue}{Thanks for catching this. We’ve now standardized this term to be the same as every other mention of the uniform, equilateral triangular grid. The area of leaf surface closest to a given stomate, when stoamta are arrayed in an equilateral triangular grid, forms a hexagon (see Fig. 2C).}
+
+Line 168 – "All parameters....exceeded 103" – please clarify what you mean by this statement.
+
+**Response:** \textcolor{blue}{Thank you for all of your comments. We’ve clarified this statement on line 195:}
+
+> "All parameters in the Bayesian linear mixed-effects model converged ($\hat{R} < 1.01$) and effective sample sizes exceeded $10^3$"
+
+## Response to Reviewer #2
+
+Dear authors,
+
+The authors made a theoretical analysis of the optimal distribution of stomata on each leaf surface and then compared it with actual data. I only have a few comments, most of them concerning the assumptions. I think the consequences of their assumptions could be better addressed and explained with further details, especially the concept of “optimal distribution”.
+
+Please see my comments below.
+
+**Response:** \textcolor{blue}{We really appreciate these comments as they are most insightful and will certainly make this manuscript better and more useful for its readership. If we've interpreted the concerns correctly, the main issue with the manuscript is that the limitations brought upon by our model assumptions, particularly concerning uniform mesophyll tortuosity/diffusion resistance and its consequences for our definition of ``ideal, uniform'' stomatal patterning, are not adequately explained in the introduction and discussion. We agree that these caveats were not discussed in great enough detail and have added explanation in the revised manuscript, as described in response to comments below. Nevertheless, we believe that our approach of using an idealized model that generates quantitative, testable predictions is a useful starting point for investigation. Identifying which anatomical features deviate most from our predictions provides useful information about which assumptions we might relax in the future.}
+
+L64-65. The impact of varying tortuosity (horizontal vs. vertical) on stomatal distribution needs clearer exploration. Specifically, how do differences in adaxial and abaxial tortuosity affect your analysis? I guess this must be in coordination with different horizontal and vertical tortuosity, as the authors mentioned: if the horizontal tortuosity is higher than the vertical tortuosity, this consideration should vary, especially if the tortuosity in the adaxial and abaxial half are different.
+
+**Response:** \textcolor{blue}{We have addressed this and the related concept of porosity in the discussion (lines 234-242):}
+
+> "First, our predictions must be wrong because they are based on overly simplistic assumption of a homogenous porous medium within the mesophyll. Real leaf mesophylls are spatially heterogenous and chloroplasts are distributed as discrete nodes. The intercellular air space conductance is determined by its porosity and tortuosity, both of which are heterogenous within the leaf. The palisade is typically less porous than the spongy mesophyll (e.g. Théroux-Rancourt et al. 2017), which should impact the optimal patterning on stomata on ab- versus adaxial surfaces. Tortuosity is also systematically greater in the palisade in the lateral direction parallel to the leaf plane (Harwood et al. 2021). We might predict a greater coordination advantage of offset stomata by accounting for greater lateral tortuosity, but it is likely that benefit is still very small under realistic parameter space. Quantifying the patterns of heterogeneity in porosity, tortuosity, and other factors (Earles et al. 2018) using 3D imaging (e.g. Borsuk et al. 2022) will be needed to generate more realistic hypotheses about optimal stomatal spacing."
+
+L64-66 (hypotesises 1 and 2). Stomata distribution and tortuosity of the mesophyll also contribute to modulating transpiration, not only CO2 distribution. Did the authors account for this?
+
+**Response:** \textcolor{blue}{We agree that incorporating transpiration is needed to better model optimal traits, but this is beyond the scope of the current study since we have not included venation and there is substantial empirical uncertainty about sites of evaporation within leaves and the prevalence of subsaturated mesophyll airspaces.}
+ 
+L69-71. Clarification is needed on what is meant by "the surface closest to." Does this imply an assumption of homogeneous tortuosity, leading to a triangular distribution as the only optimisation? Doesn't this already assume that tortuosity is homogeneous and, therefore, the only optimisation possible is the triangular distribution?
+
+**Response:** \textcolor{blue}{The reviewer is correct that we are assuming homogenous mesophyll properties (not just tortuosity). Please see a previous response to Reviewer 1 above, who raised a similar point, for how we revised the manuscript to clarify this assumption. We have also addressed the limitations of this assumption thoroughly in the text.}
+
+L140-143 and 194-198. I apologise if I have missed something. There seems to be a presupposition of homogeneous internal resistance to CO2 diffusion or tortuosity. How does this assumption define the optimal arrangement and affect the photosynthesis modelling based solely on stomatal distribution? It seems to me that the authors already define the optimal arrangement by assuming homogeneous internal resistance to CO2 diffusion or homogeneous tortuosity. So, photosynthesis modelling for given photosynthetic parameters will be a function of the distribution of the stomata only, isn't it?
+
+**Response:** \textcolor{blue}{We have clarified and better justified our assumptions in the Introduction (lines 54-73):}
+
+> "Assuming uniform mesophyll diffusion resistance in all directions (homogenous porous medium), an ideal stomatal anatomy can be predicted. To maximize CO$_2$ supply from the stomatal pore to chloroplasts, stomata should be uniformly distributed in an equilateral triangular grid on the leaf surface so as to minimize stomatal number and CO$_2$ diffusion path length [@parkhurst_diffusion_1994]. An equilateral triangular grid is ideal because it maximizes the average distance between stomata, for a given stomatal density, and thereby minimizes the average distance between any point in the mesophyll to its nearest stomate. Assuming a homogenous mesophyll, this is the most efficient pattern to supply CO$_2$ to a leaf volume.
+
+> Such an assumption, though an oversimplification, is a powerful tool for photosynthesis modelling, and may provide insight into how real leaves diverge from this. In real leaves, as the diffusion rate of CO$_2$ though liquid is approximately $10^4\times$ slower than CO$_2$ diffusion through air, mesophyll resistance is generally thought to be primarily limited by liquid diffusion [@aalto_three-dimensional_2002; @evans_resistances_2009], but diffusion through the IAS has also been shown to be a rate limiting process because the tortuous, disjunct nature of the IAS can greatly increase diffusion path lengths [@harwood_understanding_2021]. Additionally, tortuosity is higher in horizontal directions (parallel to leaf surface) than vertical directions (perpendicular to leaf surface) because of the cylindrical shape and vertical arrangement of palisade mesophyll cells [@earles_beyond_2018; @harwood_understanding_2021]. However, the ratio of lateral to vertical diffusion rate is still largely unknown and may be a highly variable trait in leaves [@morison_lateral_2005; @pieruschka_lateral_2005; @pieruschka_lateral_2006; @morison_does_2007]. Depending on the thickness of the leaf, porosity of the leaf mesophyll, tortuosity of the IAS, and lateral to vertical diffusion rate ratio, minimizing diffusion path length for CO$_2$ via optimally distributed stomata may yield significant increases in CO$_2$ supply for photosynthesis and higher $A_\text{max}$. Or plants may simply coordinate the development of stomata and mesophyll IAS to reach another optimal solution which does not rely on uniformly distributed stomata [@baillie_developmental_2020].
+
+> We hypothesized that, in the absence of any constraint and assuming homogenous mesophyll diffusion resistance, natural selection will favor stomatal patterning and distribution to minimize the diffusion path length..."
+
+L156-157 and 192-193. I don't see how a hexagon can be, in reality, an ideal distribution when there are other leaf structures in between and below the stomata that it seems are not being accounted for in this analysis. I don't think the authors need to account for them, but please clarify the limitations of not doing so.
+
+**Response:** \textcolor{blue}{The reviewer is correct that we do not account for other leaf structures in this set of analyses. To address their comment, we clarified the limitations of not doing so in the Discussion and added ideas for future research on lines 253-263:}
+
+> "We assume an idealized leaf epidermal and mesophyll structure that is homogenous and unconstrained by other tradeoffs. Real leaves not only provide pathways for CO$_2$ diffusion, but must supply water, intercept light, and deter herbivores and pathogens. All of these competing processes also happen on different time scales, and can be observed as heterogeneity in stomatal density, aperture, and internal leaf conditions across the leaf at any given moment [@lawson_nature_1998; @lawson_spatial_1999]. These competing interests result in heterogeneous epidermal and mesophyll structure that could alter predictions about optimal stomatal spacing. In order to maintain consistent leaf water potential across the lamina, stomatal density must be coordinated with vein density [@fiorin_transport_2016]. Thus, stomatal spacing may be optimized not at the interstomatal level, but at a higher level, coordinating water transport and water loss. ... Future gas exchange models should incorporate heterogenous mesophyll structure and hydraulic traits such as veins."
+
+L205-206. Shouldn't this be stated in the introductions instead of the discussion? This allows for a more in-depth discussion in the relevant section because it seems to be the most likely option, so I expected a more detailed discussion of this issue.
+
+**Response:** \textcolor{blue}{We'’'ve added the relevant text to the Introduction on lines 54-73 as described in a previous response to another comment. We also added to the Discussion on lines 215-218:}
+
+> "However, reducing this distance to its absolute minimum may be constrained by developmental processes or the photosynthetic benefit may be too small to be 'seen' by natural selection (i.e. the selection coefficient is less than drift barrier *sensu* @sung_drift-barrier_2012). We also consider that our definition of optimal may be incorrect because it is based on overly simplistic assumptions about leaf mesophyll structure."
+
+L252-253. Have alternative ideal distributions been tested, considering leaf structures like vein density, trichomes and substomatal cavity volume? Excluding these factors in estimations seems to be a significant omission. It seems problematic that other important leaf features, such as tortuosity, are not considered in the estimations but are discussed in the text. Again, I don't think the authors need to account for them, but please clarify the limitations of not doing so.
+
+**Response:** \textcolor{blue}{To the best of our knowledge, no one has quantitatively investigated the optimal pattern with more realistic mesophyll structures. Most of the literature we are aware of predates the deeper understanding of heterogenous mesophyll structure that we have today. Our study highlights the inaccuracy of some predictions based on these simplisitic assumptions and will ophefully motivate revisiting these predictions in light of better empirical information. We added a sentence in the penultimate paragraph of the manuscript on lines 289-291 that addresses this point:}
+
+> "To understand why stomata are not ideally dispersed, more modeling (with more realistic assumptions including vein density and IAS structure) should be done to estimate the photosynthetic properties of varying stomatal patterning."
+
+## References

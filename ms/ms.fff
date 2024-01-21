@@ -7,7 +7,7 @@
  
 \begin{figure}[ht]
 \includegraphics[height = \textheight]{figures/tessellation-example.pdf}
-\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Regularly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
+\caption{Examples of synthetic and real leaf surfaces.  A) Uniform random synthetic leaf surface; B) Example of real leaf surface; C) Uniformly distributed synthetic leaf surface. The zone defined by each stomate was calculated with voronoi tessellation and correlated with stomatal length in real leaves.}
 \label{fig:tessellation-example}
 \end{figure}
 \efloatseparator
@@ -21,7 +21,7 @@
  
 \begin{figure}[ht]
 \includegraphics[width=4in]{figures/single-surface.pdf}
-\caption{Stomata are more dispersed than expected under the null model of uniform random position (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1). We determined statistical significance between light treatments using Tukey post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
+\caption{Stomata are more dispersed than expected under the null model of random patterning (dispersion index = 0) but far from a distribution that maximizes distance between stomata (dispersion index = 1; uniform patterning). We determined statistical significance between light treatments using Tukey post-hoc tests. $^*~0.05 > P \ge 0.01; ^{**}~0.01 > P \ge 0.001; ^{***}~0.0001 > P \ge 0.0001; ^{***}~ P <0.0001$.}
 \label{fig:single-surface}
 \end{figure}
 \efloatseparator
