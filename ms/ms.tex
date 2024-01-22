@@ -166,13 +166,13 @@ CO\(_2\) diffusion path length within leaves?}
 
 
 \author[%
-\addrlblbycode{NIAB}%
+\addrlblbycode{NIAB g}%
 %
 %
 %
 ]{Graham J. Dow}
 
-\addrbycode{NIAB}
+\addrbycode{NIAB g}
 
 
 
@@ -258,7 +258,8 @@ element method; optimality; photosynthesis; stomata}
 \maketitle
 
 
-\section{Introduction}\label{introduction}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
 Stomatal anatomy (e.g.~size, density, distribution, and patterning) and
 movement regulate gas exchange during photosynthesis, namely CO\(_2\)
@@ -472,9 +473,11 @@ leaf thickness & + \\
 \label{tab:hypotheses}
 \end{table}
 
-\section{Materials and methods}\label{materials-and-methods}
+\hypertarget{materials-and-methods}{%
+\section{Materials and methods}\label{materials-and-methods}}
 
-\subsection{Data Preparation}\label{data-preparation}
+\hypertarget{data-preparation}{%
+\subsection{Data Preparation}\label{data-preparation}}
 
 Plant material, growth conditions, and three-dimensional confocal
 imaging are described in \citet{dow_disruption_2017}. Briefly, Columbia
@@ -510,7 +513,8 @@ calculating stomatal patterning). All synthetic leaf surfaces were
 simulated based on the size of the real leaf images and stomatal
 densities matched those of real leaf images.
 
-\subsection{Single surface analyses}\label{single-surface-analyses}
+\hypertarget{single-surface-analyses}{%
+\subsection{Single surface analyses}\label{single-surface-analyses}}
 
 We compared observed stomatal patterning to an ideal pattern (uniform
 equilateral triangular grid) and a null model (random uniform
@@ -518,9 +522,9 @@ distribution). The terminology is unfortunately confusing because the
 word `uniform' is used in different ways. A uniform equilateral
 triangular grid means that the distance between stomata is uniform; a
 random uniform distribution means that a stomate has an equal
-probability (i.e.~uniform) of occurring anyone on the leaf surface. To
-limit confusion, we refer to the ideal pattern as uniform (equilateral
-triangle grid) and the null pattern as random (random uniform). When
+(i.e.~uniform) probability of occurring anywhere on the leaf surface. To
+limit confusion, we refer to the ideal pattern (equilateral triangle
+grid) as uniform and the null pattern (random uniform) as random. When
 observed stomatal patterns are more dispersed than expected under random
 patterning, we refer to this as overdispersed. Note, however, that
 overdispersed compared to random is still less dispersed than ideal,
@@ -561,7 +565,7 @@ synthetic \(\mathrm{NNI}\) values (one-tailed test). We adjusted
 \(P\)-values to account for multiple comparisons using the
 Benjamini-Hochberg \citep{benjamini_controlling_1995} false discovery
 rate procedure implemented in the \emph{R} package \textbf{multtest}
-version 2.56.0 \citep{wong_multiple_2005}.
+version 2.58.0 \citep{wong_multiple_2005}.
 
 For each sample image, we also simulated \(10^3\) synthetic leaf
 surfaces with \(n\) stomata ideally, uniformly dispersed in an
@@ -623,8 +627,9 @@ in the \emph{R} package \textbf{emmeans} version 1.9.0
 \label{fig:tessellation-example}
 \end{figure}
 
+\hypertarget{paired-abaxial-and-adaxial-surface-analysis}{%
 \subsection{Paired Abaxial and Adaxial Surface
-Analysis}\label{paired-abaxial-and-adaxial-surface-analysis}
+Analysis}\label{paired-abaxial-and-adaxial-surface-analysis}}
 
 To test whether the position of ab- and adaxial stomata are coordinated
 we compared the observed distribution to a null distribution where the
@@ -647,7 +652,8 @@ positions on each surface are coordinated if the correlation coefficient
 of the NSD between observed ab- and adaxial surfaces is greater than
 95\% of the synthetic correlation values (one-tailed test).
 
-\subsection{Modeling Photosynthesis}\label{modeling-photosynthesis}
+\hypertarget{modeling-photosynthesis}{%
+\subsection{Modeling Photosynthesis}\label{modeling-photosynthesis}}
 
 We modeled photosynthesis CO\(_2\) assimilation rate using a
 spatially-explicit two-dimensional reaction diffusion model using a
@@ -694,7 +700,8 @@ $U$ & $17-169$ & $\mu$m\\
 \end{tabular}
 \end{table}
 
-\section{Results}\label{results}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
 Stomatal density of \emph{Arabidopsis thaliana} varies among light
 treatments (ANOVA, \(F_{2,126} = 681, P = 2.88 \times 10^{-68}\))
@@ -712,8 +719,9 @@ are amphistomatous with a mean stomatal density ratio of 0.44.
 \label{fig:density}
 \end{figure}
 
+\hypertarget{stomatal-patterning-is-non-random-but-far-from-uniform}{%
 \subsection{Stomatal patterning is non-random, but far from
-uniform}\label{stomatal-patterning-is-non-random-but-far-from-uniform}
+uniform}\label{stomatal-patterning-is-non-random-but-far-from-uniform}}
 
 Many leaf surfaces (37 of 132, 28\%) are significantly overdispersed
 compared to a random uniform distribution, but none were close to an
@@ -736,8 +744,9 @@ between light treatment and surface (ANOVA,
 \label{fig:single-surface}
 \end{figure}
 
+\hypertarget{no-evidence-for-coordinated-stomatal-position-between-surfaces}{%
 \subsection{No evidence for coordinated stomatal position between
-surfaces}\label{no-evidence-for-coordinated-stomatal-position-between-surfaces}
+surfaces}\label{no-evidence-for-coordinated-stomatal-position-between-surfaces}}
 
 There is no evidence of spatial coordination between abaxial and adaxial
 leaf surfaces. The pixel-wise correlation between nearest stomatal
@@ -754,8 +763,9 @@ correlation is not different among light treatments (ANOVA,
 \label{fig:dual-surface}
 \end{figure}
 
+\hypertarget{larger-stomata-supply-larger-mesophyll-volumes}{%
 \subsection{Larger stomata supply larger mesophyll
-volumes}\label{larger-stomata-supply-larger-mesophyll-volumes}
+volumes}\label{larger-stomata-supply-larger-mesophyll-volumes}}
 
 All parameters in the Bayesian linear mixed-effects model converged
 (\(\hat{R} < 1.01\)) and effective sample sizes exceeded \(10^3\).
@@ -778,8 +788,9 @@ surface: 1.269 {[}\numrange{0.831}{1.721}{]}.
 \label{fig:length-area}
 \end{figure}
 
+\hypertarget{little-benefit-of-coordinated-stomatal-arrangement}{%
 \subsection{Little benefit of coordinated stomatal
-arrangement}\label{little-benefit-of-coordinated-stomatal-arrangement}
+arrangement}\label{little-benefit-of-coordinated-stomatal-arrangement}}
 
 We used the finite element method (FEM) to model CO\(_2\) diffusion
 within the leaf and photosynthesis as a 2-D porous medium. Across all
@@ -802,7 +813,8 @@ solution).
 \label{fig:model_summary}
 \end{figure}
 
-\section{Discussion}\label{discussion}
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
 Stomata cost resources to maintain \citep{deans_optimization_2020} and
 expose leaves to risks such as hydraulic failure
