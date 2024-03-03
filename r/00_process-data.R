@@ -1,6 +1,7 @@
 source("r/header.R")
 
-stomata_position = readr::read_csv("raw-data/stomata_position.csv") |>
+stomata_position = readr::read_csv("raw-data/stomata_position.csv",
+                                   show_col_types = FALSE) |>
 
   # add light column
   dplyr::mutate(
@@ -22,7 +23,7 @@ stomata_position$image_number1 = as.character(gsub("^.{0,3}", "", stomata_positi
 # Check for exact duplicates
 stomata_position |>
   dplyr::group_by(trt_leaf_number, image_number, surface) |>
-  dplyr::summarize(is_dup = duplicated(tibble(x, y))) |>
+  dplyr::reframe(is_dup = duplicated(tibble(x, y))) |>
   dplyr::filter(is_dup)
 
 # identify near duplicates
@@ -47,8 +48,7 @@ stomata_tess = stomata_position |>
   dplyr::group_modify(~ tessellate_stomata(.x, pixels_x = 512, pixels_y = 512)) |>
   dplyr::full_join(stomata_position,
                    by = c("trt_leaf_number", "image_number", "x", "y")) |>
-  mutate(area = ifelse(test = reject, NA, area))
+  dplyr::mutate(area = ifelse(test = reject, NA, area))
 
 readr::write_rds(stomata_position, "objects/stomata_position.rds")
 readr::write_rds(stomata_tess, "objects/stomata_position_length_area.rds")
-

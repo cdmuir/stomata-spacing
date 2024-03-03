@@ -614,7 +614,7 @@ diagnostics (\(\hat{R}\)) and effective sample sizes following
 \citet{vehtari_rank-normalization_2021}. We estimated the marginal slope
 and 95\% highest posterior density (HPD) intervals between stomatal
 length and \(\sqrt{S_\text{area}}\) using the \emph{emtrends} function
-in the \emph{R} package \textbf{emmeans} version 1.9.0
+in the \emph{R} package \textbf{emmeans} version 1.10.0
 \citep{lenth_emmeans_2023}.
 
 \begin{figure}[ht]
@@ -697,7 +697,7 @@ $U$ & $17-169$ & $\mu$m\\
 \section{Results}\label{results}
 
 Stomatal density of \emph{Arabidopsis thaliana} varies among light
-treatments (ANOVA, \(F_{2,126} = 681, P = 2.88 \times 10^{-68}\))
+treatments (ANOVA, \(F_{2,126} = 682, P = 2.58 \times 10^{-68}\))
 because the density is much greater in the high light treatment
 (\autoref{fig:density}). Density is consistently greater on abaxial leaf
 surfaces across all light treatments (ANOVA,
@@ -715,20 +715,20 @@ are amphistomatous with a mean stomatal density ratio of 0.44.
 \subsection{Stomatal patterning is non-random, but far from
 uniform}\label{stomatal-patterning-is-non-random-but-far-from-uniform}
 
-Many leaf surfaces (37 of 132, 28\%) are significantly overdispersed
+Many leaf surfaces (34 of 132, 25.8\%) are significantly overdispersed
 compared to a random uniform distribution, but none were close to an
 ideal, uniform equilateral triangular pattern (dispersion index = 1;
 \autoref{fig:single-surface}). Before controlling for multiple
-comparisons, 43.2\% are significantly overdispersed. The dispersion
+comparisons, 40.9\% are significantly overdispersed. The dispersion
 index differs significantly among light treatments (ANOVA,
-\(F_{2,126} = 8.55, P = 3.30 \times 10^{-4}\)) because the medium light
+\(F_{2,126} = 7.87, P = 6.02 \times 10^{-4}\)) because the medium light
 treatment is significantly less than the low treatment
 (\autoref{fig:single-surface}). Dispersion index is consistently greater
 on adaxial leaf surfaces across all light treatments (ANOVA,
-\(F_{1,126} = 28.8, P = 3.67 \times 10^{-7}\);
+\(F_{1,126} = 29.2, P = 3.19 \times 10^{-7}\);
 \autoref{fig:single-surface}). There is no evidence for an interaction
 between light treatment and surface (ANOVA,
-\(F_{2,126} = 0.577, P = 0.563\)).
+\(F_{2,126} = 0.594, P = 0.554\)).
 
 \begin{figure}[ht]
 \includegraphics[width=4in]{figures/single-surface.pdf}
@@ -1005,6 +1005,20 @@ how often the species of interest is CO\(_2\) limited across of range of
 natural settings. Despite these additional considerations, this study
 represents an important contribution to understanding the potential
 drivers of and limitations to stomatal anatomy in amphistomatous plants.
+
+\section{Data availability}\label{data-availability}
+
+Custom scripts are available on a GitHub repository
+(https://github.com/cdmuir/stomata-spacing) and archived on Zenodo:
+https://doi.org/XXXX Raw data are deposited on Dryad:
+https://doi.org/10.5061/dryad.44j0zpcn6
+
+\section{Acknowledgements}\label{acknowledgements}
+
+The authors thank two anonymous reviewers for feedback on an earlier
+version of this manuscript, NSF Award 1929167 to C.D.M., and NSF Award
+2307341 to T.N.B. This is publication \#218 from the School of Life
+Sciences, University of Hawaiʻi at Mānoa.
 
 \section{Competing interests}
 

@@ -32,7 +32,7 @@ plot = ggplot(
   geom_hline(yintercept = 1, linetype = "dashed") +
   stat_pvalue_manual(
     stat.test, label = "p.adj.signif",
-    y.position = c(.5, .575, .65),
+    y.position = c(.5, 0.59375, .65),
     inherit.aes = FALSE
   ) +
   theme_pubr()

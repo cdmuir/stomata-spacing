@@ -343,4 +343,12 @@ Our study corroborates previous studies which demonstrate that stomata are non-r
 
 Our results suggest that after optimizing stomatal density and having developmental rules for spacing stomata relatively evenly, there may be limited gains to further optimization. Therefore, developmental constraints may be necessary to make sense of some features of stomatal spacing and distribution. The possibility that ideal stomatal spacing is not the "tallest" fitness peak must also be explored, as stomate size is demonstrated in this study to covary with mesophyll volume supplied with CO$_2$. This may be especially true in highly variable environments or in large tree species with sun and shade leaves where developmental cues may change rapidly. The temporal component, not considered here, could also have significant implications, as CO$_2$ may only be limiting to photosynthesis during short, relatively rare periods when all other conditions are ideal. In these cases, the theoretical benefits of ideal stomatal spacing are further diminished. Future exploration of these competing hypotheses would require more advanced modeling, additional exploration of IAS space development and its effects on gas exchange, both real and modeled, and knowledge about how often the species of interest is CO$_2$ limited across of range of natural settings. Despite these additional considerations, this study represents an important contribution to understanding the potential drivers of and limitations to stomatal anatomy in amphistomatous plants.
 
+# Data availability
+
+Custom scripts are available on a GitHub repository (https://github.com/cdmuir/stomata-spacing) and archived on Zenodo: https://doi.org/XXXX Raw data are deposited on Dryad: https://doi.org/10.5061/dryad.44j0zpcn6
+
+# Acknowledgements
+
+The authors thank two anonymous reviewers for feedback on an earlier version of this manuscript, NSF Award 1929167 to C.D.M., and NSF Award 2307341 to T.N.B. This is publication #218 from the School of Life Sciences, University of Hawaiʻi at Mānoa.
+
 # References

@@ -1,6 +1,12 @@
 source("r/header.R")
 
-stomata = readr::read_csv("raw-data/stomata_position.csv") |>
+# remove this note after everything is rerun
+# on 2024-03-02, CDM reran this script and found three slices where stomata_n had changed from raw-data and nni_observed, so re-running with update raw-data
+# tmp = readr::read_rds( "objects/nni_observed.rds")
+# which(nni_observed[,"n_stomata"] != tmp[,"n_stomata"])
+
+stomata = readr::read_csv("raw-data/stomata_position.csv",
+                          show_col_types = FALSE) |>
   dplyr::group_by(treatment, leaf_number, image_number, surface)
 
 synthetic_data = readr::read_rds("objects/synthetic_data.rds") |>
@@ -15,8 +21,9 @@ pb <- progress_bar$new(
 )
 
 nni_synthetic <- synthetic_data |>
-  purrrlyr::by_slice(get_nni, pixels_x = 512, pixels_y = 512, progress = TRUE,
-                     .to = "NNI_synthetic")
+  purrrlyr::by_slice(get_nni, pixels_x = 512, pixels_y = 512,
+                     progress = TRUE, .to = "NNI_synthetic")
 
 readr::write_rds(nni_observed, "objects/nni_observed.rds")
 readr::write_rds(nni_synthetic, "objects/nni_synthetic.rds")
+

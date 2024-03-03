@@ -1,6 +1,7 @@
 source("r/header.R")
 
-stomata = readr::read_csv("raw-data/stomata_position.csv") |>
+stomata = readr::read_csv("raw-data/stomata_position.csv",
+                          show_col_types = FALSE) |>
   group_by(treatment, leaf_number, image_number, surface)
 
 pb = progress_bar$new(
@@ -16,4 +17,4 @@ synthetic_data = stomata |>
     .collate = "rows"
   )
 
-write_rds(synthetic_data, "objects/synthetic_data.rds")
+readr::write_rds(synthetic_data, "objects/synthetic_data.rds")

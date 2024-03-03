@@ -416,13 +416,27 @@ get_nni = function(
   checkmate::assert_numeric(df_stomata$y, lower = 0, upper = pixels_y)
 
   df_stomata_sp <- df_stomata |>
+    dplyr::ungroup() |>
     dplyr::select(x, y) |>
-    sp::SpatialPoints()
-
-  df_stomata_sp@bbox <- matrix(c(0, 0, pixels_x, pixels_y), ncol = 2)
+    sf::st_as_sf(coords = c("x", "y"))
 
   # perform average nearest neighbor test
-  nni = nni(df_stomata_sp, win = "extent")
+  # modified from spatialEco::nni() to use custom extent with sf package
+  w <- spatstat.geom::as.owin(c(0, 512, 0, 512))
+  x <- spatstat.geom::as.ppp(sf::st_coordinates(df_stomata_sp)[, 1:2], w)
+  A <- spatstat.geom::area.owin(w)
+  obsMeanDist <- sum(spatstat.geom::nndist(x))/x$n
+  expMeanDist <- 0.5 * sqrt(A/x$n)
+  se <- 0.26136/((x$n^2/A)^0.5)
+  nni <- obsMeanDist/expMeanDist
+  z <- (obsMeanDist - expMeanDist)/se
+  nni = list(
+    NNI = nni,
+    z.score = z,
+    p = 2 * stats::pnorm(-abs(z)),
+    expected.mean.distance = expMeanDist,
+    observed.mean.distance = obsMeanDist
+  )
   nni$n_stomata <- nrow(df_stomata)
 
   # return result

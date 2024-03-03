@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.15)  21 JAN 2024 16:24
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.15)  3 MAR 2024 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1040,26 +1040,38 @@ Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 [7]
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-[8] (./ms.bbl
-Overfull \vbox (2.49998pt too high) has occurred while \output is active []
+[8]
+Underfull \hbox (badness 1314) in paragraph at lines 1011--1015
+\TU/lmr/m/n/8.03 Custom scripts are available on a GitHub repository (https://g
+ithub.com/cdmuir/stomata-spacing) and archived on Zenodo:
+ []
 
-[9]
-Invalid UTF-8 byte or sequence at line 119 replaced by U+FFFD.
-Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
-x-text;!
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-[10]
+[9] (./ms.bbl
+Invalid UTF-8 byte or sequence at line 119 replaced by U+FFFD.
 Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
 x-text;!
 
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
+[10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \vbox (2.49998pt too high) has occurred while \output is active []
+
 [11]
+Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
+x-text;!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
 [12]
@@ -1069,6 +1081,9 @@ x-text;!
 Invalid UTF-8 byte or sequence at line 674 replaced by U+FFFD.
 Missing character: There is no � (U+FFFD) in font [lmroman8-regular]:mapping=te
 x-text;!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
@@ -1086,10 +1101,16 @@ URL []$[][][][][] [] [] [] [][][][][][][][][][][][][] [] [][][] [] [][][][][][]
 ][][][][] []
  []
 
-)
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-[14] AED endfloat: Processing end Figures and Tables (./ms.lot
+[14])
+Overfull \vbox (2.49998pt too high) has occurred while \output is active []
+
+[15] AED endfloat: Processing end Figures and Tables (./ms.lot
 Underfull \hbox (badness 10000) detected at line 1
 \TU/lmr/m/n/8.03 1
  []
@@ -1103,18 +1124,18 @@ Underfull \hbox (badness 10000) detected at line 2
 \tf@lot=\write7
 \openout7 = `ms.lot'.
 
-[15
+[16
 
 
 
-] (./ms.ttt [16
+] (./ms.ttt [17
 
 ]
 LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 20.
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[17] (./ms.lof
+[18] (./ms.lof
 Underfull \hbox (badness 10000) detected at line 1
 \TU/lmr/m/n/8.03 1
  []
@@ -1153,14 +1174,14 @@ Underfull \hbox (badness 10000) detected at line 7
 \tf@lof=\write8
 \openout8 = `ms.lof'.
 
-[18
+[19
 
 
 
 ] (./ms.fff
 File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
 <use figures/ideal-amphi-grid.pdf>
-[19
+[20
 
 ]
 File: figures/tessellation-example.pdf Graphic file (type pdf)
@@ -1168,31 +1189,31 @@ File: figures/tessellation-example.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 47.80003pt on input line 12.
 
-[20]
+[21]
 File: figures/density.pdf Graphic file (type pdf)
 <use figures/density.pdf>
-[21
+[22
 
 
 ]
 File: figures/single-surface.pdf Graphic file (type pdf)
 <use figures/single-surface.pdf>
-[22
+[23
 
 ]
 File: figures/dual-surface.pdf Graphic file (type pdf)
 <use figures/dual-surface.pdf>
-[23
+[24
 
 ]
 File: figures/length-area.pdf Graphic file (type pdf)
 <use figures/length-area.pdf>
-[24
+[25
 
 ]
 File: figures/model_summary.pdf Graphic file (type pdf)
 <use figures/model_summary.pdf>
-) [25
+) [26
 
 ] (./ms.aux)
  ***********
@@ -1200,15 +1221,15 @@ LaTeX2e <2023-11-01>
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `ms.out' has not changed.
-(rerunfilecheck)             Checksum: 12E6E45EFAF52C707C4FCEF814F7051C;2918.
+(rerunfilecheck)             Checksum: D8B6F68DCDA9CD3439C8647E4FEF8085;3174.
  ) 
 Here is how much of TeX's memory you used:
- 30052 strings out of 474829
- 607919 string characters out of 5759809
- 1975174 words of memory out of 5000000
- 51606 multiletter control sequences out of 15000+600000
+ 30054 strings out of 474829
+ 607956 string characters out of 5759809
+ 1973174 words of memory out of 5000000
+ 51608 multiletter control sequences out of 15000+600000
  585685 words of font info for 175 fonts, out of 8000000 for 9000
  1352 hyphenation exceptions out of 8191
- 99i,12n,101p,17345b,1038s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,101p,17345b,1058s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ms.pdf (25 pages).
+Output written on ms.pdf (26 pages).

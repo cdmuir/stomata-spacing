@@ -5,7 +5,7 @@ nni_observed = readr::read_rds("objects/nni_observed.rds") |>
                 NNI_observed = NNI)
 
 nni_synthetic = readr::read_rds("objects/nni_synthetic.rds") |>
-  dplyr::select(treatment, leaf_number, image_number, surface, #n_stomata,
+  dplyr::select(treatment, leaf_number, image_number, surface,
                 sim, grid, NNI_synthetic)
 
 stomata_area_summ = readr::read_rds("objects/area_summ.rds")
@@ -48,12 +48,7 @@ single_surface_results <- nni_observed |>
       NNI_observed = ..6,
       p_value = length(which(sim_ran >= ..6)) / length(sim_ran),
       dispersion = (..6 - median(sim_ran)) / (median(sim_equ - median(sim_ran)))
-    ) #|>
-      #full_join(as.tibble(stomata_area_summ), by = c("treatment", "leaf_number", "image_number", "surface"))
-      #cbind(stomata_area_summ)
-
-    # I'm trying to merge these datasets using cbind and full_join. but I really
-    # don't know why it's not working.
+    )
 
     return(ret)
 
@@ -67,6 +62,3 @@ single_surface_results <- nni_observed |>
     light = tidyr::replace_na(light, "medium"))
 
 readr::write_rds(single_surface_results, "objects/single_surface_results.rds")
-
-
-

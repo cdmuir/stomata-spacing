@@ -32,4 +32,3 @@ corr_synthetic = synthetic_data |>
 # write rds files
 readr::write_rds(corr_observed, "objects/corr_observed.rds")
 readr::write_rds(corr_synthetic, "objects/corr_synthetic.rds")
-

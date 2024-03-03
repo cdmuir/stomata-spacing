@@ -15,7 +15,7 @@ dual_surface_results = readr::read_rds("objects/dual_surface_results.rds") |>
 
 # anova
 correlation_anova = aov(corr ~ light, data = dual_surface_results)
-write_rds(correlation_anova, "objects/correlation_anova.rds")
+readr::write_rds(correlation_anova, "objects/correlation_anova.rds")
 
 stat.test.correlation = aov(corr ~ light, data = dual_surface_results) |>
   tukey_hsd()
@@ -30,4 +30,3 @@ plot = ggplot(dual_surface_results, aes(light_reorder, corr)) +
 
 ggsave("dual-surface.pdf", plot = plot, path = "ms/figures",
        width = 3, height = 3)
-

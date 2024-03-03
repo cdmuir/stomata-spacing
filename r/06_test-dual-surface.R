@@ -32,4 +32,3 @@ dual_surface_results <- corr_observed |>
   )
 
 readr::write_rds(dual_surface_results, "objects/dual_surface_results.rds")
-
