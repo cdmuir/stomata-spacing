@@ -48,7 +48,6 @@ Kind regards, William
 \\
 We have clarified our terminology, adding in definitions where needed and standardizing all uses of specific terms. We've clarified our methodology by being more explicit about which data are real and which are synthetic. We have added all the references and relevant discussion of them as suggested by reviewer 1. We've clarified the wording of our hypotheses following the suggestion of reviewer 1. And, as was addressed by both reviewers 1 and 2, we've clarified the limitations of our model assumptions and extensively addressed them in the introduction and discussion. To accommodate some of these changes, we've made some minor changes elsewhere in the text; however, the largest changes are all reflected in this document. We hope that, with these significant clarifications, changes, and additions of important caveats, our manuscript will be considered for publication in \textit{AoBP}. Thank you for your time and consideration.}
 ```
-
 ## Response to Reviewer #1
 
 The MS explore stomatal patterning on both adaxial and abaxial leaf surfaces in relative to CO2 diffusion and photosynthesis using both observations and modelling approaches. This is a topical area at the moment and some of the findings interesting and valuable to research in this area. However several sections of the MS were difficult to follow and further clarification of several aspects is required to widen the readership.
@@ -59,7 +58,8 @@ There are several descriptions used that are not entirely clear. What exactly is
 
 \textcolor{blue}{We have clarified and standardized our terminology, adding explanations when needed. It has long been known that stomata are non-randomly distributed, tending to be more uniformly distribution than random (see Croxdale et al. (2000) for a nice review of historical evidence of stomatal patterning). In Croxdale et al. (2000), there is also confusion over terminology in the published literature, so we are not sure that there are field-accepted terms. So, we have adopted our own set of terminology which mirrors that of the field and related fields which discuss the spatial patterns of discrete objects. Specifically, see lines 111-117:}
 
-> "We compared observed stomatal patterning to an ideal pattern (uniform equilateral triangular grid) and a null model (random uniform distribution). The terminology is unfortunately confusing because the word `uniform' is used in different ways. A uniform equilateral triangular grid means that the distance between stomata is uniform; a random uniform distribution means that a stomate has an equal probability (i.e. uniform) of occurring anyone on the leaf surface. To limit confusion, we refer to the ideal pattern as uniform (equilateral triangle grid) and the null pattern as random (random uniform). When observed stomatal patterns are more dispersed than expected under random patterning, we refer to this as over-dispersed. Note, however, that over-dispersed compared to random is still less dispersed than ideal, because the ideal pattern is maximally dispersed."
+> "We compared observed stomatal patterning to an ideal pattern (uniform equilateral triangular grid) and a null model (random uniform distribution). The terminology is unfortunately confusing because the word `uniform' is used in different ways. A uniform equilateral triangular grid means that the distance between stomata is uniform; a random uniform distribution means that a stomate has an equal probability (i.e. uniform) of occurring anywhere on the leaf surface. To limit confusion, we refer to the ideal pattern (equilateral triangle grid) as uniform and the null pattern (random uniform) as random. When observed stomatal patterns are more dispersed than expected under random patterning, we refer to this as overdispersed. Note, however, that overdispersed compared to random is still less dispersed than ideal, because the ideal pattern is maximally dispersed."
+
 
 In the material and methods section it is often not clear which measurements/data are real and which are synthesized.
 
@@ -135,7 +135,7 @@ Line 157 - ideal pattern is "hexagonal"?
 
 **Response:** \textcolor{blue}{Thanks for catching this. We’ve now standardized this term to be the same as every other mention of the uniform, equilateral triangular grid. The area of leaf surface closest to a given stomate, when stoamta are arrayed in an equilateral triangular grid, forms a hexagon (see Fig. 2C).}
 
-Line 168 – "All parameters....exceeded 103" – please clarify what you mean by this statement.
+Line 168 -- "All parameters....exceeded 103" -- please clarify what you mean by this statement.
 
 **Response:** \textcolor{blue}{Thank you for all of your comments. We’ve clarified this statement on line 195:}
 
@@ -145,7 +145,7 @@ Line 168 – "All parameters....exceeded 103" – please clarify what you mean b
 
 Dear authors,
 
-The authors made a theoretical analysis of the optimal distribution of stomata on each leaf surface and then compared it with actual data. I only have a few comments, most of them concerning the assumptions. I think the consequences of their assumptions could be better addressed and explained with further details, especially the concept of “optimal distribution”.
+The authors made a theoretical analysis of the optimal distribution of stomata on each leaf surface and then compared it with actual data. I only have a few comments, most of them concerning the assumptions. I think the consequences of their assumptions could be better addressed and explained with further details, especially the concept of "optimal distribution".
 
 Please see my comments below.
 
@@ -160,7 +160,7 @@ L64-65. The impact of varying tortuosity (horizontal vs. vertical) on stomatal d
 L64-66 (hypotesises 1 and 2). Stomata distribution and tortuosity of the mesophyll also contribute to modulating transpiration, not only CO2 distribution. Did the authors account for this?
 
 **Response:** \textcolor{blue}{We agree that incorporating transpiration is needed to better model optimal traits, but this is beyond the scope of the current study since we have not included venation and there is substantial empirical uncertainty about sites of evaporation within leaves and the prevalence of subsaturated mesophyll airspaces.}
- 
+
 L69-71. Clarification is needed on what is meant by "the surface closest to." Does this imply an assumption of homogeneous tortuosity, leading to a triangular distribution as the only optimisation? Doesn't this already assume that tortuosity is homogeneous and, therefore, the only optimisation possible is the triangular distribution?
 
 **Response:** \textcolor{blue}{The reviewer is correct that we are assuming homogenous mesophyll properties (not just tortuosity). Please see a previous response to Reviewer 1 above, who raised a similar point, for how we revised the manuscript to clarify this assumption. We have also addressed the limitations of this assumption thoroughly in the text.}
