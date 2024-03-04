@@ -38,7 +38,7 @@ abstract:
   - "Photosynthesis is co-limited by multiple factors depending on the plant and its environment. These include biochemical rate limitations, internal and external water potentials, temperature, irradiance, and carbon dioxide (CO$_2$). Amphistomatous leaves have stomata on both abaxial and adaxial leaf surfaces. This feature is considered an adaptation to alleviate CO$_2$ diffusion limitations in productive environments as the diffusion path length from stomate to chloroplast is effectively halved in amphistomatous leaves. Plants may also reduce CO$_2$ limitations through other aspects of optimal stomatal anatomy: stomatal density, distribution, patterning, and size. A number of studies have demonstrated that stomata are overdispersed compared to a random distribution on a single leaf surface; however, despite their prevelance in nature and near ubiquity among crop species, much less is known about stomatal anatomy in amphistomatous leaves, especially the coordination between leaf surfaces. Here we use novel spatial statistics based on simulations and photosynthesis modeling to test hypotheses about how amphistomatous plants may optimize CO$_2$ diffusion in the model angiosperm *Arabidopsis thaliana* grown in different light environments. We find that 1) stomata are overdispersed, but not ideally dispersed, on both leaf surfaces across all light treatments; 2) the patterning of stomata on abaxial and adaxial leaf surfaces is independent; and 3) the theoretical improvements to photosynthesis from abaxial-adaxial stomatal coordination are miniscule ($\\ll 1$%) across the range of feasible parameter space. However, we also find that 4) stomatal size is correlated with the mesophyll volume that it supplies with CO$_2$, suggesting that plants may optimize CO$_2$ diffusion limitations through alternative pathways other than ideal, uniform stomatal spacing. We discuss the developmental, physical, and evolutionary constraits which may prohibit plants from reaching this theoretical adaptive peak of uniform stomatal spacing and inter-surface stomatal coordination. These findings contribute to our understanding of variation in the anatomy of amphistomatous leaves."
 keywords:
   - amphistomy
-  - Arabidopsis thaliana
+  - $\textit{Arabidopsis thaliana}$
   - CO$_2$ diffusion
   - finite element method
   - optimality
@@ -50,7 +50,7 @@ competing_interests: |
 author_contributions: |
   JLW and CDM conceived of the project, analyzed data, and wrote the manuscript. GJD provided data. TNB contributed to model development and helped edit the manuscript.
 acknowledgements: |
-  This work was supported by NSF Award 1929167 to CDM and NSF Award 2307341 to TNB.
+  The authors thank two anonymous reviewers for feedback on an earlier version of this manuscript, NSF Award 1929167 to C.D.M., and NSF Award 2307341 to T.N.B. This is publication #218 from the School of Life Sciences, University of Hawaiʻi at Mānoa.
 bibliography: stomata-spacing.bib
 link-citations: yes
 output: 
@@ -175,9 +175,9 @@ We hypothesized that, in the absence of any constraint and assuming homogenous m
 \label{fig:ideal-amphi-grid}
 \end{figure}
 
-To test these hypotheses, we grew the model plant *Arabidopsis thaliana* in high, medium, and low light and measured stomatal density, size, and patterning on both leaf surfaces, and spatial coordination between them. We use Voronoi tessellation techniques to calculate stomatal zones. We also used a 2-D porous medium approximation of CO$_2$ diffusion and photosynthesis to predict the photosynthetic advantage of optimal versus suboptimal coordination in stomatal coordination between surfaces. Specifically, we predicted that traits which affect diffusion path length (leaf thickness, stomatal density, leaf porosity), diffusion rate (determined by temperature, pressure), and CO$_2$ demand (Rubisco concentration, light) would modulate the advantage of optimal stomatal arrangement following the relationships outlined in \autoref{tab:hypotheses}. Here, we integrate over reasonable parameter space to determine the ecophysiological context most likely to favor stomatal coordination in amphistomatous leaves.
+To test these hypotheses, we grew the model plant *Arabidopsis thaliana* in high, medium, and low light and measured stomatal density, size, and patterning on both leaf surfaces, and spatial coordination between them. We use Voronoi tessellation techniques to calculate stomatal zones. We also used a 2-D porous medium approximation of CO$_2$ diffusion and photosynthesis to predict the photosynthetic advantage of optimal versus suboptimal coordination in stomatal coordination between surfaces. Specifically, we predicted that traits which affect diffusion path length (leaf thickness, stomatal density, leaf porosity), diffusion rate (determined by temperature, pressure), and CO$_2$ demand (Rubisco concentration, light) would modulate the advantage of optimal stomatal arrangement following the relationships outlined in Table 1. Here, we integrate over reasonable parameter space to determine the ecophysiological context most likely to favor stomatal coordination in amphistomatous leaves.
 
-```{r hypotheses, results="asis"}
+```{r hypotheses, results="asis",eval=FALSE}
 
 df = tibble::tribble(
   ~trait, ~relationship,
@@ -250,9 +250,9 @@ We modeled photosynthesis CO$_2$ assimilation rate using a spatially-explicit tw
   \text{coordination advantage} = \frac{A_\text{offset}}{A_\text{aligned}}
 \end{equation}
 
-We modeled the coordination advantage over a range of leaf thicknesses, stomatal densities, photosynthetic capacities, and light environments to understand when offsetting stomatal position on each surface might deliver a significant photosynthetic advantage (\autoref{tab:model_var}). The complete model description is available in the Supporting Information.
+We modeled the coordination advantage over a range of leaf thicknesses, stomatal densities, photosynthetic capacities, and light environments to understand when offsetting stomatal position on each surface might deliver a significant photosynthetic advantage (Table 1). The complete model description is available in the Supporting Information.
 
-```{r, model_var, results="asis"}
+```{r, model_var, results="asis", eval=TRUE}
 #| label: tbl-model_var
 
 symbol_descriptions = left_join(rename(model_var, symbol = Variable),
@@ -262,14 +262,14 @@ symbol_descriptions = left_join(rename(model_var, symbol = Variable),
   pull(x) |>
   str_c(collapse = "; ")
 
-model_var_caption = paste0("The parameter range of model variables tested for their effect on coordination advantage (\\autoref{eq:coordination_advantage}) using a 2-D porous medium approximation. We used regularly spaced values within each range and simulated across all combinations. Here we converted model units to more conventional units (e.g. m to $\\mu$m). ", symbol_descriptions)
-
-knitr::kable(
-  model_var, 
-  caption = model_var_caption,
-  label = "model_var",
-  booktabs = TRUE, format = "latex", escape = FALSE
-) 
+# model_var_caption = paste0("The parameter range of model variables tested for their effect on coordination advantage (\\autoref{eq:coordination_advantage}) using a 2-D porous medium approximation. We used regularly spaced values within each range and simulated across all combinations. Here we converted model units to more conventional units (e.g. m to $\\mu$m). ", symbol_descriptions)
+# 
+# knitr::kable(
+#   model_var, 
+#   caption = model_var_caption,
+#   label = "model_var",
+#   booktabs = TRUE, format = "latex", escape = FALSE
+# ) 
 
 ```
 
@@ -319,7 +319,7 @@ We used the finite element method (FEM) to model CO$_2$ diffusion within the lea
 
 \begin{figure}[ht]
 \includegraphics[width = 5in]{figures/model_summary.pdf}
-\caption{There is little photosynthetic benefit of offsetting stomatal position each surface based on a 2-D model of photosynthesis. The coordination advantage (\autoref{eq:coordination_advantage}) is close to zero under nearly all of the parameter space \autoref{tab:model_var}, meaning that the photosynthetic rate of amphistomatous leaves with stomata optimally offset is nearly equal to leaves with stomata on each surface in the same position along the leaf plane. `r symbol_descriptions`.}
+\caption{There is little photosynthetic benefit of offsetting stomatal position each surface based on a 2-D model of photosynthesis. The coordination advantage (\autoref{eq:coordination_advantage}) is close to zero under nearly all of the parameter space (Table 1), meaning that the photosynthetic rate of amphistomatous leaves with stomata optimally offset is nearly equal to leaves with stomata on each surface in the same position along the leaf plane. `r symbol_descriptions`.}
 \label{fig:model_summary}
 \end{figure}
 

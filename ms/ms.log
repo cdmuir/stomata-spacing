@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.15)  3 MAR 2024 17:20
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.15)  3 MAR 2024 21:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -802,6 +802,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 30.
 
 Package hyperref Info: Option `breaklinks' set `true' on input line 30.
@@ -1017,9 +1021,6 @@ Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 \openout5 = `ms.fff'.
 
 (ms.fff)
-\openout4 = `ms.ttt'.
-
-(ms.ttt)
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
 [4]
@@ -1041,7 +1042,7 @@ Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
 [8]
-Underfull \hbox (badness 1314) in paragraph at lines 1011--1015
+Underfull \hbox (badness 1314) in paragraph at lines 978--982
 \TU/lmr/m/n/8.03 Custom scripts are available on a GitHub repository (https://g
 ithub.com/cdmuir/stomata-spacing) and archived on Zenodo:
  []
@@ -1110,32 +1111,7 @@ Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 [14])
 Overfull \vbox (2.49998pt too high) has occurred while \output is active []
 
-[15] AED endfloat: Processing end Figures and Tables (./ms.lot
-Underfull \hbox (badness 10000) detected at line 1
-\TU/lmr/m/n/8.03 1
- []
-
-
-Underfull \hbox (badness 10000) detected at line 2
-\TU/lmr/m/n/8.03 2
- []
-
-)
-\tf@lot=\write7
-\openout7 = `ms.lot'.
-
-[16
-
-
-
-] (./ms.ttt [17
-
-]
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 20.
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[18] (./ms.lof
+[15] AED endfloat: Processing end Figures and Tables (./ms.lof
 Underfull \hbox (badness 10000) detected at line 1
 \TU/lmr/m/n/8.03 1
  []
@@ -1171,17 +1147,17 @@ Underfull \hbox (badness 10000) detected at line 7
  []
 
 )
-\tf@lof=\write8
-\openout8 = `ms.lof'.
+\tf@lof=\write7
+\openout7 = `ms.lof'.
 
-[19
+[16
 
 
 
 ] (./ms.fff
 File: figures/ideal-amphi-grid.pdf Graphic file (type pdf)
 <use figures/ideal-amphi-grid.pdf>
-[20
+[17
 
 ]
 File: figures/tessellation-example.pdf Graphic file (type pdf)
@@ -1189,31 +1165,31 @@ File: figures/tessellation-example.pdf Graphic file (type pdf)
 
 LaTeX Warning: Float too large for page by 47.80003pt on input line 12.
 
-[21]
+[18]
 File: figures/density.pdf Graphic file (type pdf)
 <use figures/density.pdf>
-[22
+[19
 
 
 ]
 File: figures/single-surface.pdf Graphic file (type pdf)
 <use figures/single-surface.pdf>
-[23
+[20
 
 ]
 File: figures/dual-surface.pdf Graphic file (type pdf)
 <use figures/dual-surface.pdf>
-[24
+[21
 
 ]
 File: figures/length-area.pdf Graphic file (type pdf)
 <use figures/length-area.pdf>
-[25
+[22
 
 ]
 File: figures/model_summary.pdf Graphic file (type pdf)
 <use figures/model_summary.pdf>
-) [26
+) [23
 
 ] (./ms.aux)
  ***********
@@ -1224,12 +1200,12 @@ Package rerunfilecheck Info: File `ms.out' has not changed.
 (rerunfilecheck)             Checksum: D8B6F68DCDA9CD3439C8647E4FEF8085;3174.
  ) 
 Here is how much of TeX's memory you used:
- 30054 strings out of 474829
- 607956 string characters out of 5759809
- 1973174 words of memory out of 5000000
- 51608 multiletter control sequences out of 15000+600000
- 585685 words of font info for 175 fonts, out of 8000000 for 9000
+ 30011 strings out of 474829
+ 607322 string characters out of 5759809
+ 1972174 words of memory out of 5000000
+ 51571 multiletter control sequences out of 15000+600000
+ 580565 words of font info for 154 fonts, out of 8000000 for 9000
  1352 hyphenation exceptions out of 8191
- 99i,12n,101p,17345b,1058s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,9n,101p,17345b,1058s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ms.pdf (26 pages).
+Output written on ms.pdf (23 pages).
