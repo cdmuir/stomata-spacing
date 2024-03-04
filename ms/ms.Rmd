@@ -50,7 +50,7 @@ competing_interests: |
 author_contributions: |
   JLW and CDM conceived of the project, analyzed data, and wrote the manuscript. GJD provided data. TNB contributed to model development and helped edit the manuscript.
 acknowledgements: |
-  The authors thank two anonymous reviewers for feedback on an earlier version of this manuscript, NSF Award 1929167 to C.D.M., and NSF Award 2307341 to T.N.B. This is publication #218 from the School of Life Sciences, University of Hawaiʻi at Mānoa.
+  The authors thank two anonymous reviewers for feedback on an earlier version of this manuscript, NSF Award 1929167 to C.D.M., and USDA NIFA Hatch project 1016439 and NSF Award 2307341 to T.N.B. This is publication #218 from the School of Life Sciences, University of Hawaiʻi at Mānoa.
 bibliography: stomata-spacing.bib
 link-citations: yes
 output: 
@@ -349,6 +349,6 @@ Custom scripts are available on a GitHub repository (https://github.com/cdmuir/s
 
 # Acknowledgements
 
-The authors thank two anonymous reviewers for feedback on an earlier version of this manuscript, NSF Award 1929167 to C.D.M., and NSF Award 2307341 to T.N.B. This is publication #218 from the School of Life Sciences, University of Hawaiʻi at Mānoa.
+The authors thank two anonymous reviewers for feedback on an earlier version of this manuscript, NSF Award 1929167 to C.D.M., and USDA NIFA Hatch project 1016439 and NSF Award 2307341 to T.N.B. This is publication #218 from the School of Life Sciences, University of Hawaiʻi at Mānoa.
 
 # References
